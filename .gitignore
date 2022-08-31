@@ -14,3 +14,5 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 
 keys.txt
+# Ignore Gradle build output directory
+build
