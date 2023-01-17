@@ -8,11 +8,18 @@ import net.dv8tion.jda.api.events.*;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+
 import java.util.Collections;
+import javax.annotation.Nonnull;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.channel.ChannelType; 
+import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 
 public class App extends ListenerAdapter {
+    public static final boolean LOG_MESSAGES = true;
+    public static final String BOT_PREFIX = "!";
+
 
     public static void main(String[] args) {
         Dotenv dotenv = Dotenv.load();
@@ -35,17 +42,42 @@ public class App extends ListenerAdapter {
     }
 
     @Override
-    public void onMessageReceived(MessageReceivedEvent event) {
-        if (event.isFromType(ChannelType.PRIVATE))
-        {
-            System.out.printf("[PM] %s: %s\n", event.getAuthor().getName(),
-                                    event.getMessage().getContentDisplay());
+    public void onMessageReceived(@Nonnull MessageReceivedEvent event) {
+        if(LOG_MESSAGES) {
+            if (event.isFromType(ChannelType.PRIVATE)) {
+                System.out.printf("[PM] %s: %s\n", event.getAuthor().getName(),
+                                        event.getMessage().getContentDisplay());
+            }
+            else {
+                System.out.printf("[%s] %s: %s\n", event.getGuild().getName(),
+                            event.getMember().getEffectiveName(),
+                            event.getMessage().getContentDisplay());
+            }
         }
-        else
-        {
-            System.out.printf("[%s] %s: %s\n", event.getGuild().getName(),
-                        event.getMember().getEffectiveName(),
-                        event.getMessage().getContentDisplay());
+            
+        // We don't want to respond to other bot accounts, including ourself
+        if(event.getAuthor().isBot()) return;
+        Message message = event.getMessage();
+        String content = message.getContentRaw();
+        // Sees if message contains the command prefix
+        if(content.substring(0, 1).equalsIgnoreCase(BOT_PREFIX))
+            // Strips message of command prefix and sends to parse
+            parseCommand(content.substring(1), event);
+    }
+
+    /**
+     * Processes the command sent to the bot.
+     * @param fullCommand Command text without the prefix ('!')
+     */
+    public void parseCommand(String command, @Nonnull MessageReceivedEvent event){
+        System.out.println("Recieved command: " + command);
+        switch(command){
+            case "ping":
+                MessageChannel channel = event.getChannel();
+                channel.sendMessage("Pong!").queue();
+                break;
+            default:
+                System.out.println("Unknown command: " + command);
         }
     }
 }
