@@ -19,7 +19,7 @@ import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 public class App extends ListenerAdapter {
     public static final boolean LOG_MESSAGES = true;
     public static final String BOT_PREFIX = "!";
-
+    public CommandController commandController = new CommandController();
 
     public static void main(String[] args) {
         Dotenv dotenv = Dotenv.load();
@@ -77,11 +77,11 @@ public class App extends ListenerAdapter {
         System.out.println("Recieved fullCommand: " + fullCommand);
         // If there is more than one word.
         if(index > -1) {
-            command = fullCommand.substring(0, index).trim(); // Extract first word
-            commandArgs = fullCommand.substring(index).trim(); // Extract remaining words
+            command = fullCommand.substring(0, index).trim().toLowerCase(); // Extract first word
+            commandArgs = fullCommand.substring(index).trim().toLowerCase(); // Extract remaining words
         }
         else{ // There is only one word
-            command = fullCommand;
+            command = fullCommand.toLowerCase();
             commandArgs = "";
         }
 
@@ -90,7 +90,7 @@ public class App extends ListenerAdapter {
                 post("Pong!", channel);
                 break;
             case "spellscroll":
-                post(SpellScrollLookup(commandArgs), channel);
+                post(commandController.SpellScrollLookup(commandArgs), channel);
                 break;
             default:
                 System.out.println("Unknown command: " + command + " with arguments: " + commandArgs);
@@ -104,11 +104,5 @@ public class App extends ListenerAdapter {
         catch(Exception e){
             System.err.println(e);
         }
-    }
-
-    public String SpellScrollLookup(String name){
-        System.out.println("Recieved spell scroll lookup for: " + name);
-
-        return "1";
     }
 }
