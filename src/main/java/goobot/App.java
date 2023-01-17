@@ -5,48 +5,47 @@ package goobot;
 import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.api.*;
 import net.dv8tion.jda.api.events.*;
-import net.dv8tion.jda.api.events.GenericEvent;
-import net.dv8tion.jda.api.entities.ChannelType;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import java.util.Collections;
+import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.entities.channel.ChannelType; 
 
 public class App extends ListenerAdapter {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         Dotenv dotenv = Dotenv.load();
+        String discordToken = dotenv.get("DISCORD_API_KEY");
         JDA jda = null;
-        try {
-            String discordToken = dotenv.get("DISCORD_API_KEY");
+
+        try{
             jda = JDABuilder.createDefault(discordToken)
-            .enableIntents(GatewayIntent.GUILD_MESSAGES) // enables explicit access to message.getContentDisplay()
-            .build();
+                .enableIntents(GatewayIntent.MESSAGE_CONTENT) // enables explicit access to message.getContentDisplay()
+                .build();
         }
         catch(Exception e){
-            System.out.println(e.toString());
+            System.out.println(e);
         }
         
         if(jda != null){
-             //You can also add event listeners to the already built JDA instance
-            // Note that some events may not be received if the listener is added after calling build()
-            // This includes events such as the ReadyEvent
+            System.out.println("Adding event listener.");
             jda.addEventListener(new App());
         }
-        
-     }
-    
-     
+    }
+
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
-        if (event.isFromType(ChannelType.PRIVATE)) {
+        if (event.isFromType(ChannelType.PRIVATE))
+        {
             System.out.printf("[PM] %s: %s\n", event.getAuthor().getName(),
                                     event.getMessage().getContentDisplay());
         }
-        else {
-            System.out.printf("[%s][%s] %s: %s\n", event.getGuild().getName(),
-                        event.getTextChannel().getName(), event.getMember().getEffectiveName(),
+        else
+        {
+            System.out.printf("[%s] %s: %s\n", event.getGuild().getName(),
+                        event.getMember().getEffectiveName(),
                         event.getMessage().getContentDisplay());
         }
     }
-    
 }
