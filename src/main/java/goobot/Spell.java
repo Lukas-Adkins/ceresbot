@@ -201,19 +201,54 @@ public class Spell {
     public String getPrice(){
         ArrayList<String> spellList = new ArrayList<>(Arrays.asList(tags));
         spellList.removeIf(n -> (n.contains("level") || n.contains("cantrip")));
-        List<String> normalPriceClasses = Arrays.asList("bard", "druid", "ranger", "sorcerer", "wizard");
 
         if(type.contains("cantrip"))
-            return "As a " + spellList.toString() + " cantrip spell scroll, " + name + " would cost **15** gp.";       
+            return "As a " + spellList.toString() + " cantrip spell scroll, " + name + " would cost **15** gp.\n" +
+            "As a cantrip, you can always cast this spell croll without possibility for error.";       
         int level = Integer.parseInt(type.substring(0,1));
         Double price = 10 * Math.pow(2.4, level);
 
         // If it's a warlock/cleric/paladin spell, increase price by 150%
+        List<String> normalPriceClasses = Arrays.asList("bard", "druid", "ranger", "sorcerer", "wizard");
         if(Collections.disjoint(spellList, normalPriceClasses))
             price = price * 1.5;
 
         int roundedPrice = (int) Math.round(price);
-        return "As a level " + level + " " + spellList.toString() + " spell scroll, " + name + " would cost **" + roundedPrice + "** gp.";       
+        String levelMods = "";
+
+        List<String> charismaHalfCasters = Arrays.asList("paladin");
+        List<String> wisdomHalfCasters = Arrays.asList("ranger");
+
+        System.out.println(spellList);
+
+        // Charisma casters
+        if(!Collections.disjoint(spellList, Arrays.asList("bard", "sorcerer", "warlock", "paladin"))){
+            int modToCast = level;
+            if(Collections.disjoint(spellList, Arrays.asList("bard", "sorcerer", "warlock"))) // Paladin only spell
+            modToCast = (int) Math.ceil((double) modToCast / 2);
+            levelMods = levelMods + "CHA mod +" + String.valueOf(modToCast) + " ";
+        }
+        // Wisdom casters
+        if(!Collections.disjoint(spellList, Arrays.asList("cleric", "druid", "ranger"))){
+            int modToCast = level;
+            if(Collections.disjoint(spellList, Arrays.asList("cleric", "druid"))) // Ranger only spell
+                modToCast = (int) Math.ceil((double) modToCast / 2);
+            if(levelMods.length() > 1)
+                levelMods = levelMods + ", or WIS mod +" + String.valueOf(modToCast) + " ";
+            else
+                levelMods = levelMods + "WIS mod +" + String.valueOf(modToCast) + " ";
+        }
+        // Intelligence casters
+        if(!Collections.disjoint(spellList, Arrays.asList("wizard"))){
+            if(levelMods.length() > 1)
+                levelMods = levelMods + ", or INT mod +" + String.valueOf(level) + " ";
+            else
+                levelMods = levelMods + "INT mod +" + String.valueOf(level) + " ";
+        }
+
+        return 
+        "As a level " + level + " " + spellList.toString() + " spell scroll, " + name + " would cost **" + roundedPrice + "** gp.\n" +
+        "You need " + levelMods + "to cast this spell scroll without possibility for error.";       
     }
 
     @Override
