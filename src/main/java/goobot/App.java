@@ -70,30 +70,35 @@ public class App extends ListenerAdapter {
      * @param fullCommand Command text without the prefix ('!')
      */
     public void parseCommand(String fullCommand, @Nonnull MessageReceivedEvent event){
-        String command, commandArgs;
+        String command, args;
         MessageChannel channel = event.getChannel();
         int index = fullCommand.indexOf(' ');
     
         System.out.println("Recieved fullCommand: " + fullCommand);
-        // If there is more than one word.
-        if(index > -1) {
+        if(index > -1) { // If there is more than one word.
             command = fullCommand.substring(0, index).trim().toLowerCase(); // Extract first word
-            commandArgs = fullCommand.substring(index).trim().toLowerCase(); // Extract remaining words
+            args = fullCommand.substring(index).trim().toLowerCase(); // Extract remaining words
         }
         else{ // There is only one word
             command = fullCommand.toLowerCase();
-            commandArgs = "";
+            args = "";
         }
 
         switch(command){
-            case "ping":
-                post("Pong!", channel);
+            case "help":
+                post(commandController.Help(args), channel);
                 break;
+            case "ping":
+                post(commandController.Ping(args), channel);
+                break;
+            case "spell":
+                post(commandController.Spell(args), channel);
+                break; 
             case "spellscroll":
-                post(commandController.SpellScrollLookup(commandArgs), channel);
+                post(commandController.SpellScroll(args), channel);
                 break;
             default:
-                System.out.println("Unknown command: " + command + " with arguments: " + commandArgs);
+                System.out.println("Unknown command: " + command + " with arguments: " + args);
         }
     }
 
