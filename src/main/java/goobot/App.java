@@ -15,7 +15,7 @@ public class App extends ListenerAdapter {
     public static void main(String[] args) throws InterruptedException {
         JDA jda = null;
         try {
-            jda = JDABuilder.createDefault("TOKEN_GOES_HERE")
+            jda = JDABuilder.createDefault("MTAxNDYzOTk0NDQ2MDk0NzUxNw.GI6FNM.asdftOVw58l1E3t2kL-Z5B3L7KC5BLwLA_ass")
             .enableIntents(GatewayIntent.GUILD_MESSAGES) // enables explicit access to message.getContentDisplay()
             .build();
         }

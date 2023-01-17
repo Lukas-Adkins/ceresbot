@@ -16,3 +16,6 @@ gradle-app.setting
 keys.txt
 # Ignore Gradle build output directory
 build
+.vscode/
+.pre-commit-config.yaml
+.env
