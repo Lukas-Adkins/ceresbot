@@ -1,6 +1,9 @@
 package goobot;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
+import java.util.Collections;
 
 public class Spell {
     String casting_time;
@@ -212,6 +215,9 @@ public class Spell {
 
     @Override
     public String toString() {
+        ArrayList<String> tagList = new ArrayList<>(Arrays.asList(tags));
+        tagList.removeIf(n -> (n.contains("level")));
+
         return "**" + name + "**\n" +
         "*" + type + "*\n" +
         "**Casting Time**: " + casting_time + "\n" +
@@ -219,6 +225,6 @@ public class Spell {
         "**Components**: " + components.getRaw() + "\n" +
         "**Duration**: " + duration + "\n\n" +
         description +"\n\n" +
-        "**Tags**: " + Arrays.toString(tags);
+        "**Spell Lists**: " + tagList.toString();
     }
 }
