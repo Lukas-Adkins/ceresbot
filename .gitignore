@@ -1,5 +1,6 @@
 .gradle
 /build/
+/bin/
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -19,3 +20,4 @@ build
 .vscode/
 .pre-commit-config.yaml
 .env
+.cache_ggshield

@@ -15,7 +15,8 @@ public class App extends ListenerAdapter {
     public static void main(String[] args) throws InterruptedException {
         JDA jda = null;
         try {
-            jda = JDABuilder.createDefault("MTAxNDYzOTk0NDQ2MDk0NzUxNw.GI6FNM.asdftOVw58l1E3t2kL-Z5B3L7KC5BLwLA_ass")
+            String discordToken = System.getenv("DISCORD_API_KEY");
+            jda = JDABuilder.createDefault(discordToken)
             .enableIntents(GatewayIntent.GUILD_MESSAGES) // enables explicit access to message.getContentDisplay()
             .build();
         }
