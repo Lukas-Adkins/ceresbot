@@ -30,7 +30,7 @@ public class CommandController {
     public String SpellScroll(String args){
         Spell spell = spellLibrary.getSpell(args);
         if(spell != null){
-            return spell.description;
+            return spell.getPrice();
         }
         else
             return "Spell '" + args + "' not found.";

@@ -19,6 +19,7 @@ public class Spell {
     String[] tags;
     String type;
 
+
     public Spell() {
     }
 
@@ -197,6 +198,24 @@ public class Spell {
         return this;
     }
 
+    public String getPrice(){
+        ArrayList<String> spellList = new ArrayList<>(Arrays.asList(tags));
+        spellList.removeIf(n -> (n.contains("level") || n.contains("cantrip")));
+        List<String> normalPriceClasses = Arrays.asList("bard", "druid", "ranger", "sorcerer", "wizard");
+
+        if(type.contains("cantrip"))
+            return "As a " + spellList.toString() + " cantrip spell scroll, " + name + " would cost **15** gp.";       
+        int level = Integer.parseInt(type.substring(0,1));
+        Double price = 10 * Math.pow(2.4, level);
+
+        // If it's a warlock/cleric/paladin spell, increase price by 150%
+        if(Collections.disjoint(spellList, normalPriceClasses))
+            price = price * 1.5;
+
+        int roundedPrice = (int) Math.round(price);
+        return "As a level " + level + " " + spellList.toString() + " spell scroll, " + name + " would cost **" + roundedPrice + "** gp.";       
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -215,8 +234,8 @@ public class Spell {
 
     @Override
     public String toString() {
-        ArrayList<String> tagList = new ArrayList<>(Arrays.asList(tags));
-        tagList.removeIf(n -> (n.contains("level")));
+        ArrayList<String> spellList = new ArrayList<>(Arrays.asList(tags));
+        spellList.removeIf(n -> (n.contains("level") || n.contains("cantrip")));
 
         return "**" + name + "**\n" +
         "*" + type + "*\n" +
@@ -225,6 +244,6 @@ public class Spell {
         "**Components**: " + components.getRaw() + "\n" +
         "**Duration**: " + duration + "\n\n" +
         description +"\n\n" +
-        "**Spell Lists**: " + tagList.toString();
+        "**Spell Lists**: " + spellList.toString();
     }
 }
