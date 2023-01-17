@@ -69,15 +69,46 @@ public class App extends ListenerAdapter {
      * Processes the command sent to the bot.
      * @param fullCommand Command text without the prefix ('!')
      */
-    public void parseCommand(String command, @Nonnull MessageReceivedEvent event){
-        System.out.println("Recieved command: " + command);
+    public void parseCommand(String fullCommand, @Nonnull MessageReceivedEvent event){
+        String command, commandArgs;
+        MessageChannel channel = event.getChannel();
+        int index = fullCommand.indexOf(' ');
+    
+        System.out.println("Recieved fullCommand: " + fullCommand);
+        // If there is more than one word.
+        if(index > -1) {
+            command = fullCommand.substring(0, index).trim(); // Extract first word
+            commandArgs = fullCommand.substring(index).trim(); // Extract remaining words
+        }
+        else{ // There is only one word
+            command = fullCommand;
+            commandArgs = "";
+        }
+
         switch(command){
             case "ping":
-                MessageChannel channel = event.getChannel();
-                channel.sendMessage("Pong!").queue();
+                post("Pong!", channel);
+                break;
+            case "spellscroll":
+                post(SpellScrollLookup(commandArgs), channel);
                 break;
             default:
-                System.out.println("Unknown command: " + command);
+                System.out.println("Unknown command: " + command + " with arguments: " + commandArgs);
         }
+    }
+
+    public void post(String message, MessageChannel channel){
+        try{
+            channel.sendMessage(message).queue();
+        }
+        catch(Exception e){
+            System.err.println(e);
+        }
+    }
+
+    public String SpellScrollLookup(String name){
+        System.out.println("Recieved spell scroll lookup for: " + name);
+
+        return "1";
     }
 }
