@@ -23,20 +23,20 @@ public class CommandController {
     }
 
     public String Spell(String args){
-        Spell spell = spellLibrary.getSpell(args);
+        Spell spell = spellLibrary.getSpell(args.replace("-", " "));
         if(spell != null){
             return spell.toString();
         }
         else
-            return "Spell '" + args + "' not found. Keep in mind, only PHB spells are supported currently.";
+            return "Spell '" + args + "' not found. Keep in mind, only PHB and TCoE spells are supported currently.";
     }
 
     public String SpellScroll(String args){
-        Spell spell = spellLibrary.getSpell(args);
+        Spell spell = spellLibrary.getSpell(args.replace("-", " "));
         if(spell != null){
             return spell.getPrice();
         }
         else
-            return "Spell '" + args + "' not found. Keep in mind, only PHB spells are supported currently.";
+            return "Spell '" + args + "' not found. Keep in mind, only PHB and TCoE spells are supported currently.";
     }
 }

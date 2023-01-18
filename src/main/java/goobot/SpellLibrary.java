@@ -39,7 +39,7 @@ public class SpellLibrary {
         Spell[] spellArray = gson.fromJson(jsonString, Spell[].class);
         if(spellArray != null){
             for (Spell spell : spellArray)
-                spellMap.put(spell.name.trim().toLowerCase(), spell);
+                spellMap.put(spell.name.trim().toLowerCase().replace("-", " "), spell);
         }
     }
 

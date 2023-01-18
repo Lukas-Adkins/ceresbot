@@ -199,10 +199,9 @@ public class Spell {
     }
 
     public String getPrice(){
-        ArrayList<String> spellList = new ArrayList<>(Arrays.asList(tags));
-        spellList.removeIf(n -> (n.contains("level") || n.contains("cantrip")));
+        ArrayList<String> spellList = new ArrayList<>(Arrays.asList(classes));
 
-        if(type.contains("cantrip"))
+        if(level.contains("cantrip"))
             return "As a " + spellList.toString() + " cantrip spell scroll, " + name + " would cost **15** gp.\n" +
             "As a cantrip, you can always cast this spell scroll without possibility of error.";       
         int level = Integer.parseInt(type.substring(0,1));
@@ -264,9 +263,6 @@ public class Spell {
 
     @Override
     public String toString() {
-        ArrayList<String> spellList = new ArrayList<>(Arrays.asList(tags));
-        spellList.removeIf(n -> (n.contains("level") || n.contains("cantrip")));
-
         return "**" + name + "**\n" +
         "*" + type + "*\n" +
         "**Casting Time**: " + casting_time + "\n" +
@@ -274,6 +270,6 @@ public class Spell {
         "**Components**: " + components.getRaw() + "\n" +
         "**Duration**: " + duration + "\n\n" +
         description +"\n\n" +
-        "**Spell Lists**: " + spellList.toString();
+        "**Spell Lists**: " + Arrays.toString(classes);
     }
 }
