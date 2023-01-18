@@ -103,6 +103,8 @@ public class App extends ListenerAdapter {
     }
 
     public void post(String message, MessageChannel channel){
+        if(message.length() > 2000)
+            message = message.substring(0, 1997) + "...";
         try{
             channel.sendMessage(message).queue();
         }

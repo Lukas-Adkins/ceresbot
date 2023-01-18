@@ -9,11 +9,11 @@ public class CommandController {
 
     public String Help(String args){
         String str = "Command List:\n" +
-            "!spell <spell> - Provides information on the given spell.\n" +
-            "!spellscroll <spell> - Calculates the price of a spell scroll for the given spell, and what stats you need to use it. ";
+            "!spell <spell> - Provides information on the given 5e D&D spell.\n" +
+            "!spellscroll <spell> - Calculates the price of a spell scroll for the given 5e D&D spell, and what stats you need to use it. ";
         return str;
     }
-    
+
     public String Ping(String args){
         return "Pong!";
     }
@@ -24,7 +24,7 @@ public class CommandController {
             return spell.toString();
         }
         else
-            return "Spell '" + args + "' not found.";
+            return "Spell '" + args + "' not found. Keep in mind, only PHB spells are supported currently.";
     }
 
     public String SpellScroll(String args){
