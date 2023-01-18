@@ -18,6 +18,10 @@ public class CommandController {
         return "Pong!";
     }
 
+    public String Pat(String args){
+        return "<:ceresblush:875653225385168898>";
+    }
+
     public String Spell(String args){
         Spell spell = spellLibrary.getSpell(args);
         if(spell != null){

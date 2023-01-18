@@ -88,6 +88,9 @@ public class App extends ListenerAdapter {
             case "help":
                 post(commandController.Help(args), channel);
                 break;
+            case "pat":
+                post(commandController.Pat(args), channel);
+                break;
             case "ping":
                 post(commandController.Ping(args), channel);
                 break;
