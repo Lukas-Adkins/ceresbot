@@ -10,7 +10,7 @@ public class CommandController {
     public String Help(String args){
         String str = "Command List:\n" +
             "!spell <spell> - Provides information on the given spell.\n" +
-            "!spellscroll <spell> - Calculates the price of a spell scroll for the given spell. ";
+            "!spellscroll <spell> - Calculates the price of a spell scroll for the given spell, and what stats you need to use it. ";
         return str;
     }
     
@@ -33,6 +33,6 @@ public class CommandController {
             return spell.getPrice();
         }
         else
-            return "Spell '" + args + "' not found.";
+            return "Spell '" + args + "' not found. Keep in mind, only PHB spells are supported currently.";
     }
 }

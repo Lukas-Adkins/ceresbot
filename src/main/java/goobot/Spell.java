@@ -204,7 +204,7 @@ public class Spell {
 
         if(type.contains("cantrip"))
             return "As a " + spellList.toString() + " cantrip spell scroll, " + name + " would cost **15** gp.\n" +
-            "As a cantrip, you can always cast this spell croll without possibility for error.";       
+            "As a cantrip, you can always cast this spell scroll without possibility of error.";       
         int level = Integer.parseInt(type.substring(0,1));
         Double price = 10 * Math.pow(2.4, level);
 
@@ -215,11 +215,6 @@ public class Spell {
 
         int roundedPrice = (int) Math.round(price);
         String levelMods = "";
-
-        List<String> charismaHalfCasters = Arrays.asList("paladin");
-        List<String> wisdomHalfCasters = Arrays.asList("ranger");
-
-        System.out.println(spellList);
 
         // Charisma casters
         if(!Collections.disjoint(spellList, Arrays.asList("bard", "sorcerer", "warlock", "paladin"))){
@@ -248,7 +243,7 @@ public class Spell {
 
         return 
         "As a level " + level + " " + spellList.toString() + " spell scroll, " + name + " would cost **" + roundedPrice + "** gp.\n" +
-        "You need " + levelMods + "to cast this spell scroll without possibility for error.";       
+        "If you cannot normally cast this spell, you need " + levelMods + "to cast this spell scroll without possibility of error.";       
     }
 
     @Override
