@@ -20,9 +20,16 @@ public class SpellLibrary {
         String jsonString = null;
         spellMap = new HashMap<>();
         try{
+            // Tries to check resources folder
             Path path = Paths.get("src/main/resources", spellFilename);
-            System.out.println(path.toAbsolutePath());
-            jsonString = Files.readString(path);
+            if(Files.isReadable(path)){
+                jsonString = Files.readString(path);
+            }
+            else{
+                // Tries to check root folder for fat JAR run
+                path = Paths.get(spellFilename);
+                jsonString = Files.readString(path);
+            }
         }
         catch(Exception e){
             System.err.println("Failed to parse spells! Exiting...");
