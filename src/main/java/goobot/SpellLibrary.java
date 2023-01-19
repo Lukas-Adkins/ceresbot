@@ -1,5 +1,6 @@
 package goobot;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.HashMap;
 import java.io.IOException;
@@ -10,6 +11,9 @@ import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.nio.file.FileSystems;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gson.Gson;
 
@@ -17,19 +21,23 @@ public class SpellLibrary {
     public HashMap<String, Spell> spellMap;
 
     public SpellLibrary(String spellFilename){
-        String jsonString = null;
+        String jsonString = null, RES_PATH = "src/main/resources", CURRENT_DIR_PATH = "";
+        String FAT_JAR_PATH = Paths.get("").toAbsolutePath().getParent().getParent().toString() + "/" + RES_PATH;
+        List<String> jsonFilepaths = Arrays.asList(FAT_JAR_PATH, RES_PATH, CURRENT_DIR_PATH);
         spellMap = new HashMap<>();
+        // Search three possible locations for spells.json file.
         try{
-            // Tries to check resources folder
-            Path path = Paths.get("src/main/resources", spellFilename);
-            if(Files.isReadable(path)){
-                jsonString = Files.readString(path);
+            for(String filepath : jsonFilepaths){
+                Path path = Paths.get(filepath, spellFilename);
+                System.out.println("SEARCHING --- " + path.toAbsolutePath());
+                if(Files.isReadable(path)){
+                    System.out.println("FOUND --- " + path.toAbsolutePath());
+                    jsonString = Files.readString(path);
+                    break;
+                }
             }
-            else{
-                // Tries to check root folder for fat JAR run
-                path = Paths.get(spellFilename);
-                jsonString = Files.readString(path);
-            }
+            if(jsonString == null)
+                throw new FileNotFoundException("Could not find spells.json file.");
         }
         catch(Exception e){
             System.err.println("Failed to parse spells! Exiting...");
