@@ -1,18 +1,11 @@
 package goobot;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.HashMap;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.charset.StandardCharsets;
-import java.nio.charset.Charset;
-import java.nio.file.Path;
-import java.nio.file.FileSystems;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -20,15 +13,27 @@ import com.google.gson.Gson;
 public class SpellLibrary {
     public HashMap<String, Spell> spellMap;
 
-    public SpellLibrary(String spellFilename){
-        String jsonString = null, RES_PATH = "src/main/resources", CURRENT_DIR_PATH = "";
-        String FAT_JAR_PATH = Paths.get("").toAbsolutePath().getParent().getParent().toString() + "/" + RES_PATH;
-        List<String> jsonFilepaths = Arrays.asList(FAT_JAR_PATH, RES_PATH, CURRENT_DIR_PATH);
-        spellMap = new HashMap<>();
-        // Search three possible locations for spells.json file.
+    public SpellLibrary(){
+        this.spellMap = new HashMap<>();
+        String spells1 = readJsonFile("spells.json");
+        //String spells2 = readJsonFile("spells2.json");
+        parseSpells(spells1);
+    }
+
+    /**
+     * Reads JSON file and returns its contents as a String
+     * @param filename File path
+     * @return String containing JSON data
+     */
+    private String readJsonFile(String filename){
+        String jsonString = null;
+        String RES_PATH = "src/main/resources", CURRENT_DIR_PATH = "";
+        List<String> jsonFilepaths = Arrays.asList(RES_PATH, CURRENT_DIR_PATH);
+
+        // Search three possible locations for json file.
         try{
             for(String filepath : jsonFilepaths){
-                Path path = Paths.get(filepath, spellFilename);
+                Path path = Paths.get(filepath, filename);
                 System.out.println("SEARCHING --- " + path.toAbsolutePath());
                 if(Files.isReadable(path)){
                     System.out.println("FOUND --- " + path.toAbsolutePath());
@@ -44,9 +49,7 @@ public class SpellLibrary {
             System.err.println(e);
             System.exit(1);
         }
-        if(jsonString != null){
-            parseSpells(jsonString);
-        }
+        return jsonString;
     }
 
     private void parseSpells(String jsonString){

@@ -4,7 +4,7 @@ public class CommandController {
     public SpellLibrary spellLibrary;
 
     public CommandController(){
-        spellLibrary = new SpellLibrary("spells.json");
+        spellLibrary = new SpellLibrary();
     }
 
     public String Help(String args){
