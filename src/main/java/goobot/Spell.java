@@ -166,7 +166,10 @@ public class Spell {
         return this;
     }
 
-
+    /**
+     * Calculates the proper spell scroll price for a given spell, and its requirements.
+     * @return Spell scroll price and requirements
+     */
     public String getPrice(){
         // Normalize all classes to lowercase
         for(int i = 0; i < classes.length; i++){
@@ -188,24 +191,24 @@ public class Spell {
         int roundedPrice = (int) Math.round(price);
         String levelMods = "";
 
-        // Charisma casters
+        // Charisma casters, add prospective CHA requirement
         if(!Collections.disjoint(spellList, Arrays.asList("bard", "sorcerer", "warlock", "paladin"))){
             int modToCast = level;
-            if(Collections.disjoint(spellList, Arrays.asList("bard", "sorcerer", "warlock"))) // Paladin only spell
-            modToCast = (int) Math.ceil((double) modToCast / 2);
+            if(Collections.disjoint(spellList, Arrays.asList("bard", "sorcerer", "warlock"))) // Paladin only spell, half caster
+                modToCast = (int) Math.ceil((double) modToCast / 2);
             levelMods = levelMods + "CHA mod +" + String.valueOf(modToCast) + " ";
         }
-        // Wisdom casters
+        // Wisdom casters, add prospective WIS requirement
         if(!Collections.disjoint(spellList, Arrays.asList("cleric", "druid", "ranger"))){
             int modToCast = level;
-            if(Collections.disjoint(spellList, Arrays.asList("cleric", "druid"))) // Ranger only spell
+            if(Collections.disjoint(spellList, Arrays.asList("cleric", "druid"))) // Ranger only spell, half caster
                 modToCast = (int) Math.ceil((double) modToCast / 2);
             if(levelMods.length() > 1)
                 levelMods = levelMods + ", or WIS mod +" + String.valueOf(modToCast) + " ";
             else
                 levelMods = levelMods + "WIS mod +" + String.valueOf(modToCast) + " ";
         }
-        // Intelligence casters
+        // Intelligence casters, add prospective INT requirement
         if(!Collections.disjoint(spellList, Arrays.asList("wizard"))){
             if(levelMods.length() > 1)
                 levelMods = levelMods + ", or INT mod +" + String.valueOf(level) + " ";
@@ -241,7 +244,6 @@ public class Spell {
             type = this.school + " cantrip";
         else
             type = "Level " + this.level + " " + this.school;
-
 
         return "**" + name + "**\n" +
         "*" + type + "*\n" +
