@@ -97,6 +97,9 @@ public class App extends ListenerAdapter {
             case "spellscroll":
                 post(commandController.SpellScroll(args), channel);
                 break;
+            case "roll":
+                post(commandController.Roll(args), channel);
+                break;
             default:
                 System.out.println("Unknown command: " + command + " with arguments: " + args);
         }
