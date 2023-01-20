@@ -16,14 +16,10 @@ public class Spell {
     String range;
     Boolean ritual;
     String school;
-    String[] tags;
-    String type;
 
+    public Spell() {}
 
-    public Spell() {
-    }
-
-    public Spell(String casting_time, String[] classes, SpellComponent components, String description, String duration, String level, String name, String range, Boolean ritual, String school, String[] tags, String type) {
+    public Spell(String casting_time, String[] classes, SpellComponent components, String description, String duration, String level, String name, String range, Boolean ritual, String school) {
         this.casting_time = casting_time;
         this.classes = classes;
         this.components = components;
@@ -34,8 +30,6 @@ public class Spell {
         this.range = range;
         this.ritual = ritual;
         this.school = school;
-        this.tags = tags;
-        this.type = type;
     }
 
     public String getCasting_time() {
@@ -122,22 +116,6 @@ public class Spell {
         this.school = school;
     }
 
-    public String[] getTags() {
-        return this.tags;
-    }
-
-    public void setTags(String[] tags) {
-        this.tags = tags;
-    }
-
-    public String getType() {
-        return this.type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public Spell casting_time(String casting_time) {
         setCasting_time(casting_time);
         return this;
@@ -188,23 +166,18 @@ public class Spell {
         return this;
     }
 
-    public Spell tags(String[] tags) {
-        setTags(tags);
-        return this;
-    }
-
-    public Spell type(String type) {
-        setType(type);
-        return this;
-    }
 
     public String getPrice(){
+        // Normalize all classes to lowercase
+        for(int i = 0; i < classes.length; i++){
+            classes[i] = classes[i].toLowerCase();
+        }
         ArrayList<String> spellList = new ArrayList<>(Arrays.asList(classes));
 
         if(level.contains("cantrip"))
             return "As a " + spellList.toString() + " cantrip spell scroll, " + name + " would cost **15** gp.\n" +
             "As a cantrip, you can always cast this spell scroll without possibility of error.";       
-        int level = Integer.parseInt(type.substring(0,1));
+        int level = Integer.parseInt(this.level);
         Double price = 10 * Math.pow(2.4, level);
 
         // If it's a warlock/cleric/paladin spell, increase price by 150%
@@ -253,16 +226,23 @@ public class Spell {
             return false;
         }
         Spell spell = (Spell) o;
-        return Objects.equals(casting_time, spell.casting_time) && Objects.equals(classes, spell.classes) && Objects.equals(components, spell.components) && Objects.equals(description, spell.description) && Objects.equals(duration, spell.duration) && Objects.equals(level, spell.level) && Objects.equals(name, spell.name) && Objects.equals(range, spell.range) && Objects.equals(ritual, spell.ritual) && Objects.equals(school, spell.school) && Objects.equals(tags, spell.tags) && Objects.equals(type, spell.type);
+        return Objects.equals(casting_time, spell.casting_time) && Objects.equals(classes, spell.classes) && Objects.equals(components, spell.components) && Objects.equals(description, spell.description) && Objects.equals(duration, spell.duration) && Objects.equals(level, spell.level) && Objects.equals(name, spell.name) && Objects.equals(range, spell.range) && Objects.equals(ritual, spell.ritual) && Objects.equals(school, spell.school);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(casting_time, classes, components, description, duration, level, name, range, ritual, school, tags, type);
+        return Objects.hash(casting_time, classes, components, description, duration, level, name, range, ritual, school);
     }
 
     @Override
     public String toString() {
+        String type;
+        if(this.level.equals("cantrip"))
+            type = this.school + " cantrip";
+        else
+            type = "Level " + this.level + " " + this.school;
+
+
         return "**" + name + "**\n" +
         "*" + type + "*\n" +
         "**Casting Time**: " + casting_time + "\n" +
