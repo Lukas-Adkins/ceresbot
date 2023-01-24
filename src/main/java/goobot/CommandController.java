@@ -11,18 +11,12 @@ import java.util.List;
 
 public class CommandController {
     private SpellLibrary spellLibrary;
-
-    // Error messages
-    private static final String DICE_PARSE_ERROR_MSG = "Could not parse provided dice. Please try in format:\n`!roll <number of dice>d<dice>`";
-    private static final String SPELL_NOT_FOUND_ERROR_MSG = "Spell not found. Keep in mind, only PHB, XGtE, and TCoE spells are supported currently.";
-
-    // String message constants
-    private static final String CERES_BLUSH_MSG = "<:ceresblush:875653225385168898>";
-    private static final String PONG_MSG = "Pong!";
-    private static final String HELP_MSG = "**Command List:**\n" +
-    "`!roll <number of dice>d<dice>` - Simulates a dice roll for the specified dice values.\n" +
-    "`!spell <spell>` - Provides information on the given 5e D&D spell.\n" +
-    "`!spellscroll <spell>` - Calculates the price of a spell scroll for the given 5e D&D spell, and what stats you need to use it. ";
+    public static final String    
+    DICE_NOT_PARSED_MSG_STRING = "DICE_NOT_PARSED_MSG",
+    SPELL_NOT_FOUND_MSG_STRING = "SPELL_NOT_FOUND_MSG",
+    PAT_MSG_STRING = "PAT_MSG",
+    PONG_MSG_STRING = "PONG_MSG",
+    HELP_MSG_STRING = "HELP_MSG";
 
     /**
      * Initilizes controller
@@ -37,7 +31,7 @@ public class CommandController {
      * @return String list of bot commands
      */
     public String Help(String args){
-        return HELP_MSG;
+        return App.properties.getProperty(HELP_MSG_STRING);
     }
 
     /**
@@ -46,7 +40,7 @@ public class CommandController {
      * @return String response to a user's ping request
      */
     public String Ping(String args){
-        return PONG_MSG;
+        return App.properties.getProperty(PONG_MSG_STRING);
     }
 
     /**
@@ -55,7 +49,7 @@ public class CommandController {
      * @return String representing custom emoji
      */
     public String Pat(String args){
-        return CERES_BLUSH_MSG;
+        return App.properties.getProperty(PAT_MSG_STRING);
     }
 
     /**
@@ -70,12 +64,11 @@ public class CommandController {
 
         try{  // Try to parse dice
             int dIndex = args.indexOf("d");
-            System.out.println(dIndex);
             totalDice = Integer.parseInt(args.substring(0,dIndex));
             dice = Integer.parseInt(args.substring(dIndex + 1));
         }
         catch(Exception e){
-            return DICE_PARSE_ERROR_MSG;
+            return App.properties.getProperty(DICE_NOT_PARSED_MSG_STRING);
         }
         
         for(int i = 0; i < totalDice; i++){ // Add up dice totals
@@ -99,7 +92,7 @@ public class CommandController {
             return spell.toString();
         }
         else
-            return SPELL_NOT_FOUND_ERROR_MSG;
+            return App.properties.getProperty(DICE_NOT_PARSED_MSG_STRING);
     }
 
     /**
@@ -113,6 +106,6 @@ public class CommandController {
             return spell.getPrice();
         }
         else
-            return SPELL_NOT_FOUND_ERROR_MSG;
+            return App.properties.getProperty(SPELL_NOT_FOUND_MSG_STRING);
     }
 }

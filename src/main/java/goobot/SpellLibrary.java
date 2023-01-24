@@ -17,10 +17,11 @@ import com.google.gson.Gson;
 
 public class SpellLibrary {
     private HashMap<String, Spell> spellMap;
+    public static final String SPELLS_FILENAME_STRING = "SPELLS_FILENAME";
 
     public SpellLibrary(){
         this.spellMap = new HashMap<>();
-        String spells = readJsonFile("spells.json");
+        String spells = readJsonFile(App.properties.getProperty(SPELLS_FILENAME_STRING));
         parseSpells(spells);
     }
 
@@ -30,6 +31,7 @@ public class SpellLibrary {
      * @return String containing JSON data
      */
     private String readJsonFile(String filename){
+        String functionName = "[readJsonFile()] ";
         String jsonString = null;
         String RES_PATH = "src/main/resources", CURRENT_DIR_PATH = "";
         List<String> jsonFilepaths = Arrays.asList(RES_PATH, CURRENT_DIR_PATH);
@@ -46,11 +48,10 @@ public class SpellLibrary {
                 }
             }
             if(jsonString == null)
-                throw new FileNotFoundException("Could not find spells.json file.");
+                throw new FileNotFoundException("Could not find spells.json file at " + filename);
         }
         catch(Exception e){
-            System.err.println("Failed to parse spells! Exiting...");
-            System.err.println(e);
+            System.err.println(functionName + e);
             System.exit(1);
         }
         return jsonString;
