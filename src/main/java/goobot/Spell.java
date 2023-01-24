@@ -9,8 +9,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Spell {
+    public static final String USE_CUSTOM_SCROLL_PRICES_STRING = "USE_CUSTOM_SCROLL_PRICES";
+    private Boolean customPricesEnabled;
     private String casting_time;
     private String[] classes;
     private SpellComponent components;
@@ -21,6 +25,18 @@ public class Spell {
     private String range;
     private Boolean ritual;
     private String school;
+    private Map<String, Integer> standardScrollPriceMap;
+    private static final Integer 
+    spellScrollPriceCantrip = 13,
+    spellScrollPriceLvl1 = 25,
+    spellScrollPriceLvl2 = 50,
+    spellScrollPriceLvl3 = 125,
+    spellScrollPriceLvl4 = 250,
+    spellScrollPriceLvl5 = 1250,
+    spellScrollPriceLvl6 = 2500,
+    spellScrollPriceLvl7 = 5000,
+    spellScrollPriceLvl8 = 12500,
+    spellScrollPriceLvl9 = 25000;
 
     public Spell() {}
 
@@ -171,11 +187,48 @@ public class Spell {
         return this;
     }
 
+    public String getPrice(){
+        if(this.customPricesEnabled == null) // Init customPricesEnable boolean if not in cache
+            this.customPricesEnabled = Boolean.parseBoolean(App.properties.getProperty(USE_CUSTOM_SCROLL_PRICES_STRING));
+        if(this.customPricesEnabled)
+            return getPriceCustom();
+        return getPriceStandard();
+    }
+
     /**
-     * Calculates the proper spell scroll price for a given spell, and its requirements.
+     * Calculates the proper spell scroll price for a given spell, and its requirements, using source rulebook pricing.
      * @return Spell scroll price and requirements
      */
-    public String getPrice(){
+    public String getPriceStandard(){
+        if(this.standardScrollPriceMap == null){ // Init pricemap if not in cache
+            this.standardScrollPriceMap = new HashMap<String, Integer>() {{
+                put("cantrip", spellScrollPriceCantrip);
+                put("1", spellScrollPriceLvl1);
+                put("2", spellScrollPriceLvl2);
+                put("3", spellScrollPriceLvl3);
+                put("4", spellScrollPriceLvl4);
+                put("5", spellScrollPriceLvl5);
+                put("6", spellScrollPriceLvl6);
+                put("7", spellScrollPriceLvl7);
+                put("8", spellScrollPriceLvl8);
+                put("9", spellScrollPriceLvl9);
+            }};
+        }
+
+        ArrayList<String> spellList = new ArrayList<>(Arrays.asList(classes));
+        int level = Integer.parseInt(this.level);
+        Integer roundedPrice = this.standardScrollPriceMap.get(this.level);
+        String levelMods = getLevelMods(level, spellList);
+        return 
+        "As a level " + level + " " + spellList.toString() + " spell scroll, " + name + " would cost **" + roundedPrice + "** gp.\n" +
+        "If you cannot normally cast this spell, you need " + levelMods + "to cast this spell scroll without possibility of error.";   
+    }
+
+    /**
+     * Calculates the proper spell scroll price for a given spell, and its requirements, using custom pricing.
+     * @return Spell scroll price and requirements
+     */
+    public String getPriceCustom(){
         // Normalize all classes to lowercase
         for(int i = 0; i < classes.length; i++){
             classes[i] = classes[i].toLowerCase();
@@ -194,6 +247,19 @@ public class Spell {
             price = price * 1.5;
 
         int roundedPrice = (int) Math.round(price);
+        String levelMods = getLevelMods(level, spellList);
+        return 
+        "As a level " + level + " " + spellList.toString() + " spell scroll, " + name + " would cost **" + roundedPrice + "** gp.\n" +
+        "If you cannot normally cast this spell, you need " + levelMods + "to cast this spell scroll without possibility of error.";       
+    }
+
+    /**
+     * Gets the requirements for casting this spell using homebrew rules.
+     * @param level Level of the spell
+     * @param spellList List of class lists the spell belongs to
+     * @return Formatted string detailing requirements for casting the spell.
+     */
+    private String getLevelMods(Integer level, ArrayList<String> spellList){
         String levelMods = "";
 
         // Charisma casters, add prospective CHA requirement
@@ -220,10 +286,7 @@ public class Spell {
             else
                 levelMods = levelMods + "INT mod +" + String.valueOf(level) + " ";
         }
-
-        return 
-        "As a level " + level + " " + spellList.toString() + " spell scroll, " + name + " would cost **" + roundedPrice + "** gp.\n" +
-        "If you cannot normally cast this spell, you need " + levelMods + "to cast this spell scroll without possibility of error.";       
+        return levelMods;
     }
 
     @Override

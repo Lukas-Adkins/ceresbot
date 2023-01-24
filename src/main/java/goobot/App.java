@@ -26,7 +26,7 @@ public class App extends ListenerAdapter {
     public static Properties properties;
 
     private static String BOT_PREFIX, DISCORD_TOKEN;
-    private static boolean LOG_MESSAGES;
+    private static Boolean LOG_MESSAGES;
     private static CommandController commandController;
 
     public static void main(String[] args) {
