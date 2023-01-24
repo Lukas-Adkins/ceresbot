@@ -76,7 +76,7 @@ public class CommandController {
             total += num;
             rolledValues.add(num);
         }
-        if(totalDice == 1) // If there's only one die, return without showing individually rolled dice
+        if(totalDice == 1) // If there's only one die, return without showing individually rolled die
             return "**" + total + "**";
         return "**" + total + "**\n" + rolledValues.toString();
     }
@@ -87,12 +87,13 @@ public class CommandController {
      * @return Spell information
      */
     public String Spell(String args){
-        Spell spell = spellLibrary.getSpell(args.replace("-", " "));
+        String spellName = args.replace("-", " ");
+        Spell spell = spellLibrary.getSpell(spellName);
         if(spell != null){
             return spell.toString();
         }
         else
-            return App.properties.getProperty(DICE_NOT_PARSED_MSG_STRING);
+            return App.properties.getProperty(SPELL_NOT_FOUND_MSG_STRING);
     }
 
     /**
@@ -101,7 +102,8 @@ public class CommandController {
      * @return Spell scroll information
      */
     public String SpellScroll(String args){
-        Spell spell = spellLibrary.getSpell(args.replace("-", " "));
+        String spellName = args.replace("-", " ");
+        Spell spell = spellLibrary.getSpell(spellName);
         if(spell != null){
             return spell.getPrice();
         }
