@@ -13,8 +13,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Spell {
-    public static final String USE_CUSTOM_SCROLL_PRICES_STRING = "USE_CUSTOM_SCROLL_PRICES";
-    private Boolean customPricesEnabled;
+    public static final String 
+    USE_CUSTOM_SCROLL_PRICES_STRING = "USE_CUSTOM_SCROLL_PRICES",
+    USE_CUSTOM_SCROLL_CASTING_STRING = "USE_CUSTOM_SCROLL_CASTING";
+
+    private Boolean customPricesEnabled, customCastingEnabled;
     private String casting_time;
     private String[] classes;
     private SpellComponent components;
@@ -190,6 +193,8 @@ public class Spell {
     public String getPrice(){
         if(this.customPricesEnabled == null) // Init customPricesEnable boolean if not in cache
             this.customPricesEnabled = Boolean.parseBoolean(App.properties.getProperty(USE_CUSTOM_SCROLL_PRICES_STRING));
+        if(this.customCastingEnabled == null) // Init customPricesEnabled boolean if not in cache
+            this.customCastingEnabled = Boolean.parseBoolean(App.properties.getProperty(USE_CUSTOM_SCROLL_CASTING_STRING));
         if(this.customPricesEnabled)
             return getPriceCustom();
         return getPriceStandard();
@@ -219,9 +224,11 @@ public class Spell {
         int level = Integer.parseInt(this.level);
         Integer roundedPrice = this.standardScrollPriceMap.get(this.level);
         String levelMods = getLevelMods(level, spellList);
-        return 
-        "As a level " + level + " " + spellList.toString() + " spell scroll, " + name + " would cost **" + roundedPrice + "** gp.\n" +
-        "If you cannot normally cast this spell, you need " + levelMods + "to cast this spell scroll without possibility of error.";   
+        String returnString = "As a level " + level + " " + spellList.toString() + " spell scroll, " + name + " would cost **" + roundedPrice + "** gp.\n";
+        if(this.customCastingEnabled) // Custom casting flag check
+            returnString = returnString + 
+        "If you cannot normally cast this spell, you need " + levelMods + "to cast this spell scroll without possibility of error.";  
+        return returnString; 
     }
 
     /**
@@ -248,9 +255,11 @@ public class Spell {
 
         int roundedPrice = (int) Math.round(price);
         String levelMods = getLevelMods(level, spellList);
-        return 
-        "As a level " + level + " " + spellList.toString() + " spell scroll, " + name + " would cost **" + roundedPrice + "** gp.\n" +
-        "If you cannot normally cast this spell, you need " + levelMods + "to cast this spell scroll without possibility of error.";       
+        String returnString = "As a level " + level + " " + spellList.toString() + " spell scroll, " + name + " would cost **" + roundedPrice + "** gp.\n";
+        if(this.customCastingEnabled) // Custom casting flag check
+            returnString = returnString + 
+        "If you cannot normally cast this spell, you need " + levelMods + "to cast this spell scroll without possibility of error.";  
+        return returnString;     
     }
 
     /**
