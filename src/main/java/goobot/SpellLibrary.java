@@ -1,3 +1,8 @@
+/*
+ * Java source file for CeresBot.
+ * @Author Lukas Adkins
+ */
+
 package goobot;
 
 import java.io.FileNotFoundException;
@@ -11,13 +16,12 @@ import java.util.List;
 import com.google.gson.Gson;
 
 public class SpellLibrary {
-    public HashMap<String, Spell> spellMap;
+    private HashMap<String, Spell> spellMap;
 
     public SpellLibrary(){
         this.spellMap = new HashMap<>();
-        String spells1 = readJsonFile("spells.json");
-        //String spells2 = readJsonFile("spells2.json");
-        parseSpells(spells1);
+        String spells = readJsonFile("spells.json");
+        parseSpells(spells);
     }
 
     /**
@@ -52,12 +56,16 @@ public class SpellLibrary {
         return jsonString;
     }
 
+    /**
+     * Reads spells from spells.json file.
+     * @param jsonString String representation of spells JSON file
+     */
     private void parseSpells(String jsonString){
         Gson gson = new Gson();
         Spell[] spellArray = gson.fromJson(jsonString, Spell[].class);
         if(spellArray != null){
             for (Spell spell : spellArray)
-                spellMap.put(spell.name.trim().toLowerCase().replace("-", " "), spell);
+                spellMap.put(spell.getName().trim().toLowerCase().replace("-", " "), spell);
         }
     }
 

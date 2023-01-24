@@ -1,3 +1,8 @@
+/*
+ * Java source file for CeresBot.
+ * @Author Lukas Adkins
+ */
+
 package goobot;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,16 +11,16 @@ import java.util.Objects;
 import java.util.Collections;
 
 public class Spell {
-    String casting_time;
-    String[] classes;
-    SpellComponent components;
-    String description;
-    String duration;
-    String level;
-    String name;
-    String range;
-    Boolean ritual;
-    String school;
+    private String casting_time;
+    private String[] classes;
+    private SpellComponent components;
+    private String description;
+    private String duration;
+    private String level;
+    private String name;
+    private String range;
+    private Boolean ritual;
+    private String school;
 
     public Spell() {}
 

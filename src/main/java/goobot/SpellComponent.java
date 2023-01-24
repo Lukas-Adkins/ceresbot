@@ -1,14 +1,18 @@
+/*
+ * Java source file for CeresBot.
+ * @Author Lukas Adkins
+ */
+
 package goobot;
 import java.util.Objects;
 
 public class SpellComponent {
-    Boolean material;
-    String raw;
-    Boolean somatic;
-    Boolean verbal;
+    private Boolean material;
+    private String raw;
+    private Boolean somatic;
+    private Boolean verbal;
 
-    public SpellComponent() {
-    }
+    public SpellComponent() {}
 
     public SpellComponent(Boolean material, String raw, Boolean somatic, Boolean verbal) {
         this.material = material;

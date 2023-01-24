@@ -1,3 +1,8 @@
+/*
+ * Java source file for CeresBot.
+ * @Author Lukas Adkins
+ */
+
 package goobot;
 
 import java.util.Random;
@@ -5,26 +10,52 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommandController {
-    public SpellLibrary spellLibrary;
+    private SpellLibrary spellLibrary;
 
+    // Error messages
+    private static final String DICE_PARSE_ERROR_MSG = "Could not parse provided dice. Please try in format:\n`!roll <number of dice>d<dice>`";
+    private static final String SPELL_NOT_FOUND_ERROR_MSG = "Spell not found. Keep in mind, only PHB, XGtE, and TCoE spells are supported currently.";
+
+    // String message constants
+    private static final String CERES_BLUSH_MSG = "<:ceresblush:875653225385168898>";
+    private static final String PONG_MSG = "Pong!";
+    private static final String HELP_MSG = "**Command List:**\n" +
+    "`!roll <number of dice>d<dice>` - Simulates a dice roll for the specified dice values.\n" +
+    "`!spell <spell>` - Provides information on the given 5e D&D spell.\n" +
+    "`!spellscroll <spell>` - Calculates the price of a spell scroll for the given 5e D&D spell, and what stats you need to use it. ";
+
+    /**
+     * Initilizes controller
+     */
     public CommandController(){
         spellLibrary = new SpellLibrary();
     }
 
+    /**
+     * Posts a list of bot commands at a user's request.
+     * @param args Arguments, unused for this command
+     * @return String list of bot commands
+     */
     public String Help(String args){
-        String str = "**Command List:**\n" +
-            "`!roll <number of dice>d<dice>` - Simulates a dice roll for the specified dice values.\n" +
-            "`!spell <spell>` - Provides information on the given 5e D&D spell.\n" +
-            "`!spellscroll <spell>` - Calculates the price of a spell scroll for the given 5e D&D spell, and what stats you need to use it. ";
-        return str;
+        return HELP_MSG;
     }
 
+    /**
+     * Posts a response to a user's ping request
+     * @param args Arguments, unused for this command
+     * @return String response to a user's ping request
+     */
     public String Ping(String args){
-        return "Pong!";
+        return PONG_MSG;
     }
 
+    /**
+     * Posts a response to a user's pat request
+     * @param args Arguments, unused for this command
+     * @return String representing custom emoji
+     */
     public String Pat(String args){
-        return "<:ceresblush:875653225385168898>";
+        return CERES_BLUSH_MSG;
     }
 
     /**
@@ -36,19 +67,18 @@ public class CommandController {
         List<Integer> rolledValues = new ArrayList<>();
         Integer totalDice, dice, total = 0;
         Random diceRoller = new Random();
-        try{
+
+        try{  // Try to parse dice
             int dIndex = args.indexOf("d");
             System.out.println(dIndex);
             totalDice = Integer.parseInt(args.substring(0,dIndex));
-            System.out.println(totalDice);
             dice = Integer.parseInt(args.substring(dIndex + 1));
-            System.out.println(dice);
         }
         catch(Exception e){
-            return "Could not parse provided dice. Please try in format:\n`!roll <number of dice>d<dice>`";
+            return DICE_PARSE_ERROR_MSG;
         }
-
-        for(int i = 0; i < totalDice; i++){
+        
+        for(int i = 0; i < totalDice; i++){ // Add up dice totals
             int num = diceRoller.nextInt(dice) + 1;
             total += num;
             rolledValues.add(num);
@@ -58,21 +88,31 @@ public class CommandController {
         return "**" + total + "**\n" + rolledValues.toString();
     }
 
+    /**
+     * Gets information on a particular D&D spell from spells.json
+     * @param args Name of the spell
+     * @return Spell information
+     */
     public String Spell(String args){
         Spell spell = spellLibrary.getSpell(args.replace("-", " "));
         if(spell != null){
             return spell.toString();
         }
         else
-            return "Spell '" + args + "' not found. Keep in mind, only PHB, XGtE, and TCoE spells are supported currently.";
+            return SPELL_NOT_FOUND_ERROR_MSG;
     }
 
+    /**
+     * Gets information on a spell scroll from a particular D&D spell from spells.json
+     * @param args Name of the spell
+     * @return Spell scroll information
+     */
     public String SpellScroll(String args){
         Spell spell = spellLibrary.getSpell(args.replace("-", " "));
         if(spell != null){
             return spell.getPrice();
         }
         else
-            return "Spell '" + args + "' not found. Keep in mind, only PHB, XGtE, and TCoE spells are supported currently.";
+            return SPELL_NOT_FOUND_ERROR_MSG;
     }
 }

@@ -2,6 +2,7 @@
  * Java source file for CeresBot.
  * @Author Lukas Adkins
  */
+
 package goobot;
 import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.api.*;
@@ -16,7 +17,7 @@ import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 public class App extends ListenerAdapter {
     public static final boolean LOG_MESSAGES = true;
     public static final String BOT_PREFIX = "!";
-    public CommandController commandController = new CommandController();
+    public static CommandController commandController;
 
     public static void main(String[] args) {
         Dotenv dotenv = Dotenv.load();
@@ -36,10 +37,15 @@ public class App extends ListenerAdapter {
             System.out.println("Adding event listener.");
             jda.addEventListener(new App());
         }
+        commandController = new CommandController();
     }
-
+    
+    /**
+     * Reads user messages and looks for the command prefix
+     */
     @Override
     public void onMessageReceived(@Nonnull MessageReceivedEvent event) {
+        // If logging is on, log all recieved messages to console
         if(LOG_MESSAGES) {
             if (event.isFromType(ChannelType.PRIVATE)) {
                 System.out.printf("[PM] %s: %s\n", event.getAuthor().getName(),
@@ -52,7 +58,7 @@ public class App extends ListenerAdapter {
             }
         }
             
-        // We don't want to respond to other bot accounts, including ourself
+        // Don't respond to other bot accounts, including ourself
         if(event.getAuthor().isBot()) return;
         Message message = event.getMessage();
         String content = message.getContentRaw();
@@ -70,18 +76,17 @@ public class App extends ListenerAdapter {
         String command, args;
         MessageChannel channel = event.getChannel();
         int spaceIndex = fullCommand.indexOf(' ');
-    
-        System.out.println("Recieved fullCommand: " + fullCommand);
-        if(spaceIndex > -1) { // If there is more than one word.
+
+        if(spaceIndex > -1) { // If there is more than one word, split into first word and remaining words
             command = fullCommand.substring(0, spaceIndex).trim().toLowerCase(); // Extract first word
             args = fullCommand.substring(spaceIndex).trim().toLowerCase(); // Extract remaining words
         }
-        else{ // There is only one word
+        else{ // There is only one word, use it as the inputted command
             command = fullCommand.toLowerCase();
             args = "";
         }
 
-        switch(command){ // Figure out command, and call command controller
+        switch(command){ // Check command, and call command controller if it exists
             case "help":
                 post(commandController.Help(args), channel);
                 break;
