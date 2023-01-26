@@ -3,7 +3,7 @@
  * @Author Lukas Adkins
  */
 
-package goobot;
+package goobot.spells;
 
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -15,13 +15,14 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
+import goobot.Constants;
+
 public class SpellLibrary {
     private HashMap<String, Spell> spellMap;
-    public static final String SPELLS_FILENAME_STRING = "SPELLS_FILENAME";
 
     public SpellLibrary(){
         this.spellMap = new HashMap<>();
-        String spells = readJsonFile(App.properties.getProperty(SPELLS_FILENAME_STRING));
+        String spells = readJsonFile(Constants.SPELLS_FILENAME);
         parseSpells(spells);
     }
 

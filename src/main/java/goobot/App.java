@@ -12,56 +12,45 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.entities.channel.ChannelType; 
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
-import java.io.FileInputStream;
-import java.util.Properties;
+import java.io.FileNotFoundException;
 import javax.annotation.Nonnull;
 
+import goobot.controllers.CommandController;
+
 public class App extends ListenerAdapter {
-    public static final String 
-    CONFIG_FILE_PATH = "config.properties", 
-    BOT_PREFIX_STRING = "BOT_PREFIX", 
-    LOG_MESSAGES_STRING = "LOG_MESSAGES",
-    DISCORD_API_KEY_STRING = "DISCORD_API_KEY";
-
-    public static Properties properties;
-
-    private static String BOT_PREFIX, DISCORD_TOKEN;
-    private static Boolean LOG_MESSAGES;
     private static CommandController commandController;
 
     public static void main(String[] args) {
-        loadConfiguration();
-        initializeJDA(DISCORD_TOKEN);
+        String discordToken = getDiscordToken();
+        initializeDiscordBot(discordToken);
         commandController = new CommandController();
     }
 
     /**
-     * Loads enviroment variables and configuration settings.
+     * Loads environment variables.
+     * @return Discord API token to be used for this bot.
      */
-    private static void loadConfiguration(){
-        String functionName = "[loadConfiguration()] ";
+    private static String getDiscordToken(){
+        String functionName = "[getDiscordToken()] ", discordToken = null;
         try {
             Dotenv dotenv = Dotenv.load(); //Load .env variables
-            DISCORD_TOKEN = dotenv.get(DISCORD_API_KEY_STRING);
-
-            properties = new Properties(); //Load config.properties variables
-            FileInputStream propInput = new FileInputStream(CONFIG_FILE_PATH);
-            properties.load(propInput);
-            BOT_PREFIX = properties.getProperty(BOT_PREFIX_STRING);
-            LOG_MESSAGES = Boolean.parseBoolean(properties.getProperty(LOG_MESSAGES_STRING));
+            discordToken = dotenv.get(Constants.DISCORD_TOKEN_STRING);
+            if(discordToken == null)
+                throw new FileNotFoundException(Constants.DISCORD_TOKEN_NOT_FOUND_ERROR);
         }
         catch(Exception e){
             System.err.println(functionName + e);
             System.exit(1);
         }
+        return discordToken;
     }
 
     /**
-     * Connects bot to Discord 
+     * Connects bot to Discord.
      * @param discordToken Discord API key
      */
-    private static void initializeJDA(String discordToken){
-        String functionName = "[initializeJDA()] ";
+    private static void initializeDiscordBot(String discordToken){
+        String functionName = "[initializeDiscordBot()] ";
         JDA jda = null;
 
         try{
@@ -80,11 +69,11 @@ public class App extends ListenerAdapter {
     }
     
     /**
-     * Reads user messages and looks for the command prefix
+     * Reads user messages and looks for the command prefix.
      */
     @Override
     public void onMessageReceived(@Nonnull MessageReceivedEvent event) {
-        if(LOG_MESSAGES) {  // If logging is on, log all recieved messages to console
+        if(Constants.LOG_MESSAGES) {  // If logging is on, log all recieved messages to console
             if (event.isFromType(ChannelType.PRIVATE)) {
                 System.out.printf("[PM] %s: %s\n", event.getAuthor().getName(),
                                         event.getMessage().getContentDisplay());
@@ -101,7 +90,7 @@ public class App extends ListenerAdapter {
         Message message = event.getMessage();
         String content = message.getContentRaw();
         // Sees if message contains the command prefix
-        if(content.substring(0, 1).equalsIgnoreCase(BOT_PREFIX))
+        if(content.substring(0, 1).equalsIgnoreCase(Constants.BOT_PREFIX))
             parseCommand(content.substring(1), event); // Strips message of command prefix and sends to parse
     }
 
@@ -143,7 +132,7 @@ public class App extends ListenerAdapter {
                 post(commandController.Roll(args), channel);
                 break;
             default:
-                if(LOG_MESSAGES)
+                if(Constants.LOG_MESSAGES)
                     System.out.println("Unknown command: " + command + " with arguments: " + args);
         }
     }

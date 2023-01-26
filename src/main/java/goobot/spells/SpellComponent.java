@@ -3,7 +3,7 @@
  * @Author Lukas Adkins
  */
 
-package goobot;
+package goobot.spells;
 import java.util.Objects;
 
 public class SpellComponent {

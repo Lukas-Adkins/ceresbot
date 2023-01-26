@@ -3,20 +3,19 @@
  * @Author Lukas Adkins
  */
 
-package goobot;
+package goobot.controllers;
 
 import java.util.Random;
+
+import goobot.Constants;
+import goobot.spells.Spell;
+import goobot.spells.SpellLibrary;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class CommandController {
     private SpellLibrary spellLibrary;
-    public static final String    
-    DICE_NOT_PARSED_MSG_STRING = "DICE_NOT_PARSED_MSG",
-    SPELL_NOT_FOUND_MSG_STRING = "SPELL_NOT_FOUND_MSG",
-    PAT_MSG_STRING = "PAT_MSG",
-    PONG_MSG_STRING = "PONG_MSG",
-    HELP_MSG_STRING = "HELP_MSG";
 
     /**
      * Initilizes controller
@@ -31,7 +30,7 @@ public class CommandController {
      * @return String list of bot commands
      */
     public String Help(String args){
-        return App.properties.getProperty(HELP_MSG_STRING);
+        return Constants.HELP_MSG;
     }
 
     /**
@@ -40,7 +39,7 @@ public class CommandController {
      * @return String response to a user's ping request
      */
     public String Ping(String args){
-        return App.properties.getProperty(PONG_MSG_STRING);
+        return Constants.PONG_MSG;
     }
 
     /**
@@ -49,7 +48,7 @@ public class CommandController {
      * @return String representing custom emoji
      */
     public String Pat(String args){
-        return App.properties.getProperty(PAT_MSG_STRING);
+        return Constants.PAT_MSG;
     }
 
     /**
@@ -68,7 +67,7 @@ public class CommandController {
             dice = Integer.parseInt(args.substring(dIndex + 1));
         }
         catch(Exception e){
-            return App.properties.getProperty(DICE_NOT_PARSED_MSG_STRING);
+            return Constants.DICE_NOT_PARSED_MSG;
         }
         
         for(int i = 0; i < totalDice; i++){ // Add up dice totals
@@ -93,7 +92,7 @@ public class CommandController {
             return spell.toString();
         }
         else
-            return App.properties.getProperty(SPELL_NOT_FOUND_MSG_STRING);
+            return Constants.SPELL_NOT_FOUND_MSG;
     }
 
     /**
@@ -108,6 +107,6 @@ public class CommandController {
             return spell.getPrice();
         }
         else
-            return App.properties.getProperty(SPELL_NOT_FOUND_MSG_STRING);
+            return Constants.SPELL_NOT_FOUND_MSG;
     }
 }

@@ -3,21 +3,16 @@
  * @Author Lukas Adkins
  */
 
-package goobot;
+package goobot.spells;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+
+import goobot.Constants;
 
 public class Spell {
-    public static final String 
-    USE_CUSTOM_SCROLL_PRICES_STRING = "USE_CUSTOM_SCROLL_PRICES",
-    USE_CUSTOM_SCROLL_CASTING_STRING = "USE_CUSTOM_SCROLL_CASTING";
-
-    private Boolean customPricesEnabled, customCastingEnabled;
     private String casting_time;
     private String[] classes;
     private SpellComponent components;
@@ -28,18 +23,6 @@ public class Spell {
     private String range;
     private Boolean ritual;
     private String school;
-    private Map<String, Integer> standardScrollPriceMap;
-    private static final Integer 
-    spellScrollPriceCantrip = 13,
-    spellScrollPriceLvl1 = 25,
-    spellScrollPriceLvl2 = 50,
-    spellScrollPriceLvl3 = 125,
-    spellScrollPriceLvl4 = 250,
-    spellScrollPriceLvl5 = 1250,
-    spellScrollPriceLvl6 = 2500,
-    spellScrollPriceLvl7 = 5000,
-    spellScrollPriceLvl8 = 12500,
-    spellScrollPriceLvl9 = 25000;
 
     public Spell() {}
 
@@ -191,11 +174,7 @@ public class Spell {
     }
 
     public String getPrice(){
-        if(this.customPricesEnabled == null) // Init customPricesEnable boolean if not in cache
-            this.customPricesEnabled = Boolean.parseBoolean(App.properties.getProperty(USE_CUSTOM_SCROLL_PRICES_STRING));
-        if(this.customCastingEnabled == null) // Init customPricesEnabled boolean if not in cache
-            this.customCastingEnabled = Boolean.parseBoolean(App.properties.getProperty(USE_CUSTOM_SCROLL_CASTING_STRING));
-        if(this.customPricesEnabled)
+        if(Constants.CUSTOM_SCROLL_PRICES)
             return getPriceCustom();
         return getPriceStandard();
     }
@@ -205,29 +184,15 @@ public class Spell {
      * @return Spell scroll price and requirements
      */
     public String getPriceStandard(){
-        if(this.standardScrollPriceMap == null){ // Init pricemap if not in cache
-            this.standardScrollPriceMap = new HashMap<String, Integer>() {{
-                put("cantrip", spellScrollPriceCantrip);
-                put("1", spellScrollPriceLvl1);
-                put("2", spellScrollPriceLvl2);
-                put("3", spellScrollPriceLvl3);
-                put("4", spellScrollPriceLvl4);
-                put("5", spellScrollPriceLvl5);
-                put("6", spellScrollPriceLvl6);
-                put("7", spellScrollPriceLvl7);
-                put("8", spellScrollPriceLvl8);
-                put("9", spellScrollPriceLvl9);
-            }};
-        }
-
         ArrayList<String> spellList = new ArrayList<>(Arrays.asList(classes));
         int level = Integer.parseInt(this.level);
-        Integer roundedPrice = this.standardScrollPriceMap.get(this.level);
+        Integer roundedPrice = Constants.SPELL_SCROLL_STATIC_PRICES.get(this.level);
         String levelMods = getLevelMods(level, spellList);
         String returnString = "As a level " + level + " " + spellList.toString() + " spell scroll, " + name + " would cost **" + roundedPrice + "** gp.\n";
-        if(this.customCastingEnabled) // Custom casting flag check
+        if(Constants.CUSTOM_SCROLL_CASTING){ // Custom casting flag check
             returnString = returnString + 
-        "If you cannot normally cast this spell, you need " + levelMods + "to cast this spell scroll without possibility of error.";  
+            "If you cannot normally cast this spell, you need " + levelMods + "to cast this spell scroll without possibility of error."; 
+        } 
         return returnString; 
     }
 
@@ -256,9 +221,10 @@ public class Spell {
         int roundedPrice = (int) Math.round(price);
         String levelMods = getLevelMods(level, spellList);
         String returnString = "As a level " + level + " " + spellList.toString() + " spell scroll, " + name + " would cost **" + roundedPrice + "** gp.\n";
-        if(this.customCastingEnabled) // Custom casting flag check
+        if(Constants.CUSTOM_SCROLL_CASTING){ // Custom casting flag check
             returnString = returnString + 
-        "If you cannot normally cast this spell, you need " + levelMods + "to cast this spell scroll without possibility of error.";  
+            "If you cannot normally cast this spell, you need " + levelMods + "to cast this spell scroll without possibility of error.";  
+        }
         return returnString;     
     }
 
