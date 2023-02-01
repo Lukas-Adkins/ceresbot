@@ -3,8 +3,8 @@
  * @Author Lukas Adkins
  */
 
-package goobot;
-import io.github.cdimascio.dotenv.Dotenv;
+package goobot.controllers;
+    
 import net.dv8tion.jda.api.*;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -12,44 +12,23 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.entities.channel.ChannelType; 
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
-import java.io.FileNotFoundException;
 import javax.annotation.Nonnull;
 
-import goobot.controllers.CommandController;
+import goobot.Constants;
 
-public class App extends ListenerAdapter {
-    private static CommandController commandController;
-
-    public static void main(String[] args) {
-        String discordToken = getDiscordToken();
+public class DiscordController extends ListenerAdapter {
+    private final CommandController commandController;
+    
+    public DiscordController(String discordToken){
+        this.commandController = new CommandController();
         initializeDiscordBot(discordToken);
-        commandController = new CommandController();
-    }
-
-    /**
-     * Loads environment variables.
-     * @return Discord API token to be used for this bot.
-     */
-    private static String getDiscordToken(){
-        String functionName = "[getDiscordToken()] ", discordToken = null;
-        try {
-            Dotenv dotenv = Dotenv.load(); //Load .env variables
-            discordToken = dotenv.get(Constants.DISCORD_TOKEN_STRING);
-            if(discordToken == null)
-                throw new FileNotFoundException(Constants.DISCORD_TOKEN_NOT_FOUND_ERROR);
-        }
-        catch(Exception e){
-            System.err.println(functionName + e);
-            System.exit(1);
-        }
-        return discordToken;
     }
 
     /**
      * Connects bot to Discord.
      * @param discordToken Discord API key
      */
-    private static void initializeDiscordBot(String discordToken){
+    public void initializeDiscordBot(String discordToken){
         String functionName = "[initializeDiscordBot()] ";
         JDA jda = null;
 
@@ -60,11 +39,11 @@ public class App extends ListenerAdapter {
         }
         catch(Exception e){
             System.err.println(functionName + e);
-            System.exit(1);
+            System.exit(Constants.FATAL_FAILURE);
         }
         
         if(jda != null){
-            jda.addEventListener(new App());
+            jda.addEventListener(this);
         }
     }
     

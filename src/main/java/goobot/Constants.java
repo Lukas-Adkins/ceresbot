@@ -7,6 +7,8 @@ package goobot;
 import java.util.Map;
 
 public class Constants {
+    public static final Integer FATAL_FAILURE = 1;
+    
     public static final Boolean LOG_MESSAGES = true;
     public static final Boolean CUSTOM_SCROLL_PRICES = true;
     public static final Boolean CUSTOM_SCROLL_CASTING = true;
@@ -23,6 +25,7 @@ public class Constants {
     public static final String SPELLS_FILENAME = "spells.json";
     public static final String DISCORD_TOKEN_STRING = "DISCORD_API_KEY";
     public static final String DISCORD_TOKEN_NOT_FOUND_ERROR = "Could not find .env file with DISCORD_API_KEY value set.";
+    public static final String BOT_START_ERROR = "Could not start Ceresbot.";
     // Price map for default PHB spell scroll prices, by level / gp cost.
     public static final Map<String, Integer> SPELL_SCROLL_STATIC_PRICES = Map.of(
     "cantrip", 13,
