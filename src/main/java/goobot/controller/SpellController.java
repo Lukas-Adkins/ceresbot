@@ -72,7 +72,6 @@ public class SpellController {
     }
 
     public Spell getSpell(String name){
-        System.out.println(spellMap.toString());
         return spellMap.get(name);
     }
 }
