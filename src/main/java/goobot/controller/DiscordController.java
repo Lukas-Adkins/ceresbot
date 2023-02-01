@@ -28,7 +28,7 @@ public class DiscordController extends ListenerAdapter {
      * Connects bot to Discord.
      * @param discordToken Discord API key
      */
-    public void initializeDiscordBot(String discordToken){
+    private void initializeDiscordBot(String discordToken){
         String functionName = "[initializeDiscordBot()] ";
         JDA jda = null;
 
@@ -77,7 +77,7 @@ public class DiscordController extends ListenerAdapter {
      * Processes the command sent to the bot.
      * @param fullCommand Command text without the prefix ('!')
      */
-    public void parseCommand(String fullCommand, @Nonnull MessageReceivedEvent event){
+    private void parseCommand(String fullCommand, @Nonnull MessageReceivedEvent event){
         String command, args;
         MessageChannel channel = event.getChannel();
         int spaceIndex = fullCommand.indexOf(' ');
