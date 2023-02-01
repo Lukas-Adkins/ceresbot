@@ -19,8 +19,8 @@ import goobot.Constants;
 public class DiscordController extends ListenerAdapter {
     private final CommandController commandController;
     
-    public DiscordController(String discordToken){
-        this.commandController = new CommandController();
+    public DiscordController(String discordToken, String spellsFilename){
+        this.commandController = new CommandController(spellsFilename);
         initializeDiscordBot(discordToken);
     }
 

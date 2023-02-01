@@ -19,9 +19,10 @@ public class CommandController {
 
     /**
      * Initilizes controller
+     * @param spellsFilename Filename of spells json
      */
-    public CommandController(){
-        spellLibrary = new SpellLibrary();
+    public CommandController(String spellsFilename){
+        this.spellLibrary = new SpellLibrary(spellsFilename);
     }
 
     /**

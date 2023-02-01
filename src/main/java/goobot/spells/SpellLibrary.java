@@ -15,14 +15,12 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
-import goobot.Constants;
-
 public class SpellLibrary {
     private HashMap<String, Spell> spellMap;
 
-    public SpellLibrary(){
+    public SpellLibrary(String spellsFilename){
         this.spellMap = new HashMap<>();
-        String spells = readJsonFile(Constants.SPELLS_FILENAME);
+        String spells = readJsonFile(spellsFilename);
         parseSpells(spells);
     }
 

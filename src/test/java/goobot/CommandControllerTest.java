@@ -10,16 +10,17 @@ import org.junit.Test;
 import goobot.controllers.CommandController;
 
 import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.After;
+
+import goobot.spells.Spell;
 
 public class CommandControllerTest {
     private CommandController controller;
  
     @Before
     public void setUp() throws Exception {
-        this.controller = new CommandController();
+        this.controller = new CommandController(Constants.SPELLS_TEST_FILENAME);
     }
 
     @After
@@ -49,7 +50,15 @@ public class CommandControllerTest {
 
     @Test
     public void testSpell(){
+        String spellString = controller.Spell("Test spell 1");
+        System.out.println(spellString);
         // TODO not yet implemented
+    }
+
+    @Test
+    public void testSpellNotFound(){
+        String spellString = controller.Spell("Spell That Doesn't Exist");
+        assertEquals(Constants.SPELL_NOT_FOUND_MSG, spellString);
     }
 
     @Test

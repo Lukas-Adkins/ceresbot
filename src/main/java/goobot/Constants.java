@@ -23,6 +23,7 @@ public class Constants {
         "`!spell <spell>` - Provides information on the given 5e D&D spell.\n" +
         "`!spellscroll <spell>` - Calculates the price of a spell scroll for the given 5e D&D spell, and what stats you need to use it.";
     public static final String SPELLS_FILENAME = "spells.json";
+    public static final String SPELLS_TEST_FILENAME = "spells_test.json";
     public static final String DISCORD_TOKEN_STRING = "DISCORD_API_KEY";
     public static final String DISCORD_TOKEN_NOT_FOUND_ERROR = "Could not find .env file with DISCORD_API_KEY value set.";
     public static final String BOT_START_ERROR = "Could not start Ceresbot.";
