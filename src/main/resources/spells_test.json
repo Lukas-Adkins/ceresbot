@@ -11,7 +11,7 @@
             "somatic": true,
             "verbal": true
         },
-        "description": "Test spell 1.",
+        "description": "Test spell 1. Used for testing.",
         "duration": "Instantaneous",
         "level": "cantrip",
         "name": "Test Spell 1",

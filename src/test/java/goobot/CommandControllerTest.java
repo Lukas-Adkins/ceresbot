@@ -23,11 +23,6 @@ public class CommandControllerTest {
         this.controller = new CommandController(Constants.SPELLS_TEST_FILENAME);
     }
 
-    @After
-    public void tearDown() throws Exception {
-        // TODO not yet implemented
-    }
-
     @Test
     public void testHelp(){
         assertEquals(Constants.HELP_MSG, this.controller.Help(null));
@@ -50,9 +45,9 @@ public class CommandControllerTest {
 
     @Test
     public void testSpell(){
-        String spellString = controller.Spell("Test spell 1");
-        System.out.println(spellString);
-        // TODO not yet implemented
+        String spellDesc = "Test spell 1. Used for testing.";
+        Spell spell = controller.spellLibrary.getSpell("Test spell 1");
+        assertEquals(spellDesc, spell.getDescription());
     }
 
     @Test
@@ -61,8 +56,4 @@ public class CommandControllerTest {
         assertEquals(Constants.SPELL_NOT_FOUND_MSG, spellString);
     }
 
-    @Test
-    public void testSpellScroll(){
-        // TODO not yet implemented
-    }
 }

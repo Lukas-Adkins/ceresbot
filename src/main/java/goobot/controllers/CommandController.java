@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommandController {
-    private SpellLibrary spellLibrary;
+    public SpellLibrary spellLibrary;
 
     /**
      * Initilizes controller
@@ -76,6 +76,7 @@ public class CommandController {
             total += num;
             rolledValues.add(num);
         }
+        //TODO move string wrapping to DiscordController layer, so we can write good tests for this one.
         if(totalDice == 1) // If there's only one die, return without showing individually rolled die
             return "**" + total + "**";
         return "**" + total + "**\n" + rolledValues.toString();
