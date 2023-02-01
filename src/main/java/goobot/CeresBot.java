@@ -7,7 +7,7 @@ package goobot;
 import io.github.cdimascio.dotenv.Dotenv;
 import java.io.FileNotFoundException;
 
-import goobot.controllers.DiscordController;
+import goobot.controller.DiscordController;
 
 public class CeresBot {
     private static CeresBot instance;

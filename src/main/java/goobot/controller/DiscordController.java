@@ -3,7 +3,7 @@
  * @Author Lukas Adkins
  */
 
-package goobot.controllers;
+package goobot.controller;
     
 import net.dv8tion.jda.api.*;
 import net.dv8tion.jda.api.requests.GatewayIntent;

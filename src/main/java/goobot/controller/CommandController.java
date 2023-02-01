@@ -3,26 +3,25 @@
  * @Author Lukas Adkins
  */
 
-package goobot.controllers;
+package goobot.controller;
 
 import java.util.Random;
 
 import goobot.Constants;
-import goobot.spells.Spell;
-import goobot.spells.SpellLibrary;
+import goobot.model.Spell;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CommandController {
-    public SpellLibrary spellLibrary;
+    public SpellController spellLibrary;
 
     /**
      * Initilizes controller
      * @param spellsFilename Filename of spells json
      */
     public CommandController(String spellsFilename){
-        this.spellLibrary = new SpellLibrary(spellsFilename);
+        this.spellLibrary = new SpellController(spellsFilename);
     }
 
     /**
@@ -76,7 +75,7 @@ public class CommandController {
             total += num;
             rolledValues.add(num);
         }
-        //TODO move string wrapping to DiscordController layer, so we can write good tests for this one.
+
         if(totalDice == 1) // If there's only one die, return without showing individually rolled die
             return "**" + total + "**";
         return "**" + total + "**\n" + rolledValues.toString();

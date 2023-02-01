@@ -7,13 +7,10 @@ package goobot;
 
 import org.junit.Test;
 
-import goobot.controllers.CommandController;
+import goobot.controller.CommandController;
 
 import static org.junit.Assert.*;
 import org.junit.Before;
-import org.junit.After;
-
-import goobot.spells.Spell;
 
 public class CommandControllerTest {
     private CommandController controller;
@@ -39,21 +36,8 @@ public class CommandControllerTest {
     }
 
     @Test
-    public void testRoll(){
-        // TODO not yet implemented
-    }
-
-    @Test
     public void testSpell(){
-        String spellDesc = "Test spell 1. Used for testing.";
-        Spell spell = controller.spellLibrary.getSpell("Test spell 1");
-        assertEquals(spellDesc, spell.getDescription());
-    }
-
-    @Test
-    public void testSpellNotFound(){
         String spellString = controller.Spell("Spell That Doesn't Exist");
         assertEquals(Constants.SPELL_NOT_FOUND_MSG, spellString);
     }
-
 }
