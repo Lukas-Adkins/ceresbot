@@ -20,6 +20,7 @@ import goobot.Constants;
 
 public class CharacterController {
     private HashMap<String, DndCharacter> charMap;
+    private int HEADER_ROW_INDEX = 0;
     private static final int 
         NAME_INDEX = 0,
         COUNTRY_INDEX = 2,
@@ -35,15 +36,26 @@ public class CharacterController {
         DESCRIPTION_INDEX = 14,
         IMAGE_INDEX = 15;
 
-    public CharacterController() throws IOException {
+    public CharacterController(List<String> characterFilepaths) throws IOException {
         this.charMap = new HashMap<>();
-        Path filepath = getSheetPath("characters.csv");
-        parseCharacters(filepath);
+        try{
+            for(String fp : characterFilepaths){
+                Path filepath = getSheetPath(fp);
+    
+                parseCharacters(filepath);
+            }
+        }
+        catch(Exception e){
+            System.err.println(e);
+            System.err.println(Constants.CHARACTER_CSV_NOT_FOUND_ERROR);
+            System.err.println(characterFilepaths.toString());
+            System.exit(Constants.FATAL_FAILURE);
+        }
     }
 
-    public void parseCharacters(Path filepath){
-        try{
+    public void parseCharacters(Path filepath) throws Exception {
             List<String[]> csvList = readAllLines(filepath);
+            csvList.remove(HEADER_ROW_INDEX);
             for(String[] strList : csvList){
                 // Convert CSV to DndCharacter object
                 DndCharacter character = new DndCharacter(
@@ -64,12 +76,6 @@ public class CharacterController {
                 System.out.println(character.toString());
                 this.charMap.put(strList[0].trim().toLowerCase(), character);
             }
-        }
-        catch(Exception e){
-            System.err.println(e);
-            System.err.println(Constants.BOT_START_ERROR);
-            System.exit(Constants.FATAL_FAILURE);
-        }
     }
 
     /**

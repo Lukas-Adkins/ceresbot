@@ -13,14 +13,15 @@ import net.dv8tion.jda.api.entities.channel.ChannelType;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import javax.annotation.Nonnull;
+import java.util.List;
 
 import goobot.Constants;
 
 public class DiscordController extends ListenerAdapter {
     private final CommandController commandController;
     
-    public DiscordController(String discordToken, String spellsFilename){
-        this.commandController = new CommandController(spellsFilename);
+    public DiscordController(String discordToken, String spellsFilepath, List<String> characterFilepaths){
+        this.commandController = new CommandController(spellsFilepath, characterFilepaths);
         initializeDiscordBot(discordToken);
     }
 

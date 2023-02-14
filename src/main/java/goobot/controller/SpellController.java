@@ -20,9 +20,9 @@ import goobot.model.Spell;
 public class SpellController {
     private HashMap<String, Spell> spellMap;
 
-    public SpellController(String spellsFilename){
+    public SpellController(String spellsFilepath){
         this.spellMap = new HashMap<>();
-        String spells = readJsonFile(spellsFilename);
+        String spells = readJsonFile(spellsFilepath);
         parseSpells(spells);
     }
 

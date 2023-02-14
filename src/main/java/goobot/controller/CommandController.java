@@ -21,10 +21,10 @@ public class CommandController {
      * Initilizes controller
      * @param spellsFilename Filename of spells json
      */
-    public CommandController(String spellsFilename){
+    public CommandController(String spellsFilepath, List<String> characterFilepaths){
         try{
-            this.spellLibrary = new SpellController(spellsFilename);
-            this.characterLibrary = new CharacterController();
+            this.spellLibrary = new SpellController(spellsFilepath);
+            this.characterLibrary = new CharacterController(characterFilepaths);
         }
         catch(Exception e){
             System.err.println(Constants.BOT_START_ERROR);
