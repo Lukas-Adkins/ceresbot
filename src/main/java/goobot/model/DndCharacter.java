@@ -228,20 +228,18 @@ public class DndCharacter {
 
     @Override
     public String toString() {
-        return "{" +
-            " name='" + getName() + "'" +
-            ", country='" + getCountry() + "'" +
-            ", title='" + getTitle() + "'" +
-            ", gender='" + getGender() + "'" +
-            ", species='" + getSpecies() + "'" +
-            ", age='" + getAge() + "'" +
-            ", height='" + getHeight() + "'" +
-            ", hairColor='" + getHairColor() + "'" +
-            ", eyeColor='" + getEyeColor() + "'" +
-            ", religion='" + getReligion() + "'" +
-            ", status='" + getStatus() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", image='" + getImage() + "'" +
-            "}";
+        String str = 
+        "**" + name + "**\n" + 
+        height + ", " + gender.toLowerCase() + ", " +
+        species.toLowerCase() + ", " + age.toLowerCase() + " years old, " + status.toLowerCase() + "\n" + 
+        eyeColor + " eyes, " + hairColor.toLowerCase() + " hair\n";
+
+        if(!title.isEmpty())
+            str = str + "Title(s): " + title + "\n";
+        if(!religion.isEmpty())
+            str = str + "Religion: " + religion + "\n";
+
+        str = str + description;
+        return str;
     }
 }
