@@ -17,7 +17,7 @@ public class CommandControllerTest {
  
     @Before
     public void setUp() throws Exception {
-        this.controller = new CommandController(Constants.SPELLS_TEST_FILENAME);
+        this.controller = new CommandController(Constants.SPELLS_TEST_FILENAME, Constants.CHARACTER_TEST_FILEPATHS);
     }
 
     @Test
