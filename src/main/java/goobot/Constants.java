@@ -19,6 +19,7 @@ public class Constants {
     public static final String BOT_PREFIX = "!";
     public static final String DICE_NOT_PARSED_MSG = "Could not parse provided dice. Please try in format:\n`!roll <number of dice>d<dice>`";
     public static final String SPELL_NOT_FOUND_MSG = "Spell not found. Keep in mind, only PHB, XGtE, and TCoE spells are supported currently.";
+    public static final String CHARACTER_NOT_FOUND_MSG = "Character not found.";
     public static final String PAT_MSG = "<:ceresblush:875653225385168898>";
     public static final String PONG_MSG = "Pong!";
     public static final String HELP_MSG= "**Command List:**\n" +

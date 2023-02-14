@@ -9,6 +9,8 @@ import java.util.Random;
 
 import goobot.Constants;
 import goobot.model.Spell;
+import goobot.model.DndCharacter;
+import java.util.Arrays;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +59,19 @@ public class CommandController {
      */
     public String Pat(String args){
         return Constants.PAT_MSG;
+    }
+
+    /**
+     * Looks up character info.
+     * @param args Arguments, contains name of character
+     * @return Tuple representing character information, and the character image URL
+     */
+    public List<String> CharacterInfo(String args){
+        String characterName = args.replace("-", " ");
+        DndCharacter dndChar = this.characterLibrary.getCharacter(characterName);
+        if(dndChar != null)
+            return Arrays.asList(dndChar.toString(), dndChar.getImage());
+        return Arrays.asList(Constants.CHARACTER_NOT_FOUND_MSG, "");
     }
 
     /**

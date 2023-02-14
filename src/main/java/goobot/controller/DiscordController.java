@@ -111,6 +111,13 @@ public class DiscordController extends ListenerAdapter {
             case "roll":
                 post(commandController.Roll(args), channel);
                 break;
+            case "character":
+                List<String> response = commandController.CharacterInfo(args);
+                // If the character has an image, post its link
+                if(!response.get(1).isEmpty())
+                    post(response.get(1), channel);
+                post(response.get(0), channel);
+                break;
             default:
                 if(Constants.LOG_MESSAGES)
                     System.out.println("Unknown command: " + command + " with arguments: " + args);

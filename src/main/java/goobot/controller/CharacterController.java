@@ -73,7 +73,6 @@ public class CharacterController {
                     strList[DESCRIPTION_INDEX],
                     strList[IMAGE_INDEX]
                 );
-                System.out.println(character.toString());
                 this.charMap.put(strList[0].trim().toLowerCase(), character);
             }
     }
