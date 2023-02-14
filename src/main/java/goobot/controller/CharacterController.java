@@ -73,7 +73,7 @@ public class CharacterController {
                     strList[DESCRIPTION_INDEX],
                     strList[IMAGE_INDEX]
                 );
-                this.charMap.put(strList[0].trim().toLowerCase(), character);
+                this.charMap.put(strList[0].trim().toLowerCase().replace('-', ' '), character);
             }
     }
 
@@ -111,6 +111,6 @@ public class CharacterController {
     }
 
     public DndCharacter getCharacter(String dndChar){
-        return this.charMap.get(dndChar);
+        return this.charMap.get(dndChar.trim().toLowerCase().replace('-', ' '));
     }
 }
