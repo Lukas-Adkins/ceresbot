@@ -239,7 +239,7 @@ public class DndCharacter {
         if(!religion.isEmpty())
             str = str + "Religion: " + religion + "\n";
 
-        str = str + description;
+        str = str + "\n" + description;
         return str;
     }
 }
