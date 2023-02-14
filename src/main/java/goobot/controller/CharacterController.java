@@ -20,6 +20,8 @@ import goobot.Constants;
 
 public class CharacterController {
     private HashMap<String, DndCharacter> charMap;
+    private HashMap<String, String> firstNameMap;
+
     private int HEADER_ROW_INDEX = 0;
     private static final int 
         NAME_INDEX = 0,
@@ -38,6 +40,7 @@ public class CharacterController {
 
     public CharacterController(List<String> characterFilepaths) throws IOException {
         this.charMap = new HashMap<>();
+        this.firstNameMap = new HashMap<>();
         try{
             for(String fp : characterFilepaths){
                 Path filepath = getSheetPath(fp);
@@ -73,7 +76,15 @@ public class CharacterController {
                     strList[DESCRIPTION_INDEX],
                     strList[IMAGE_INDEX]
                 );
-                this.charMap.put(strList[0].trim().toLowerCase(), character);
+                this.charMap.put(strList[0].trim().toLowerCase().replace('-', ' '), character);
+                String[] words = character.getName().split("\\s+");
+                String firstname = words[0].trim().toLowerCase().replace("-", " ");
+                if(firstNameMap.get(firstname) == null) // If character doesn't exist, add mapping to full name
+                    firstNameMap.put(firstname, character.getName());
+                else { // If exists, add mapping to possible names
+                    String previousNames = firstNameMap.get(firstname);
+                    firstNameMap.put(firstname, previousNames + ", or " + character.getName());
+                }
             }
     }
 
@@ -110,7 +121,25 @@ public class CharacterController {
         return null;
     }
 
-    public DndCharacter getCharacter(String dndChar){
-        return this.charMap.get(dndChar);
+    public List<String> getCharacter(String dndChar){
+        String[] words = dndChar.split("\\s+");
+        DndCharacter character;
+        if(words.length == 1){ // First name search
+            System.out.println(dndChar);
+            System.out.println(this.firstNameMap.keySet().toString());
+            String potentialNames = this.firstNameMap.get(dndChar);
+            if(potentialNames == null)
+                return Arrays.asList(Constants.CHARACTER_NOT_FOUND_MSG, "");
+            if(potentialNames.contains(", ")){ // There are multiple possible firstnames
+                String msg = "Multiple characters have first name '" + dndChar +"'. Do you mean " + potentialNames + "?";
+                return Arrays.asList(msg, "");
+            }
+            dndChar = potentialNames.trim().toLowerCase().replace('-', ' ');
+        }
+        // Full name search
+        character = this.charMap.get(dndChar.trim().toLowerCase().replace('-', ' '));
+        if(character != null)
+            return Arrays.asList(character.toString(), character.getImage()); // Return textbody - image tuple
+        return Arrays.asList(Constants.CHARACTER_NOT_FOUND_MSG, "");
     }
 }

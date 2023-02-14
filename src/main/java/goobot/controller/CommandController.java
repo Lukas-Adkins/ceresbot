@@ -68,9 +68,9 @@ public class CommandController {
      */
     public List<String> CharacterInfo(String args){
         String characterName = args.replace("-", " ");
-        DndCharacter dndChar = this.characterLibrary.getCharacter(characterName);
+        List<String> dndChar = this.characterLibrary.getCharacter(characterName);
         if(dndChar != null)
-            return Arrays.asList(dndChar.toString(), dndChar.getImage());
+            return dndChar;
         return Arrays.asList(Constants.CHARACTER_NOT_FOUND_MSG, "");
     }
 
