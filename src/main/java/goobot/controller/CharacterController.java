@@ -123,20 +123,23 @@ public class CharacterController {
 
     public List<String> getCharacter(String dndChar){
         String[] words = dndChar.split("\\s+");
+        DndCharacter character;
         if(words.length == 1){ // First name search
             System.out.println(dndChar);
             System.out.println(this.firstNameMap.keySet().toString());
             String potentialNames = this.firstNameMap.get(dndChar);
+            if(potentialNames == null)
+                return Arrays.asList(Constants.CHARACTER_NOT_FOUND_MSG, "");
             if(potentialNames.contains(", ")){ // There are multiple possible firstnames
                 String msg = "Multiple characters have first name '" + dndChar +"'. Do you mean " + potentialNames + "?";
                 return Arrays.asList(msg, "");
             }
-            DndCharacter character = charMap.get(potentialNames.trim().toLowerCase().replace('-', ' '));
-            return Arrays.asList(character.toString(), character.getImage()); // Return textbody - image tuple
+            dndChar = potentialNames.trim().toLowerCase().replace('-', ' ');
         }
-        else{ // Full name search
-            DndCharacter character = this.charMap.get(dndChar.trim().toLowerCase().replace('-', ' '));
+        // Full name search
+        character = this.charMap.get(dndChar.trim().toLowerCase().replace('-', ' '));
+        if(character != null)
             return Arrays.asList(character.toString(), character.getImage()); // Return textbody - image tuple
-        }
+        return Arrays.asList(Constants.CHARACTER_NOT_FOUND_MSG, "");
     }
 }
