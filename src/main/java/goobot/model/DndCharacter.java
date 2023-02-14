@@ -7,7 +7,7 @@ package goobot.model;
 
 import java.util.Objects;
 
-public class Character {
+public class DndCharacter {
     private String name;
     private String country;
     private String title;
@@ -22,10 +22,10 @@ public class Character {
     private String description;
     private String image;
 
-    public Character() {
+    public DndCharacter() {
     }
 
-    public Character(String name, String country, String title, String gender, String species, String age, String height, String hairColor, String eyeColor, String religion, String status, String description, String image) {
+    public DndCharacter(String name, String country, String title, String gender, String species, String age, String height, String hairColor, String eyeColor, String religion, String status, String description, String image) {
         this.name = name;
         this.country = country;
         this.title = title;
@@ -145,67 +145,67 @@ public class Character {
         this.image = image;
     }
 
-    public Character name(String name) {
+    public DndCharacter name(String name) {
         setName(name);
         return this;
     }
 
-    public Character country(String country) {
+    public DndCharacter country(String country) {
         setCountry(country);
         return this;
     }
 
-    public Character title(String title) {
+    public DndCharacter title(String title) {
         setTitle(title);
         return this;
     }
 
-    public Character gender(String gender) {
+    public DndCharacter gender(String gender) {
         setGender(gender);
         return this;
     }
 
-    public Character species(String species) {
+    public DndCharacter species(String species) {
         setSpecies(species);
         return this;
     }
 
-    public Character age(String age) {
+    public DndCharacter age(String age) {
         setAge(age);
         return this;
     }
 
-    public Character height(String height) {
+    public DndCharacter height(String height) {
         setHeight(height);
         return this;
     }
 
-    public Character hairColor(String hairColor) {
+    public DndCharacter hairColor(String hairColor) {
         setHairColor(hairColor);
         return this;
     }
 
-    public Character eyeColor(String eyeColor) {
+    public DndCharacter eyeColor(String eyeColor) {
         setEyeColor(eyeColor);
         return this;
     }
 
-    public Character religion(String religion) {
+    public DndCharacter religion(String religion) {
         setReligion(religion);
         return this;
     }
 
-    public Character status(String status) {
+    public DndCharacter status(String status) {
         setStatus(status);
         return this;
     }
 
-    public Character description(String description) {
+    public DndCharacter description(String description) {
         setDescription(description);
         return this;
     }
 
-    public Character image(String image) {
+    public DndCharacter image(String image) {
         setImage(image);
         return this;
     }
@@ -214,10 +214,10 @@ public class Character {
     public boolean equals(Object o) {
         if (o == this)
             return true;
-        if (!(o instanceof Character)) {
+        if (!(o instanceof DndCharacter)) {
             return false;
         }
-        Character character = (Character) o;
+        DndCharacter character = (DndCharacter) o;
         return Objects.equals(name, character.name) && Objects.equals(country, character.country) && Objects.equals(title, character.title) && Objects.equals(gender, character.gender) && Objects.equals(species, character.species) && Objects.equals(age, character.age) && Objects.equals(height, character.height) && Objects.equals(hairColor, character.hairColor) && Objects.equals(eyeColor, character.eyeColor) && Objects.equals(religion, character.religion) && Objects.equals(status, character.status) && Objects.equals(description, character.description) && Objects.equals(image, character.image);
     }
 

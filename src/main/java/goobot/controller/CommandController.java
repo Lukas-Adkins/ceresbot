@@ -15,13 +15,21 @@ import java.util.List;
 
 public class CommandController {
     public SpellController spellLibrary;
+    public CharacterController characterLibrary;
 
     /**
      * Initilizes controller
      * @param spellsFilename Filename of spells json
      */
     public CommandController(String spellsFilename){
-        this.spellLibrary = new SpellController(spellsFilename);
+        try{
+            this.spellLibrary = new SpellController(spellsFilename);
+            this.characterLibrary = new CharacterController();
+        }
+        catch(Exception e){
+            System.err.println(Constants.BOT_START_ERROR);
+            System.exit(Constants.FATAL_FAILURE);
+        }
     }
 
     /**
