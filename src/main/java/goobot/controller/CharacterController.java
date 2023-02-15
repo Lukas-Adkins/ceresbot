@@ -83,7 +83,8 @@ public class CharacterController {
                     firstNameMap.put(firstname, character.getName());
                 else { // If exists, add mapping to possible names
                     String previousNames = firstNameMap.get(firstname);
-                    firstNameMap.put(firstname, previousNames + ", or " + character.getName());
+                    if(!previousNames.contains(character.getName()))
+                        firstNameMap.put(firstname, previousNames + ", or " + character.getName());
                 }
             }
     }
@@ -125,8 +126,6 @@ public class CharacterController {
         String[] words = dndChar.split("\\s+");
         DndCharacter character;
         if(words.length == 1){ // First name search
-            System.out.println(dndChar);
-            System.out.println(this.firstNameMap.keySet().toString());
             String potentialNames = this.firstNameMap.get(dndChar);
             if(potentialNames == null)
                 return Arrays.asList(Constants.CHARACTER_NOT_FOUND_MSG, "");
