@@ -9,11 +9,14 @@ import java.util.Random;
 
 import goobot.Constants;
 import goobot.model.Spell;
-import goobot.model.DndCharacter;
 import java.util.Arrays;
-
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
+import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CommandController {
     public SpellController spellLibrary;
@@ -80,28 +83,60 @@ public class CommandController {
      * @return Formatted string with roll total and individually rolled dice
      */
     public String Roll(String args){
-        List<Integer> rolledValues = new ArrayList<>();
-        Integer totalDice, dice, total = 0;
-        Random diceRoller = new Random();
+        Pattern dicePattern = Pattern.compile("([\\+\\-]?\\d+)?(d[\\+\\-]?\\d+)(k[\\+\\-]?\\d+)?([\\+\\-]\\d+)?");
+        String sanitized = args.replace(" ", "");
+        Matcher diceMatcher = dicePattern.matcher(sanitized);
+        int numKeep = -1, numDice = 1, numSides = 20, modifier = 0, total = 0;
 
-        try{  // Try to parse dice
-            int dIndex = args.indexOf("d");
-            totalDice = Integer.parseInt(args.substring(0,dIndex));
-            dice = Integer.parseInt(args.substring(dIndex + 1));
+        if(diceMatcher.find()){
+			if(diceMatcher.group(1)!=null && !diceMatcher.group(1).isEmpty())
+                numDice  = Integer.parseInt(diceMatcher.group(1));
+			if(diceMatcher.group(2)!=null && !diceMatcher.group(2).isEmpty())
+                numSides = Integer.parseInt(diceMatcher.group(2).substring(1));
+			if(diceMatcher.group(3)!=null && !diceMatcher.group(3).isEmpty())
+                numKeep  = Integer.parseInt(diceMatcher.group(3).substring(1));
+			else 
+                numKeep=numDice;
+            if(diceMatcher.group(4)!=null && !diceMatcher.group(4).isEmpty())
+                modifier = Integer.parseInt(diceMatcher.group(4));
+            System.out.println(numDice + " " + numKeep + " " + numSides + " " + modifier);
+        }
+
+        try { 
+            // Sanity check
+            if(numDice <= 0 || numSides <= 0 || Math.abs(numKeep)>numDice || !args.matches(".*\\d+.*"))
+                throw new Exception();
+            
+            ArrayList<Integer> rolledDice = rollDice(numDice, numSides);
+            for(Integer die : rolledDice){
+                total += die;
+            }
+            total += modifier; // Add math modifier to roll
+            if(numDice == 1 && modifier == 0) // If there's only one die, return without showing individually rolled die
+                return "**" + total + "**";
+            
+            String returnMessage = rolledDice.toString();
+            if(modifier < 0)
+                returnMessage += " - " + Math.abs(modifier) + " = ";
+            else
+                returnMessage += " + " + modifier + " = ";
+            return returnMessage + "**" + total + "**";
+
         }
         catch(Exception e){
             return Constants.DICE_NOT_PARSED_MSG;
         }
+    }
+
+    private ArrayList<Integer> rollDice(int numDice, int numSides){
+        ArrayList<Integer> rolledValues = new ArrayList<>();
+        Random diceRoller = new Random();
         
-        for(int i = 0; i < totalDice; i++){ // Add up dice totals
-            int num = diceRoller.nextInt(dice) + 1;
-            total += num;
+        for(int i = 0; i < numDice; i++){ // Add up dice totals
+            int num = diceRoller.nextInt(numSides) + 1;
             rolledValues.add(num);
         }
-
-        if(totalDice == 1) // If there's only one die, return without showing individually rolled die
-            return "**" + total + "**";
-        return "**" + total + "**\n" + rolledValues.toString();
+        return rolledValues;
     }
 
     /**
