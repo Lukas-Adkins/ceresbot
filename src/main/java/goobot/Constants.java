@@ -23,7 +23,7 @@ public class Constants {
     public static final String PAT_MSG = "<:ceresblush:875653225385168898>";
     public static final String PONG_MSG = "Pong!";
     public static final String HELP_MSG= "**Command List:**\n" +
-        "`!roll <number of dice>d<dice>` - Simulates a dice roll for the specified dice values.\n" +
+        "`!roll <number of dice>d<dice> <+/-> <modifier>` - Simulates a dice roll for the specified dice values.\n" +
         "`!spell <spell>` - Provides information on the given 5e D&D spell.\n" +
         "`!spellscroll <spell>` - Calculates the price of a spell scroll for the given 5e D&D spell, and what stats you need to use it.\n" +
         "`!character <character>` - Provides information on the given D&D character.";
