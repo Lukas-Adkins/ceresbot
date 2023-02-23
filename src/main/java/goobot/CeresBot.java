@@ -26,7 +26,7 @@ public class CeresBot {
 
     private CeresBot() throws Exception {
         instance = this;
-        this.discord = new DiscordController(getDiscordToken(), Constants.SPELLS_FILEPATH, Constants.CHARACTER_FILEPATHS);
+        this.discord = new DiscordController(getDiscordToken());
     }
 
     /**

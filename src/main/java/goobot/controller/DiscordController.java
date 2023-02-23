@@ -20,8 +20,8 @@ import goobot.Constants;
 public class DiscordController extends ListenerAdapter {
     private final CommandController commandController;
     
-    public DiscordController(String discordToken, String spellsFilepath, List<String> characterFilepaths){
-        this.commandController = new CommandController(spellsFilepath, characterFilepaths);
+    public DiscordController(String discordToken){
+        this.commandController = new CommandController(Constants.SPELLS_FILEPATH, Constants.CHARACTER_FILEPATHS);
         initializeDiscordBot(discordToken);
     }
 
