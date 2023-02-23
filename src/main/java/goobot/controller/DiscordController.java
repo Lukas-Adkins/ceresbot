@@ -19,6 +19,7 @@ import goobot.Constants;
 
 public class DiscordController extends ListenerAdapter {
     private final CommandController commandController;
+    private static final Integer DISCORD_MSG_CAP = 2000;
     
     public DiscordController(String discordToken){
         this.commandController = new CommandController(Constants.SPELLS_FILEPATH, Constants.CHARACTER_FILEPATHS);
@@ -131,8 +132,8 @@ public class DiscordController extends ListenerAdapter {
      */
     public void post(String message, MessageChannel channel){
         String functionName = "[post()] ";
-        if(message.length() > 2000) // Discord 2000 character msg limit
-            message = message.substring(0, 1997) + "...";
+        if(message.length() > DISCORD_MSG_CAP) // Discord 2000 character msg limit
+            message = message.substring(0, DISCORD_MSG_CAP - 3) + "...";
         try{
             channel.sendMessage(message).queue();
         }
