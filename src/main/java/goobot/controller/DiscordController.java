@@ -59,20 +59,19 @@ public class DiscordController extends ListenerAdapter {
                 System.out.printf("[PM] %s: %s\n", event.getAuthor().getName(),
                                         event.getMessage().getContentDisplay());
             }
-            else {
+            else if(event != null){
                 System.out.printf("[%s] %s: %s\n", event.getGuild().getName(),
                             event.getMember().getEffectiveName(),
                             event.getMessage().getContentDisplay());
             }
         }
-            
-        // Don't respond to other bot accounts, including ourself
-        if(event.getAuthor().isBot()) return;
+        if(event.getAuthor().isBot()) return;         // Don't respond to other bot accounts, including ourself
         Message message = event.getMessage();
         String content = message.getContentRaw();
         // Sees if message contains the command prefix
-        if(content.substring(0, 1).equalsIgnoreCase(Constants.BOT_PREFIX))
+        if(content.length() > 0 && content.substring(0, 1).equalsIgnoreCase(Constants.BOT_PREFIX))
             parseCommand(content.substring(1), event); // Strips message of command prefix and sends to parse
+    
     }
 
     /**
