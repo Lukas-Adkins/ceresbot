@@ -12,10 +12,10 @@ import java.util.Collections;
 
 import goobot.Constants;
 
-public class Spell {
+public class DndSpell {
     private String casting_time;
     private String[] classes;
-    private SpellComponent components;
+    private DndSpellComponent components;
     private String description;
     private String duration;
     private String level;
@@ -24,9 +24,9 @@ public class Spell {
     private Boolean ritual;
     private String school;
 
-    public Spell() {}
+    public DndSpell() {}
 
-    public Spell(String casting_time, String[] classes, SpellComponent components, String description, String duration, String level, String name, String range, Boolean ritual, String school) {
+    public DndSpell(String casting_time, String[] classes, DndSpellComponent components, String description, String duration, String level, String name, String range, Boolean ritual, String school) {
         this.casting_time = casting_time;
         this.classes = classes;
         this.components = components;
@@ -55,11 +55,11 @@ public class Spell {
         this.classes = classes;
     }
 
-    public SpellComponent getComponents() {
+    public DndSpellComponent getComponents() {
         return this.components;
     }
 
-    public void setComponents(SpellComponent components) {
+    public void setComponents(DndSpellComponent components) {
         this.components = components;
     }
 
@@ -123,52 +123,52 @@ public class Spell {
         this.school = school;
     }
 
-    public Spell casting_time(String casting_time) {
+    public DndSpell casting_time(String casting_time) {
         setCasting_time(casting_time);
         return this;
     }
 
-    public Spell classes(String[] classes) {
+    public DndSpell classes(String[] classes) {
         setClasses(classes);
         return this;
     }
 
-    public Spell components(SpellComponent components) {
+    public DndSpell components(DndSpellComponent components) {
         setComponents(components);
         return this;
     }
 
-    public Spell description(String description) {
+    public DndSpell description(String description) {
         setDescription(description);
         return this;
     }
 
-    public Spell duration(String duration) {
+    public DndSpell duration(String duration) {
         setDuration(duration);
         return this;
     }
 
-    public Spell level(String level) {
+    public DndSpell level(String level) {
         setLevel(level);
         return this;
     }
 
-    public Spell name(String name) {
+    public DndSpell name(String name) {
         setName(name);
         return this;
     }
 
-    public Spell range(String range) {
+    public DndSpell range(String range) {
         setRange(range);
         return this;
     }
 
-    public Spell ritual(Boolean ritual) {
+    public DndSpell ritual(Boolean ritual) {
         setRitual(ritual);
         return this;
     }
 
-    public Spell school(String school) {
+    public DndSpell school(String school) {
         setSchool(school);
         return this;
     }
@@ -268,10 +268,10 @@ public class Spell {
     public boolean equals(Object o) {
         if (o == this)
             return true;
-        if (!(o instanceof Spell)) {
+        if (!(o instanceof DndSpell)) {
             return false;
         }
-        Spell spell = (Spell) o;
+        DndSpell spell = (DndSpell) o;
         return Objects.equals(casting_time, spell.casting_time) && Objects.equals(classes, spell.classes) && Objects.equals(components, spell.components) && Objects.equals(description, spell.description) && Objects.equals(duration, spell.duration) && Objects.equals(level, spell.level) && Objects.equals(name, spell.name) && Objects.equals(range, spell.range) && Objects.equals(ritual, spell.ritual) && Objects.equals(school, spell.school);
     }
 

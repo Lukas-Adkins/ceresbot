@@ -6,15 +6,15 @@
 package goobot.model;
 import java.util.Objects;
 
-public class SpellComponent {
+public class DndSpellComponent {
     private Boolean material;
     private String raw;
     private Boolean somatic;
     private Boolean verbal;
 
-    public SpellComponent() {}
+    public DndSpellComponent() {}
 
-    public SpellComponent(Boolean material, String raw, Boolean somatic, Boolean verbal) {
+    public DndSpellComponent(Boolean material, String raw, Boolean somatic, Boolean verbal) {
         this.material = material;
         this.raw = raw;
         this.somatic = somatic;
@@ -65,22 +65,22 @@ public class SpellComponent {
         this.verbal = verbal;
     }
 
-    public SpellComponent material(Boolean material) {
+    public DndSpellComponent material(Boolean material) {
         setMaterial(material);
         return this;
     }
 
-    public SpellComponent raw(String raw) {
+    public DndSpellComponent raw(String raw) {
         setRaw(raw);
         return this;
     }
 
-    public SpellComponent somatic(Boolean somatic) {
+    public DndSpellComponent somatic(Boolean somatic) {
         setSomatic(somatic);
         return this;
     }
 
-    public SpellComponent verbal(Boolean verbal) {
+    public DndSpellComponent verbal(Boolean verbal) {
         setVerbal(verbal);
         return this;
     }
@@ -89,10 +89,10 @@ public class SpellComponent {
     public boolean equals(Object o) {
         if (o == this)
             return true;
-        if (!(o instanceof SpellComponent)) {
+        if (!(o instanceof DndSpellComponent)) {
             return false;
         }
-        SpellComponent spellComponent = (SpellComponent) o;
+        DndSpellComponent spellComponent = (DndSpellComponent) o;
         return Objects.equals(material, spellComponent.material) && Objects.equals(raw, spellComponent.raw) && Objects.equals(somatic, spellComponent.somatic) && Objects.equals(verbal, spellComponent.verbal);
     }
 

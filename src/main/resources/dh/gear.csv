@@ -1,0 +1,13 @@
+Name,Availability,Benefit,Weight,Price
+Backpack,Abundant,"Allows the wearer to transport roughly 30 kg of extra weight, but removing an object from the pack requires a Full Action.",2kg,15
+First Aid Kit,Abundant,Provides +20 to Medical skill tests provided the user knows the Medical skill.,7kg,60
+Handheld Computer,Abundant,"A small computer primarily used for communication, internet access, and recording.",0kg,80
+CYD-1 VR Rig,Abundant,Facilitates connection to virtual reality.,3kg,15
+Binoculars,Average,Can remove most distance-based penalties to Perception skill tests made using them.,1.5kg,15
+Concealed Holster,Average,Attempts to detect a weapon in the holster suffer a -20 penalty. Doubles weapon draw time.,1kg,10
+Manacles,Average,A pair of handcuffs. Useful for restraining and inhibiting movement.,0kg,10
+Rebreather,Scarce,A mask with an external supply tank that stores and recycles breathable air. The wearer is immune to toxic atmospheres and can breathe underwater.,1kg,70
+Respirator / Gas Mask,Scarce,"A character wearing one gains a +30 bonus to any Toughness test made to resist the effects of gas, and may reroll the test if failed.",1kg,50
+Wire Gun,Scarce,"Can be fired with a Ballistic Skill test to attach to a surface within 30m. As a Half Action, an attached Wire Gun can be retracted, moving the user 15m.",3kg,35
+Brainchip Comms Jammer,Rare,Jams outgoing brainchip communication data within a 150 meter radius of handheld device.,0.5kg,200
+Night Vision Goggles,Rare,Wearing and activating them in darkness means the wearer no longer suffers darkness-based vision penalties.,0.5kg,250

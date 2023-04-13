@@ -8,7 +8,8 @@ package goobot.controller;
 import java.util.Random;
 
 import goobot.Constants;
-import goobot.model.Spell;
+import goobot.model.DhItem;
+import goobot.model.DndSpell;
 import java.util.Arrays;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -19,8 +20,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CommandController {
-    public SpellController spellLibrary;
+    public DndSpellController spellLibrary;
     public CharacterController characterLibrary;
+    public DhItemController dhItemLibrary;
 
     /**
      * Initilizes controller
@@ -28,8 +30,9 @@ public class CommandController {
      */
     public CommandController(String spellsFilepath, List<String> characterFilepaths){
         try{
-            this.spellLibrary = new SpellController(spellsFilepath);
+            this.spellLibrary = new DndSpellController(spellsFilepath);
             this.characterLibrary = new CharacterController(characterFilepaths);
+            this.dhItemLibrary = new DhItemController();
         }
         catch(Exception e){
             System.err.println(Constants.BOT_START_ERROR);
@@ -146,7 +149,7 @@ public class CommandController {
      */
     public String Spell(String args){
         String spellName = args.replace("-", " ");
-        Spell spell = spellLibrary.getSpell(spellName);
+        DndSpell spell = spellLibrary.getSpell(spellName);
         if(spell != null){
             return spell.toString();
         }
@@ -157,15 +160,30 @@ public class CommandController {
     /**
      * Gets information on a spell scroll from a particular D&D spell from spells.json
      * @param args Name of the spell
-     * @return Spell scroll information
+     * @return String scroll information
      */
     public String SpellScroll(String args){
         String spellName = args.replace("-", " ");
-        Spell spell = spellLibrary.getSpell(spellName);
+        DndSpell spell = spellLibrary.getSpell(spellName);
         if(spell != null){
             return spell.getPrice();
         }
         else
             return Constants.SPELL_NOT_FOUND_MSG;
+    }
+
+    /**
+     * Gets information about a particular dh2e item.
+     * @param args Name of the item
+     * @return String item information
+     */
+    public String dhItem(String args){
+        String itemName = args.replace("-", " ");
+        DhItem item = dhItemLibrary.getItem(itemName);
+        if(item != null){
+            return item.toString();
+        }
+        else
+            return Constants.ITEM_NOT_FOUND_MESSAGE;
     }
 }
