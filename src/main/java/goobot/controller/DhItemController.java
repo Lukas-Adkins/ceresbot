@@ -19,6 +19,7 @@ import java.nio.file.Path;
 
 import goobot.Constants;
 import goobot.Constants.DhItemType;
+import goobot.model.DhArmor;
 import goobot.model.DhCybernetic;
 import goobot.model.DhItem;
 
@@ -80,6 +81,15 @@ public class DhItemController {
         csvList.remove(HEADER_ROW_INDEX);
         for(String[] list : csvList){
             DhItem item = new DhCybernetic(DhItemType.CYBERNETIC, list[0], list[2], list[3], "0kg", Integer.parseInt(list[4]), Integer.parseInt(list[1]));
+            itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
+        }
+
+        // Gets armor
+        itemsPath = getSheetPath("dh/armor.csv");
+        csvList = readAllLines(itemsPath);
+        csvList.remove(HEADER_ROW_INDEX);
+        for(String[] list : csvList){
+            DhItem item = new DhArmor(DhItemType.ARMOR, list[0], list[5], list[6], list[4], Integer.parseInt(list[7]), list[1], Integer.parseInt(list[2]), Integer.parseInt(list[3]));
             itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
         }
 
