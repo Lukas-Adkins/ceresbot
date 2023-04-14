@@ -80,6 +80,6 @@ public class DhArmor extends DhItem {
 
     @Override
     public String toString() {
-        return String.format("```ansi\n%s / %s / %d credits /\nCovers: %s / AP: %d / Max Agility: %d \n - %s```", getName(), getFormattedRarity(), getPrice(), covers , AP, maxAgility, getDescription());
+        return String.format("```ansi\n%s / %s / %d credits /\nCovers: %s / AP: %d / Max Agility: %d\n%s```", getName(), getFormattedRarity(), getPrice(), covers , AP, maxAgility, getDescription());
     }
 }

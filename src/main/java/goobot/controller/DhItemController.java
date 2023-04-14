@@ -24,9 +24,25 @@ import goobot.model.DhCybernetic;
 import goobot.model.DhItem;
 import goobot.model.DhMeleeWeapon;
 import goobot.model.DhRangedWeapon;
+import goobot.Constants.DhRarity;
+import java.util.ArrayList;
+import java.util.Map;
 
 public class DhItemController {
     private HashMap<String, DhItem> itemMap;
+    private Map<String, ArrayList<DhItem>> rarityMap = Map.of(
+    "abundant", new ArrayList<DhItem>(),
+    "plentiful", new ArrayList<DhItem>(),
+    "common", new ArrayList<DhItem>(),
+    "average", new ArrayList<DhItem>(),
+    "uncommon", new ArrayList<DhItem>(),
+    "scarce", new ArrayList<DhItem>(),
+    "rare", new ArrayList<DhItem>(),
+    "very rare", new ArrayList<DhItem>(),
+    "extremely rare", new ArrayList<DhItem>(),
+    "near unique", new ArrayList<DhItem>()
+    );
+
     public static final int HEADER_ROW_INDEX = 0;
 
     public DhItemController(){
@@ -48,6 +64,7 @@ public class DhItemController {
         for(String[] list : csvList){
             DhItem item = new DhItem(DhItemType.MISC, list[0].trim(), list[1], list[2], list[3], Integer.parseInt(list[4]));
             itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
+            rarityMap.get(item.getRarity().toLowerCase()).add(item);
         }
 
         // Gets consumables
@@ -57,6 +74,7 @@ public class DhItemController {
         for(String[] list : csvList){
             DhItem item = new DhItem(DhItemType.CONSUMABLE, list[0].trim(), list[1], list[2], "0kg", Integer.parseInt(list[3]));
             itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
+            rarityMap.get(item.getRarity().toLowerCase()).add(item);
         }
 
         // Gets weapon mods
@@ -66,6 +84,7 @@ public class DhItemController {
         for(String[] list : csvList){
             DhItem item = new DhItem(DhItemType.WEAPON_MOD, list[0].trim(), list[1], list[2], list[3], Integer.parseInt(list[4]));
             itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
+            rarityMap.get(item.getRarity().toLowerCase()).add(item);
         }
 
         // Gets special ammo
@@ -75,6 +94,7 @@ public class DhItemController {
         for(String[] list : csvList){
             DhItem item = new DhItem(DhItemType.SPECIAL_AMMO, list[0].trim(), list[1], list[2], "0kg", Integer.parseInt(list[3]));
             itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
+            rarityMap.get(item.getRarity().toLowerCase()).add(item);
         }
 
         // Gets cybernetics
@@ -84,6 +104,7 @@ public class DhItemController {
         for(String[] list : csvList){
             DhItem item = new DhCybernetic(DhItemType.CYBERNETIC, list[0], list[2], list[3], "0kg", Integer.parseInt(list[4]), Integer.parseInt(list[1]));
             itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
+            rarityMap.get(item.getRarity().toLowerCase()).add(item);
         }
 
         // Gets armor
@@ -93,6 +114,7 @@ public class DhItemController {
         for(String[] list : csvList){
             DhItem item = new DhArmor(DhItemType.ARMOR, list[0], list[5], list[6], list[4], Integer.parseInt(list[7]), list[1], Integer.parseInt(list[2]), Integer.parseInt(list[3]));
             itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
+            rarityMap.get(item.getRarity().toLowerCase()).add(item);
         }
 
         // Gets melee weapons
@@ -102,6 +124,7 @@ public class DhItemController {
         for(String[] list : csvList){
             DhItem item = new DhMeleeWeapon(DhItemType.MELEE_WEAPON, list[0], list[6], list[7], list[5], Integer.parseInt(list[8]), list[1], list[2], list[3], Integer.parseInt(list[4]));
             itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
+            rarityMap.get(item.getRarity().toLowerCase()).add(item);
         }
 
         // Gets kinetic/explosive ranged weapons
@@ -111,6 +134,7 @@ public class DhItemController {
         for(String[] list : csvList){
             DhItem item = new DhRangedWeapon(DhItemType.RANGED_WEAPON, list[0], list[10], list[8], list[9], Integer.parseInt(list[11]), list[1], list[2], list[3], list[4], Integer.parseInt(list[5]), Integer.parseInt(list[6]), list[7]);
             itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
+            rarityMap.get(item.getRarity().toLowerCase()).add(item);
         }
 
         // Gets energy/heavy ranged weapons
@@ -120,6 +144,7 @@ public class DhItemController {
         for(String[] list : csvList){
             DhItem item = new DhRangedWeapon(DhItemType.RANGED_WEAPON, list[0], list[10], list[8], list[9], Integer.parseInt(list[11]), list[1], list[2], list[3], list[4], Integer.parseInt(list[5]), Integer.parseInt(list[6]), list[7]);
             itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
+            rarityMap.get(item.getRarity().toLowerCase()).add(item);
         }
 
         // Gets grenades
@@ -127,12 +152,9 @@ public class DhItemController {
         csvList = readAllLines(itemsPath);
         csvList.remove(HEADER_ROW_INDEX);
         for(String[] list : csvList){
-            DhItem item = new DhRangedWeapon(DhItemType.RANGED_WEAPON, list[0], list[6], list[7], "0kg", Integer.parseInt(list[8]), list[1], list[2], "", list[4], Integer.parseInt(list[3]), 1, "");
+            DhItem item = new DhRangedWeapon(DhItemType.EXPLOSIVE, list[0], list[6], list[7], "0kg", Integer.parseInt(list[8]), list[1], list[2], "", list[4], Integer.parseInt(list[3]), 1, "");
             itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
-        }
-
-        for(DhItem item : itemMap.values()){
-            System.out.println(item.toString());
+            rarityMap.get(item.getRarity().toLowerCase()).add(item);
         }
     }
 
@@ -164,5 +186,46 @@ public class DhItemController {
 
     public DhItem getItem(String name){
         return itemMap.get(name.toLowerCase());
+    }
+
+    /**
+     * Returns a number of given dhItems with a given rarity
+     * @return Arraylist of requested items
+     */
+    public ArrayList<DhItem> getRandomItems(Integer scarce, Integer rare, Integer veryRare, Integer extremelyRare){
+        ArrayList<DhItem> list = new ArrayList<>();
+        for(int i = 0; i < scarce; i++){
+            int index = (int)(Math.random() * rarityMap.get("scarce").size());
+            DhItem item = rarityMap.get("scarce").get(index);
+            if(list.contains(item))
+                scarce++;
+            else
+                list.add(item);
+        }
+        for(int i = 0; i < rare; i++){
+            int index = (int)(Math.random() * rarityMap.get("rare").size());
+            DhItem item = rarityMap.get("rare").get(index);
+            if(list.contains(item))
+                rare++;
+            else
+                list.add(item);
+        }
+        for(int i = 0; i < veryRare; i++){
+            int index = (int)(Math.random() * rarityMap.get("very rare").size());
+            DhItem item = rarityMap.get("very rare").get(index);
+            if(list.contains(item))
+                veryRare++;
+            else
+                list.add(item);
+        }
+        for(int i = 0; i < extremelyRare; i++){
+            int index = (int)(Math.random() * rarityMap.get("extremely rare").size());
+            DhItem item = rarityMap.get("extremely rare").get(index);
+            if(list.contains(item))
+                extremelyRare++;
+            else
+                list.add(item);
+        }
+        return list;
     }
 }

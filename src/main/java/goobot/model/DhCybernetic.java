@@ -49,6 +49,6 @@ public class DhCybernetic extends DhItem {
 
     @Override
     public String toString() {
-        return String.format("```ansi\n%s / %s / %d cyber-slots / %d credits /\n - %s```", getName(), getFormattedRarity(), slots, getPrice(), getDescription());
+        return String.format("```ansi\n%s / %s / %d cyber-slots / %d credits\n - %s```", getName(), getFormattedRarity(), slots, getPrice(), getDescription());
     }
 }

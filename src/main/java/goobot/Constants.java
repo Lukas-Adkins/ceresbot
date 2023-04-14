@@ -56,7 +56,6 @@ public class Constants {
         ARMOR,
         EXPLOSIVE,
         CYBERNETIC,
-        GEAR,
         WEAPON_MOD,
         SPECIAL_AMMO,
         CONSUMABLE

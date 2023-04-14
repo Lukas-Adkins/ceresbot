@@ -126,7 +126,11 @@ public class DhItem {
 
     @Override
     public String toString() {
-        return String.format("```ansi\n%s / %s / %s / %d credits /\n%s```", name, getFormattedRarity(), weight, price, description);
+        return String.format("```ansi\n%s / %s / %s / %d credits\n%s```", name, getFormattedRarity(), weight, price, description);
+    }
+
+    public String getShopString(){
+        return String.format("%s / %s / %d credits\n", name, getFormattedRarity(), price);
     }
 
     /**

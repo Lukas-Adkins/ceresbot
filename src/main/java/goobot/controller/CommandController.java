@@ -23,6 +23,7 @@ public class CommandController {
     public DndSpellController spellLibrary;
     public CharacterController characterLibrary;
     public DhItemController dhItemLibrary;
+    public Random rng = new Random();
 
     /**
      * Initilizes controller
@@ -186,4 +187,90 @@ public class CommandController {
         else
             return Constants.ITEM_NOT_FOUND_MESSAGE;
     }
+
+    /**
+     * Generates a shop full of random items for the Starlight gamesystem.
+     * @param args
+     * @return
+     */
+    public String dhShop(String args){
+        Integer commerceSkill = Integer.parseInt(args);
+        Integer commerceSkillMod = Math.round(commerceSkill/10);
+        Integer maxItems = 3 * commerceSkillMod, minItems = 1 * commerceSkillMod, numberOfItems = rng.nextInt(maxItems - minItems + 1) + minItems;
+        Integer scarce = 0, rare = 0, veryRare = 0, extremelyRare = 0;
+        System.out.println("NUMBER OF ITEMS: " + numberOfItems);
+        for(int i = 0; i < numberOfItems; i++){
+            Integer d100 = rng.nextInt(100) + 1;
+            System.out.println("ROLL: " + d100);
+            if(d100 < commerceSkill - 40)
+                extremelyRare++;
+            else if(d100 < commerceSkill - 30)
+                veryRare++;
+            else if(d100 < commerceSkill - 10)
+                rare++;
+            else
+                scarce++;
+        }
+    
+        String shopList = "", meleeList = "", rangedList = "", armorList = "", explosiveList = "", cyberneticList = "", modList = "", ammoList = "", miscList = "";
+        ArrayList<DhItem> itemList = dhItemLibrary.getRandomItems(scarce, rare, veryRare, extremelyRare);
+        for (DhItem item : itemList){
+            switch (item.getType()){
+                case MELEE_WEAPON:
+                    meleeList = meleeList + " " + item.getShopString();
+                    break;
+                case RANGED_WEAPON:
+                    rangedList = rangedList + " " + item.getShopString();
+                    break; 
+                case ARMOR:
+                    armorList = armorList + " " + item.getShopString();
+                    break; 
+                case EXPLOSIVE:
+                    explosiveList = explosiveList + " " + item.getShopString();
+                    break;  
+                case CYBERNETIC:
+                    cyberneticList = cyberneticList + " " + item.getShopString();
+                    break;
+                case WEAPON_MOD:
+                    modList = modList + " " + item.getShopString();
+                    break;
+                case SPECIAL_AMMO:
+                    ammoList = ammoList + " " + item.getShopString();
+                    break;
+                case CONSUMABLE:
+                    miscList = miscList + " " + item.getShopString();
+                    break;
+                case MISC:
+                    miscList = miscList + " " + item.getShopString();
+                    break; 
+            }
+        }
+        if(!meleeList.isEmpty()){
+            shopList = shopList + "Melee Weapons\n" + meleeList + "\n";
+        }
+        if(!rangedList.isEmpty()){
+            shopList = shopList + "Ranged Weapons\n" + rangedList + "\n";
+        }
+        if(!armorList.isEmpty()){
+            shopList = shopList + "Armor\n" + armorList + "\n";
+        }
+        if(!explosiveList.isEmpty()){
+            shopList = shopList + "Explosives\n" + explosiveList + "\n";
+        }
+        if(!cyberneticList.isEmpty()){
+            shopList = shopList + "Cybernetics\n" + cyberneticList + "\n";
+        }
+        if(!modList.isEmpty()){
+            shopList = shopList + "Weapon Mods\n" + modList + "\n";
+        }
+        if(!ammoList.isEmpty()){
+            shopList = shopList + "Special Ammo\n" + ammoList + "\n";
+        }
+        if(!miscList.isEmpty()){
+            shopList = shopList + "Miscellaneous\n" + miscList + "\n";
+        }
+        return String.format("```ansi\n%s```", shopList);
+    }
 }
+
+// TODO add random discounts with +/- from market price highlighted in green or red
