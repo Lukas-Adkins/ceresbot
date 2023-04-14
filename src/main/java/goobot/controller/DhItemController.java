@@ -122,6 +122,15 @@ public class DhItemController {
             itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
         }
 
+        // Gets grenades
+        itemsPath = getSheetPath("dh/grenades.csv");
+        csvList = readAllLines(itemsPath);
+        csvList.remove(HEADER_ROW_INDEX);
+        for(String[] list : csvList){
+            DhItem item = new DhRangedWeapon(DhItemType.RANGED_WEAPON, list[0], list[6], list[7], "0kg", Integer.parseInt(list[8]), list[1], list[2], "", list[4], Integer.parseInt(list[3]), 1, "");
+            itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
+        }
+
         for(DhItem item : itemMap.values()){
             System.out.println(item.toString());
         }
