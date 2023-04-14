@@ -51,7 +51,8 @@ public class Constants {
 
     public enum DhItemType {
         MISC,
-        WEAPON,
+        MELEE_WEAPON,
+        RANGED_WEAPON,
         ARMOR,
         EXPLOSIVE,
         CYBERNETIC,

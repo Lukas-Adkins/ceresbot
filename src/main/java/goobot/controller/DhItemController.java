@@ -22,6 +22,8 @@ import goobot.Constants.DhItemType;
 import goobot.model.DhArmor;
 import goobot.model.DhCybernetic;
 import goobot.model.DhItem;
+import goobot.model.DhMeleeWeapon;
+import goobot.model.DhRangedWeapon;
 
 public class DhItemController {
     private HashMap<String, DhItem> itemMap;
@@ -90,6 +92,33 @@ public class DhItemController {
         csvList.remove(HEADER_ROW_INDEX);
         for(String[] list : csvList){
             DhItem item = new DhArmor(DhItemType.ARMOR, list[0], list[5], list[6], list[4], Integer.parseInt(list[7]), list[1], Integer.parseInt(list[2]), Integer.parseInt(list[3]));
+            itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
+        }
+
+        // Gets melee weapons
+        itemsPath = getSheetPath("dh/melee.csv");
+        csvList = readAllLines(itemsPath);
+        csvList.remove(HEADER_ROW_INDEX);
+        for(String[] list : csvList){
+            DhItem item = new DhMeleeWeapon(DhItemType.MELEE_WEAPON, list[0], list[6], list[7], list[5], Integer.parseInt(list[8]), list[1], list[2], list[3], Integer.parseInt(list[4]));
+            itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
+        }
+
+        // Gets kinetic/explosive ranged weapons
+        itemsPath = getSheetPath("dh/ranged_weapons1.csv");
+        csvList = readAllLines(itemsPath);
+        csvList.remove(HEADER_ROW_INDEX);
+        for(String[] list : csvList){
+            DhItem item = new DhRangedWeapon(DhItemType.RANGED_WEAPON, list[0], list[10], list[8], list[9], Integer.parseInt(list[11]), list[1], list[2], list[3], list[4], Integer.parseInt(list[5]), Integer.parseInt(list[6]), list[7]);
+            itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
+        }
+
+        // Gets energy/heavy ranged weapons
+        itemsPath = getSheetPath("dh/ranged_weapons2.csv");
+        csvList = readAllLines(itemsPath);
+        csvList.remove(HEADER_ROW_INDEX);
+        for(String[] list : csvList){
+            DhItem item = new DhRangedWeapon(DhItemType.RANGED_WEAPON, list[0], list[10], list[8], list[9], Integer.parseInt(list[11]), list[1], list[2], list[3], list[4], Integer.parseInt(list[5]), Integer.parseInt(list[6]), list[7]);
             itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
         }
 
