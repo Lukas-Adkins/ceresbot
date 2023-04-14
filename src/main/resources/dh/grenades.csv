@@ -1,0 +1,11 @@
+Name,Class,Range,Pen,Damage,Special,Availability,Notes,Price
+Frag Grenade,Grenade,SBx3m,0,2d10 E,Blast (3),Common,,50
+Smoke Grenade,Grenade,SBx3m,0,-,Smoke (4),Common,,50
+Gas Grenade,Grenade,SBx3m,0,-,Blast (3),Scarce,"Make T test each turn, taking 1 fatigue upon failure. 4+ DoF suffers a 1d10 T damage.",50
+Flashbang Grenade,Grenade,SBx3m,0,-,Blast (6),Rare,Must pass an +10 Agility test or be blinded for a number of rounds equal to DoF.,100
+EMP Grenade,Grenade,SBx3m,0,-,EMP (2),Rare,,100
+AT Grenade,Grenade,SBx3m,6,2d10+4 E,Concussive (0),Rare,Gain Vengeful (9) against vehicles.,100
+Frag Missile,Missile,-,2,2d10+2 E,Blast (5),Average,,75
+AT Missile,Missile,-,8,3d10+8 E,"Concussive (3), Proven (2)",Scarce,Gain Vengeful (9) against vehicles.,150
+Fire Bomb,Thrown,SBx3m,0,1d10+2 E,"Blast (2), Flame",Common,Cannot be used with launcher weapons.,75
+E-bomb,-,-,24,6d10 E,"Blast (6), Flame",Very Rare,Cannot be used with launcher weapons and cannot be thrown.,1000

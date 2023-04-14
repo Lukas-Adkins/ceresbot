@@ -15,12 +15,13 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
-import goobot.model.Spell;
+import goobot.Constants;
+import goobot.model.DndSpell;
 
-public class SpellController {
-    private HashMap<String, Spell> spellMap;
+public class DndSpellController {
+    private HashMap<String, DndSpell> spellMap;
 
-    public SpellController(String spellsFilepath){
+    public DndSpellController(String spellsFilepath){
         this.spellMap = new HashMap<>();
         String spells = readJsonFile(spellsFilepath);
         parseSpells(spells);
@@ -53,7 +54,7 @@ public class SpellController {
         }
         catch(Exception e){
             System.err.println(functionName + e);
-            System.exit(1);
+            System.exit(Constants.FATAL_FAILURE);
         }
         return jsonString;
     }
@@ -64,14 +65,14 @@ public class SpellController {
      */
     private void parseSpells(String jsonString){
         Gson gson = new Gson();
-        Spell[] spellArray = gson.fromJson(jsonString, Spell[].class);
+        DndSpell[] spellArray = gson.fromJson(jsonString, DndSpell[].class);
         if(spellArray != null){
-            for (Spell spell : spellArray)
+            for (DndSpell spell : spellArray)
                 spellMap.put(spell.getName().trim().toLowerCase().replace("-", " "), spell);
         }
     }
 
-    public Spell getSpell(String name){
+    public DndSpell getSpell(String name){
         return spellMap.get(name);
     }
 }

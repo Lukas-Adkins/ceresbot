@@ -3,7 +3,6 @@
  * @Author Lukas Adkins
  */
 
-
 package goobot;
 import java.util.Map;
 import java.util.Arrays;
@@ -19,6 +18,7 @@ public class Constants {
     public static final String BOT_PREFIX = "!";
     public static final String DICE_NOT_PARSED_MSG = "Could not parse provided dice. Please try in format:\n`!roll <number of dice>d<dice> <+/-> <modifier>`";
     public static final String SPELL_NOT_FOUND_MSG = "Spell not found. Keep in mind, only PHB, XGtE, and TCoE spells are supported currently.";
+    public static final String ITEM_NOT_FOUND_MESSAGE = "Item not found.";
     public static final String CHARACTER_NOT_FOUND_MSG = "Character not found. Please make sure you have spelled the character's name correctly.";
     public static final String PAT_MSG = "<:ceresblush:875653225385168898>";
     public static final String PONG_MSG = "Pong!";
@@ -26,7 +26,9 @@ public class Constants {
         "`!roll <number of dice>d<dice> <+/-> <modifier>` - Simulates a dice roll for the specified dice values.\n" +
         "`!spell <spell>` - Provides information on the given 5e D&D spell.\n" +
         "`!spellscroll <spell>` - Calculates the price of a spell scroll for the given 5e D&D spell, and what stats you need to use it.\n" +
-        "`!character <character>` - Provides information on the given D&D character.";
+        "`!character <character>` - Provides information on the given D&D character.\n" +
+        "`!st_item <item name>` - Provides information on the given Starlight item.\n" +
+        "`!st_shop <shopkeep commerce skill>` - Generates a store inventory of Starlight items based on a given commerce skill.\n";
     public static final String SPELLS_FILEPATH = "spells.json";
     public static final String SPELLS_TEST_FILENAME = "spells_test.json";
     public static final List<String> CHARACTER_FILEPATHS = Arrays.asList("materia_characters.csv", "inferno_characters.csv");
@@ -47,5 +49,54 @@ public class Constants {
     "7", 5000,
     "8", 12500,
     "9", 25000
+    );
+
+    public enum DhItemType {
+        MISC,
+        MELEE_WEAPON,
+        RANGED_WEAPON,
+        ARMOR,
+        EXPLOSIVE,
+        CYBERNETIC,
+        WEAPON_MOD,
+        SPECIAL_AMMO,
+        CONSUMABLE
+    }
+    
+    public enum DhWeaponType {
+        BASIC,
+        PISTOL,
+        HEAVY,
+        MELEE,
+        THROWN,
+        GRENADE,
+        MISSILE
+    }
+
+    public enum DhRarity {
+        ABUNDANT,
+        PLENTIFUL,
+        COMMON,
+        AVERAGE,
+        UNCOMMON,
+        SCARCE,
+        RARE,
+        VERY_RARE,
+        EXTREMELY_RARE,
+        NEAR_UNIQUE,
+        UNIQUE
+    }
+
+    public static final Map<DhRarity, String> RARITY_COLORS = Map.of(
+        DhRarity.ABUNDANT, "\u001b[0;30m%s\u001b[0;0m", // Gray
+        DhRarity.PLENTIFUL, "\u001b[0;30m%s\u001b[0;0m", // Gray
+        DhRarity.COMMON, "\u001b[0;33m%s\u001b[0;0m", // Yellow
+        DhRarity.AVERAGE, "\u001b[0;33m%s\u001b[0;0m", // Yellow
+        DhRarity.UNCOMMON, "\u001b[0;32m%s\u001b[0;0m", // Green
+        DhRarity.SCARCE, "\u001b[0;34m%s\u001b[0;0m", // Blue
+        DhRarity.RARE, "\u001b[0;36m%s\u001b[0;0m", // Cyan
+        DhRarity.VERY_RARE, "\u001b[0;35m%s\u001b[0;0m", // Pink
+        DhRarity.EXTREMELY_RARE, "\u001b[0;31m%s\u001b[0;0m", // Red
+        DhRarity.NEAR_UNIQUE, "\u001b[0;37m%s\u001b[0;0m" // White
     );
 }

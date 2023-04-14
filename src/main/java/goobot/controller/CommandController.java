@@ -8,7 +8,8 @@ package goobot.controller;
 import java.util.Random;
 
 import goobot.Constants;
-import goobot.model.Spell;
+import goobot.model.DhItem;
+import goobot.model.DndSpell;
 import java.util.Arrays;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -19,8 +20,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CommandController {
-    public SpellController spellLibrary;
+    public DndSpellController spellLibrary;
     public CharacterController characterLibrary;
+    public DhItemController dhItemLibrary;
+    public Random rng = new Random();
 
     /**
      * Initilizes controller
@@ -28,8 +31,9 @@ public class CommandController {
      */
     public CommandController(String spellsFilepath, List<String> characterFilepaths){
         try{
-            this.spellLibrary = new SpellController(spellsFilepath);
+            this.spellLibrary = new DndSpellController(spellsFilepath);
             this.characterLibrary = new CharacterController(characterFilepaths);
+            this.dhItemLibrary = new DhItemController();
         }
         catch(Exception e){
             System.err.println(Constants.BOT_START_ERROR);
@@ -146,7 +150,7 @@ public class CommandController {
      */
     public String Spell(String args){
         String spellName = args.replace("-", " ");
-        Spell spell = spellLibrary.getSpell(spellName);
+        DndSpell spell = spellLibrary.getSpell(spellName);
         if(spell != null){
             return spell.toString();
         }
@@ -157,15 +161,115 @@ public class CommandController {
     /**
      * Gets information on a spell scroll from a particular D&D spell from spells.json
      * @param args Name of the spell
-     * @return Spell scroll information
+     * @return String scroll information
      */
     public String SpellScroll(String args){
         String spellName = args.replace("-", " ");
-        Spell spell = spellLibrary.getSpell(spellName);
+        DndSpell spell = spellLibrary.getSpell(spellName);
         if(spell != null){
             return spell.getPrice();
         }
         else
             return Constants.SPELL_NOT_FOUND_MSG;
+    }
+
+    /**
+     * Gets information about a particular dh2e item.
+     * @param args Name of the item
+     * @return String item information
+     */
+    public String dhItem(String args){
+        String itemName = args.replace("-", " ");
+        DhItem item = dhItemLibrary.getItem(itemName);
+        if(item != null){
+            return item.toString();
+        }
+        else
+            return Constants.ITEM_NOT_FOUND_MESSAGE;
+    }
+
+    /**
+     * Generates a shop full of random items for the Starlight game system.
+     * @param args Commerce score of the shopkeeper
+     * @return Store information formatted as a string
+     */
+    public String dhShop(String args){
+        Integer commerceSkill = Integer.parseInt(args);
+        Integer commerceSkillMod = Math.round(commerceSkill/10);
+        Integer maxItems = 3 * commerceSkillMod, minItems = 1 * commerceSkillMod, numberOfItems = rng.nextInt(maxItems - minItems + 1) + minItems;
+        Integer scarce = 0, rare = 0, veryRare = 0, extremelyRare = 0;
+        if(numberOfItems > 14)
+            numberOfItems = 14;
+        for(int i = 0; i < numberOfItems; i++){
+            Integer d100 = rng.nextInt(100) + 1;
+            if(d100 < commerceSkill - 40)
+                extremelyRare++;
+            else if(d100 < commerceSkill - 30)
+                veryRare++;
+            else if(d100 < commerceSkill - 10)
+                rare++;
+            else
+                scarce++;
+        }
+    
+        String shopList = "Welcome to the CeresBot Starlight storefront generator!\nGenerated a store inventory based on a shopkeep with a Commerce skill of " + commerceSkill + ".\n\n";
+        String meleeList = "", rangedList = "", armorList = "", explosiveList = "", cyberneticList = "", modList = "", ammoList = "", miscList = "";
+        ArrayList<DhItem> itemList = dhItemLibrary.getRandomItems(scarce, rare, veryRare, extremelyRare);
+        for (DhItem item : itemList){
+            switch (item.getType()){
+                case MELEE_WEAPON:
+                    meleeList = meleeList + " " + item.getShopString();
+                    break;
+                case RANGED_WEAPON:
+                    rangedList = rangedList + " " + item.getShopString();
+                    break; 
+                case ARMOR:
+                    armorList = armorList + " " + item.getShopString();
+                    break; 
+                case EXPLOSIVE:
+                    explosiveList = explosiveList + " " + item.getShopString();
+                    break;  
+                case CYBERNETIC:
+                    cyberneticList = cyberneticList + " " + item.getShopString();
+                    break;
+                case WEAPON_MOD:
+                    modList = modList + " " + item.getShopString();
+                    break;
+                case SPECIAL_AMMO:
+                    ammoList = ammoList + " " + item.getShopString();
+                    break;
+                case CONSUMABLE:
+                    miscList = miscList + " " + item.getShopString();
+                    break;
+                case MISC:
+                    miscList = miscList + " " + item.getShopString();
+                    break; 
+            }
+        }
+        if(!meleeList.isEmpty()){
+            shopList = shopList + "Melee Weapons\n" + meleeList + "\n";
+        }
+        if(!rangedList.isEmpty()){
+            shopList = shopList + "Ranged Weapons\n" + rangedList + "\n";
+        }
+        if(!armorList.isEmpty()){
+            shopList = shopList + "Armor\n" + armorList + "\n";
+        }
+        if(!explosiveList.isEmpty()){
+            shopList = shopList + "Explosives\n" + explosiveList + "\n";
+        }
+        if(!cyberneticList.isEmpty()){
+            shopList = shopList + "Cybernetics\n" + cyberneticList + "\n";
+        }
+        if(!modList.isEmpty()){
+            shopList = shopList + "Weapon Mods\n" + modList + "\n";
+        }
+        if(!ammoList.isEmpty()){
+            shopList = shopList + "Special Ammo\n" + ammoList + "\n";
+        }
+        if(!miscList.isEmpty()){
+            shopList = shopList + "Miscellaneous\n" + miscList + "\n";
+        }
+        return String.format("```ansi\n%s```", shopList);
     }
 }

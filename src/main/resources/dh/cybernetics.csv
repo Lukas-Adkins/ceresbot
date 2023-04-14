@@ -1,0 +1,30 @@
+Name,Slots,Availability,Benefit,Price
+Brainchip,0,Average,"Facilitates instant communication, internet usage, connection to networks, and primitive connections to VR space.",2000
+Arm Weapon Mount,1,Average,Integrate a single weapon of Rare or lower availability into your arm. Disallows weapon mods.,300
+Cranial Armor,1,Scarce,Adds +1 armor point to the head.,500
+DIVE Port,1,Scarce,Gain a +10 bonus to Software tests whilst connected to a relevant device via port.,250
+Reinforced Arms,1,Scarce,Adds +1 armor point to the arms.,750
+Reinforced Legs,1,Scarce,Adds +1 armor point to the legs.,750
+Dense Marrow,2,Scarce,Gain Sound Constitution (3).,1500
+Compliance Implant,0,Rare,"A small and lethal remote-controlled device. Deals 6d10 Energy damage to the body part it's installed in when activated, ignoring armor.",500
+Psi-chip,1,Rare,Gain a +10 to all Focus Power tests.,1500
+Logi-chip,1,Rare,Gain a +10 to all Logic and Lore tests.,2500
+Reflex Tuner,1,Rare,"Take an immediate half action and regain your reaction upon falling below 25% wounds, up to once per encounter.",1250
+Critical Systems Analyzer MK.I,1,Rare,"Once per round, you may make a +20 Perception test on a target as a free action. On a success, gain knowledge of its current armor and wounds.",2000
+Sniper's Eye,1,Rare,"Grants +10 BS when firing single shot. Ignores penalties for Long and Extreme range, as long as the shooter is benefitting from a Full Action to Aim.",1500
+Bionic Respiratory System,1,Rare,"Gain a +20 bonus to Toughness tests made to resist airborne toxins and gas, and can hold breath twice as long.",2000
+Fireproof Subskin,2,Rare,"You take half damage from weapons with the Flame attribute, and cannot catch on fire.",4000
+Synth Muscle,2,Rare,Grants the Unnatural Strength (3) trait.,5000
+Bionic Legs,2,Rare,"Grants the Unnatural Agility (1) trait, a +20 bonus to tests made to jump, and the Catfall talent.",3500
+Bionic Senses,2,Rare,"Grants night vision, thermal vision, a +20 to tests against flashbangs, and the Keen Intuition talent.",4500
+Kusanagi S-system MK.I,3,Rare,"When activated as a free action, gain 3 fatigue, and then take two turns in a row. Must pass a +0 Toughness test or be stunned for your next turn.",5000
+Bionic Heart,1,Very Rare,Adds +1 armor point to the Body location and Sprint talent.,3500
+Immune Booster,1,Very Rare,"Always considered Lightly Damaged, and heals at an increased rate, removing 2 points of damage per day instead of 1.",3500
+Critical Systems Targeter,1,Very Rare,All attacks gain Vengeful(9).,5000
+Critical Systems Analyzer MK.II,2,Very Rare,"You have complete knowledge of the current armor, fatigue, and wounds values of all visible entities, and know the armor values of visible cover.",4000
+BOLT Legs,2,Very Rare,"Adds +1 armor to the legs, and grants the Preternatural Speed talent.",5500
+Subskin Armour,2,Very Rare,"Adds +2 armor to arms, body, and legs.",4000
+Advanced Arm Weapon Mount,2,Very Rare,Integrate a single weapon of Very Rare or higher availability into your arm. Disallows weapon mods.,800
+Psycho-k Enhancements,2,Extremely Rare,Enables the Psychokineticist Elite Advance.,7500
+Kusanagi S-system MK.II,4,Extremely Rare,"When activated as a free action, gain 5 fatigue, and then take three turns in a row. Must pass a -10 Toughness test or be stunned for your next turn.",10000
+Kusanagi S-system MK.III,5,Near Unique,"When activated as a free action, gain 7 fatigue, and then take four turns in a row. Must pass a -20 Toughness test or be stunned for your next turn.",15000
