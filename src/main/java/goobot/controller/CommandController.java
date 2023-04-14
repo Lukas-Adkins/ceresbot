@@ -189,19 +189,19 @@ public class CommandController {
     }
 
     /**
-     * Generates a shop full of random items for the Starlight gamesystem.
-     * @param args
-     * @return
+     * Generates a shop full of random items for the Starlight game system.
+     * @param args Commerce score of the shopkeeper
+     * @return Store information formatted as a string
      */
     public String dhShop(String args){
         Integer commerceSkill = Integer.parseInt(args);
         Integer commerceSkillMod = Math.round(commerceSkill/10);
         Integer maxItems = 3 * commerceSkillMod, minItems = 1 * commerceSkillMod, numberOfItems = rng.nextInt(maxItems - minItems + 1) + minItems;
         Integer scarce = 0, rare = 0, veryRare = 0, extremelyRare = 0;
-        System.out.println("NUMBER OF ITEMS: " + numberOfItems);
+        if(numberOfItems > 14)
+            numberOfItems = 14;
         for(int i = 0; i < numberOfItems; i++){
             Integer d100 = rng.nextInt(100) + 1;
-            System.out.println("ROLL: " + d100);
             if(d100 < commerceSkill - 40)
                 extremelyRare++;
             else if(d100 < commerceSkill - 30)
@@ -212,7 +212,8 @@ public class CommandController {
                 scarce++;
         }
     
-        String shopList = "", meleeList = "", rangedList = "", armorList = "", explosiveList = "", cyberneticList = "", modList = "", ammoList = "", miscList = "";
+        String shopList = "Welcome to the CeresBot Starlight storefront generator!\nGenerated a store inventory based on a shopkeep with a Commerce skill of " + commerceSkill + ".\n\n";
+        String meleeList = "", rangedList = "", armorList = "", explosiveList = "", cyberneticList = "", modList = "", ammoList = "", miscList = "";
         ArrayList<DhItem> itemList = dhItemLibrary.getRandomItems(scarce, rare, veryRare, extremelyRare);
         for (DhItem item : itemList){
             switch (item.getType()){
@@ -272,5 +273,3 @@ public class CommandController {
         return String.format("```ansi\n%s```", shopList);
     }
 }
-
-// TODO add random discounts with +/- from market price highlighted in green or red

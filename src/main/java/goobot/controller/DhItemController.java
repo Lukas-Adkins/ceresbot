@@ -27,6 +27,7 @@ import goobot.model.DhRangedWeapon;
 import goobot.Constants.DhRarity;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Random;
 
 public class DhItemController {
     private HashMap<String, DhItem> itemMap;
@@ -42,7 +43,6 @@ public class DhItemController {
     "extremely rare", new ArrayList<DhItem>(),
     "near unique", new ArrayList<DhItem>()
     );
-
     public static final int HEADER_ROW_INDEX = 0;
 
     public DhItemController(){

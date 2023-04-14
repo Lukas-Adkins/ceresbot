@@ -111,10 +111,10 @@ public class DiscordController extends ListenerAdapter {
             case "roll":
                 post(commandController.Roll(args), channel);
                 break;
-            case "stitem":
+            case "st_item":
                 post(commandController.dhItem(args), channel);
                 break;
-            case "starlightshop":
+            case "st_shop":
                 post(commandController.dhShop(args), channel);
                 break;
             case "character":

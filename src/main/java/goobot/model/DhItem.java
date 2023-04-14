@@ -9,6 +9,7 @@ import goobot.Constants;
 import goobot.Constants.DhItemType;
 import goobot.Constants.DhRarity;
 import java.util.Objects;
+import java.util.Random;
 
 public class DhItem {
     private DhItemType type;
@@ -17,9 +18,10 @@ public class DhItem {
     private String description;
     private String weight;
     private Integer price;
+    private Random rng;
 
-    public DhItem() {
-    }
+    private static final String SALE_COLOR = "\u001b[0;32m%s\u001b[0;0m"; // Green
+    private static final String MARKUP_COLOR = "\u001b[0;31m%s\u001b[0;0m"; // Red
 
     public DhItem(DhItemType type, String name, String rarity, String description, String weight, Integer price) {
         this.type = type;
@@ -28,6 +30,7 @@ public class DhItem {
         this.description = description;
         this.weight = weight;
         this.price = price;
+        this.rng = new Random();
     }
 
     public DhItemType getType() {
@@ -130,9 +133,23 @@ public class DhItem {
     }
 
     public String getShopString(){
+        if(rng.nextInt(100) + 1 > 85){ // Small chance item is on sale or more expensive
+            double percent = 1.00;
+            while(percent < 1.07 && percent > 0.95) // Generate percent sale / markup with greater than 7% swing
+                percent = (rng.nextInt(120 - 65 + 1) + 65) / 100.0;
+            int newPrice = (int) (price * percent); // New price with markup/discount
+            int percentOff = (int) (Math.abs(1.00 - percent) * 100); // Percent added/substracted from original price
+
+            if(newPrice > price){
+                String formatMarkupPrice = String.format("%d credits (+%d%%)", newPrice, percentOff) ;
+                return String.format("%s / %s / %s\n", name, getFormattedRarity(), String.format(MARKUP_COLOR, formatMarkupPrice));
+            }
+            String formatDiscountPrice = String.format("%d credits (-%d%%)", newPrice, percentOff) ;
+            return String.format("%s / %s / %s\n", name, getFormattedRarity(), String.format(SALE_COLOR, formatDiscountPrice));
+
+        }
         return String.format("%s / %s / %d credits\n", name, getFormattedRarity(), price);
     }
-
     /**
      * Gets properly formatted and colored ANSI string for rarity type.
      * @return Properly formatted and colored ANSI string
