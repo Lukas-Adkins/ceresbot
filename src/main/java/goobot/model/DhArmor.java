@@ -7,15 +7,14 @@ package goobot.model;
 
 import java.util.Objects;
 
-import goobot.Constants.DhRarity;
 import goobot.Constants.DhItemType;
 
 public class DhArmor extends DhItem {
     private String covers;
-    private Integer AP;
-    private Integer maxAgility;
+    private String AP;
+    private String maxAgility;
 
-    public DhArmor(DhItemType type, String name, String rarity, String description, String weight, Integer price, String covers, Integer AP, Integer maxAgility) {
+    public DhArmor(DhItemType type, String name, String rarity, String description, String weight, Integer price, String covers, String AP, String maxAgility) {
         super(type, name, rarity, description, weight, price);
         this.covers = covers;
         this.AP = AP;
@@ -30,19 +29,19 @@ public class DhArmor extends DhItem {
         this.covers = covers;
     }
 
-    public Integer getAP() {
+    public String getAP() {
         return this.AP;
     }
 
-    public void setAP(Integer AP) {
+    public void setAP(String AP) {
         this.AP = AP;
     }
 
-    public Integer getMaxAgility() {
+    public String getMaxAgility() {
         return this.maxAgility;
     }
 
-    public void setMaxAgility(Integer maxAgility) {
+    public void setMaxAgility(String maxAgility) {
         this.maxAgility = maxAgility;
     }
 
@@ -51,12 +50,12 @@ public class DhArmor extends DhItem {
         return this;
     }
 
-    public DhArmor AP(Integer AP) {
+    public DhArmor AP(String AP) {
         setAP(AP);
         return this;
     }
 
-    public DhArmor maxAgility(Integer maxAgility) {
+    public DhArmor maxAgility(String maxAgility) {
         setMaxAgility(maxAgility);
         return this;
     }
@@ -77,9 +76,9 @@ public class DhArmor extends DhItem {
         return Objects.hash(covers, AP, maxAgility);
     }
 
-
     @Override
-    public String toString() {
-        return String.format("```ansi\n%s / %s / %d credits /\nCovers: %s / AP: %d / Max Agility: %d\n%s```", getName(), getFormattedRarity(), getPrice(), covers , AP, maxAgility, getDescription());
+    public String toString(){
+        return String.format("```ansi\n%s / %s / %d credits /\nCovers: %s / AP: %s / Max Agility: %s\n%s```", getName(), getFormattedRarity(), getPrice(), covers , AP, maxAgility, getDescription());
     }
+
 }

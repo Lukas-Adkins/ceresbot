@@ -18,7 +18,7 @@ public class SpellControllerTest {
  
     @Before
     public void setUp() throws Exception {
-        this.controller = new DndSpellController(Constants.SPELLS_TEST_FILENAME);
+        this.controller = new DndSpellController(Constants.SPELLS_TEST_FILEPATH);
     }
 
     @Test

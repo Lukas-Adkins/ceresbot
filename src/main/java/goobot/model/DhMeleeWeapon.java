@@ -13,9 +13,9 @@ public class DhMeleeWeapon extends DhItem {
     private String weaponTypes;
     private String range;
     private String dmg;
-    private Integer pen;
+    private String pen;
 
-    public DhMeleeWeapon(DhItemType type, String name, String rarity, String description, String weight, Integer price, String weaponTypes, String range, String dmg, Integer pen) {
+    public DhMeleeWeapon(DhItemType type, String name, String rarity, String description, String weight, Integer price, String weaponTypes, String range, String dmg, String pen) {
         super(type, name, rarity, description, weight, price);
         this.weaponTypes = weaponTypes;
         this.range = range;
@@ -47,11 +47,11 @@ public class DhMeleeWeapon extends DhItem {
         this.dmg = dmg;
     }
 
-    public Integer getPen() {
+    public String getPen() {
         return this.pen;
     }
 
-    public void setPen(Integer pen) {
+    public void setPen(String pen) {
         this.pen = pen;
     }
 
@@ -70,7 +70,7 @@ public class DhMeleeWeapon extends DhItem {
         return this;
     }
 
-    public DhMeleeWeapon pen(Integer pen) {
+    public DhMeleeWeapon pen(String pen) {
         setPen(pen);
         return this;
     }
@@ -93,7 +93,6 @@ public class DhMeleeWeapon extends DhItem {
 
     @Override
     public String toString() {
-        return String.format("```ansi\n%s / %s / %d credits /\nRange: %s / Damage: %s / Pen: %d \n%s```", getName(), getFormattedRarity(), getPrice(), range , dmg, pen, getDescription());
+        return String.format("```ansi\n%s / %s / %d credits /\nRange: %s / Damage: %s / Pen: %s \n%s```", getName(), getFormattedRarity(), getPrice(), range , dmg, pen, getDescription());
     }
-
 }

@@ -81,6 +81,14 @@ public class DhItem {
         this.price = price;
     }
 
+    public Random getRng() {
+        return this.rng;
+    }
+
+    public void setRng(Random rng) {
+        this.rng = rng;
+    }
+
     public DhItem type(DhItemType type) {
         setType(type);
         return this;
@@ -111,6 +119,11 @@ public class DhItem {
         return this;
     }
 
+    public DhItem rng(Random rng) {
+        setRng(rng);
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -119,12 +132,12 @@ public class DhItem {
             return false;
         }
         DhItem dhItem = (DhItem) o;
-        return Objects.equals(type, dhItem.type) && Objects.equals(name, dhItem.name) && Objects.equals(rarity, dhItem.rarity) && Objects.equals(description, dhItem.description) && Objects.equals(weight, dhItem.weight) && Objects.equals(price, dhItem.price);
+        return Objects.equals(type, dhItem.type) && Objects.equals(name, dhItem.name) && Objects.equals(rarity, dhItem.rarity) && Objects.equals(description, dhItem.description) && Objects.equals(weight, dhItem.weight) && Objects.equals(price, dhItem.price) && Objects.equals(rng, dhItem.rng);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(type, name, rarity, description, weight, price);
+        return Objects.hash(type, name, rarity, description, weight, price, rng);
     }
 
     @Override
@@ -180,5 +193,4 @@ public class DhItem {
                 return rarity;
         }
     }
-
 }

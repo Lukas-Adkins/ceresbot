@@ -7,26 +7,25 @@
 package goobot.model;
 import java.util.Objects;
 
-import goobot.Constants.DhRarity;
 import goobot.Constants.DhItemType;
 
 public class DhCybernetic extends DhItem {
-    private Integer slots;
+    private String slots;
 
-    public DhCybernetic(DhItemType type, String name, String rarity, String description, String weight, Integer price, Integer slots) {
+    public DhCybernetic(DhItemType type, String name, String rarity, String description, String weight, Integer price, String slots) {
         super(type, name, rarity, description, weight, price);
         this.slots = slots;
     }
 
-    public Integer getSlots() {
+    public String getSlots() {
         return this.slots;
     }
 
-    public void setSlots(Integer slots) {
+    public void setSlots(String slots) {
         this.slots = slots;
     }
 
-    public DhCybernetic slots(Integer slots) {
+    public DhCybernetic slots(String slots) {
         setSlots(slots);
         return this;
     }
@@ -49,6 +48,6 @@ public class DhCybernetic extends DhItem {
 
     @Override
     public String toString() {
-        return String.format("```ansi\n%s / %s / %d cyber-slots / %d credits\n - %s```", getName(), getFormattedRarity(), slots, getPrice(), getDescription());
+        return String.format("```ansi\n%s / %s / %s cyber-slots / %d credits\n - %s```", getName(), getFormattedRarity(), slots, getPrice(), getDescription());
     }
 }

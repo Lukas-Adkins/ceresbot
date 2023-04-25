@@ -12,16 +12,15 @@ import goobot.Constants.DhWeaponType;
 import goobot.Constants.DhItemType;
 
 public class DhRangedWeapon extends DhItem {
-
     private String weaponTypes;
     private String range;
     private String RoF;
     private String dmg;
-    private Integer pen;
-    private Integer mag;
+    private String pen;
+    private String mag;
     private String reloadTime;
 
-    public DhRangedWeapon(DhItemType type, String name, String rarity, String description, String weight, Integer price, String weaponTypes, String range, String RoF, String dmg, Integer pen, Integer mag, String reloadTime) {
+    public DhRangedWeapon(DhItemType type, String name, String rarity, String description, String weight, Integer price, String weaponTypes, String range, String RoF, String dmg, String pen, String mag, String reloadTime) {
         super(type, name, rarity, description, weight, price);
         this.weaponTypes = weaponTypes;
         this.range = range;
@@ -64,19 +63,19 @@ public class DhRangedWeapon extends DhItem {
         this.dmg = dmg;
     }
 
-    public Integer getPen() {
+    public String getPen() {
         return this.pen;
     }
 
-    public void setPen(Integer pen) {
+    public void setPen(String pen) {
         this.pen = pen;
     }
 
-    public Integer getMag() {
+    public String getMag() {
         return this.mag;
     }
 
-    public void setMag(Integer mag) {
+    public void setMag(String mag) {
         this.mag = mag;
     }
 
@@ -108,12 +107,12 @@ public class DhRangedWeapon extends DhItem {
         return this;
     }
 
-    public DhRangedWeapon pen(Integer pen) {
+    public DhRangedWeapon pen(String pen) {
         setPen(pen);
         return this;
     }
 
-    public DhRangedWeapon mag(Integer mag) {
+    public DhRangedWeapon mag(String mag) {
         setMag(mag);
         return this;
     }
@@ -123,7 +122,6 @@ public class DhRangedWeapon extends DhItem {
         return this;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -131,8 +129,8 @@ public class DhRangedWeapon extends DhItem {
         if (!(o instanceof DhRangedWeapon)) {
             return false;
         }
-        DhRangedWeapon dhWeapon = (DhRangedWeapon) o;
-        return Objects.equals(weaponTypes, dhWeapon.weaponTypes) && Objects.equals(range, dhWeapon.range) && Objects.equals(RoF, dhWeapon.RoF) && Objects.equals(dmg, dhWeapon.dmg) && Objects.equals(pen, dhWeapon.pen) && Objects.equals(mag, dhWeapon.mag) && Objects.equals(reloadTime, dhWeapon.reloadTime);
+        DhRangedWeapon dhRangedWeapon = (DhRangedWeapon) o;
+        return Objects.equals(weaponTypes, dhRangedWeapon.weaponTypes) && Objects.equals(range, dhRangedWeapon.range) && Objects.equals(RoF, dhRangedWeapon.RoF) && Objects.equals(dmg, dhRangedWeapon.dmg) && Objects.equals(pen, dhRangedWeapon.pen) && Objects.equals(mag, dhRangedWeapon.mag) && Objects.equals(reloadTime, dhRangedWeapon.reloadTime);
     }
 
     @Override
@@ -142,6 +140,6 @@ public class DhRangedWeapon extends DhItem {
 
     @Override
     public String toString() {
-        return String.format("```ansi\n%s / %s / %s / %d credits /\n%s / Range: %s / RoF: %s / Damage: %s / Pen: %d / Mag: %d / Rld: %s\n%s```", getName(), getFormattedRarity(), getWeight(), getPrice(), weaponTypes, range , RoF, dmg, pen, mag, reloadTime, getDescription());
+        return String.format("```ansi\n%s / %s / %s / %d credits /\n%s / Range: %s / RoF: %s / Damage: %s / Pen: %s / Mag: %s / Rld: %s\n%s```", getName(), getFormattedRarity(), getWeight(), getPrice(), weaponTypes, range , RoF, dmg, pen, mag, reloadTime, getDescription());
     }
 }

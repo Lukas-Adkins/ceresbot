@@ -190,7 +190,7 @@ public class CommandController {
 
     /**
      * Generates a shop full of random items for the Starlight game system.
-     * @param args Commerce score of the shopkeeper
+     * @param args Commerce skill of the shopkeeper
      * @return Store information formatted as a string
      */
     public String dhShop(String args){

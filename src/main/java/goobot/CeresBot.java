@@ -20,6 +20,7 @@ public class CeresBot {
         catch(Exception e){
             System.out.println(Constants.BOT_START_ERROR);
             System.out.println(e);
+            e.printStackTrace();
             System.exit(Constants.FATAL_FAILURE);
         }
     }

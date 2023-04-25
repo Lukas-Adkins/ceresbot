@@ -31,131 +31,115 @@ import java.util.Random;
 
 public class DhItemController {
     private HashMap<String, DhItem> itemMap;
-    private Map<String, ArrayList<DhItem>> rarityMap = Map.of(
-    "abundant", new ArrayList<DhItem>(),
-    "plentiful", new ArrayList<DhItem>(),
-    "common", new ArrayList<DhItem>(),
-    "average", new ArrayList<DhItem>(),
-    "uncommon", new ArrayList<DhItem>(),
-    "scarce", new ArrayList<DhItem>(),
-    "rare", new ArrayList<DhItem>(),
-    "very rare", new ArrayList<DhItem>(),
-    "extremely rare", new ArrayList<DhItem>(),
-    "near unique", new ArrayList<DhItem>()
-    );
-    public static final int HEADER_ROW_INDEX = 0;
+    private HashMap<String, ArrayList<DhItem>> rarityMap;
+
+    public static final int 
+    HEADER_ROW_INDEX = 0, 
+    FATAL_FAILURE = 1,
+    NAME_COL = 0, 
+    RARITY_COL = 1, 
+    CLASS_COL = 2, 
+    RANGE_COL = 3, 
+    ROF_COL = 4, 
+    DMG_COL = 5, 
+    PEN_COL = 6, 
+    MAG_COL = 7, 
+    RELOAD_COL = 8,
+    COVERS_COL = 9, 
+    AP_COL = 10, 
+    MAX_AG_COL= 11, 
+    CYBER_SLOTS_COL = 12, 
+    MECH_SLOT_COL = 13, 
+    LOCATION_COL = 14, 
+    SPECIAL_NOTES_COL = 15, 
+    WEIGHT_COL = 16,
+    PRICE_COL = 17, 
+    TYPE_COL = 18;
 
     public DhItemController(){
         this.itemMap = new HashMap<>();
-        try{
-            parseItems();
-        }
-        catch(Exception e){
-            System.err.println("Error parsing DHitems: " + e);
-            System.exit(Constants.FATAL_FAILURE);
-        }
+        this.rarityMap = new HashMap<>();
+        rarityMap.put("ubiquitous", new ArrayList<DhItem>());
+        rarityMap.put("abundant", new ArrayList<DhItem>());
+        rarityMap.put("plentiful", new ArrayList<DhItem>());
+        rarityMap.put("common", new ArrayList<DhItem>());
+        rarityMap.put("average", new ArrayList<DhItem>());
+        rarityMap.put("uncommon", new ArrayList<DhItem>());
+        rarityMap.put("scarce", new ArrayList<DhItem>());
+        rarityMap.put("rare", new ArrayList<DhItem>());
+        rarityMap.put("very rare", new ArrayList<DhItem>());
+        rarityMap.put("extremely rare", new ArrayList<DhItem>());
+        rarityMap.put("near unique", new ArrayList<DhItem>());
+        parseItems();
     }
 
-    private void parseItems() throws Exception {
-        // Gets gear
-        Path itemsPath = getSheetPath("dh/gear.csv");
-        List<String[]> csvList = readAllLines(itemsPath);
-        csvList.remove(HEADER_ROW_INDEX);
-        for(String[] list : csvList){
-            DhItem item = new DhItem(DhItemType.MISC, list[0].trim(), list[1], list[2], list[3], Integer.parseInt(list[4]));
-            itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
-            rarityMap.get(item.getRarity().toLowerCase()).add(item);
+    private void parseItems() {
+        Path path = getSheetPath(Constants.ST_ITEMS_FILEPATH);
+        try{
+            List<String[]> itemList = readAllLines(path);
+            itemList.remove(HEADER_ROW_INDEX);
+    
+            for(String[] data : itemList){
+                DhItem item = null;
+                switch(data[TYPE_COL].toLowerCase().trim()){
+                    case "ranged weapon":
+                        item = new DhRangedWeapon(
+                            DhItemType.RANGED_WEAPON, data[NAME_COL], data[RARITY_COL], data[NAME_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]), data[CLASS_COL],
+                            data[RANGE_COL], data[ROF_COL], data[DMG_COL], data[PEN_COL], data[MAG_COL], data[RELOAD_COL]
+                        );
+                        break;
+                    case "melee weapon":
+                        item = new DhMeleeWeapon(
+                            DhItemType.MELEE_WEAPON, data[NAME_COL], data[RARITY_COL], data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
+                            data[TYPE_COL], data[RANGE_COL], data[DMG_COL], data[PEN_COL]
+                            );
+                        break;
+                    case "explosive":
+                        item = new DhRangedWeapon(
+                            DhItemType.EXPLOSIVE, data[NAME_COL], data[RARITY_COL], data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
+                            data[TYPE_COL], data[RANGE_COL], data[ROF_COL], data[DMG_COL], data[PEN_COL], data[MAG_COL], data[RELOAD_COL]
+                            );
+                        break;
+                    case "armor":
+                        item = new DhArmor(
+                            DhItemType.ARMOR, data[NAME_COL], data[RARITY_COL], data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
+                            data[COVERS_COL], data[AP_COL], data[MAX_AG_COL]
+                            );
+                        break;
+                    case "cybernetic":
+                        item = new DhCybernetic(
+                            DhItemType.CYBERNETIC, data[NAME_COL], data[RARITY_COL], data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
+                            data[CYBER_SLOTS_COL]
+                            );
+                        break;
+                    case "misc":
+                        item = new DhItem(DhItemType.MISC, data[NAME_COL], data[RARITY_COL], data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]));
+                        break;
+                    case "weapon mod":
+                        item = new DhItem(DhItemType.WEAPON_MOD, data[NAME_COL], data[RARITY_COL], data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]));
+                        break;
+                    case "special ammo":
+                        item = new DhItem(DhItemType.SPECIAL_AMMO, data[NAME_COL], data[RARITY_COL], data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]));
+                        break;
+                    case "consumable":
+                        item = new DhItem(DhItemType.CONSUMABLE, data[NAME_COL], data[RARITY_COL], data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]));
+                        break;
+                    default:
+                        System.out.println(String.format("WARNING: Failed to parse item %s from Starlight item sheet.", data[NAME_COL]));
+                }
+                if(item != null){
+                    // Clean string, add to hashmaps for quick lookup
+                    itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
+                    rarityMap.get(item.getRarity().toLowerCase()).add(item);
+                    System.err.println(String.format("ADDED ITEM: %s", item.getName()));
+                }
+            }
         }
-
-        // Gets consumables
-        itemsPath = getSheetPath("dh/consumables.csv");
-        csvList = readAllLines(itemsPath);
-        csvList.remove(HEADER_ROW_INDEX);
-        for(String[] list : csvList){
-            DhItem item = new DhItem(DhItemType.CONSUMABLE, list[0].trim(), list[1], list[2], "0kg", Integer.parseInt(list[3]));
-            itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
-            rarityMap.get(item.getRarity().toLowerCase()).add(item);
+        catch(Exception e){
+            System.out.println(String.format("[ERROR] : Parsing items from %s", Constants.ST_ITEMS_FILEPATH));
+            e.printStackTrace();
         }
-
-        // Gets weapon mods
-        itemsPath = getSheetPath("dh/weapon_mods.csv");
-        csvList = readAllLines(itemsPath);
-        csvList.remove(HEADER_ROW_INDEX);
-        for(String[] list : csvList){
-            DhItem item = new DhItem(DhItemType.WEAPON_MOD, list[0].trim(), list[1], list[2], list[3], Integer.parseInt(list[4]));
-            itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
-            rarityMap.get(item.getRarity().toLowerCase()).add(item);
-        }
-
-        // Gets special ammo
-        itemsPath = getSheetPath("dh/special_ammo.csv");
-        csvList = readAllLines(itemsPath);
-        csvList.remove(HEADER_ROW_INDEX);
-        for(String[] list : csvList){
-            DhItem item = new DhItem(DhItemType.SPECIAL_AMMO, list[0].trim(), list[1], list[2], "0kg", Integer.parseInt(list[3]));
-            itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
-            rarityMap.get(item.getRarity().toLowerCase()).add(item);
-        }
-
-        // Gets cybernetics
-        itemsPath = getSheetPath("dh/cybernetics.csv");
-        csvList = readAllLines(itemsPath);
-        csvList.remove(HEADER_ROW_INDEX);
-        for(String[] list : csvList){
-            DhItem item = new DhCybernetic(DhItemType.CYBERNETIC, list[0], list[2], list[3], "0kg", Integer.parseInt(list[4]), Integer.parseInt(list[1]));
-            itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
-            rarityMap.get(item.getRarity().toLowerCase()).add(item);
-        }
-
-        // Gets armor
-        itemsPath = getSheetPath("dh/armor.csv");
-        csvList = readAllLines(itemsPath);
-        csvList.remove(HEADER_ROW_INDEX);
-        for(String[] list : csvList){
-            DhItem item = new DhArmor(DhItemType.ARMOR, list[0], list[5], list[6], list[4], Integer.parseInt(list[7]), list[1], Integer.parseInt(list[2]), Integer.parseInt(list[3]));
-            itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
-            rarityMap.get(item.getRarity().toLowerCase()).add(item);
-        }
-
-        // Gets melee weapons
-        itemsPath = getSheetPath("dh/melee.csv");
-        csvList = readAllLines(itemsPath);
-        csvList.remove(HEADER_ROW_INDEX);
-        for(String[] list : csvList){
-            DhItem item = new DhMeleeWeapon(DhItemType.MELEE_WEAPON, list[0], list[6], list[7], list[5], Integer.parseInt(list[8]), list[1], list[2], list[3], Integer.parseInt(list[4]));
-            itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
-            rarityMap.get(item.getRarity().toLowerCase()).add(item);
-        }
-
-        // Gets kinetic/explosive ranged weapons
-        itemsPath = getSheetPath("dh/ranged_weapons1.csv");
-        csvList = readAllLines(itemsPath);
-        csvList.remove(HEADER_ROW_INDEX);
-        for(String[] list : csvList){
-            DhItem item = new DhRangedWeapon(DhItemType.RANGED_WEAPON, list[0], list[10], list[8], list[9], Integer.parseInt(list[11]), list[1], list[2], list[3], list[4], Integer.parseInt(list[5]), Integer.parseInt(list[6]), list[7]);
-            itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
-            rarityMap.get(item.getRarity().toLowerCase()).add(item);
-        }
-
-        // Gets energy/heavy ranged weapons
-        itemsPath = getSheetPath("dh/ranged_weapons2.csv");
-        csvList = readAllLines(itemsPath);
-        csvList.remove(HEADER_ROW_INDEX);
-        for(String[] list : csvList){
-            DhItem item = new DhRangedWeapon(DhItemType.RANGED_WEAPON, list[0], list[10], list[8], list[9], Integer.parseInt(list[11]), list[1], list[2], list[3], list[4], Integer.parseInt(list[5]), Integer.parseInt(list[6]), list[7]);
-            itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
-            rarityMap.get(item.getRarity().toLowerCase()).add(item);
-        }
-
-        // Gets grenades
-        itemsPath = getSheetPath("dh/grenades.csv");
-        csvList = readAllLines(itemsPath);
-        csvList.remove(HEADER_ROW_INDEX);
-        for(String[] list : csvList){
-            DhItem item = new DhRangedWeapon(DhItemType.EXPLOSIVE, list[0], list[6], list[7], "0kg", Integer.parseInt(list[8]), list[1], list[2], "", list[4], Integer.parseInt(list[3]), 1, "");
-            itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
-            rarityMap.get(item.getRarity().toLowerCase()).add(item);
-        }
+        
     }
 
     private List<String[]> readAllLines(Path filePath) throws Exception {
