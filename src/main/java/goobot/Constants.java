@@ -57,7 +57,7 @@ public class Constants {
     "9", 25000
     );
 
-    public enum DhItemType {
+    public enum StarlightItemType {
         MISC,
         MELEE_WEAPON,
         RANGED_WEAPON,
@@ -69,7 +69,7 @@ public class Constants {
         CONSUMABLE
     }
     
-    public enum DhWeaponType {
+    public enum StarlightWeaponType {
         BASIC,
         PISTOL,
         HEAVY,
@@ -79,7 +79,7 @@ public class Constants {
         MISSILE
     }
 
-    public enum DhRarity {
+    public enum StarlightRarity {
         UBIQUITOUS,
         ABUNDANT,
         PLENTIFUL,
@@ -94,16 +94,16 @@ public class Constants {
         UNIQUE
     }
 
-    public static final Map<DhRarity, String> RARITY_COLORS = Map.of(
-        DhRarity.ABUNDANT, "\u001b[0;30m%s\u001b[0;0m", // Gray
-        DhRarity.PLENTIFUL, "\u001b[0;30m%s\u001b[0;0m", // Gray
-        DhRarity.COMMON, "\u001b[0;33m%s\u001b[0;0m", // Yellow
-        DhRarity.AVERAGE, "\u001b[0;33m%s\u001b[0;0m", // Yellow
-        DhRarity.UNCOMMON, "\u001b[0;32m%s\u001b[0;0m", // Green
-        DhRarity.SCARCE, "\u001b[0;34m%s\u001b[0;0m", // Blue
-        DhRarity.RARE, "\u001b[0;36m%s\u001b[0;0m", // Cyan
-        DhRarity.VERY_RARE, "\u001b[0;35m%s\u001b[0;0m", // Pink
-        DhRarity.EXTREMELY_RARE, "\u001b[0;31m%s\u001b[0;0m", // Red
-        DhRarity.NEAR_UNIQUE, "\u001b[0;37m%s\u001b[0;0m" // White
+    public static final Map<StarlightRarity, String> RARITY_COLORS = Map.of(
+        StarlightRarity.ABUNDANT, "\u001b[0;30m%s\u001b[0;0m", // Gray
+        StarlightRarity.PLENTIFUL, "\u001b[0;30m%s\u001b[0;0m", // Gray
+        StarlightRarity.COMMON, "\u001b[0;33m%s\u001b[0;0m", // Yellow
+        StarlightRarity.AVERAGE, "\u001b[0;33m%s\u001b[0;0m", // Yellow
+        StarlightRarity.UNCOMMON, "\u001b[0;32m%s\u001b[0;0m", // Green
+        StarlightRarity.SCARCE, "\u001b[0;34m%s\u001b[0;0m", // Blue
+        StarlightRarity.RARE, "\u001b[0;36m%s\u001b[0;0m", // Cyan
+        StarlightRarity.VERY_RARE, "\u001b[0;35m%s\u001b[0;0m", // Pink
+        StarlightRarity.EXTREMELY_RARE, "\u001b[0;31m%s\u001b[0;0m", // Red
+        StarlightRarity.NEAR_UNIQUE, "\u001b[0;37m%s\u001b[0;0m" // White
     );
 }

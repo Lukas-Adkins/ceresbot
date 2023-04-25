@@ -7,14 +7,14 @@ package goobot.model;
 
 import java.util.Objects;
 
-import goobot.Constants.DhItemType;
+import goobot.Constants.StarlightItemType;
 
-public class DhArmor extends DhItem {
+public class StarlightArmor extends StarlightItem {
     private String covers;
     private String AP;
     private String maxAgility;
 
-    public DhArmor(DhItemType type, String name, String rarity, String description, String weight, Integer price, String covers, String AP, String maxAgility) {
+    public StarlightArmor(StarlightItemType type, String name, String rarity, String description, String weight, Integer price, String covers, String AP, String maxAgility) {
         super(type, name, rarity, description, weight, price);
         this.covers = covers;
         this.AP = AP;
@@ -45,17 +45,17 @@ public class DhArmor extends DhItem {
         this.maxAgility = maxAgility;
     }
 
-    public DhArmor covers(String covers) {
+    public StarlightArmor covers(String covers) {
         setCovers(covers);
         return this;
     }
 
-    public DhArmor AP(String AP) {
+    public StarlightArmor AP(String AP) {
         setAP(AP);
         return this;
     }
 
-    public DhArmor maxAgility(String maxAgility) {
+    public StarlightArmor maxAgility(String maxAgility) {
         setMaxAgility(maxAgility);
         return this;
     }
@@ -64,10 +64,10 @@ public class DhArmor extends DhItem {
     public boolean equals(Object o) {
         if (o == this)
             return true;
-        if (!(o instanceof DhArmor)) {
+        if (!(o instanceof StarlightArmor)) {
             return false;
         }
-        DhArmor dhArmor = (DhArmor) o;
+        StarlightArmor dhArmor = (StarlightArmor) o;
         return Objects.equals(covers, dhArmor.covers) && Objects.equals(AP, dhArmor.AP) && Objects.equals(maxAgility, dhArmor.maxAgility);
     }
 

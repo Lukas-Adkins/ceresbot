@@ -7,11 +7,11 @@ package goobot.model;
 
 import java.util.List;
 import java.util.Objects;
-import goobot.Constants.DhRarity;
-import goobot.Constants.DhWeaponType;
-import goobot.Constants.DhItemType;
+import goobot.Constants.StarlightRarity;
+import goobot.Constants.StarlightWeaponType;
+import goobot.Constants.StarlightItemType;
 
-public class DhRangedWeapon extends DhItem {
+public class StarlightRangedWeapon extends StarlightItem {
     private String weaponTypes;
     private String range;
     private String RoF;
@@ -20,7 +20,7 @@ public class DhRangedWeapon extends DhItem {
     private String mag;
     private String reloadTime;
 
-    public DhRangedWeapon(DhItemType type, String name, String rarity, String description, String weight, Integer price, String weaponTypes, String range, String RoF, String dmg, String pen, String mag, String reloadTime) {
+    public StarlightRangedWeapon(StarlightItemType type, String name, String rarity, String description, String weight, Integer price, String weaponTypes, String range, String RoF, String dmg, String pen, String mag, String reloadTime) {
         super(type, name, rarity, description, weight, price);
         this.weaponTypes = weaponTypes;
         this.range = range;
@@ -87,37 +87,37 @@ public class DhRangedWeapon extends DhItem {
         this.reloadTime = reloadTime;
     }
 
-    public DhRangedWeapon weaponTypes(String weaponTypes) {
+    public StarlightRangedWeapon weaponTypes(String weaponTypes) {
         setWeaponTypes(weaponTypes);
         return this;
     }
 
-    public DhRangedWeapon range(String range) {
+    public StarlightRangedWeapon range(String range) {
         setRange(range);
         return this;
     }
 
-    public DhRangedWeapon RoF(String RoF) {
+    public StarlightRangedWeapon RoF(String RoF) {
         setRoF(RoF);
         return this;
     }
 
-    public DhRangedWeapon dmg(String dmg) {
+    public StarlightRangedWeapon dmg(String dmg) {
         setDmg(dmg);
         return this;
     }
 
-    public DhRangedWeapon pen(String pen) {
+    public StarlightRangedWeapon pen(String pen) {
         setPen(pen);
         return this;
     }
 
-    public DhRangedWeapon mag(String mag) {
+    public StarlightRangedWeapon mag(String mag) {
         setMag(mag);
         return this;
     }
 
-    public DhRangedWeapon reloadTime(String reloadTime) {
+    public StarlightRangedWeapon reloadTime(String reloadTime) {
         setReloadTime(reloadTime);
         return this;
     }
@@ -126,10 +126,10 @@ public class DhRangedWeapon extends DhItem {
     public boolean equals(Object o) {
         if (o == this)
             return true;
-        if (!(o instanceof DhRangedWeapon)) {
+        if (!(o instanceof StarlightRangedWeapon)) {
             return false;
         }
-        DhRangedWeapon dhRangedWeapon = (DhRangedWeapon) o;
+        StarlightRangedWeapon dhRangedWeapon = (StarlightRangedWeapon) o;
         return Objects.equals(weaponTypes, dhRangedWeapon.weaponTypes) && Objects.equals(range, dhRangedWeapon.range) && Objects.equals(RoF, dhRangedWeapon.RoF) && Objects.equals(dmg, dhRangedWeapon.dmg) && Objects.equals(pen, dhRangedWeapon.pen) && Objects.equals(mag, dhRangedWeapon.mag) && Objects.equals(reloadTime, dhRangedWeapon.reloadTime);
     }
 
