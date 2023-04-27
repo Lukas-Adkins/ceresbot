@@ -6,13 +6,14 @@
 
 package goobot.model;
 import java.util.Objects;
+import goobot.Constants.StRarity;
 
-import goobot.Constants.StarlightItemType;
+import goobot.Constants.StItemType;
 
-public class StarlightCybernetic extends StarlightItem {
+public class StCybernetic extends StItem {
     private String slots;
 
-    public StarlightCybernetic(StarlightItemType type, String name, String rarity, String description, String weight, Integer price, String slots) {
+    public StCybernetic(StItemType type, String name, StRarity rarity, String description, String weight, Integer price, String slots) {
         super(type, name, rarity, description, weight, price);
         this.slots = slots;
     }
@@ -25,7 +26,7 @@ public class StarlightCybernetic extends StarlightItem {
         this.slots = slots;
     }
 
-    public StarlightCybernetic slots(String slots) {
+    public StCybernetic slots(String slots) {
         setSlots(slots);
         return this;
     }
@@ -34,10 +35,10 @@ public class StarlightCybernetic extends StarlightItem {
     public boolean equals(Object o) {
         if (o == this)
             return true;
-        if (!(o instanceof StarlightCybernetic)) {
+        if (!(o instanceof StCybernetic)) {
             return false;
         }
-        StarlightCybernetic dhCybernetic = (StarlightCybernetic) o;
+        StCybernetic dhCybernetic = (StCybernetic) o;
         return Objects.equals(slots, dhCybernetic.slots);
     }
 

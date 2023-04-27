@@ -18,20 +18,20 @@ import java.io.Reader;
 import java.nio.file.Path;
 
 import goobot.Constants;
-import goobot.Constants.StarlightItemType;
-import goobot.model.StarlightArmor;
-import goobot.model.StarlightCybernetic;
-import goobot.model.StarlightItem;
-import goobot.model.StarlightMeleeWeapon;
-import goobot.model.StarlightRangedWeapon;
-import goobot.Constants.StarlightRarity;
+import goobot.Constants.StItemType;
+import goobot.model.StArmor;
+import goobot.model.StCybernetic;
+import goobot.model.StItem;
+import goobot.model.StMeleeWeapon;
+import goobot.model.StRangedWeapon;
+import goobot.Constants.StRarity;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
 
-public class StarlightItemController {
-    private HashMap<String, StarlightItem> itemMap;
-    private HashMap<String, ArrayList<StarlightItem>> rarityMap;
+public class StItemController {
+    private HashMap<String, StItem> itemTable;
+    private HashMap<StRarity, ArrayList<StItem>> rarityTable;
 
     public static final int 
     HEADER_ROW_INDEX = 0, 
@@ -56,20 +56,20 @@ public class StarlightItemController {
     PRICE_COL = 17, 
     TYPE_COL = 18;
 
-    public StarlightItemController(){
-        this.itemMap = new HashMap<>();
-        this.rarityMap = new HashMap<>();
-        rarityMap.put("ubiquitous", new ArrayList<StarlightItem>());
-        rarityMap.put("abundant", new ArrayList<StarlightItem>());
-        rarityMap.put("plentiful", new ArrayList<StarlightItem>());
-        rarityMap.put("common", new ArrayList<StarlightItem>());
-        rarityMap.put("average", new ArrayList<StarlightItem>());
-        rarityMap.put("uncommon", new ArrayList<StarlightItem>());
-        rarityMap.put("scarce", new ArrayList<StarlightItem>());
-        rarityMap.put("rare", new ArrayList<StarlightItem>());
-        rarityMap.put("very rare", new ArrayList<StarlightItem>());
-        rarityMap.put("extremely rare", new ArrayList<StarlightItem>());
-        rarityMap.put("near unique", new ArrayList<StarlightItem>());
+    public StItemController(){
+        this.itemTable = new HashMap<>();
+        this.rarityTable = new HashMap<>();
+        rarityTable.put(StRarity.UBIQUITOUS, new ArrayList<StItem>());
+        rarityTable.put(StRarity.ABUNDANT, new ArrayList<StItem>());
+        rarityTable.put(StRarity.PLENTIFUL, new ArrayList<StItem>());
+        rarityTable.put(StRarity.COMMON, new ArrayList<StItem>());
+        rarityTable.put(StRarity.AVERAGE, new ArrayList<StItem>());
+        rarityTable.put(StRarity.UNCOMMON, new ArrayList<StItem>());
+        rarityTable.put(StRarity.SCARCE, new ArrayList<StItem>());
+        rarityTable.put(StRarity.RARE, new ArrayList<StItem>());
+        rarityTable.put(StRarity.VERY_RARE, new ArrayList<StItem>());
+        rarityTable.put(StRarity.EXTREMELY_RARE, new ArrayList<StItem>());
+        rarityTable.put(StRarity.NEAR_UNIQUE, new ArrayList<StItem>());
         parseItems();
     }
 
@@ -80,57 +80,60 @@ public class StarlightItemController {
             itemList.remove(HEADER_ROW_INDEX);
     
             for(String[] data : itemList){
-                StarlightItem item = null;
+                StItem item = null;
+                // Parse Strings into enum item rarities
+                StRarity itemRarity = StRarity.valueOf(data[RARITY_COL].toUpperCase().trim().replace(" ", "_"));
+
                 switch(data[TYPE_COL].toLowerCase().trim()){
                     case "ranged weapon":
-                        item = new StarlightRangedWeapon(
-                            StarlightItemType.RANGED_WEAPON, data[NAME_COL], data[RARITY_COL], data[NAME_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]), data[CLASS_COL],
+                        item = new StRangedWeapon(
+                            StItemType.RANGED_WEAPON, data[NAME_COL], itemRarity, data[NAME_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]), data[CLASS_COL],
                             data[RANGE_COL], data[ROF_COL], data[DMG_COL], data[PEN_COL], data[MAG_COL], data[RELOAD_COL]
                         );
                         break;
                     case "melee weapon":
-                        item = new StarlightMeleeWeapon(
-                            StarlightItemType.MELEE_WEAPON, data[NAME_COL], data[RARITY_COL], data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
+                        item = new StMeleeWeapon(
+                            StItemType.MELEE_WEAPON, data[NAME_COL], itemRarity, data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
                             data[TYPE_COL], data[RANGE_COL], data[DMG_COL], data[PEN_COL]
                             );
                         break;
                     case "explosive":
-                        item = new StarlightRangedWeapon(
-                            StarlightItemType.EXPLOSIVE, data[NAME_COL], data[RARITY_COL], data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
+                        item = new StRangedWeapon(
+                            StItemType.EXPLOSIVE, data[NAME_COL], itemRarity, data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
                             data[TYPE_COL], data[RANGE_COL], data[ROF_COL], data[DMG_COL], data[PEN_COL], data[MAG_COL], data[RELOAD_COL]
                             );
                         break;
                     case "armor":
-                        item = new StarlightArmor(
-                            StarlightItemType.ARMOR, data[NAME_COL], data[RARITY_COL], data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
+                        item = new StArmor(
+                            StItemType.ARMOR, data[NAME_COL], itemRarity, data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
                             data[COVERS_COL], data[AP_COL], data[MAX_AG_COL]
                             );
                         break;
                     case "cybernetic":
-                        item = new StarlightCybernetic(
-                            StarlightItemType.CYBERNETIC, data[NAME_COL], data[RARITY_COL], data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
+                        item = new StCybernetic(
+                            StItemType.CYBERNETIC, data[NAME_COL], itemRarity, data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
                             data[CYBER_SLOTS_COL]
                             );
                         break;
                     case "misc":
-                        item = new StarlightItem(StarlightItemType.MISC, data[NAME_COL], data[RARITY_COL], data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]));
+                        item = new StItem(StItemType.MISC, data[NAME_COL], itemRarity, data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]));
                         break;
                     case "weapon mod":
-                        item = new StarlightItem(StarlightItemType.WEAPON_MOD, data[NAME_COL], data[RARITY_COL], data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]));
+                        item = new StItem(StItemType.WEAPON_MOD, data[NAME_COL], itemRarity, data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]));
                         break;
                     case "special ammo":
-                        item = new StarlightItem(StarlightItemType.SPECIAL_AMMO, data[NAME_COL], data[RARITY_COL], data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]));
+                        item = new StItem(StItemType.SPECIAL_AMMO, data[NAME_COL], itemRarity, data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]));
                         break;
                     case "consumable":
-                        item = new StarlightItem(StarlightItemType.CONSUMABLE, data[NAME_COL], data[RARITY_COL], data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]));
+                        item = new StItem(StItemType.CONSUMABLE, data[NAME_COL], itemRarity, data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]));
                         break;
                     default:
                         System.out.println(String.format("WARNING: Failed to parse item %s from Starlight item sheet.", data[NAME_COL]));
                 }
                 if(item != null){
                     // Clean string, add to hashmaps for quick lookup
-                    itemMap.put(item.getName().toLowerCase().replace("-", " "), item);
-                    rarityMap.get(item.getRarity().toLowerCase()).add(item);
+                    itemTable.put(item.getName().toLowerCase().replace("-", " "), item);
+                    rarityTable.get(item.getRarity()).add(item);
                     System.err.println(String.format("ADDED ITEM: %s", item.getName()));
                 }
             }
@@ -164,47 +167,47 @@ public class StarlightItemController {
         return null;
     }
 
-    public HashMap<String, StarlightItem> getItemMap(){
-        return itemMap;
+    public HashMap<String, StItem> getItemTable(){
+        return itemTable;
     }
 
-    public StarlightItem getItem(String name){
-        return itemMap.get(name.toLowerCase());
+    public StItem getItem(String name){
+        return itemTable.get(name.toLowerCase());
     }
 
     /**
      * Returns a number of given dhItems with a given rarity
      * @return Arraylist of requested items
      */
-    public ArrayList<StarlightItem> getRandomItems(Integer scarce, Integer rare, Integer veryRare, Integer extremelyRare){
-        ArrayList<StarlightItem> list = new ArrayList<>();
+    public ArrayList<StItem> getRandomItems(Integer scarce, Integer rare, Integer veryRare, Integer extremelyRare){
+        ArrayList<StItem> list = new ArrayList<>();
         for(int i = 0; i < scarce; i++){
-            int index = (int)(Math.random() * rarityMap.get("scarce").size());
-            StarlightItem item = rarityMap.get("scarce").get(index);
+            int index = (int)(Math.random() * rarityTable.get(StRarity.SCARCE).size());
+            StItem item = rarityTable.get(StRarity.SCARCE).get(index);
             if(list.contains(item))
                 scarce++;
             else
                 list.add(item);
         }
         for(int i = 0; i < rare; i++){
-            int index = (int)(Math.random() * rarityMap.get("rare").size());
-            StarlightItem item = rarityMap.get("rare").get(index);
+            int index = (int)(Math.random() * rarityTable.get(StRarity.RARE).size());
+            StItem item = rarityTable.get(StRarity.RARE).get(index);
             if(list.contains(item))
                 rare++;
             else
                 list.add(item);
         }
         for(int i = 0; i < veryRare; i++){
-            int index = (int)(Math.random() * rarityMap.get("very rare").size());
-            StarlightItem item = rarityMap.get("very rare").get(index);
+            int index = (int)(Math.random() * rarityTable.get(StRarity.VERY_RARE).size());
+            StItem item = rarityTable.get(StRarity.VERY_RARE).get(index);
             if(list.contains(item))
                 veryRare++;
             else
                 list.add(item);
         }
         for(int i = 0; i < extremelyRare; i++){
-            int index = (int)(Math.random() * rarityMap.get("extremely rare").size());
-            StarlightItem item = rarityMap.get("extremely rare").get(index);
+            int index = (int)(Math.random() * rarityTable.get(StRarity.EXTREMELY_RARE).size());
+            StItem item = rarityTable.get(StRarity.EXTREMELY_RARE).get(index);
             if(list.contains(item))
                 extremelyRare++;
             else

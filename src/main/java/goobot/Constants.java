@@ -57,7 +57,7 @@ public class Constants {
     "9", 25000
     );
 
-    public enum StarlightItemType {
+    public enum StItemType {
         MISC,
         MELEE_WEAPON,
         RANGED_WEAPON,
@@ -79,31 +79,91 @@ public class Constants {
         MISSILE
     }
 
-    public enum StarlightRarity {
-        UBIQUITOUS,
-        ABUNDANT,
-        PLENTIFUL,
-        COMMON,
-        AVERAGE,
-        UNCOMMON,
-        SCARCE,
-        RARE,
-        VERY_RARE,
-        EXTREMELY_RARE,
-        NEAR_UNIQUE,
-        UNIQUE
+    public enum StRarity {
+        UBIQUITOUS {
+            @Override
+            public String toString(){
+                return "Ubiquitous";
+            }
+        },
+        ABUNDANT {
+            @Override
+            public String toString(){
+                return "Abundant";
+            }
+        },
+        PLENTIFUL {
+            @Override
+            public String toString(){
+                return "Plentiful";
+            }
+        },
+        COMMON {
+            @Override
+            public String toString(){
+                return "Common";
+            }
+        },
+        AVERAGE {
+            @Override
+            public String toString(){
+                return "Average";
+            }
+        },
+        UNCOMMON {
+            @Override
+            public String toString(){
+                return "Uncommon";
+            }
+        },
+        SCARCE {
+            @Override
+            public String toString(){
+                return "Scarce";
+            }
+        },
+        RARE {
+            @Override
+            public String toString(){
+                return "Rare";
+            }
+        },
+        VERY_RARE {
+            @Override
+            public String toString(){
+                return "Very Rare";
+            }
+        },
+        EXTREMELY_RARE {
+            @Override
+            public String toString(){
+                return "Extremely Rare";
+            }
+        },
+        NEAR_UNIQUE {
+            @Override
+            public String toString(){
+                return "Near Unique";
+            }
+        },
+        UNIQUE {
+            @Override
+            public String toString(){
+                return "Unique";
+            }
+        }
     }
 
-    public static final Map<StarlightRarity, String> RARITY_COLORS = Map.of(
-        StarlightRarity.ABUNDANT, "\u001b[0;30m%s\u001b[0;0m", // Gray
-        StarlightRarity.PLENTIFUL, "\u001b[0;30m%s\u001b[0;0m", // Gray
-        StarlightRarity.COMMON, "\u001b[0;33m%s\u001b[0;0m", // Yellow
-        StarlightRarity.AVERAGE, "\u001b[0;33m%s\u001b[0;0m", // Yellow
-        StarlightRarity.UNCOMMON, "\u001b[0;32m%s\u001b[0;0m", // Green
-        StarlightRarity.SCARCE, "\u001b[0;34m%s\u001b[0;0m", // Blue
-        StarlightRarity.RARE, "\u001b[0;36m%s\u001b[0;0m", // Cyan
-        StarlightRarity.VERY_RARE, "\u001b[0;35m%s\u001b[0;0m", // Pink
-        StarlightRarity.EXTREMELY_RARE, "\u001b[0;31m%s\u001b[0;0m", // Red
-        StarlightRarity.NEAR_UNIQUE, "\u001b[0;37m%s\u001b[0;0m" // White
+    public static final Map<StRarity, String> RARITY_COLORS = Map.of(
+        StRarity.ABUNDANT, "\u001b[0;30m%s\u001b[0;0m", // Gray
+        StRarity.PLENTIFUL, "\u001b[0;30m%s\u001b[0;0m", // Gray
+        StRarity.COMMON, "\u001b[0;33m%s\u001b[0;0m", // Yellow
+        StRarity.AVERAGE, "\u001b[0;33m%s\u001b[0;0m", // Yellow
+        StRarity.UNCOMMON, "\u001b[0;32m%s\u001b[0;0m", // Green
+        StRarity.SCARCE, "\u001b[0;34m%s\u001b[0;0m", // Blue
+        StRarity.RARE, "\u001b[0;36m%s\u001b[0;0m", // Cyan
+        StRarity.VERY_RARE, "\u001b[0;35m%s\u001b[0;0m", // Pink
+        StRarity.EXTREMELY_RARE, "\u001b[0;31m%s\u001b[0;0m", // Red
+        StRarity.NEAR_UNIQUE, "\u001b[0;37m%s\u001b[0;0m" // White
     );
 }

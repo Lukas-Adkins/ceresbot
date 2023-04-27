@@ -8,7 +8,7 @@ package goobot.controller;
 import java.util.Random;
 
 import goobot.Constants;
-import goobot.model.StarlightItem;
+import goobot.model.StItem;
 import goobot.model.DndSpell;
 import java.util.Arrays;
 import java.text.ParseException;
@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 public class CommandController {
     public DndSpellController spellLibrary;
     public CharacterController characterLibrary;
-    public StarlightItemController dhItemLibrary;
+    public StItemController dhItemLibrary;
     public Random rng = new Random();
 
     /**
@@ -33,7 +33,7 @@ public class CommandController {
         try{
             this.spellLibrary = new DndSpellController(spellsFilepath);
             this.characterLibrary = new CharacterController(characterFilepaths);
-            this.dhItemLibrary = new StarlightItemController();
+            this.dhItemLibrary = new StItemController();
         }
         catch(Exception e){
             System.err.println(Constants.BOT_START_ERROR);
@@ -180,7 +180,7 @@ public class CommandController {
      */
     public String dhItem(String args){
         String itemName = args.replace("-", " ");
-        StarlightItem item = dhItemLibrary.getItem(itemName);
+        StItem item = dhItemLibrary.getItem(itemName);
         if(item != null){
             return item.toString();
         }
@@ -214,8 +214,8 @@ public class CommandController {
     
         String shopList = "Welcome to the CeresBot Starlight storefront generator!\nGenerated a store inventory based on a shopkeep with a Commerce skill of " + commerceSkill + ".\n\n";
         String meleeList = "", rangedList = "", armorList = "", explosiveList = "", cyberneticList = "", modList = "", ammoList = "", miscList = "";
-        ArrayList<StarlightItem> itemList = dhItemLibrary.getRandomItems(scarce, rare, veryRare, extremelyRare);
-        for (StarlightItem item : itemList){
+        ArrayList<StItem> itemList = dhItemLibrary.getRandomItems(scarce, rare, veryRare, extremelyRare);
+        for (StItem item : itemList){
             switch (item.getType()){
                 case MELEE_WEAPON:
                     meleeList = meleeList + " " + item.getShopString();

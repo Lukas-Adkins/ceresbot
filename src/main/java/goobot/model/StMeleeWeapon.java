@@ -5,17 +5,19 @@
 
 package goobot.model;
 
-import goobot.Constants.StarlightItemType;
+import goobot.Constants.StItemType;
+import goobot.Constants.StRarity;
+
 import java.util.Objects;
 
-public class StarlightMeleeWeapon extends StarlightItem {
+public class StMeleeWeapon extends StItem {
     
     private String weaponTypes;
     private String range;
     private String dmg;
     private String pen;
 
-    public StarlightMeleeWeapon(StarlightItemType type, String name, String rarity, String description, String weight, Integer price, String weaponTypes, String range, String dmg, String pen) {
+    public StMeleeWeapon(StItemType type, String name, StRarity rarity, String description, String weight, Integer price, String weaponTypes, String range, String dmg, String pen) {
         super(type, name, rarity, description, weight, price);
         this.weaponTypes = weaponTypes;
         this.range = range;
@@ -55,22 +57,22 @@ public class StarlightMeleeWeapon extends StarlightItem {
         this.pen = pen;
     }
 
-    public StarlightMeleeWeapon weaponTypes(String weaponTypes) {
+    public StMeleeWeapon weaponTypes(String weaponTypes) {
         setWeaponTypes(weaponTypes);
         return this;
     }
 
-    public StarlightMeleeWeapon range(String range) {
+    public StMeleeWeapon range(String range) {
         setRange(range);
         return this;
     }
 
-    public StarlightMeleeWeapon dmg(String dmg) {
+    public StMeleeWeapon dmg(String dmg) {
         setDmg(dmg);
         return this;
     }
 
-    public StarlightMeleeWeapon pen(String pen) {
+    public StMeleeWeapon pen(String pen) {
         setPen(pen);
         return this;
     }
@@ -79,10 +81,10 @@ public class StarlightMeleeWeapon extends StarlightItem {
     public boolean equals(Object o) {
         if (o == this)
             return true;
-        if (!(o instanceof StarlightMeleeWeapon)) {
+        if (!(o instanceof StMeleeWeapon)) {
             return false;
         }
-        StarlightMeleeWeapon dhMeleeWeapon = (StarlightMeleeWeapon) o;
+        StMeleeWeapon dhMeleeWeapon = (StMeleeWeapon) o;
         return Objects.equals(weaponTypes, dhMeleeWeapon.weaponTypes) && Objects.equals(range, dhMeleeWeapon.range) && Objects.equals(dmg, dhMeleeWeapon.dmg) && Objects.equals(pen, dhMeleeWeapon.pen);
     }
 

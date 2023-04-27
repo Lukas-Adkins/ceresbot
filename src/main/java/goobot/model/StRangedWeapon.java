@@ -7,11 +7,11 @@ package goobot.model;
 
 import java.util.List;
 import java.util.Objects;
-import goobot.Constants.StarlightRarity;
+import goobot.Constants.StRarity;
 import goobot.Constants.StarlightWeaponType;
-import goobot.Constants.StarlightItemType;
+import goobot.Constants.StItemType;
 
-public class StarlightRangedWeapon extends StarlightItem {
+public class StRangedWeapon extends StItem {
     private String weaponTypes;
     private String range;
     private String RoF;
@@ -20,7 +20,7 @@ public class StarlightRangedWeapon extends StarlightItem {
     private String mag;
     private String reloadTime;
 
-    public StarlightRangedWeapon(StarlightItemType type, String name, String rarity, String description, String weight, Integer price, String weaponTypes, String range, String RoF, String dmg, String pen, String mag, String reloadTime) {
+    public StRangedWeapon(StItemType type, String name, StRarity rarity, String description, String weight, Integer price, String weaponTypes, String range, String RoF, String dmg, String pen, String mag, String reloadTime) {
         super(type, name, rarity, description, weight, price);
         this.weaponTypes = weaponTypes;
         this.range = range;
@@ -87,37 +87,37 @@ public class StarlightRangedWeapon extends StarlightItem {
         this.reloadTime = reloadTime;
     }
 
-    public StarlightRangedWeapon weaponTypes(String weaponTypes) {
+    public StRangedWeapon weaponTypes(String weaponTypes) {
         setWeaponTypes(weaponTypes);
         return this;
     }
 
-    public StarlightRangedWeapon range(String range) {
+    public StRangedWeapon range(String range) {
         setRange(range);
         return this;
     }
 
-    public StarlightRangedWeapon RoF(String RoF) {
+    public StRangedWeapon RoF(String RoF) {
         setRoF(RoF);
         return this;
     }
 
-    public StarlightRangedWeapon dmg(String dmg) {
+    public StRangedWeapon dmg(String dmg) {
         setDmg(dmg);
         return this;
     }
 
-    public StarlightRangedWeapon pen(String pen) {
+    public StRangedWeapon pen(String pen) {
         setPen(pen);
         return this;
     }
 
-    public StarlightRangedWeapon mag(String mag) {
+    public StRangedWeapon mag(String mag) {
         setMag(mag);
         return this;
     }
 
-    public StarlightRangedWeapon reloadTime(String reloadTime) {
+    public StRangedWeapon reloadTime(String reloadTime) {
         setReloadTime(reloadTime);
         return this;
     }
@@ -126,10 +126,10 @@ public class StarlightRangedWeapon extends StarlightItem {
     public boolean equals(Object o) {
         if (o == this)
             return true;
-        if (!(o instanceof StarlightRangedWeapon)) {
+        if (!(o instanceof StRangedWeapon)) {
             return false;
         }
-        StarlightRangedWeapon dhRangedWeapon = (StarlightRangedWeapon) o;
+        StRangedWeapon dhRangedWeapon = (StRangedWeapon) o;
         return Objects.equals(weaponTypes, dhRangedWeapon.weaponTypes) && Objects.equals(range, dhRangedWeapon.range) && Objects.equals(RoF, dhRangedWeapon.RoF) && Objects.equals(dmg, dhRangedWeapon.dmg) && Objects.equals(pen, dhRangedWeapon.pen) && Objects.equals(mag, dhRangedWeapon.mag) && Objects.equals(reloadTime, dhRangedWeapon.reloadTime);
     }
 
