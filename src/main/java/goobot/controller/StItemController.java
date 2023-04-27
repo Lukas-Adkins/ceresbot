@@ -54,7 +54,7 @@ public class StItemController {
     CYBER_SLOTS_COL = 12, 
     MECH_SLOT_COL = 13, 
     MECH_LOCATION_COL = 14, 
-    SPECIAL_NOTES_COL = 15, 
+    DESC_COL = 15, 
     WEIGHT_COL = 16,
     PRICE_COL = 17, 
     TYPE_COL = 18;
@@ -90,57 +90,57 @@ public class StItemController {
                 switch(data[TYPE_COL].toLowerCase().trim()){
                     case "ranged weapon":
                         item = new StRangedWeapon(
-                            StItemType.RANGED_WEAPON, data[NAME_COL], itemRarity, data[NAME_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]), data[CLASS_COL],
+                            StItemType.RANGED_WEAPON, data[NAME_COL], itemRarity, data[DESC_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]), data[CLASS_COL],
                             data[RANGE_COL], data[ROF_COL], data[DMG_COL], data[PEN_COL], data[MAG_COL], data[RELOAD_COL]
                         );
                         break;
                     case "melee weapon":
                         item = new StMeleeWeapon(
-                            StItemType.MELEE_WEAPON, data[NAME_COL], itemRarity, data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
+                            StItemType.MELEE_WEAPON, data[NAME_COL], itemRarity, data[DESC_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
                             data[TYPE_COL], data[RANGE_COL], data[DMG_COL], data[PEN_COL]
                             );
                         break;
                     case "explosive":
                         item = new StRangedWeapon(
-                            StItemType.EXPLOSIVE, data[NAME_COL], itemRarity, data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
+                            StItemType.EXPLOSIVE, data[NAME_COL], itemRarity, data[DESC_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
                             data[TYPE_COL], data[RANGE_COL], data[ROF_COL], data[DMG_COL], data[PEN_COL], data[MAG_COL], data[RELOAD_COL]
                             );
                         break;
                     case "armor":
                         item = new StArmor(
-                            StItemType.ARMOR, data[NAME_COL], itemRarity, data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
+                            StItemType.ARMOR, data[NAME_COL], itemRarity, data[DESC_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
                             data[COVERS_COL], data[AP_COL], data[MAX_AG_COL]
                             );
                         break;
                     case "cybernetic":
                         item = new StCybernetic(
-                            StItemType.CYBERNETIC, data[NAME_COL], itemRarity, data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
+                            StItemType.CYBERNETIC, data[NAME_COL], itemRarity, data[DESC_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
                             data[CYBER_SLOTS_COL]
                             );
                         break;
                     case "misc":
-                        item = new StItem(StItemType.MISC, data[NAME_COL], itemRarity, data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]));
+                        item = new StItem(StItemType.MISC, data[NAME_COL], itemRarity, data[DESC_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]));
                         break;
                     case "weapon mod":
-                        item = new StItem(StItemType.WEAPON_MOD, data[NAME_COL], itemRarity, data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]));
+                        item = new StItem(StItemType.WEAPON_MOD, data[NAME_COL], itemRarity, data[DESC_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]));
                         break;
                     case "special ammo":
-                        item = new StItem(StItemType.SPECIAL_AMMO, data[NAME_COL], itemRarity, data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]));
+                        item = new StItem(StItemType.SPECIAL_AMMO, data[NAME_COL], itemRarity, data[DESC_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]));
                         break;
                     case "consumable":
-                        item = new StItem(StItemType.CONSUMABLE, data[NAME_COL], itemRarity, data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]));
+                        item = new StItem(StItemType.CONSUMABLE, data[NAME_COL], itemRarity, data[DESC_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]));
                         break;
                     case "mech engine":
-                        item = new StMechSystem(StItemType.MECH_ENGINE, data[NAME_COL], itemRarity, data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
+                        item = new StMechSystem(StItemType.MECH_ENGINE, data[NAME_COL], itemRarity, data[DESC_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
                         data[MECH_SLOT_COL], data[MECH_LOCATION_COL]);
                         break;
                     case "mech utility":
-                        item = new StMechSystem(StItemType.MECH_UTILITY, data[NAME_COL], itemRarity, data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
+                        item = new StMechSystem(StItemType.MECH_UTILITY, data[NAME_COL], itemRarity, data[DESC_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
                         data[MECH_SLOT_COL], data[MECH_LOCATION_COL]);
                         break;
                     case "mech melee weapon":
                         item = new StMechMeleeWeapon(
-                            StItemType.MECH_MELEE_WEAPON, data[NAME_COL], itemRarity, data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
+                            StItemType.MECH_MELEE_WEAPON, data[NAME_COL], itemRarity, data[DESC_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
                             data[TYPE_COL], data[RANGE_COL], data[DMG_COL], data[PEN_COL], data[MECH_SLOT_COL], data[MECH_LOCATION_COL]
                         );
                         break;
