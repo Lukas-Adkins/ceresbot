@@ -3,7 +3,7 @@
  * @Author Lukas Adkins
  */
 
-package goobot.model;
+package goobot.model.starlight;
 
 import java.util.List;
 import java.util.Objects;
@@ -20,7 +20,9 @@ public class StRangedWeapon extends StItem {
     private String mag;
     private String reloadTime;
 
-    public StRangedWeapon(StItemType type, String name, StRarity rarity, String description, String weight, Integer price, String weaponTypes, String range, String RoF, String dmg, String pen, String mag, String reloadTime) {
+    public StRangedWeapon(
+        StItemType type, String name, StRarity rarity, String description, String weight, Integer price, String weaponTypes, 
+        String range, String RoF, String dmg, String pen, String mag, String reloadTime) {
         super(type, name, rarity, description, weight, price);
         this.weaponTypes = weaponTypes;
         this.range = range;

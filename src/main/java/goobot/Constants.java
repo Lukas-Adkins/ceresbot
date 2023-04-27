@@ -58,15 +58,19 @@ public class Constants {
     );
 
     public enum StItemType {
-        MISC,
-        MELEE_WEAPON,
         RANGED_WEAPON,
-        ARMOR,
+        MELEE_WEAPON,
         EXPLOSIVE,
+        ARMOR,
         CYBERNETIC,
+        MISC,
         WEAPON_MOD,
         SPECIAL_AMMO,
-        CONSUMABLE
+        CONSUMABLE,
+        MECH_ENGINE,
+        MECH_UTILITY,
+        MECH_MELEE_WEAPON,
+        MECH_RANGED_WEAPON
     }
     
     public enum StarlightWeaponType {

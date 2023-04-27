@@ -3,7 +3,7 @@
  * @Author Lukas Adkins
  */
 
-package goobot.model;
+package goobot.model.dnd;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

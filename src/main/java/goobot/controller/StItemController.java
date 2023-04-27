@@ -19,11 +19,14 @@ import java.nio.file.Path;
 
 import goobot.Constants;
 import goobot.Constants.StItemType;
-import goobot.model.StArmor;
-import goobot.model.StCybernetic;
-import goobot.model.StItem;
-import goobot.model.StMeleeWeapon;
-import goobot.model.StRangedWeapon;
+import goobot.model.starlight.StArmor;
+import goobot.model.starlight.StCybernetic;
+import goobot.model.starlight.StItem;
+import goobot.model.starlight.StMechMeleeWeapon;
+import goobot.model.starlight.StMechRangedWeapon;
+import goobot.model.starlight.StMechSystem;
+import goobot.model.starlight.StMeleeWeapon;
+import goobot.model.starlight.StRangedWeapon;
 import goobot.Constants.StRarity;
 import java.util.ArrayList;
 import java.util.Map;
@@ -50,7 +53,7 @@ public class StItemController {
     MAX_AG_COL= 11, 
     CYBER_SLOTS_COL = 12, 
     MECH_SLOT_COL = 13, 
-    LOCATION_COL = 14, 
+    MECH_LOCATION_COL = 14, 
     SPECIAL_NOTES_COL = 15, 
     WEIGHT_COL = 16,
     PRICE_COL = 17, 
@@ -126,6 +129,26 @@ public class StItemController {
                         break;
                     case "consumable":
                         item = new StItem(StItemType.CONSUMABLE, data[NAME_COL], itemRarity, data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]));
+                        break;
+                    case "mech engine":
+                        item = new StMechSystem(StItemType.MECH_ENGINE, data[NAME_COL], itemRarity, data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
+                        data[MECH_SLOT_COL], data[MECH_LOCATION_COL]);
+                        break;
+                    case "mech utility":
+                        item = new StMechSystem(StItemType.MECH_UTILITY, data[NAME_COL], itemRarity, data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
+                        data[MECH_SLOT_COL], data[MECH_LOCATION_COL]);
+                        break;
+                    case "mech melee weapon":
+                        item = new StMechMeleeWeapon(
+                            StItemType.MECH_MELEE_WEAPON, data[NAME_COL], itemRarity, data[SPECIAL_NOTES_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
+                            data[TYPE_COL], data[RANGE_COL], data[DMG_COL], data[PEN_COL], data[MECH_SLOT_COL], data[MECH_LOCATION_COL]
+                        );
+                        break;
+                    case "mech ranged weapon":
+                        item = new StMechRangedWeapon(
+                            StItemType.MECH_RANGED_WEAPON, data[NAME_COL], itemRarity, data[NAME_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]), data[CLASS_COL],
+                            data[RANGE_COL], data[ROF_COL], data[DMG_COL], data[PEN_COL], data[MAG_COL], data[RELOAD_COL], data[MECH_SLOT_COL], data[MECH_LOCATION_COL]
+                        );
                         break;
                     default:
                         System.out.println(String.format("WARNING: Failed to parse item %s from Starlight item sheet.", data[NAME_COL]));

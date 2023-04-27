@@ -4,10 +4,9 @@
  */
 
 
-package goobot.model;
+package goobot.model.starlight;
 import java.util.Objects;
 import goobot.Constants.StRarity;
-
 import goobot.Constants.StItemType;
 
 public class StCybernetic extends StItem {

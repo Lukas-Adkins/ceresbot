@@ -8,8 +8,9 @@ package goobot.controller;
 import java.util.Random;
 
 import goobot.Constants;
-import goobot.model.StItem;
-import goobot.model.DndSpell;
+import goobot.model.dnd.DndSpell;
+import goobot.model.starlight.StItem;
+
 import java.util.Arrays;
 import java.text.ParseException;
 import java.util.ArrayList;

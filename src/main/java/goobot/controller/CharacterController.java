@@ -14,9 +14,9 @@ import java.util.List;
 import java.io.IOException;
 import java.io.Reader;
 import com.opencsv.CSVReader;
-import goobot.model.DndCharacter;
 
 import goobot.Constants;
+import goobot.model.dnd.DndCharacter;
 
 public class CharacterController {
     private HashMap<String, DndCharacter> charMap;

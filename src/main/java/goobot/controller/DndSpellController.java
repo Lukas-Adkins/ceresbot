@@ -16,7 +16,7 @@ import java.util.List;
 import com.google.gson.Gson;
 
 import goobot.Constants;
-import goobot.model.DndSpell;
+import goobot.model.dnd.DndSpell;
 
 public class DndSpellController {
     private HashMap<String, DndSpell> spellMap;

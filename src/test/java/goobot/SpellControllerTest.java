@@ -9,9 +9,9 @@
  
  import goobot.controller.CommandController;
 import goobot.controller.DndSpellController;
-import goobot.model.DndSpell;
- 
- import static org.junit.Assert.*;
+import goobot.model.dnd.DndSpell;
+
+import static org.junit.Assert.*;
  import org.junit.Before;
 public class SpellControllerTest {
     private DndSpellController controller;
