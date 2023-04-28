@@ -8,6 +8,9 @@ package goobot.controller;
 import java.util.Random;
 
 import goobot.Constants;
+import goobot.controller.dnd.DndSpellController;
+import goobot.controller.starlight.ItemController;
+import goobot.controller.starlight.LootTableController;
 import goobot.model.dnd.DndSpell;
 import goobot.model.starlight.StItem;
 
@@ -23,7 +26,8 @@ import java.util.regex.Pattern;
 public class CommandController {
     public DndSpellController spellLibrary;
     public CharacterController characterLibrary;
-    public StItemController dhItemLibrary;
+    public ItemController stItemController;
+    public LootTableController lootTable;
     public Random rng = new Random();
 
     /**
@@ -34,7 +38,8 @@ public class CommandController {
         try{
             this.spellLibrary = new DndSpellController(spellsFilepath);
             this.characterLibrary = new CharacterController(characterFilepaths);
-            this.dhItemLibrary = new StItemController();
+            this.stItemController = new ItemController();
+            this.lootTable = stItemController.getLootTable();
         }
         catch(Exception e){
             System.err.println(Constants.BOT_START_ERROR);
@@ -181,7 +186,7 @@ public class CommandController {
      */
     public String dhItem(String args){
         String itemName = args.replace("-", " ");
-        StItem item = dhItemLibrary.getItem(itemName);
+        StItem item = lootTable.getItem(itemName);
         if(item != null){
             return item.toString();
         }
@@ -213,9 +218,11 @@ public class CommandController {
                 scarce++;
         }
     
-        String shopList = "Welcome to the CeresBot Starlight storefront generator!\nGenerated a store inventory based on a shopkeep with a Commerce skill of " + commerceSkill + ".\n\n";
-        String meleeList = "", rangedList = "", armorList = "", explosiveList = "", cyberneticList = "", modList = "", ammoList = "", miscList = "";
-        ArrayList<StItem> itemList = dhItemLibrary.getRandomItems(scarce, rare, veryRare, extremelyRare);
+        String shopList = "Welcome to the CeresBot Starlight storefront generator!\nGenerated a store inventory based on a shopkeep with a Commerce skill of "
+         + commerceSkill + ".\n\n";
+        String meleeList = "", rangedList = "", armorList = "", explosiveList = "", cyberneticList = "", modList = "", ammoList = "", miscList = "",
+        mechEngineList = "", mechUtilityList = "", mechMeleeList = "", mechRangedList = "";
+        ArrayList<StItem> itemList = lootTable.getRandomItems(scarce, rare, veryRare, extremelyRare);
         for (StItem item : itemList){
             switch (item.getType()){
                 case MELEE_WEAPON:
@@ -245,6 +252,18 @@ public class CommandController {
                 case MISC:
                     miscList = miscList + " " + item.getShopString();
                     break; 
+                case MECH_ENGINE:
+                    mechEngineList = mechEngineList + " " + item.getShopString();
+                    break;
+                case MECH_UTILITY:
+                    mechUtilityList = mechUtilityList + " " + item.getShopString();
+                    break;
+                case MECH_MELEE_WEAPON:
+                    mechMeleeList = mechMeleeList + " " + item.getShopString();
+                    break;
+                case MECH_RANGED_WEAPON:
+                    mechRangedList = mechRangedList + " " + item.getShopString();
+                    break;
             }
         }
         if(!meleeList.isEmpty()){

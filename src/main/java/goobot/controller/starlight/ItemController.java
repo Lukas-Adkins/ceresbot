@@ -3,7 +3,7 @@
  * @Author Lukas Adkins
  */
 
- package goobot.controller;
+ package goobot.controller.starlight;
 
  import java.io.FileNotFoundException;
 import java.lang.invoke.ConstantBootstraps;
@@ -32,9 +32,9 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
 
-public class StItemController {
+public class ItemController {
     private HashMap<String, StItem> itemTable;
-    private HashMap<StRarity, ArrayList<StItem>> rarityTable;
+    private LootTableController lootTable;
 
     public static final int 
     HEADER_ROW_INDEX = 0, 
@@ -59,20 +59,8 @@ public class StItemController {
     PRICE_COL = 17, 
     TYPE_COL = 18;
 
-    public StItemController(){
-        this.itemTable = new HashMap<>();
-        this.rarityTable = new HashMap<>();
-        rarityTable.put(StRarity.UBIQUITOUS, new ArrayList<StItem>());
-        rarityTable.put(StRarity.ABUNDANT, new ArrayList<StItem>());
-        rarityTable.put(StRarity.PLENTIFUL, new ArrayList<StItem>());
-        rarityTable.put(StRarity.COMMON, new ArrayList<StItem>());
-        rarityTable.put(StRarity.AVERAGE, new ArrayList<StItem>());
-        rarityTable.put(StRarity.UNCOMMON, new ArrayList<StItem>());
-        rarityTable.put(StRarity.SCARCE, new ArrayList<StItem>());
-        rarityTable.put(StRarity.RARE, new ArrayList<StItem>());
-        rarityTable.put(StRarity.VERY_RARE, new ArrayList<StItem>());
-        rarityTable.put(StRarity.EXTREMELY_RARE, new ArrayList<StItem>());
-        rarityTable.put(StRarity.NEAR_UNIQUE, new ArrayList<StItem>());
+    public ItemController(){
+        itemTable = new HashMap<>();
         parseItems();
     }
 
@@ -93,6 +81,7 @@ public class StItemController {
                             StItemType.RANGED_WEAPON, data[NAME_COL], itemRarity, data[DESC_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]), data[CLASS_COL],
                             data[RANGE_COL], data[ROF_COL], data[DMG_COL], data[PEN_COL], data[MAG_COL], data[RELOAD_COL]
                         );
+                        //rangedTable.get(itemRarity).add(item);
                         break;
                     case "melee weapon":
                         item = new StMeleeWeapon(
@@ -156,7 +145,6 @@ public class StItemController {
                 if(item != null){
                     // Clean string, add to hashmaps for quick lookup
                     itemTable.put(item.getName().toLowerCase().replace("-", " "), item);
-                    rarityTable.get(item.getRarity()).add(item);
                     System.err.println(String.format("ADDED ITEM: %s", item.getName()));
                 }
             }
@@ -165,7 +153,7 @@ public class StItemController {
             System.out.println(String.format("[ERROR] : Parsing items from %s", Constants.ST_ITEMS_FILEPATH));
             e.printStackTrace();
         }
-        
+        this.lootTable = new LootTableController(itemTable);
     }
 
     private List<String[]> readAllLines(Path filePath) throws Exception {
@@ -194,48 +182,8 @@ public class StItemController {
         return itemTable;
     }
 
-    public StItem getItem(String name){
-        return itemTable.get(name.toLowerCase());
+    public LootTableController getLootTable(){
+        return this.lootTable;
     }
 
-    /**
-     * Returns a number of given dhItems with a given rarity
-     * @return Arraylist of requested items
-     */
-    public ArrayList<StItem> getRandomItems(Integer scarce, Integer rare, Integer veryRare, Integer extremelyRare){
-        ArrayList<StItem> list = new ArrayList<>();
-        for(int i = 0; i < scarce; i++){
-            int index = (int)(Math.random() * rarityTable.get(StRarity.SCARCE).size());
-            StItem item = rarityTable.get(StRarity.SCARCE).get(index);
-            if(list.contains(item))
-                scarce++;
-            else
-                list.add(item);
-        }
-        for(int i = 0; i < rare; i++){
-            int index = (int)(Math.random() * rarityTable.get(StRarity.RARE).size());
-            StItem item = rarityTable.get(StRarity.RARE).get(index);
-            if(list.contains(item))
-                rare++;
-            else
-                list.add(item);
-        }
-        for(int i = 0; i < veryRare; i++){
-            int index = (int)(Math.random() * rarityTable.get(StRarity.VERY_RARE).size());
-            StItem item = rarityTable.get(StRarity.VERY_RARE).get(index);
-            if(list.contains(item))
-                veryRare++;
-            else
-                list.add(item);
-        }
-        for(int i = 0; i < extremelyRare; i++){
-            int index = (int)(Math.random() * rarityTable.get(StRarity.EXTREMELY_RARE).size());
-            StItem item = rarityTable.get(StRarity.EXTREMELY_RARE).get(index);
-            if(list.contains(item))
-                extremelyRare++;
-            else
-                list.add(item);
-        }
-        return list;
-    }
 }
