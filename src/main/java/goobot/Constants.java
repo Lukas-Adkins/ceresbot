@@ -72,15 +72,9 @@ public class Constants {
         MECH_MELEE_WEAPON,
         MECH_RANGED_WEAPON
     }
-    
-    public enum StarlightWeaponType {
-        BASIC,
-        PISTOL,
-        HEAVY,
-        MELEE,
-        THROWN,
-        GRENADE,
-        MISSILE
+
+    public enum StShopType {
+        
     }
 
     public enum StRarity {

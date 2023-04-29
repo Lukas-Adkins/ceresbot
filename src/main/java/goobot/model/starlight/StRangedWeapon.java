@@ -8,7 +8,6 @@ package goobot.model.starlight;
 import java.util.List;
 import java.util.Objects;
 import goobot.Constants.StRarity;
-import goobot.Constants.StarlightWeaponType;
 import goobot.Constants.StItemType;
 
 public class StRangedWeapon extends StItem {

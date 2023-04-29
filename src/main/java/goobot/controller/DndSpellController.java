@@ -3,7 +3,7 @@
  * @Author Lukas Adkins
  */
 
-package goobot.controller.dnd;
+package goobot.controller;
 
 import java.io.FileNotFoundException;
 import java.util.HashMap;

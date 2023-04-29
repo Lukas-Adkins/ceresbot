@@ -8,7 +8,7 @@
  import org.junit.Test;
  
  import goobot.controller.CommandController;
-import goobot.controller.dnd.DndSpellController;
+import goobot.controller.DndSpellController;
 import goobot.model.dnd.DndSpell;
 
 import static org.junit.Assert.*;

@@ -8,9 +8,6 @@ package goobot.controller;
 import java.util.Random;
 
 import goobot.Constants;
-import goobot.controller.dnd.DndSpellController;
-import goobot.controller.starlight.ItemController;
-import goobot.controller.starlight.LootTableController;
 import goobot.model.dnd.DndSpell;
 import goobot.model.starlight.StItem;
 
@@ -26,8 +23,7 @@ import java.util.regex.Pattern;
 public class CommandController {
     public DndSpellController spellLibrary;
     public CharacterController characterLibrary;
-    public ItemController stItemController;
-    public LootTableController lootTable;
+    public StItemController stItemController;
     public Random rng = new Random();
 
     /**
@@ -38,8 +34,7 @@ public class CommandController {
         try{
             this.spellLibrary = new DndSpellController(spellsFilepath);
             this.characterLibrary = new CharacterController(characterFilepaths);
-            this.stItemController = new ItemController();
-            this.lootTable = stItemController.getLootTable();
+            this.stItemController = new StItemController();
         }
         catch(Exception e){
             System.err.println(Constants.BOT_START_ERROR);
@@ -186,7 +181,7 @@ public class CommandController {
      */
     public String dhItem(String args){
         String itemName = args.replace("-", " ");
-        StItem item = lootTable.getItem(itemName);
+        StItem item = stItemController.getItem(itemName);
         if(item != null){
             return item.toString();
         }
@@ -222,7 +217,7 @@ public class CommandController {
          + commerceSkill + ".\n\n";
         String meleeList = "", rangedList = "", armorList = "", explosiveList = "", cyberneticList = "", modList = "", ammoList = "", miscList = "",
         mechEngineList = "", mechUtilityList = "", mechMeleeList = "", mechRangedList = "";
-        ArrayList<StItem> itemList = lootTable.getRandomItems(scarce, rare, veryRare, extremelyRare);
+        ArrayList<StItem> itemList = stItemController.getRandomItems(scarce, rare, veryRare, extremelyRare);
         for (StItem item : itemList){
             switch (item.getType()){
                 case MELEE_WEAPON:
