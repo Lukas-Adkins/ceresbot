@@ -1,32 +1,25 @@
 package goobot.model.starlight;
 
-import goobot.Constants.StRarity;
-import goobot.model.WeightedRandomBag;
 import goobot.Constants.StItemType;
 import java.util.HashMap;
 import java.util.ArrayList;
 
-public class StCyberneticsShop implements StShop {
-    private WeightedRandomBag<StItemType> randomTypePicker;
-    private HashMap<StItemType, ArrayList<StItem>> itemsByType;
-
+public class StCyberneticsShop extends StShop {
     private static final double 
-    CYBERNETIC_WEIGHT = 0.8,
+    CYBERNETIC_WEIGHT = 0.75,
     WEAPON_MOD_WEIGHT = 0.1,
-    MISC_WEIGHT = 0.1;
+    MISC_WEIGHT = 0.1,
+    CONSUMABLE_WEIGHT = 0.05;
     
     public StCyberneticsShop(HashMap<StItemType, ArrayList<StItem>> itemsByType){
-        randomTypePicker = new WeightedRandomBag<>();
-        this.itemsByType = itemsByType;
+        super(itemsByType);
         randomTypePicker.addEntry(StItemType.CYBERNETIC, CYBERNETIC_WEIGHT);
         randomTypePicker.addEntry(StItemType.WEAPON_MOD, WEAPON_MOD_WEIGHT);
         randomTypePicker.addEntry(StItemType.MISC, MISC_WEIGHT);
-    }
-
-    @Override
-    public StItem getItem(StRarity rarity) {
-        StItemType type = randomTypePicker.getRandom();
-        int randomIndex = (int)(Math.random() * itemsByType.get(type).size());
-        return itemsByType.get(type).get(randomIndex);
+        randomTypePicker.addEntry(StItemType.CONSUMABLE, CONSUMABLE_WEIGHT);
+        shopTypes.add(StItemType.CYBERNETIC);
+        shopTypes.add(StItemType.WEAPON_MOD);
+        shopTypes.add(StItemType.MISC);
+        shopTypes.add(StItemType.CONSUMABLE);
     }
 }

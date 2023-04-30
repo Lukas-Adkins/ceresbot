@@ -13,7 +13,7 @@ public class Constants {
     FATAL_FAILURE = 1;
     
     public static final Boolean 
-    LOG_MESSAGES = true,
+    LOG_MESSAGES = false,
     CUSTOM_SCROLL_PRICES = true,
     CUSTOM_SCROLL_CASTING = true;
 
@@ -30,8 +30,8 @@ public class Constants {
         "`!spell <spell>` - Provides information on the given 5e D&D spell.\n" +
         "`!spellscroll <spell>` - Calculates the price of a spell scroll for the given 5e D&D spell, and what stats you need to use it.\n" +
         "`!character <character>` - Provides information on the given D&D character.\n" +
-        "`!st_item <item name>` - Provides information on the given Starlight item.\n" +
-        "`!st_shop <shopkeep commerce skill>` - Generates a store inventory of Starlight items based on a given commerce skill.\n",
+        "`!item <item name>` - Provides information on the given Starlight item.\n" +
+        "`!shop <ranged,melee,armor,munitions,cybernetics,mech> <commerce skill>` - Generates a store inventory of Starlight items based on a shop type and commerce skill.\n",
     SPELLS_FILEPATH = "spells.json",
     SPELLS_TEST_FILEPATH = "spells_test.json",
     ST_ITEMS_FILEPATH = "starlight_items.csv",
@@ -82,6 +82,10 @@ public class Constants {
             @Override
             public String toString(){
                 return "Ubiquitous";
+            }
+            @Override
+            public StRarity prev(){
+                return null;
             }
         },
         ABUNDANT {
@@ -149,6 +153,10 @@ public class Constants {
             public String toString(){
                 return "Unique";
             }
+        };
+
+        public StRarity prev(){
+            return values()[ordinal() - 1];
         }
     }
 

@@ -40,17 +40,6 @@ public class StMechSystem extends StItem {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof StMechSystem)) {
-            return false;
-        }
-        StMechSystem stMechSystem = (StMechSystem) o;
-        return Objects.equals(mechSlot, stMechSystem.mechSlot) && Objects.equals(mechLocation, stMechSystem.mechLocation);
-    }
-
-    @Override
     public int hashCode() {
         return Objects.hash(mechSlot, mechLocation);
     }

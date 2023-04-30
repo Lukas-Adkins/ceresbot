@@ -5,11 +5,10 @@ import goobot.model.WeightedRandomBag;
 import goobot.Constants.StItemType;
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
 
-public class StMeleeShop implements StShop {
-    private WeightedRandomBag<StItemType> randomTypePicker;
-    private HashMap<StItemType, ArrayList<StItem>> itemsByType;
-
+public class StMeleeShop extends StShop {
     private static final double 
     MELEE_WEIGHT = 0.7,
     EXPLOSIVE_WEIGHT = 0.1,
@@ -17,18 +16,14 @@ public class StMeleeShop implements StShop {
     WEAPON_MOD_WEIGHT = 0.1;
     
     public StMeleeShop(HashMap<StItemType, ArrayList<StItem>> itemsByType){
-        randomTypePicker = new WeightedRandomBag<>();
-        this.itemsByType = itemsByType;
+        super(itemsByType);
         randomTypePicker.addEntry(StItemType.MELEE_WEAPON, MELEE_WEIGHT);
         randomTypePicker.addEntry(StItemType.EXPLOSIVE, EXPLOSIVE_WEIGHT);
         randomTypePicker.addEntry(StItemType.ARMOR, ARMOR_WEIGHT);
         randomTypePicker.addEntry(StItemType.WEAPON_MOD, WEAPON_MOD_WEIGHT);
-    }
-
-    @Override
-    public StItem getItem(StRarity rarity) {
-        StItemType type = randomTypePicker.getRandom();
-        int randomIndex = (int)(Math.random() * itemsByType.get(type).size());
-        return itemsByType.get(type).get(randomIndex);
+        shopTypes.add(StItemType.MELEE_WEAPON);
+        shopTypes.add(StItemType.EXPLOSIVE);
+        shopTypes.add(StItemType.ARMOR);
+        shopTypes.add(StItemType.WEAPON_MOD);
     }
 }

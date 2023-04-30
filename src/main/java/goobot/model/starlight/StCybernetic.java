@@ -31,17 +31,6 @@ public class StCybernetic extends StItem {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof StCybernetic)) {
-            return false;
-        }
-        StCybernetic dhCybernetic = (StCybernetic) o;
-        return Objects.equals(slots, dhCybernetic.slots);
-    }
-
-    @Override
     public int hashCode() {
         return Objects.hashCode(slots);
     }

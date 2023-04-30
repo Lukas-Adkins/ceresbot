@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import com.opencsv.CSVReader;
 import java.io.Reader;
@@ -191,47 +192,6 @@ public class StItemController {
         System.out.println("Added item: " + item.getName());
     }
 
-    /**
-     * Returns a number of given dhItems with a given rarity
-     * @return Arraylist of requested items
-     */
-    public ArrayList<StItem> getRandomItems(Integer scarce, Integer rare, Integer veryRare, Integer extremelyRare){
-        ArrayList<StItem> list = new ArrayList<>();
-        for(int i = 0; i < scarce; i++){
-            int index = (int)(Math.random() * itemsByRarity.get(StRarity.SCARCE).size());
-            StItem item = itemsByRarity.get(StRarity.SCARCE).get(index);
-            if(list.contains(item))
-                scarce++;
-            else
-                list.add(item);
-        }
-        for(int i = 0; i < rare; i++){
-            int index = (int)(Math.random() * itemsByRarity.get(StRarity.RARE).size());
-            StItem item = itemsByRarity.get(StRarity.RARE).get(index);
-            if(list.contains(item))
-                rare++;
-            else
-                list.add(item);
-        }
-        for(int i = 0; i < veryRare; i++){
-            int index = (int)(Math.random() * itemsByRarity.get(StRarity.VERY_RARE).size());
-            StItem item = itemsByRarity.get(StRarity.VERY_RARE).get(index);
-            if(list.contains(item))
-                veryRare++;
-            else
-                list.add(item);
-        }
-        for(int i = 0; i < extremelyRare; i++){
-            int index = (int)(Math.random() * itemsByRarity.get(StRarity.EXTREMELY_RARE).size());
-            StItem item = itemsByRarity.get(StRarity.EXTREMELY_RARE).get(index);
-            if(list.contains(item))
-                extremelyRare++;
-            else
-                list.add(item);
-        }
-        return list;
-    }
-
     private List<String[]> readAllLines(Path filePath) throws Exception {
         try (Reader reader = Files.newBufferedReader(filePath)) {
             try (CSVReader csvReader = new CSVReader(reader)) {
@@ -262,28 +222,40 @@ public class StItemController {
         return itemsByType.get(type);
     }
 
-    public StShop getRangedShop(){
-        return rangedShop;
+    public ArrayList<StItem> getRangedShop(int numUbiquitous, int numAbundant, int numPlentiful, int numCommon, int numAverage,
+    int numUncommon, int numScarce, int numRare, int numVeryRare, int numExtremelyRare, int numNearUnique){
+        return rangedShop.getInventory(numUbiquitous, numAbundant, numPlentiful,
+        numCommon, numAverage, numUncommon, numScarce, numRare, numVeryRare, numExtremelyRare, numNearUnique);
     }
 
-    public StShop getMeleeShop(){
-        return meleeShop;
+    public ArrayList<StItem> getMeleeShop(int numUbiquitous, int numAbundant, int numPlentiful, int numCommon, int numAverage,
+    int numUncommon, int numScarce, int numRare, int numVeryRare, int numExtremelyRare, int numNearUnique){
+        return meleeShop.getInventory(numUbiquitous, numAbundant, numPlentiful,
+        numCommon, numAverage, numUncommon, numScarce, numRare, numVeryRare, numExtremelyRare, numNearUnique);
     }
 
-    public StShop getArmorShop(){
-        return armorShop;
+    public ArrayList<StItem> getArmorShop(int numUbiquitous, int numAbundant, int numPlentiful, int numCommon, int numAverage,
+    int numUncommon, int numScarce, int numRare, int numVeryRare, int numExtremelyRare, int numNearUnique){
+        return armorShop.getInventory(numUbiquitous, numAbundant, numPlentiful,
+        numCommon, numAverage, numUncommon, numScarce, numRare, numVeryRare, numExtremelyRare, numNearUnique);
     }
 
-    public StShop getMunitionsShop(){
-        return munitionsShop;
+    public ArrayList<StItem> getMunitionsShop(int numUbiquitous, int numAbundant, int numPlentiful, int numCommon, int numAverage,
+    int numUncommon, int numScarce, int numRare, int numVeryRare, int numExtremelyRare, int numNearUnique){
+        return munitionsShop.getInventory(numUbiquitous, numAbundant, numPlentiful,
+        numCommon, numAverage, numUncommon, numScarce, numRare, numVeryRare, numExtremelyRare, numNearUnique);
     }
 
-    public StShop getCyberneticsShop(){
-        return cyberneticsShop;
+    public ArrayList<StItem> getCyberneticsShop(int numUbiquitous, int numAbundant, int numPlentiful, int numCommon, int numAverage,
+    int numUncommon, int numScarce, int numRare, int numVeryRare, int numExtremelyRare, int numNearUnique){
+        return cyberneticsShop.getInventory(numUbiquitous, numAbundant, numPlentiful,
+        numCommon, numAverage, numUncommon, numScarce, numRare, numVeryRare, numExtremelyRare, numNearUnique);
     }
 
-    public StShop getMechShop(){
-        return mechShop;
+    public ArrayList<StItem> getMechShop(int numUbiquitous, int numAbundant, int numPlentiful, int numCommon, int numAverage,
+    int numUncommon, int numScarce, int numRare, int numVeryRare, int numExtremelyRare, int numNearUnique){
+        return mechShop.getInventory(numUbiquitous, numAbundant, numPlentiful,
+        numCommon, numAverage, numUncommon, numScarce, numRare, numVeryRare, numExtremelyRare, numNearUnique);
     }
 }
 

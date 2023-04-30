@@ -62,17 +62,6 @@ public class StArmor extends StItem {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof StArmor)) {
-            return false;
-        }
-        StArmor dhArmor = (StArmor) o;
-        return Objects.equals(covers, dhArmor.covers) && Objects.equals(AP, dhArmor.AP) && Objects.equals(maxAgility, dhArmor.maxAgility);
-    }
-
-    @Override
     public int hashCode() {
         return Objects.hash(covers, AP, maxAgility);
     }

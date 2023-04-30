@@ -24,7 +24,9 @@ public class CommandController {
     public DndSpellController spellLibrary;
     public CharacterController characterLibrary;
     public StItemController stItemController;
+
     public Random rng = new Random();
+
 
     /**
      * Initilizes controller
@@ -104,7 +106,6 @@ public class CommandController {
                 numKeep=numDice;
             if(diceMatcher.group(4)!=null && !diceMatcher.group(4).isEmpty())
                 modifier = Integer.parseInt(diceMatcher.group(4));
-            System.out.println(numDice + " " + numKeep + " " + numSides + " " + modifier);
         }
 
         try { 
@@ -194,30 +195,81 @@ public class CommandController {
      * @param args Commerce skill of the shopkeeper
      * @return Store information formatted as a string
      */
-    public String dhShop(String args){
-        Integer commerceSkill = Integer.parseInt(args);
-        Integer commerceSkillMod = Math.round(commerceSkill/10);
-        Integer maxItems = 3 * commerceSkillMod, minItems = 1 * commerceSkillMod, numberOfItems = rng.nextInt(maxItems - minItems + 1) + minItems;
-        Integer scarce = 0, rare = 0, veryRare = 0, extremelyRare = 0;
-        if(numberOfItems > 14)
-            numberOfItems = 14;
+    public String dhShop(String args) throws Exception {
+        String arr[] = args.split(" ", 2);        
+
+        Integer commerceSkill = Integer.parseInt(arr[1]),
+        commerceSkillMod = Math.round(commerceSkill/10),
+        maxItems = 3 * commerceSkillMod, 
+        minItems = 2 * commerceSkillMod, 
+        numberOfItems = rng.nextInt(maxItems - minItems + 1) + minItems,
+        ubiquitous = 0,
+        abundant = 0,
+        plentiful = 0,
+        common = 0,
+        average = 0,
+        uncommon = 0,
+        scarce = 0,
+        rare = 0,
+        veryRare = 0,
+        extremelyRare = 0,
+        nearUnique = 0;
+
+        if(numberOfItems > 15)
+            numberOfItems = 15;
         for(int i = 0; i < numberOfItems; i++){
             Integer d100 = rng.nextInt(100) + 1;
-            if(d100 < commerceSkill - 40)
-                extremelyRare++;
+            if(d100 < commerceSkill - 50)
+                nearUnique++;
+            else if(d100 < commerceSkill - 40)
+                extremelyRare++; 
             else if(d100 < commerceSkill - 30)
                 veryRare++;
-            else if(d100 < commerceSkill - 10)
+            else if(d100 < commerceSkill - 20)
                 rare++;
-            else
+            else if(d100 < commerceSkill - 10)
                 scarce++;
+            else if(d100 < commerceSkill)
+                uncommon++;
+            else if(d100 < commerceSkill + 10)
+                average++;
+            else if(d100 < commerceSkill + 20)
+                common++;
+            else
+                plentiful++;
         }
+        System.out.println("Shop Request:\n " + numberOfItems + " total items.");
     
         String shopList = "Welcome to the CeresBot Starlight storefront generator!\nGenerated a store inventory based on a shopkeep with a Commerce skill of "
-         + commerceSkill + ".\n\n";
+        + commerceSkill + ".\n\n";
         String meleeList = "", rangedList = "", armorList = "", explosiveList = "", cyberneticList = "", modList = "", ammoList = "", miscList = "",
         mechEngineList = "", mechUtilityList = "", mechMeleeList = "", mechRangedList = "";
-        ArrayList<StItem> itemList = stItemController.getRandomItems(scarce, rare, veryRare, extremelyRare);
+
+        String shopType = arr[0].toLowerCase();
+        ArrayList<StItem> itemList = null;
+        switch (shopType){
+            case "ranged":
+                itemList = stItemController.getRangedShop(ubiquitous, abundant, plentiful, common, average, uncommon, scarce, rare, veryRare, extremelyRare, nearUnique);
+                break;
+            case "melee":
+                itemList = stItemController.getMeleeShop(ubiquitous, abundant, plentiful, common, average, uncommon, scarce, rare, veryRare, extremelyRare, nearUnique);
+                break;
+            case "armor":
+                itemList = stItemController.getArmorShop(ubiquitous, abundant, plentiful, common, average, uncommon, scarce, rare, veryRare, extremelyRare, nearUnique);
+                break;
+            case "munitions":
+                itemList = stItemController.getMunitionsShop(ubiquitous, abundant, plentiful, common, average, uncommon, scarce, rare, veryRare, extremelyRare, nearUnique);
+                break;
+            case "cybernetics":
+                itemList = stItemController.getCyberneticsShop(ubiquitous, abundant, plentiful, common, average, uncommon, scarce, rare, veryRare, extremelyRare, nearUnique);
+                break;
+            case "mech":
+                itemList = stItemController.getMechShop(ubiquitous, abundant, plentiful, common, average, uncommon, scarce, rare, veryRare, extremelyRare, nearUnique);
+                break;
+            default:
+                throw new Exception("Unable to parse shop type.");
+        }
+
         for (StItem item : itemList){
             switch (item.getType()){
                 case MELEE_WEAPON:
@@ -284,6 +336,18 @@ public class CommandController {
         }
         if(!miscList.isEmpty()){
             shopList = shopList + "Miscellaneous\n" + miscList + "\n";
+        }
+        if(!mechRangedList.isEmpty()){
+            shopList = shopList + "Mech Ranged Weapon Systems\n" + mechRangedList + "\n";
+        }
+        if(!mechMeleeList.isEmpty()){
+            shopList = shopList + "Mech Melee Weapon Systems\n" + mechMeleeList + "\n";
+        }
+        if(!mechUtilityList.isEmpty()){
+            shopList = shopList + "Mech Utility Systems\n" + mechUtilityList + "\n";
+        }
+        if(!mechEngineList.isEmpty()){
+            shopList = shopList + "Mech Engine System\n" + mechEngineList + "\n";
         }
         return String.format("```ansi\n%s```", shopList);
     }

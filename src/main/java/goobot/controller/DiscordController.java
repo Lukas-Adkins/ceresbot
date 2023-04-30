@@ -91,43 +91,49 @@ public class DiscordController extends ListenerAdapter {
             command = fullCommand.toLowerCase();
             args = "";
         }
-
-        switch(command){ // Check command, and call command controller if it exists
-            case "help":
-                post(commandController.Help(args), channel);
-                break;
-            case "pat":
-                post(commandController.Pat(args), channel);
-                break;
-            case "ping":
-                post(commandController.Ping(args), channel);
-                break;
-            case "spell":
-                post(commandController.Spell(args), channel);
-                break; 
-            case "spellscroll":
-                post(commandController.SpellScroll(args), channel);
-                break;
-            case "roll":
-                post(commandController.Roll(args), channel);
-                break;
-            case "st_item":
-                post(commandController.dhItem(args), channel);
-                break;
-            case "st_shop":
-                post(commandController.dhShop(args), channel);
-                break;
-            case "character":
-                List<String> response = commandController.CharacterInfo(args);
-                // If the character has an image, post its link
-                if(!response.get(1).isEmpty())
-                    post(response.get(1), channel);
-                post(response.get(0), channel);
-                break;
-            default:
-                if(Constants.LOG_MESSAGES)
-                    System.out.println("Unknown command: " + command + " with arguments: " + args);
+        try{
+            switch(command){ // Check command, and call command controller if it exists
+                case "help":
+                    post(commandController.Help(args), channel);
+                    break;
+                case "pat":
+                    post(commandController.Pat(args), channel);
+                    break;
+                case "ping":
+                    post(commandController.Ping(args), channel);
+                    break;
+                case "spell":
+                    post(commandController.Spell(args), channel);
+                    break; 
+                case "spellscroll":
+                    post(commandController.SpellScroll(args), channel);
+                    break;
+                case "roll":
+                    post(commandController.Roll(args), channel);
+                    break;
+                case "item":
+                    post(commandController.dhItem(args), channel);
+                    break;
+                case "shop":
+                    post(commandController.dhShop(args), channel);
+                    break;
+                case "character":
+                    List<String> response = commandController.CharacterInfo(args);
+                    // If the character has an image, post its link
+                    if(!response.get(1).isEmpty())
+                        post(response.get(1), channel);
+                    post(response.get(0), channel);
+                    break;
+                default:
+                    if(Constants.LOG_MESSAGES)
+                        System.out.println("Unknown command: " + command + " with arguments: " + args);
+            }
         }
+        catch(Exception e){
+            System.err.println("Error in parsing command: " + command + " " + args);
+            e.printStackTrace();
+        }
+        
     }
 
     /**

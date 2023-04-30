@@ -124,17 +124,6 @@ public class StRangedWeapon extends StItem {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof StRangedWeapon)) {
-            return false;
-        }
-        StRangedWeapon dhRangedWeapon = (StRangedWeapon) o;
-        return Objects.equals(weaponTypes, dhRangedWeapon.weaponTypes) && Objects.equals(range, dhRangedWeapon.range) && Objects.equals(RoF, dhRangedWeapon.RoF) && Objects.equals(dmg, dhRangedWeapon.dmg) && Objects.equals(pen, dhRangedWeapon.pen) && Objects.equals(mag, dhRangedWeapon.mag) && Objects.equals(reloadTime, dhRangedWeapon.reloadTime);
-    }
-
-    @Override
     public int hashCode() {
         return Objects.hash(weaponTypes, range, RoF, dmg, pen, mag, reloadTime);
     }

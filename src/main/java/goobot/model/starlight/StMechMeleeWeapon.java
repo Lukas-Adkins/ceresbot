@@ -42,17 +42,6 @@ public class StMechMeleeWeapon extends StMeleeWeapon {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof StMechMeleeWeapon)) {
-            return false;
-        }
-        StMechMeleeWeapon stMechMeleeWeapon = (StMechMeleeWeapon) o;
-        return Objects.equals(mechSlot, stMechMeleeWeapon.mechSlot) && Objects.equals(mechLocation, stMechMeleeWeapon.mechLocation);
-    }
-
-    @Override
     public int hashCode() {
         return Objects.hash(mechSlot, mechLocation);
     }

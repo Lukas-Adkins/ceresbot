@@ -78,17 +78,6 @@ public class StMeleeWeapon extends StItem {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof StMeleeWeapon)) {
-            return false;
-        }
-        StMeleeWeapon dhMeleeWeapon = (StMeleeWeapon) o;
-        return Objects.equals(weaponTypes, dhMeleeWeapon.weaponTypes) && Objects.equals(range, dhMeleeWeapon.range) && Objects.equals(dmg, dhMeleeWeapon.dmg) && Objects.equals(pen, dhMeleeWeapon.pen);
-    }
-
-    @Override
     public int hashCode() {
         return Objects.hash(weaponTypes, range, dmg, pen);
     }
