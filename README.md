@@ -1,6 +1,6 @@
 # Ceresbot
 
-A helpful Discord bot for looking up D&D-related data.
+A helpful Discord bot for for TTRPG tools.
 
 **Setup**
 
