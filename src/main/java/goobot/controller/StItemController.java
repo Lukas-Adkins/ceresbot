@@ -23,6 +23,7 @@ import goobot.model.starlight.StArmor;
 import goobot.model.starlight.StArmorShop;
 import goobot.model.starlight.StCybernetic;
 import goobot.model.starlight.StCyberneticsShop;
+import goobot.model.starlight.StExplosive;
 import goobot.model.starlight.StItem;
 import goobot.model.starlight.StMechMeleeWeapon;
 import goobot.model.starlight.StMechRangedWeapon;
@@ -120,7 +121,7 @@ public class StItemController {
                         );
                     break;
                 case "explosive":
-                    item = new StRangedWeapon(
+                    item = new StExplosive(
                         StItemType.EXPLOSIVE, data[NAME_COL], itemRarity, data[DESC_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]),
                         data[TYPE_COL], data[RANGE_COL], data[ROF_COL], data[DMG_COL], data[PEN_COL], data[MAG_COL], data[RELOAD_COL]
                         );
@@ -165,7 +166,7 @@ public class StItemController {
                     break;
                 case "mech ranged weapon":
                     item = new StMechRangedWeapon(
-                        StItemType.MECH_RANGED_WEAPON, data[NAME_COL], itemRarity, data[NAME_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]), data[CLASS_COL],
+                        StItemType.MECH_RANGED_WEAPON, data[NAME_COL], itemRarity, data[DESC_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]), data[CLASS_COL],
                         data[RANGE_COL], data[ROF_COL], data[DMG_COL], data[PEN_COL], data[MAG_COL], data[RELOAD_COL], data[MECH_SLOT_COL], data[MECH_LOCATION_COL]
                     );
                     break;

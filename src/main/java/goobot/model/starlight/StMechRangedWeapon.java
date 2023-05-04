@@ -49,8 +49,8 @@ public class StMechRangedWeapon extends StRangedWeapon {
 
     @Override
     public String toString() {
-        return String.format("```ansi\n%s / %s / %s / %d credits /\n%s / Locations: [%s]\n%s / Range: %s / RoF: %s / Damage: %s / Pen: %s / Mag: %s / Rld: %s\n%s```", 
-        getName(), getFormattedRarity(), getWeight(), getPrice(), mechSlot, mechLocation, getWeaponTypes(), getRange() , getRoF(), getDmg(), getPen(), getMag(), 
+        return String.format("```ansi\n%s / %s / %d credits /\n%s / Locations: [%s]\n%s / Range: %s / RoF: %s / Damage: %s / Pen: %s / Mag: %s / Rld: %s\n%s```", 
+        getName(), getFormattedRarity(), getPrice(), mechSlot, mechLocation, getWeaponTypes(), getRange() , getRoF(), getDmg(), getPen(), getMag(), 
         getReloadTime(), getDescription());
     }
 }
