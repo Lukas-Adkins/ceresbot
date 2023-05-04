@@ -68,7 +68,7 @@ public class StArmor extends StItem {
 
     @Override
     public String toString(){
-        return String.format("```ansi\n%s / %s / %d credits /\nCovers: %s / AP: %s / Max Agility: %s\n%s```", getName(), getFormattedRarity(), getPrice(), covers , AP, maxAgility, getDescription());
+        return String.format("```ansi\n%s / %s / %d credits\nCovers: %s / AP: %s / Max Agility: %s\n%s```", getName(), getFormattedRarity(), getPrice(), covers , AP, maxAgility, getDescription());
     }
 
 }

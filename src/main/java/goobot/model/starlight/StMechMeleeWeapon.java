@@ -48,7 +48,7 @@ public class StMechMeleeWeapon extends StMeleeWeapon {
 
     @Override
     public String toString() {
-        return String.format("```ansi\n%s / %s / %d credits /\n%s / Locations: [%s]\nRange: %s / Damage: %s / Pen: %s \n%s```",
+        return String.format("```ansi\n%s / %s / %d credits\n%s / Locations: [%s]\nRange: %s / Damage: %s / Pen: %s \n%s```",
         getName(), getFormattedRarity(), getPrice(), mechSlot, mechLocation, getRange() , getDmg(), getPen(), getDescription());
     }
 }
