@@ -34,7 +34,7 @@ public class Constants {
         "`!character <character>` - Provides information on the given D&D character.\n" +
         "`!item <name>` - Provides information on the given Starlight item.\n" +
         "`!shop <ranged,melee,armor,munitions,cybernetics,mech> <commerce skill>` - Generates a store inventory of Starlight items based on a shop type and commerce skill.\n" + 
-        "`!mech <name>` - Provides information on the given Starlight mech.",
+        "`!mech <name>` - Provides information on the given Starlight mech.\n",
     SPELLS_FILEPATH = "spells.json",
     SPELLS_TEST_FILEPATH = "spells_test.json",
     ST_ITEMS_FILEPATH = "starlight_items.csv",

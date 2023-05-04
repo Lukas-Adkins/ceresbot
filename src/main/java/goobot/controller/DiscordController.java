@@ -127,6 +127,7 @@ public class DiscordController extends ListenerAdapter {
                         post(mech.toString(), channel);
                         post(mech.getUrl(), channel);
                     }
+                    break;
                 case "character":
                     List<String> response = commandController.CharacterInfo(args);
                     // If the character has an image, post its link
