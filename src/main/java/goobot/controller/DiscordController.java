@@ -12,6 +12,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.entities.channel.ChannelType; 
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
+import goobot.model.starlight.StMech;
 import javax.annotation.Nonnull;
 import java.util.List;
 
@@ -118,7 +119,14 @@ public class DiscordController extends ListenerAdapter {
                     post(commandController.StShop(args), channel);
                     break;
                 case "mech":
-                    post(commandController.MechInfo(args), channel);
+                    StMech mech = commandController.MechInfo(args);
+                    if(mech == null){
+                        post(Constants.MECH_NOT_FOUND_MSG, channel);
+                    }
+                    else{
+                        post(mech.toString(), channel);
+                        post(mech.getUrl(), channel);
+                    }
                 case "character":
                     List<String> response = commandController.CharacterInfo(args);
                     // If the character has an image, post its link

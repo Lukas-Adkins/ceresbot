@@ -28,6 +28,7 @@ import goobot.model.starlight.StMechMeleeWeapon;
 import goobot.model.starlight.StMechRangedWeapon;
 import goobot.model.starlight.StMechShop;
 import goobot.model.starlight.StMechSystem;
+import goobot.model.starlight.StMech;
 import goobot.model.starlight.StMeleeShop;
 import goobot.model.starlight.StMeleeWeapon;
 import goobot.model.starlight.StMunitionsShop;
@@ -62,7 +63,8 @@ public class StItemController {
     DESC_COL = 15, 
     WEIGHT_COL = 16,
     PRICE_COL = 17, 
-    TYPE_COL = 18;
+    TYPE_COL = 18,
+    URL_COL = 19;
     
     private HashMap<String, StItem> itemsByName;
     private HashMap<StRarity, ArrayList<StItem>> itemsByRarity;
@@ -167,6 +169,11 @@ public class StItemController {
                         data[RANGE_COL], data[ROF_COL], data[DMG_COL], data[PEN_COL], data[MAG_COL], data[RELOAD_COL], data[MECH_SLOT_COL], data[MECH_LOCATION_COL]
                     );
                     break;
+                case "mech":
+                    item = new StMech(
+                        StItemType.MECH, data[NAME_COL], itemRarity, data[NAME_COL], data[WEIGHT_COL], Integer.parseInt(data[PRICE_COL]), data[URL_COL] 
+                    );
+                    break;
                 default:
                     System.out.println(String.format("WARNING: Failed to parse item %s from Starlight item sheet.", data[NAME_COL]));
             }
@@ -183,7 +190,8 @@ public class StItemController {
         // Add to itemsByRarity
         if(itemsByRarity.get(item.getRarity()) == null)
             itemsByRarity.put(item.getRarity(), new ArrayList<StItem>());
-        itemsByRarity.get(item.getRarity()).add(item);
+        if(item.getType() != StItemType.MECH)
+            itemsByRarity.get(item.getRarity()).add(item);
         // Add to itemsByType
         if(itemsByType.get(item.getType()) == null)
             itemsByType.put(item.getType(), new ArrayList<StItem>());
@@ -222,39 +230,39 @@ public class StItemController {
     }
 
     public ArrayList<StItem> getRangedShop(int numUbiquitous, int numAbundant, int numPlentiful, int numCommon, int numAverage,
-    int numUncommon, int numScarce, int numRare, int numVeryRare, int numExtremelyRare, int numNearUnique){
+    int numScarce, int numRare, int numVeryRare, int numExtremelyRare, int numNearUnique){
         return rangedShop.getInventory(numUbiquitous, numAbundant, numPlentiful,
-        numCommon, numAverage, numUncommon, numScarce, numRare, numVeryRare, numExtremelyRare, numNearUnique);
+        numCommon, numAverage, numScarce, numRare, numVeryRare, numExtremelyRare, numNearUnique);
     }
 
     public ArrayList<StItem> getMeleeShop(int numUbiquitous, int numAbundant, int numPlentiful, int numCommon, int numAverage,
-    int numUncommon, int numScarce, int numRare, int numVeryRare, int numExtremelyRare, int numNearUnique){
+    int numScarce, int numRare, int numVeryRare, int numExtremelyRare, int numNearUnique){
         return meleeShop.getInventory(numUbiquitous, numAbundant, numPlentiful,
-        numCommon, numAverage, numUncommon, numScarce, numRare, numVeryRare, numExtremelyRare, numNearUnique);
+        numCommon, numAverage, numScarce, numRare, numVeryRare, numExtremelyRare, numNearUnique);
     }
 
     public ArrayList<StItem> getArmorShop(int numUbiquitous, int numAbundant, int numPlentiful, int numCommon, int numAverage,
-    int numUncommon, int numScarce, int numRare, int numVeryRare, int numExtremelyRare, int numNearUnique){
+    int numScarce, int numRare, int numVeryRare, int numExtremelyRare, int numNearUnique){
         return armorShop.getInventory(numUbiquitous, numAbundant, numPlentiful,
-        numCommon, numAverage, numUncommon, numScarce, numRare, numVeryRare, numExtremelyRare, numNearUnique);
+        numCommon, numAverage, numScarce, numRare, numVeryRare, numExtremelyRare, numNearUnique);
     }
 
     public ArrayList<StItem> getMunitionsShop(int numUbiquitous, int numAbundant, int numPlentiful, int numCommon, int numAverage,
-    int numUncommon, int numScarce, int numRare, int numVeryRare, int numExtremelyRare, int numNearUnique){
+    int numScarce, int numRare, int numVeryRare, int numExtremelyRare, int numNearUnique){
         return munitionsShop.getInventory(numUbiquitous, numAbundant, numPlentiful,
-        numCommon, numAverage, numUncommon, numScarce, numRare, numVeryRare, numExtremelyRare, numNearUnique);
+        numCommon, numAverage, numScarce, numRare, numVeryRare, numExtremelyRare, numNearUnique);
     }
 
     public ArrayList<StItem> getCyberneticsShop(int numUbiquitous, int numAbundant, int numPlentiful, int numCommon, int numAverage,
-    int numUncommon, int numScarce, int numRare, int numVeryRare, int numExtremelyRare, int numNearUnique){
+    int numScarce, int numRare, int numVeryRare, int numExtremelyRare, int numNearUnique){
         return cyberneticsShop.getInventory(numUbiquitous, numAbundant, numPlentiful,
-        numCommon, numAverage, numUncommon, numScarce, numRare, numVeryRare, numExtremelyRare, numNearUnique);
+        numCommon, numAverage, numScarce, numRare, numVeryRare, numExtremelyRare, numNearUnique);
     }
 
     public ArrayList<StItem> getMechShop(int numUbiquitous, int numAbundant, int numPlentiful, int numCommon, int numAverage,
-    int numUncommon, int numScarce, int numRare, int numVeryRare, int numExtremelyRare, int numNearUnique){
+    int numScarce, int numRare, int numVeryRare, int numExtremelyRare, int numNearUnique){
         return mechShop.getInventory(numUbiquitous, numAbundant, numPlentiful,
-        numCommon, numAverage, numUncommon, numScarce, numRare, numVeryRare, numExtremelyRare, numNearUnique);
+        numCommon, numAverage, numScarce, numRare, numVeryRare, numExtremelyRare, numNearUnique);
     }
 }
 

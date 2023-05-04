@@ -1,220 +1,231 @@
-,Rarity,Class,Range,RoF,Dmg,Pen,Mag,Rld.,Covers,AP,Max Ag,Slots,Mech Slot,Location,Special / Notes,Wt.,Price ,Type
-Pistol,Plentiful,"Light, Ranged",30m,S/3/-,1d10+3 I,0,9,Full,,,,,,,,1.5kg,105,Ranged Weapon
-Rifle,Common,"Basic, Ranged",100m,S/3/10,1d10+3 I,0,30,Full,,,,,,,,3kg,120,Ranged Weapon
-Revolver,Common,"Light, Ranged",30m,S/-/-,1d10+3 I,0,6,2 Full,,,,,,,Reliable,1.5kg,90,Ranged Weapon
-Submachine Gun,Common,"Basic, Ranged",30m,S/-/10,1d10+2 I,1,50,Full,,,,,,,Unreliable,2.5kg,120,Ranged Weapon
-Shotgun,Average,"Basic, Ranged",30m,S/-/-,1d10+4 I,0,8,2 Full,,,,,,,Scatter,5kg,150,Ranged Weapon
-Holdout Pistol,Average,"Light, Ranged",20m,S/-/-,1d10 I,0,5,Half,,,,,,,Compact,0.5kg,150,Ranged Weapon
-LMG,Scarce,"Heavy, Ranged",100m,-/-/8,1d10+4 I,3,80,2 Full,,,,,,,,7kg,300,Ranged Weapon
-Sniper Rifle,Scarce,"Basic, Ranged",600m,S/-/-,1d10+4 I,3,20,Full,,,,,,,"Accurate, Reliable, Felling(1)",5kg,300,Ranged Weapon
-Autoshotgun,Scarce,"Basic, Ranged",30m,S/3/-,1d10+4 I,0,18,Full,,,,,,,Scatter,6.5kg,300,Ranged Weapon
-Needle Pistol,Rare,"Light, Ranged",30m,S/-/-,1d10 R,0,6,Full,,,,,,,"Accurate, Felling (1), Toxic (5)",1.5kg,600,Ranged Weapon
-Needle Rifle,Rare,"Basic, Ranged",180m,S/-/-,1d10 R,0,6,2 Full,,,,,,,"Accurate, Felling (1), Toxic (5)",2kg,600,Ranged Weapon
-Kusanagi BP,Very Rare,"Light, Ranged",30m,S/2/-,1d10+5 X,4,8,Full,,,,,,,Tearing,3.5kg,1000,Ranged Weapon
-Kusanagi BR,Very Rare,"Basic, Ranged",100m,S/3/-,1d10+5 X,4,24,Full,,,,,,,Tearing,7kg,1200,Ranged Weapon
-Kusanagi BR-HEAVY,Very Rare,"Heavy, Ranged",150m,-/-/6,1d10+8 X,5,60,Full,,,,,,,Tearing,40kg,1200,Ranged Weapon
-GUSF Bolt Pistol,Extremely Rare,"Light, Ranged",35m,S/2/-,1d10+5 X,4,8,Full,,,,,,,"Reliable, Tearing",3.5kg,2400,Ranged Weapon
-GUSF Bolt Rifle,Extremely Rare,"Basic, Ranged",120m,S/3/-,1d10+5 X,4,24,Full,,,,,,,"Reliable, Tearing",7kg,2400,Ranged Weapon
-Kusanagi BR-STORM,Extremely Rare,"Basic, Ranged",90m,S/2/4,1d10+5 X,4,60,Full,,,,,,,"Storm, Tearing",9kg,2400,Ranged Weapon
-Laser Pistol,Common,"Pistol, Ranged",30m,S/2/-,1d10+2 E,0,30,Half,,,,,,,Reliable,1.5kg,100,Ranged Weapon
-Laser Rifle,Common,"Basic, Ranged",100m,S/3/-,1d10+3 E,0,60,Full,,,,,,,Reliable,4kg,120,Ranged Weapon
-Grenade Launcher,Average,"Basic, Ranged",60m,S/-/-,Variable,0,6,2 Full,,,,,,,,12kg,150,Ranged Weapon
-Flamethrower,Scarce,"Basic, Ranged",20m,S/-/-,1d10+4 E,2,6,2 Full,,,,,,,"Flame, Spray",6kg,300,Ranged Weapon
-Laser Sniper,Scarce,"Basic, Ranged",800m,S/-/-,1d10+3 E,1,20,Full,,,,,,,"Accurate, Felling (3)",4.5kg,300,Ranged Weapon
-Handheld Flamethrower,Rare,"Pistol, Ranged",10m,S/-/-,1d10+4 E,2,2,2 Full,,,,,,,"Flame, Spray",3.5kg,600,Ranged Weapon
-Heavy Flamethrower,Rare,"Heavy, Ranged",30m,S/-/-,1d10+5 E,4,10,2 Full,,,,,,,"Flame, Spray",45kg,600,Ranged Weapon
-Missile Launcher,Rare,"Heavy, Ranged",300m,S/-/-,Variable,0,1,Full,,,,,,,,35kg,600,Ranged Weapon
-Heavy Laser Pistol,Rare,"Pistol, Ranged",20m,S/2/-,1d10+4 E,7,40,2 Full,,,,,,,,4kg,500,Ranged Weapon
-Heavy Laser Rifle,Rare,"Basic, Ranged",60m,S/3/-,1d10+4 E,7,30,2 Full,,,,,,,,6kg,600,Ranged Weapon
-Chemical Flamethrower,Very Rare,"Basic, Ranged",20m,S/-/-,1d10+4 E,2,6,2 Full,,,,,,,"Flame, Spray, Corrosive, Felling (1), Toxic (2)",8kg,1200,Ranged Weapon
-SR Heavy Laser Pistol,Very Rare,"Pistol, Ranged",20m,S/2/-,1d10+4 E,7,40,Full,,,,,,,Reliable,4kg,1000,Ranged Weapon
-SR Heavy Laser Rifle,Very Rare,"Basic, Ranged",60m,S/3/-,1d10+4 E,7,30,Full,,,,,,,Reliable,6kg,1200,Ranged Weapon
-Heavy Laser Sniper,Very Rare,"Basic, Ranged",1200m,S/-/-,1d10+4 E,7,10,Full,,,,,,,"Accurate, Felling (5)",10kg,1200,Ranged Weapon
-Plasma Pistol,Extremely Rare,"Pistol, Ranged",30m,S/2/-,1d10+6 E,6,10,3 Full,,,,,,,"Maximal, Overheats",4kg,2000,Ranged Weapon
-Plasma Rifle,Extremely Rare,"Basic, Ranged",90m,S/2/-,1d10+7 E,6,40,5 Full,,,,,,,"Maximal, Overheats",18kg,2400,Ranged Weapon
-Exotic Pistol,Near Unique,"Pistol, Ranged",10m,S/-/-,2d10+10 E,18,3,Full,,,,,,,,3kg,4800,Ranged Weapon
-Exotic Rifle,Near Unique,"Basic, Ranged",20m,S/-/-,2d10+10 E,18,5,Full,,,,,,,,15kg,4800,Ranged Weapon
+,Rarity,Class,Range,RoF,Dmg,Pen,Mag,Rld.,Covers,AP,Max Ag,Slots,Mech Slot,Location,Special / Notes,Wt.,Price ,Type,Url
+Pistol,Plentiful,"Light, Ranged",30m,S/3/-,1d10+3 I,0,9,Full,,,,,,,,1.5kg,105,Ranged Weapon,
+Rifle,Common,"Basic, Ranged",100m,S/3/10,1d10+3 I,0,30,Full,,,,,,,,3kg,120,Ranged Weapon,
+Revolver,Common,"Light, Ranged",30m,S/-/-,1d10+3 I,0,6,2 Full,,,,,,,Reliable,1.5kg,90,Ranged Weapon,
+Submachine Gun,Common,"Basic, Ranged",30m,S/-/10,1d10+2 I,1,50,Full,,,,,,,Unreliable,2.5kg,120,Ranged Weapon,
+Shotgun,Average,"Basic, Ranged",30m,S/-/-,1d10+4 I,0,8,2 Full,,,,,,,Scatter,5kg,150,Ranged Weapon,
+Holdout Pistol,Average,"Light, Ranged",20m,S/-/-,1d10 I,0,5,Half,,,,,,,Compact,0.5kg,150,Ranged Weapon,
+LMG,Scarce,"Heavy, Ranged",100m,-/-/8,1d10+4 I,3,80,2 Full,,,,,,,,7kg,300,Ranged Weapon,
+Sniper Rifle,Scarce,"Basic, Ranged",600m,S/-/-,1d10+4 I,3,20,Full,,,,,,,"Accurate, Reliable, Felling(1)",5kg,300,Ranged Weapon,
+Autoshotgun,Scarce,"Basic, Ranged",30m,S/3/-,1d10+4 I,0,18,Full,,,,,,,Scatter,6.5kg,300,Ranged Weapon,
+Needle Pistol,Rare,"Light, Ranged",30m,S/-/-,1d10 R,0,6,Full,,,,,,,"Accurate, Felling (1), Toxic (5)",1.5kg,600,Ranged Weapon,
+Needle Rifle,Rare,"Basic, Ranged",180m,S/-/-,1d10 R,0,6,2 Full,,,,,,,"Accurate, Felling (1), Toxic (5)",2kg,600,Ranged Weapon,
+Kusanagi BP,Very Rare,"Light, Ranged",30m,S/2/-,1d10+5 X,4,8,Full,,,,,,,Tearing,3.5kg,1000,Ranged Weapon,
+Kusanagi BR,Very Rare,"Basic, Ranged",100m,S/3/-,1d10+5 X,4,24,Full,,,,,,,Tearing,7kg,1200,Ranged Weapon,
+Kusanagi BR-HEAVY,Very Rare,"Heavy, Ranged",150m,-/-/6,1d10+8 X,5,60,Full,,,,,,,Tearing,40kg,1200,Ranged Weapon,
+GUSF Bolt Pistol,Extremely Rare,"Light, Ranged",35m,S/2/-,1d10+5 X,4,8,Full,,,,,,,"Reliable, Tearing",3.5kg,2400,Ranged Weapon,
+GUSF Bolt Rifle,Extremely Rare,"Basic, Ranged",120m,S/3/-,1d10+5 X,4,24,Full,,,,,,,"Reliable, Tearing",7kg,2400,Ranged Weapon,
+Kusanagi BR-STORM,Extremely Rare,"Basic, Ranged",90m,S/2/4,1d10+5 X,4,60,Full,,,,,,,"Storm, Tearing",9kg,2400,Ranged Weapon,
+Laser Pistol,Common,"Pistol, Ranged",30m,S/2/-,1d10+2 E,0,30,Half,,,,,,,Reliable,1.5kg,100,Ranged Weapon,
+Laser Rifle,Common,"Basic, Ranged",100m,S/3/-,1d10+3 E,0,60,Full,,,,,,,Reliable,4kg,120,Ranged Weapon,
+Grenade Launcher,Average,"Basic, Ranged",60m,S/-/-,Variable,0,6,2 Full,,,,,,,,12kg,150,Ranged Weapon,
+Flamethrower,Scarce,"Basic, Ranged",20m,S/-/-,1d10+4 E,2,6,2 Full,,,,,,,"Flame, Spray",6kg,300,Ranged Weapon,
+Laser Sniper,Scarce,"Basic, Ranged",800m,S/-/-,1d10+3 E,1,20,Full,,,,,,,"Accurate, Felling (3)",4.5kg,300,Ranged Weapon,
+Handheld Flamethrower,Rare,"Pistol, Ranged",10m,S/-/-,1d10+4 E,2,2,2 Full,,,,,,,"Flame, Spray",3.5kg,600,Ranged Weapon,
+Heavy Flamethrower,Rare,"Heavy, Ranged",30m,S/-/-,1d10+5 E,4,10,2 Full,,,,,,,"Flame, Spray",45kg,600,Ranged Weapon,
+Missile Launcher,Rare,"Heavy, Ranged",300m,S/-/-,Variable,0,1,Full,,,,,,,,35kg,600,Ranged Weapon,
+Heavy Laser Pistol,Rare,"Pistol, Ranged",20m,S/2/-,1d10+4 E,7,40,2 Full,,,,,,,,4kg,500,Ranged Weapon,
+Heavy Laser Rifle,Rare,"Basic, Ranged",60m,S/3/-,1d10+4 E,7,30,2 Full,,,,,,,,6kg,600,Ranged Weapon,
+Chemical Flamethrower,Very Rare,"Basic, Ranged",20m,S/-/-,1d10+4 E,2,6,2 Full,,,,,,,"Flame, Spray, Corrosive, Felling (1), Toxic (2)",8kg,1200,Ranged Weapon,
+SR Heavy Laser Pistol,Very Rare,"Pistol, Ranged",20m,S/2/-,1d10+4 E,7,40,Full,,,,,,,Reliable,4kg,1000,Ranged Weapon,
+SR Heavy Laser Rifle,Very Rare,"Basic, Ranged",60m,S/3/-,1d10+4 E,7,30,Full,,,,,,,Reliable,6kg,1200,Ranged Weapon,
+Heavy Laser Sniper,Very Rare,"Basic, Ranged",1200m,S/-/-,1d10+4 E,7,10,Full,,,,,,,"Accurate, Felling (5)",10kg,1200,Ranged Weapon,
+Plasma Pistol,Extremely Rare,"Pistol, Ranged",30m,S/2/-,1d10+6 E,6,10,3 Full,,,,,,,"Maximal, Overheats",4kg,2000,Ranged Weapon,
+Plasma Rifle,Extremely Rare,"Basic, Ranged",90m,S/2/-,1d10+7 E,6,40,5 Full,,,,,,,"Maximal, Overheats",18kg,2400,Ranged Weapon,
+Exotic Pistol,Near Unique,"Pistol, Ranged",10m,S/-/-,2d10+10 E,18,3,Full,,,,,,,,3kg,4800,Ranged Weapon,
+Exotic Rifle,Near Unique,"Basic, Ranged",20m,S/-/-,2d10+10 E,18,5,Full,,,,,,,,15kg,4800,Ranged Weapon,
 Knife,Ubiquitous,"Light, Melee,
-Thrown",5m (t),,1d10 R,0,,,,,,,,,,0.5kg,25,Melee Weapon
-Shield,Abundant,"Light, Melee",,,1d5 I,0,,,,,,,,,"Defensive, Shield (2)",3kg,60,Melee Weapon
-Nanoblade,Common,"Light, Melee",,,1d10+1 R,1,,,,,,,,,Tearing,2kg,120,Melee Weapon
-Cyber Fist,Average,"Light, Melee",,,1d10+4 I,0,,,,,,,,,,3kg,150,Melee Weapon
-Energyblade,Average,"Light, Melee",,,1d10+4 E,2,,,,,,,,,Balanced,3kg,150,Melee Weapon
-Nano Sword,Average,"Light, Melee",,,1d10+2 R,2,,,,,,,,,"Balanced, Tearing",6kg,150,Melee Weapon
-Nano Axe,Scarce,"Basic, Melee",,,1d10+4 R,2,,,,,,,,,Tearing,13kg,300,Melee Weapon
-Shock Maul,Scarce,"Light, Melee",,,1d10+3 I,0,,,,,,,,,Shocking,2.5kg,300,Melee Weapon
-Shock Whip,Scarce,"Light, Melee",3m,,1d10+1 I,0,,,,,,,,,"Flexible, Shocking",3kg,300,Melee Weapon
-Plasma Sword,Rare,"Light, Melee",,,1d10+5 E,5,,,,,,,,,"Balanced, Power Field",3kg,600,Melee Weapon
-Plasma Axe,Rare,"Basic, Melee",,,1d10+7 E,7,,,,,,,,,"Power Field, Unbalanced",6kg,600,Melee Weapon
-Plasma Maul,Very Rare,"Light, Melee",,,1d10+5 E,4,,,,,,,,,"Power Field, Shocking",3.5kg,1200,Melee Weapon
-Power Shield,Very Rare,"Light, Melee",,,1d10 E,1,,,,,,,,,"Defensive, Power Field, Shield (4)",6kg,1200,Melee Weapon
-Nano Evicerator,Very Rare,"Heavy, Melee",,,2d10 R,9,,,,,,,,,"Razor Sharp, Tearing, Unwieldy",15kg,1200,Melee Weapon
-Kingcrusher,Extremely Rare,"Heavy, Melee",,,2d10+4 E,6,,,,,,,,,"Power Field, Unbalanced",0kg,2400,Melee Weapon
-Solari Staff,Extremely Rare,"Basic, Melee",,,1d10 I,2,,,,,,,,,Force,5kg,2400,
-Solari Hammer,Extremely Rare,"Basic, Melee",,,2d10 I,0,,,,,,,,,"Force, Unbalanced",10kg,2400,
-Solari Shield,Extremely Rare,"Light, Melee",,,1d10+1 I,1,,,,,,,,,"Defensive, Power Field, Shield(6)",7kg,2400,Melee Weapon
-Solari Sword,Near Unique,"Light, Melee",,,1d10+1 R,2,,,,,,,,,"Balanced, Force",7kg,4800,
-Cydonian Fist,Near Unique,"Light, Melee",,,2d10 + Str Bonus*2,9,,,,,,,,,"Power Field, Unwieldy",0kg,4800,Melee Weapon
-Frag Grenade,Common,Grenade,SBx3m,,2d10 E,0,,,,,,,,,Blast (3),0.5kg,50,Explosive
-Smoke Grenade,Common,Grenade,SBx3m,,,0,,,,,,,,,Smoke (4),0.5kg,50,Explosive
-Fire Bomb,Common,Thrown,SBx3m,,1d10+2 E,0,,,,,,,,,"Blast (2), Flame. Cannot be used with launcher weapons.",1kg,50,Explosive
-Frag Missile,Average,Missile,,,2d10+2 E,2,,,,,,,,,Blast (5),1kg,62,Explosive
-Gas Grenade,Average,Grenade,SBx3m,,,0,,,,,,,,,"Blast (3). Make T test each turn, taking 1 fatigue upon failure. 4+ DoF suffers a 1d10 T damage.",0.5kg,62,Explosive
-AT Missile,Average,Missile,,,3d10+8 E,8,,,,,,,,,"Concussive (3), Proven (2). Gain Vengeful (9) against vehicles and mechs.",1kg,62,Explosive
-Flashbang Grenade,Average,Grenade,SBx3m,,,0,,,,,,,,,Blast (6). Must pass an +10 Agility test or be blinded for a number of rounds equal to DoF.,0.5kg,62,Explosive
-EMP Grenade,Scarce,Grenade,SBx3m,,,0,,,,,,,,,EMP (2),0.5kg,124,Explosive
-AT Grenade,Scarce,Grenade,SBx3m,,2d10+4 E,6,,,,,,,,,Concussive (0). Gain Vengeful (9) against vehicles and mechs.,0.5kg,124,Explosive
-E-bomb,Extremely Rare,,,,6d10 E,24,,,,,,,,,"Blast (6), Flame. Cannot be used with launcher weapons and cannot be thrown.",10kg,2000,Explosive
-Kevlar Vest,Abundant,,,,,,,,Body,3,60,,,,,5kg,72,Armor
-Body Armor,Average,,,,,,,,"Head, Body",3,60,,,,,8kg,120,Armor
-Spacesuit,Average,,,,,,,,All,1,100,,,,Oxygen reserves,7kg,120,Armor
-Armor-lined Suit,Average,,,,,,,,"Body, Arms, Legs",2,100,,,,,3kg,120,Armor
-Cydonian SEC-Spacesuit,Scarce,,,,,,,,All,2,100,,,,"Oxygen reserves, self-sealing nanomachines",9kg,240,Armor
-Cydonian SEC-Armor,Rare,,,,,,,,All,4,50,,,,,11kg,480,Armor
-Kusanagi SPACE-1,Very Rare,,,,,,,,All,4,50,,,,"Night vision, oxygen reserves, self-sealing nanomachines, EMP shield, RCS controls",15kg,960,Armor
-Kusanagi AR-1,Very Rare,,,,,,,,All,6,45,,,,"Night vision, remote monitoring, air filtration system, EMP shield",15kg,960,Armor
-SIS Stealth Suit,Extremely Rare,,,,,,,,All,2,100,,,,"Provides +30 to Stealth, anyone targeting the wearer with an attack suffers a -20 to hit.",8kg,1920,Armor
-GUSF COMBAT Armor,Near Unique,,,,,,,,All,8,45,,,,"Night vision, remote monitoring, air filtration system, EMP shield",20kg,3840,Armor
-GUSF PILOT Suit,Near Unique,,,,,,,,All,7,60,,,,"AI, remote monitoring, night vision, RCS controls, air filtration system, oxygen reserves, self-sealing nanomachines, EMP shield",13kg,3840,Armor
-Brainchip,Common,,,,,,,,,,,0,,,"Facilitates instant communication, internet usage, connection to networks, and primitive connections to VR space.",,250,Cybernetic
-DIVE Port,Common,,,,,,,,,,,0,,,Gain a +10 bonus to Software tests whilst connected to a relevant device via port.,,250,Cybernetic
-Arm Weapon Mount,Average,,,,,,,,,,,1,,,Integrate a single weapon of Rare or lower availability into your arm. Disallows weapon mods.,,250,Cybernetic
-Cranial Armor,Average,,,,,,,,,,,1,,,Adds +1 armor point to the head.,,250,Cybernetic
-Reinforced Arms,Average,,,,,,,,,,,1,,,Adds +1 armor point to the arms.,,250,Cybernetic
-Reinforced Legs,Average,,,,,,,,,,,1,,,Adds +1 armor point to the legs.,,250,Cybernetic
-Dense Marrow,Scarce,,,,,,,,,,,2,,,Gain Sound Constitution (3).,,500,Cybernetic
-Compliance Implant,Scarce,,,,,,,,,,,0,,,"A small and lethal remote-controlled device. Deals 6d10 Energy damage to the body part it's installed in when activated, ignoring armor.",,500,Cybernetic
-Psi-chip,Rare,,,,,,,,,,,1,,,Gain a +10 to all Focus Power tests.,,1000,Cybernetic
-Logi-chip,Rare,,,,,,,,,,,1,,,Gain a +10 to all Logic and Lore tests.,,1000,Cybernetic
-Reflex Tuner,Rare,,,,,,,,,,,1,,,"Take an immediate half action and regain your reaction upon falling below 25% wounds, up to once per encounter.",,1000,Cybernetic
-Critical Systems Analyzer MK.I,Rare,,,,,,,,,,,1,,,"Once per round, you may make a +20 Perception test on a target as a free action. On a success, gain knowledge of its current armor and wounds.",,1000,Cybernetic
-Sniper's Eye,Rare,,,,,,,,,,,1,,,"Grants +10 BS when firing single shot. Ignores penalties for Long and Extreme range, as long as the shooter is benefitting from a Full Action to Aim.",,1000,Cybernetic
-Bionic Respiratory System,Rare,,,,,,,,,,,1,,,"Gain a +20 bonus to Toughness tests made to resist airborne toxins and gas, and can hold breath twice as long.",,1000,Cybernetic
-Fireproof Subskin,Rare,,,,,,,,,,,2,,,"You take half damage from weapons with the Flame attribute, and cannot catch on fire.",,2000,Cybernetic
-Synth Muscle,Rare,,,,,,,,,,,2,,,Grants the Unnatural Strength (3) trait.,,2000,Cybernetic
-Bionic Legs,Rare,,,,,,,,,,,2,,,"Grants the Unnatural Agility (1) trait, a +20 bonus to tests made to jump, and the Catfall talent.",,2000,Cybernetic
-Bionic Senses,Rare,,,,,,,,,,,2,,,"Grants night vision, thermal vision, a +20 to tests against flashbangs, and the Keen Intuition talent.",,2000,Cybernetic
-Advanced Arm Weapon Mount,Rare,,,,,,,,,,,2,,,Integrate a single weapon of Very Rare or higher availability into your arm. Disallows weapon mods.,,2000,Cybernetic
-Kusanagi S-system MK.I,Rare,,,,,,,,,,,3,,,"When activated as a free action, gain 3 fatigue, and then take two turns in a row. Must pass a +0 Toughness test or be stunned for your next turn.",,2000,Cybernetic
-Bionic Heart,Very Rare,,,,,,,,,,,1,,,Adds +1 armor point to the Body location and Sprint talent.,,2000,Cybernetic
-Immune Booster,Very Rare,,,,,,,,,,,1,,,"Always considered Lightly Damaged, and heals at an increased rate, removing 2 points of damage per day instead of 1.",,2000,Cybernetic
-Critical Systems Targeter,Very Rare,,,,,,,,,,,1,,,All attacks gain Vengeful(9).,,2000,Cybernetic
-Critical Systems Analyzer MK.II,Very Rare,,,,,,,,,,,2,,,"You have complete knowledge of the current armor, fatigue, and wounds values of all visible opponents, and know the armor values of visible cover.",,4000,Cybernetic
-BOLT Legs,Very Rare,,,,,,,,,,,2,,,"Adds +1 armor to the legs, and grants the Preternatural Speed talent.",,4000,Cybernetic
-Subskin Armour,Very Rare,,,,,,,,,,,2,,,"Adds +2 armor to arms, body, and legs.",,4000,Cybernetic
-Psycho-k Enhancements,Extremely Rare,,,,,,,,,,,2,,,Required for the Psychokineticist Elite Advance.,,8000,Cybernetic
-Kusanagi S-system MK.II,Extremely Rare,,,,,,,,,,,4,,,"When activated as a free action, gain 5 fatigue, and then take three turns in a row. Must pass a -10 Toughness test or be stunned for your next turn.",,12000,Cybernetic
-Kusanagi S-system MK.III,Near Unique,,,,,,,,,,,5,,,"When activated as a free action, gain 7 fatigue, and then take four turns in a row. Must pass a -20 Toughness test or be stunned for your next turn.",,16000,Cybernetic
-Backpack,Abundant,,,,,,,,,,,,,,"Allows the wearer to transport roughly 30 kg of extra weight, but removing an object from the pack requires a Full Action.",2kg,9,Misc
-Manacles,Abundant,,,,,,,,,,,,,,A pair of handcuffs. Useful for restraining and inhibiting movement.,0kg,9,Misc
-First Aid Kit,Abundant,,,,,,,,,,,,,,Provides +20 to Medical skill tests provided the user knows the Medical skill.,7kg,40,Misc
-Handheld Computer,Abundant,,,,,,,,,,,,,,"A small computer primarily used for communication, internet access, and recording.",0kg,100,Misc
-Toolbox,Abundant,,,,,,,,,,,,,,Provides +10 to all Hardware tests provided the user knows the Hardware skill.,10kg,40,Misc
-VR Rig,Abundant,,,,,,,,,,,,,,Facilitates connection to virtual reality.,3kg,20,Misc
-Binoculars,Average,,,,,,,,,,,,,,Can remove most distance-based penalties to Perception skill tests.,1.5kg,15,Misc
-Concealed Holster,Average,,,,,,,,,,,,,,Attempts to detect a weapon in the holster suffer a -20 penalty. Doubles weapon draw time.,1kg,15,Misc
-Rebreather,Scarce,,,,,,,,,,,,,,A mask with an external supply tank that stores and recycles breathable air. The wearer is immune to toxic atmospheres and can breathe underwater.,1kg,30,Misc
-Respirator / Gas Mask,Scarce,,,,,,,,,,,,,,"A character wearing one gains a +30 bonus to any Toughness test made to resist the effects of gas, and may reroll the test if failed.",1kg,30,Misc
-Wire Gun,Scarce,,,,,,,,,,,,,,"Can be fired with a Ballistic Skill test to attach to a surface within 30m. As a Half Action, an attached Wire Gun can be retracted, moving the user 15m.",3kg,30,Misc
-Night Vision Goggles,Very Rare,,,,,,,,,,,,,,Wearing and activating NVGs in darkness means the wearer no longer suffers darkness-based vision penalties.,0.5kg,120,Misc
-Brainchip Comms Jammer,Very Rare,,,,,,,,,,,,,,Jams outgoing brainchip communication data within a 150 meter radius of handheld device.,0.5kg,120,Misc
-Silencer,Plentiful,,,,,,,,,,,,,,"Tests to hear the weapon are made at a -20, and are audible only at half the normal distance. Applicable to any Light or Basic solid projectile weapon.",0.5kg,28,Weapon Mod
-Compact,Average,,,,,,,,,,,,,,"1/2 weight, mag size, and range. Dmg -1. Tests suffer a -20 to attempt to find the weapon. Applicable to any ranged laser, solid projectile, bolt, or plasma weapon of Basic class.",0kg,40,Weapon Mod
-Telescopic sight,Average,,,,,,,,,,,,,,"Ignore penalties for Long and Extreme range after Full Action aim. Applicable to any ranged laser, solid projectile, bolt, or plasma weapon of Basic class.",1kg,40,Weapon Mod
-Tripod/Bipod,Average,,,,,,,,,,,,,,"Can brace weapon on any reasonably flat surface. Bipod 90 deg. fire arc, tripod 180 deg. Applicable to any Basic or Heavy ranged weapon.",2kg,40,Weapon Mod
-Expanded Mag,Average,,,,,,,,,,,,,,Increase mag size by half (rounded up). Applicable to any ranged weapon.,1kg,40,Weapon Mod
-Backpack Ammo Supply,Scarce,,,,,,,,,,,,,,"Mag size x5, can't be reloaded in combat. Applicable to any bolt, flame, las, melta, plasma, and solid projectile weapon.",15kg,80,Weapon Mod
-Bio-Lock,Scarce,,,,,,,,,,,,,,Only allows a verified user to fire the weapon. Applicable to any weapon.,0kg,80,Weapon Mod
-Modified Stock,Scarce,,,,,,,,,,,,,,"Grants +2 bonus to half action aim, +4 bonus to full action aim. Applicable to any weapon.",0kg,80,Weapon Mod
-Laser Sight,Scarce,,,,,,,,,,,,,,"Gain +10 to BS when firing single shot. Applicable to any ranged laser, solid projectile, bolt, or plasma weapon of the Basic class.",0.5kg,80,Weapon Mod
-Org-Lock,Scarce,,,,,,,,,,,,,,Disallows firing on friendly targets as specified by the Org-Lock maintainer. Applicable to any ranged weapon.,0kg,80,Weapon Mod
-Custom Grip,Rare,,,,,,,,,,,,,,"Grants +5 to BS or WS for owner, -5 to all others. Applicable to any weapon.",0kg,160,Weapon Mod
-Fire Selector,Rare,,,,,,,,,,,,,,"Swap ammo type without reloading. Applicable to any bolt, launcher, and solid projectile weapon of Light or Basic class.",1kg,160,Weapon Mod
-Burst Stock,Rare,,,,,,,,,,,,,,"When using semi-auto burst, counts as scoring one additional DoS. Applicable to any ranged weapon capable of semi-automatic fire.",0kg,160,Weapon Mod
-Auxiliary Grenade Launcher,Rare,,,,,,,,,,,,,,"45m range w/ dmg and pen of the loaded grenade. Can't reload during combat. Applicable to any laser, solid projectile or Basic bolt weapon.",2.5kg,160,Weapon Mod
-EMP Shielding,Rare,,,,,,,,,,,,,,Protects any elecronic components of the weapon from electromagnetic pulse (EMP) attacks. Applicable to any weapon.,0kg,160,Weapon Mod
-Predictor Chip,Very Rare,,,,,,,,,,,,,,Grants +10 to BS to semi-auto burst or full auto. Applicable to any ranged weapon.,0kg,320,Weapon Mod
-Thermal Sight,Very Rare,,,,,,,,,,,,,,"No penalties due to smoke/darkness, and +20 bonus to perception test in the dark. Applicable to any basic laser, solid projectile, bolt, or plasma weapon.",0.5kg,320,Weapon Mod
-Omni-scope,Extremely Rare,,,,,,,,,,,,,,"Combines benefits of thermal sight, laser sight, and telescopic sight. Applicable to any ranged laser, solid projectile, bolt, or plasma of basic class.",2kg,640,Weapon Mod
-High-Quality Rounds,Common,,,,,,,,,,,,,,Add 1 to weapon's damage and penetration. Kinetic weapons only.,,20,Special Ammo
-Overcharge Pack,Scarce,,,,,,,,,,,,,,"Adds +1 damage, gains tearing and pen 4, loses reliable and -1 mag size. Laser weapons only (not Heavy Laser).",,30,Special Ammo
-AP Rounds,Scarce,,,,,,,,,,,,,,Adds 3 to weapon pen. Kinetic weapons only.,,30,Special Ammo
-Toxic Rounds,Scarce,,,,,,,,,,,,,,Adds Toxic(1) quality and -2 damage. Bolt and kinetic weapons.,,30,Special Ammo
-Scrambler Rounds,Rare,,,,,,,,,,,,,,Adds the Hallucinogenic (2) and Recharge qualities. Bolt and kinetic weapons.,,60,Special Ammo
-Hollow-point Rounds,Rare,,,,,,,,,,,,,,Damage from hollow-point rounds causes Blood Loss for 1d5 rounds or until treated. Kinetic weapons only.,,60,Special Ammo
-Inferno Shells,Rare,,,,,,,,,,,,,,Gains the Flame quality. Shotgun and bolt weapons only.,,60,Special Ammo
-Amputator Shells,Extremely Rare,,,,,,,,,,,,,,Adds +2 to weapon damage. Kinetic weapons only.,,120,Special Ammo
-MTX (methotrexate),Scarce,,,,,,,,,,,,,,Your T bonus is doubled for the purpose of calculating your cybernetics threshold. Lasts 24 hours.,,50,Consumable
-CYP (cyclophosphamide),Rare,,,,,,,,,,,,,,Your T bonus is tripled for the purpose of calculating your cybernetics threshold. Lasts 24 hours.,,100,Consumable
-Frontier Scrap Engine,Common,,,,,,,,,,,,Engine,Body,Provides movement speed of 10m/20m/30m/60m.,,576,Mech Engine
-CYD-Liber,Average,,,,,,,,,,,,Engine,Body,Provides movement speed of 15m/30m/45m/90m.,,720,Mech Engine
-Auxiliary Engine,Average,,,,,,,,,,,,Engine,"Arms, Legs",Provides additional movement speed of 5m/10m/15m/30m. Stacks with other engines.,,720,Mech Engine
-CYD-Burner,Scarce,,,,,,,,,,,,Engine,Body,Provides movement speed of 15m/30m/60m/120m.,,1440,Mech Engine
-CYD-Reflex,Scarce,,,,,,,,,,,,Engine,Body,Provides movement speed of 15m/30m/45m/90m and a +10 to Dodge and Parry.,,1440,Mech Engine
-Binary Star,Rare,,,,,,,,,,,,Engine,"Arms, Legs",Provides additional movement speed of 10m/20m/30m/60m. Stacks with other engines.,,2880,Mech Engine
-CYD-Redline,Rare,,,,,,,,,,,,Engine,Body,Provides movement speed of 20m/40m/60m/120m.,,2880,Mech Engine
-GUSF-Dando,Very Rare,,,,,,,,,,,,Engine,Body,Provides movement speed of 20m/40m/60m/120m and a +10 to Dodge and Parry.,,5760,Mech Engine
-GUSF-Aurelia,Very Rare,,,,,,,,,,,,Engine,Body,Provides movement speed of 20m/40m/80m/160m.,,5760,Mech Engine
-GUSF-Carina,Extremely Rare,,,,,,,,,,,,Engine,Body,Provides movement speed of 25m/50m/75m/150m.,,11520,Mech Engine
-Cockpit,Abundant,,,,,,,,,,,,Utility,"Head, Body",Houses the pilot.,,432,Mech Utility
-Cockpit w/ Ejection System,Average,,,,,,,,,,,,Utility,"Head, Body","Houses the pilot. May activate to eject as a Half Action. May make a +30 Agility test to eject as a Reaction if system is mounted in the Head, or a +0 Agility test to eject as a Reaction if the system is mounted in the Body.",,720,Mech Utility
-Armor Plating,Average,,,,,,,,,,,,Utility,Any,Increases AP of the mounted Hit Location by 3.,,720,Mech Utility
-Reactive Speed Booster,Average,,,,,,,,,,,,Utility,"Body, Legs",Gain a +20 when making Dodge tests against a Blast weapon.,,720,Mech Utility
-Long Range Targeter,Average,,,,,,,,,,,,Utility,Any,Ignore penalties for Long and Extreme range after Full Action aim.,,720,Mech Utility
-Drone Mounted Weapon,Scarce,,,,,,,,,,,,Utility,Any,The nearest Weapon Slot may ignore Location requirements for its weapon system.,,1440,Mech Utility
-Thrust Activated Baffler,Scarce,,,,,,,,,,,,Utility,"Body, Legs","When performing a Charge or Run action, opponents suffer a -20 penalty to ranged attacks until the start of your next turn.",,1440,Mech Utility
-Two-Seater Cockpit,Scarce,,,,,,,,,,,,Utility,"Head, Body","Houses two pilots. May activate to eject as a Half Action. May make a +30 Agility test to eject as a Reaction if system is mounted in the Head, or a +0 Agility test to eject as a Reaction if the system is mounted in the Body.",,1440,Mech Utility
-Sensor Array,Scarce,,,,,,,,,,,,Utility,Any,You are aware of the Armor values and System Slots of any mech of rarity Rare or lower. May make a +20 Perception test to determine the Armor values of any opponent.,,1440,Mech Utility
-Laser Targeter,Scarce,,,,,,,,,,,,Utility,Any,Gain +10 to BS when firing a ranged weapon single shot.,,1440,Mech Utility
-Compound Target Acquisition Software,Scarce,,,,,,,,,,,,Utility,Any,"As a Half Action, attack with a Standard Attack, Semi-Auto Burst, or a Full Auto Burst with a number of weapons equal to your Ballistic Skill bonus.",,1440,Mech Utility
-RCS Thrusters,Rare,,,,,,,,,,,,Utility,Any,May take a Half Move as a Free Action after a turn without any Movement actions.,,2880,Mech Utility
-Solari Shielding,Near Unique,,,,,,,,,,,,Utility,Any,Psionic shield that completely absorbs ranged attacks originating from more than 1km away. ,,23040,Mech Utility
-Reinforced Fist,Abundant,"Light, Melee",,,1d10+3 I,0,,,,,,,Weapon,Arms,,,180,Mech Melee Weapon
-Bulwark Shield,Common,"Light, Melee",,,1d5 I,0,,,,,,,Weapon,Arms,"Defensive, Shield (2)",,576,Mech Melee Weapon
-Heshi-kiri,Average,"Light, Melee",,,1d10+2 R,2,,,,,,,Weapon,Arms,"Balanced, Tearing",,720,Mech Melee Weapon
-Chigiriki,Average,"Light, Melee",,,1d10+4 R,2,,,,,,,Weapon,Arms,Tearing,,720,Mech Melee Weapon
-Dōjigiri Yasutsuna,Average,"Light, Melee",,,1d10+4 E,2,,,,,,,Weapon,Arms,Balanced,,720,Mech Melee Weapon
-Overloader Maul,Scarce,"Light, Melee",,,1d10+3 E,0,,,,,,,Weapon,Arms,Overloading (1),,1440,Mech Melee Weapon
-Kanabō,Scarce,"Heavy, Melee",,,2d10 R,0,,,,,,,Weapon,Arms,Unbalanced,,1440,Mech Melee Weapon
-Overloader Whip,Rare,"Light, Melee",15m,,1d10+1 E,0,,,,,,,Weapon,Arms,Overloading (1),,2880,Mech Melee Weapon
-Shichiseiken,Rare,"Light, Melee",,,1d10+5 E,5,,,,,,,Weapon,Arms,"Balanced, Power Field",,2880,Mech Melee Weapon
-Shatteraxe,Rare,"Basic, Melee",,,1d10+7 E,7,,,,,,,Weapon,Arms,"Power Field, Unbalanced",,2880,Mech Melee Weapon
-Molecular Blade,Very Rare,"Light, Melee",,,1d10 R,5,,,,,,,Weapon,Arms,"Corrosive, Razor Sharp, Tearing",,5760,Mech Melee Weapon
-Shattermaul,Very Rare,"Light, Melee",,,1d10+5 E,4,,,,,,,Weapon,Arms,"Power Field, Overloading (2)",,5760,Mech Melee Weapon
-Nanochain Blade,Very Rare,"Light, Melee",,,2d10 R,9,,,,,,,Weapon,Arms,"Razor Sharp, Tearing, Unwieldy",,5760,Mech Melee Weapon
-Centurion Shield,Very Rare,"Light, Melee",,,1d10 E,1,,,,,,,Weapon,Arms,"Defensive, Power Field, Shield (4)",,5760,Mech Melee Weapon
-Kusanagi no Tsurugi,Extremely Rare,"Light, Melee",,,2d10+6 R,9,,,,,,,Weapon,Arms,Power Field,,11520,Mech Melee Weapon
-Reflector Shield,Extremely Rare,"Light, Melee",,,1d10 + 1E,1,,,,,,,Weapon,Arms,"Defensive, Power Field, Shield(6)",,11520,Mech Melee Weapon
-M78b Pistol,Plentiful,"Light, Ranged",80m,S/-/6,1d10+3 I,0,12,Half,,,,,Weapon,Any,,,504,Mech Ranged Weapon
-CYD-86 Harasser Shotgun,Common,"Basic, Ranged",80m,S/-/-,1d10+4 I,2,5,2 Full,,,,,Weapon,Arms,Scatter,,576,Mech Ranged Weapon
-CYD-82 Rifle,Common,"Basic, Ranged",300m,S/3/6,1d10+3 I,2,30,Full,,,,,Weapon,Arms,,,576,Mech Ranged Weapon
-Bodyguard PDS,Common,"Light, Ranged",80m,S/-/10,1d10+2 I,1,50,Full,,,,,Weapon,"Head, Body, Legs",Unreliable,,576,Mech Ranged Weapon
-M81 Piao-Shi Pistol,Average,"Light, Ranged",100m,S/3/-,1d10+2 I,1,8,Half,,,,,Weapon,Any,,,720,Mech Ranged Weapon
-Cyclops Marksman Rifle,Average,"Heavy, Ranged",500m,S/-/-,1d10+1 I,1,10,Full,,,,,Weapon,Arms,"Accurate, Felling(1)",,720,Mech Ranged Weapon
-Deimos Anti-Armor Shotgun,Average,"Basic, Ranged",100m,S/2/-,1d10+3 I,2,8,Full,,,,,Weapon,Arms,"Scatter, Inaccurate",,720,Mech Ranged Weapon
-Scorn PDS,Average,"Light, Ranged",80m,S/2/4,1d10+2 I,1,16,Half,,,,,Weapon,"Head, Body, Legs",,,720,Mech Ranged Weapon
-Syrtis Special Magnum Pistol,Scarce,"Light, Ranged",120m,S/2/-,1d10+5 I,2,8,Full,,,,,Weapon,Any,"Unreliable, Tearing",,1440,Mech Ranged Weapon
-Swiftstrike PDS,Scarce,"Light, Ranged",100m,-/-/6,1d10+2 I,2,30,Full,,,,,Weapon,"Head, Body, Legs",Storm,,1440,Mech Ranged Weapon
-CYD-94 Companion Rifle,Scarce,"Basic, Ranged",300m,S/3/-,1d10+3 I,3,30,Full,,,,,Weapon,Arms,Proven (4),,1440,Mech Ranged Weapon
-First Strike Missile System,Scarce,"Light, Ranged",200m,S/-/-,2d10 X,0,5,2 Full,,,,,Weapon,Any,Proven (3),,1440,Mech Ranged Weapon
-Firestorm Missile Launcher,Scarce,"Heavy, Ranged",200m,S/-/-,2d10 X,0,1,Half,,,,,Weapon,Arms,Blast (30),,1440,Mech Ranged Weapon
-Longshot Sniper Rifle,Scarce,"Heavy, Ranged",1600m,S/-/-,1d10+4 I,3,10,Full,,,,,Weapon,Arms,"Accurate, Felling (2)",,1440,Mech Ranged Weapon
-Hi-fukidake Flamer System,Rare,"Light, Ranged",50m,S/-/-,1d10+4 E,2,2,2 Full,,,,,Weapon,Any,"Flame, Spray",,2880,Mech Ranged Weapon
-CYD-87 Missile Launcher,Rare,"Heavy, Ranged",300m,S/-/-,3d10+3 X,3,10,3 Full,,,,,Weapon,Arms,Proven (2),,2880,Mech Ranged Weapon
-Daikyu Rifle,Rare,"Basic, Ranged",500m,S/3/9,1d10+4 I,3,45,Full,,,,,Weapon,Arms,Reliable,,2880,Mech Ranged Weapon
-Cleaver Variable Shotgun,Rare,"Basic, Ranged",120m,S/2/4,1d10+3 I,1,12,Full,,,,,Weapon,Arms,Scatter,,2880,Mech Ranged Weapon
-Cyclone PDS,Rare,"Light, Ranged",120m,-/6/12,1d10+1 I,2,120,2 Full,,,,,Weapon,"Head, Body, Legs","Inaccurate, Razor Sharp, Storm",,2880,Mech Ranged Weapon
-Pridwen Mk. 6 PDS,Rare,"Light, Ranged",140m,-/3/6,1d10+3 I,3,60,2 Full,,,,,Weapon,"Head, Body, Legs",,,2880,Mech Ranged Weapon
-Argus Panoptes Precision Rifle,Rare,"Heavy, Ranged",1200m,S/2/5,1d10+3 I,3,20,Half,,,,,Weapon,Arms,"Accurate, Felling (4)",,2880,Mech Ranged Weapon
-Tantō Pistol,Rare,"Light, Ranged",100m,S/2/-,1d10+4 E,7,40,2 Full,,,,,Weapon,Any,,,2880,Mech Ranged Weapon
-Type-89 Armored Unit Rifle,Rare,"Basic, Ranged",300m,S/3/-,1d10+4 E,7,30,2 Full,,,,,Weapon,Arms,,,2880,Mech Ranged Weapon
-Type-92 Limited Missile System,Very Rare,"Light, Ranged",200m,S/2/-,1d10+5 X,4,8,Full,,,,,Weapon,Any,Tearing,,5760,Mech Ranged Weapon
-CYD-99 Fury Missile Launcher,Very Rare,"Basic, Ranged",500m,S/3/-,1d10+5 X,4,24,Full,,,,,Weapon,Arms,Tearing,,5760,Mech Ranged Weapon
-Tembatsu Missile Launcher,Very Rare,"Heavy, Ranged",700m,-/-/6,1d10+8 X,4,60,Full,,,,,Weapon,Arms,Tearing,,5760,Mech Ranged Weapon
-Type-95 Plasma Accelerator,Extremely Rare,"Light, Ranged",150m,S/2/-,1d10+6 E,6,10,3 Full,,,,,Weapon,Any,"Maximal, Overheats",,11520,Mech Ranged Weapon
-Alnitak Plasma Accelerator,Extremely Rare,"Basic, Ranged",450m,S/2/-,1d10+7 E,6,40,5 Full,,,,,Weapon,Arms,"Maximal, Overheats",,11520,Mech Ranged Weapon
-Extirpator Missile Launcher,Extremely Rare,"Heavy, Ranged",1250m,S/-/-,4d10 X,0,10,3 Full,,,,,Weapon,Arms,Blast (40),,11520,Mech Ranged Weapon
-Tlaloc Missile System,Extremely Rare,"Basic, Ranged",450m,S/2/4,1d10+5 X,4,60,Full,,,,,Weapon,Arms,"Storm, Tearing",,11520,Mech Ranged Weapon
-Dominion Sniper Weapon System,Extremely Rare,"Heavy, Ranged",1800m,S/-/-,2d10+2 I,5,8,2 Full,,,,,Weapon,Arms,"Accurate, Concussive (2), Razor Sharp",,11520,Mech Ranged Weapon
-Memento Exotic Matter Pistol,Near Unique,"Light, Ranged",50m,S/-/-,2d10+10 E,18,3,Full,,,,,Weapon,Any,,,23040,Mech Ranged Weapon
-Thanatos Exotic Matter Rifle,Near Unique,"Basic, Ranged",100m,S/-/-,2d10+10 E,18,5,Full,,,,,Weapon,Arms,,,23040,Mech Ranged Weapon
+Thrown",5m (t),,1d10 R,0,,,,,,,,,,0.5kg,25,Melee Weapon,
+Shield,Abundant,"Light, Melee",,,1d5 I,0,,,,,,,,,"Defensive, Shield (2)",3kg,60,Melee Weapon,
+Nanoblade,Common,"Light, Melee",,,1d10+1 R,1,,,,,,,,,Tearing,2kg,120,Melee Weapon,
+Cyber Fist,Average,"Light, Melee",,,1d10+4 I,0,,,,,,,,,,3kg,150,Melee Weapon,
+Energyblade,Average,"Light, Melee",,,1d10+4 E,2,,,,,,,,,Balanced,3kg,150,Melee Weapon,
+Nano Sword,Average,"Light, Melee",,,1d10+2 R,2,,,,,,,,,"Balanced, Tearing",6kg,150,Melee Weapon,
+Nano Axe,Scarce,"Basic, Melee",,,1d10+4 R,2,,,,,,,,,Tearing,13kg,300,Melee Weapon,
+Shock Maul,Scarce,"Light, Melee",,,1d10+3 I,0,,,,,,,,,Shocking,2.5kg,300,Melee Weapon,
+Shock Whip,Scarce,"Light, Melee",3m,,1d10+1 I,0,,,,,,,,,"Flexible, Shocking",3kg,300,Melee Weapon,
+Plasma Sword,Rare,"Light, Melee",,,1d10+5 E,5,,,,,,,,,"Balanced, Power Field",3kg,600,Melee Weapon,
+Plasma Axe,Rare,"Basic, Melee",,,1d10+7 E,7,,,,,,,,,"Power Field, Unbalanced",6kg,600,Melee Weapon,
+Plasma Maul,Very Rare,"Light, Melee",,,1d10+5 E,4,,,,,,,,,"Power Field, Shocking",3.5kg,1200,Melee Weapon,
+Power Shield,Very Rare,"Light, Melee",,,1d10 E,1,,,,,,,,,"Defensive, Power Field, Shield (4)",6kg,1200,Melee Weapon,
+Nano Evicerator,Very Rare,"Heavy, Melee",,,2d10 R,9,,,,,,,,,"Razor Sharp, Tearing, Unwieldy",15kg,1200,Melee Weapon,
+Kingcrusher,Extremely Rare,"Heavy, Melee",,,2d10+4 E,6,,,,,,,,,"Power Field, Unbalanced",0kg,2400,Melee Weapon,
+Solari Staff,Extremely Rare,"Basic, Melee",,,1d10 I,2,,,,,,,,,Force,5kg,2400,,
+Solari Hammer,Extremely Rare,"Basic, Melee",,,2d10 I,0,,,,,,,,,"Force, Unbalanced",10kg,2400,,
+Solari Shield,Extremely Rare,"Light, Melee",,,1d10+1 I,1,,,,,,,,,"Defensive, Power Field, Shield(6)",7kg,2400,Melee Weapon,
+Solari Sword,Near Unique,"Light, Melee",,,1d10+1 R,2,,,,,,,,,"Balanced, Force",7kg,4800,,
+Cydonian Fist,Near Unique,"Light, Melee",,,2d10 + Str Bonus*2,9,,,,,,,,,"Power Field, Unwieldy",0kg,4800,Melee Weapon,
+Frag Grenade,Common,Grenade,SBx3m,,2d10 E,0,,,,,,,,,Blast (3),0.5kg,50,Explosive,
+Smoke Grenade,Common,Grenade,SBx3m,,,0,,,,,,,,,Smoke (4),0.5kg,50,Explosive,
+Fire Bomb,Common,Thrown,SBx3m,,1d10+2 E,0,,,,,,,,,"Blast (2), Flame. Cannot be used with launcher weapons.",1kg,50,Explosive,
+Frag Missile,Average,Missile,,,2d10+2 E,2,,,,,,,,,Blast (5),1kg,62,Explosive,
+Gas Grenade,Average,Grenade,SBx3m,,,0,,,,,,,,,"Blast (3). Make T test each turn, taking 1 fatigue upon failure. 4+ DoF suffers a 1d10 T damage.",0.5kg,62,Explosive,
+AT Missile,Average,Missile,,,3d10+8 E,8,,,,,,,,,"Concussive (3), Proven (2). Gain Vengeful (9) against vehicles and mechs.",1kg,62,Explosive,
+Flashbang Grenade,Average,Grenade,SBx3m,,,0,,,,,,,,,Blast (6). Must pass an +10 Agility test or be blinded for a number of rounds equal to DoF.,0.5kg,62,Explosive,
+EMP Grenade,Scarce,Grenade,SBx3m,,,0,,,,,,,,,EMP (2),0.5kg,124,Explosive,
+AT Grenade,Scarce,Grenade,SBx3m,,2d10+4 E,6,,,,,,,,,Concussive (0). Gain Vengeful (9) against vehicles and mechs.,0.5kg,124,Explosive,
+E-bomb,Extremely Rare,,,,6d10 E,24,,,,,,,,,"Blast (6), Flame. Cannot be used with launcher weapons and cannot be thrown.",10kg,2000,Explosive,
+Kevlar Vest,Abundant,,,,,,,,Body,3,60,,,,,5kg,72,Armor,
+Body Armor,Average,,,,,,,,"Head, Body",3,60,,,,,8kg,120,Armor,
+Spacesuit,Average,,,,,,,,All,1,100,,,,Oxygen reserves,7kg,120,Armor,
+Armor-lined Suit,Average,,,,,,,,"Body, Arms, Legs",2,100,,,,,3kg,120,Armor,
+Cydonian SEC-Spacesuit,Scarce,,,,,,,,All,2,100,,,,"Oxygen reserves, self-sealing nanomachines",9kg,240,Armor,
+Cydonian SEC-Armor,Rare,,,,,,,,All,4,50,,,,,11kg,480,Armor,
+Kusanagi SPACE-1,Very Rare,,,,,,,,All,4,50,,,,"Night vision, oxygen reserves, self-sealing nanomachines, EMP shield, RCS controls",15kg,960,Armor,
+Kusanagi AR-1,Very Rare,,,,,,,,All,6,45,,,,"Night vision, remote monitoring, air filtration system, EMP shield",15kg,960,Armor,
+SIS Stealth Suit,Extremely Rare,,,,,,,,All,2,100,,,,"Provides +30 to Stealth, anyone targeting the wearer with an attack suffers a -20 to hit.",8kg,1920,Armor,
+GUSF COMBAT Armor,Near Unique,,,,,,,,All,8,45,,,,"Night vision, remote monitoring, air filtration system, EMP shield",20kg,3840,Armor,
+GUSF PILOT Suit,Near Unique,,,,,,,,All,7,60,,,,"AI, remote monitoring, night vision, RCS controls, air filtration system, oxygen reserves, self-sealing nanomachines, EMP shield",13kg,3840,Armor,
+Brainchip,Common,,,,,,,,,,,0,,,"Facilitates instant communication, internet usage, connection to networks, and primitive connections to VR space.",,250,Cybernetic,
+DIVE Port,Common,,,,,,,,,,,0,,,Gain a +10 bonus to Software tests whilst connected to a relevant device via port.,,250,Cybernetic,
+Arm Weapon Mount,Average,,,,,,,,,,,1,,,Integrate a single weapon of Rare or lower availability into your arm. Disallows weapon mods.,,250,Cybernetic,
+Cranial Armor,Average,,,,,,,,,,,1,,,Adds +1 armor point to the head.,,250,Cybernetic,
+Reinforced Arms,Average,,,,,,,,,,,1,,,Adds +1 armor point to the arms.,,250,Cybernetic,
+Reinforced Legs,Average,,,,,,,,,,,1,,,Adds +1 armor point to the legs.,,250,Cybernetic,
+Dense Marrow,Scarce,,,,,,,,,,,2,,,Gain Sound Constitution (3).,,500,Cybernetic,
+Compliance Implant,Scarce,,,,,,,,,,,0,,,"A small and lethal remote-controlled device. Deals 6d10 Energy damage to the body part it's installed in when activated, ignoring armor.",,500,Cybernetic,
+Psi-chip,Rare,,,,,,,,,,,1,,,Gain a +10 to all Focus Power tests.,,1000,Cybernetic,
+Logi-chip,Rare,,,,,,,,,,,1,,,Gain a +10 to all Logic and Lore tests.,,1000,Cybernetic,
+Reflex Tuner,Rare,,,,,,,,,,,1,,,"Take an immediate half action and regain your reaction upon falling below 25% wounds, up to once per encounter.",,1000,Cybernetic,
+Critical Systems Analyzer MK.I,Rare,,,,,,,,,,,1,,,"Once per round, you may make a +20 Perception test on a target as a free action. On a success, gain knowledge of its current armor and wounds.",,1000,Cybernetic,
+Sniper's Eye,Rare,,,,,,,,,,,1,,,"Grants +10 BS when firing single shot. Ignores penalties for Long and Extreme range, as long as the shooter is benefitting from a Full Action to Aim.",,1000,Cybernetic,
+Bionic Respiratory System,Rare,,,,,,,,,,,1,,,"Gain a +20 bonus to Toughness tests made to resist airborne toxins and gas, and can hold breath twice as long.",,1000,Cybernetic,
+Fireproof Subskin,Rare,,,,,,,,,,,2,,,"You take half damage from weapons with the Flame attribute, and cannot catch on fire.",,2000,Cybernetic,
+Synth Muscle,Rare,,,,,,,,,,,2,,,Grants the Unnatural Strength (3) trait.,,2000,Cybernetic,
+Bionic Legs,Rare,,,,,,,,,,,2,,,"Grants the Unnatural Agility (1) trait, a +20 bonus to tests made to jump, and the Catfall talent.",,2000,Cybernetic,
+Bionic Senses,Rare,,,,,,,,,,,2,,,"Grants night vision, thermal vision, a +20 to tests against flashbangs, and the Keen Intuition talent.",,2000,Cybernetic,
+Advanced Arm Weapon Mount,Rare,,,,,,,,,,,2,,,Integrate a single weapon of Very Rare or higher availability into your arm. Disallows weapon mods.,,2000,Cybernetic,
+Kusanagi S-system MK.I,Rare,,,,,,,,,,,3,,,"When activated as a free action, gain 3 fatigue, and then take two turns in a row. Must pass a +0 Toughness test or be stunned for your next turn.",,2000,Cybernetic,
+Bionic Heart,Very Rare,,,,,,,,,,,1,,,Adds +1 armor point to the Body location and Sprint talent.,,2000,Cybernetic,
+Immune Booster,Very Rare,,,,,,,,,,,1,,,"Always considered Lightly Damaged, and heals at an increased rate, removing 2 points of damage per day instead of 1.",,2000,Cybernetic,
+Critical Systems Targeter,Very Rare,,,,,,,,,,,1,,,All attacks gain Vengeful(9).,,2000,Cybernetic,
+Critical Systems Analyzer MK.II,Very Rare,,,,,,,,,,,2,,,"You have complete knowledge of the current armor, fatigue, and wounds values of all visible opponents, and know the armor values of visible cover.",,4000,Cybernetic,
+BOLT Legs,Very Rare,,,,,,,,,,,2,,,"Adds +1 armor to the legs, and grants the Preternatural Speed talent.",,4000,Cybernetic,
+Subskin Armour,Very Rare,,,,,,,,,,,2,,,"Adds +2 armor to arms, body, and legs.",,4000,Cybernetic,
+Psycho-k Enhancements,Extremely Rare,,,,,,,,,,,2,,,Required for the Psychokineticist Elite Advance.,,8000,Cybernetic,
+Kusanagi S-system MK.II,Extremely Rare,,,,,,,,,,,4,,,"When activated as a free action, gain 5 fatigue, and then take three turns in a row. Must pass a -10 Toughness test or be stunned for your next turn.",,12000,Cybernetic,
+Kusanagi S-system MK.III,Near Unique,,,,,,,,,,,5,,,"When activated as a free action, gain 7 fatigue, and then take four turns in a row. Must pass a -20 Toughness test or be stunned for your next turn.",,16000,Cybernetic,
+Backpack,Abundant,,,,,,,,,,,,,,"Allows the wearer to transport roughly 30 kg of extra weight, but removing an object from the pack requires a Full Action.",2kg,9,Misc,
+Manacles,Abundant,,,,,,,,,,,,,,A pair of handcuffs. Useful for restraining and inhibiting movement.,0kg,9,Misc,
+First Aid Kit,Abundant,,,,,,,,,,,,,,Provides +20 to Medical skill tests provided the user knows the Medical skill.,7kg,40,Misc,
+Handheld Computer,Abundant,,,,,,,,,,,,,,"A small computer primarily used for communication, internet access, and recording.",0kg,100,Misc,
+Toolbox,Abundant,,,,,,,,,,,,,,Provides +10 to all Hardware tests provided the user knows the Hardware skill.,10kg,40,Misc,
+VR Rig,Abundant,,,,,,,,,,,,,,Facilitates connection to virtual reality.,3kg,20,Misc,
+Binoculars,Average,,,,,,,,,,,,,,Can remove most distance-based penalties to Perception skill tests.,1.5kg,15,Misc,
+Concealed Holster,Average,,,,,,,,,,,,,,Attempts to detect a weapon in the holster suffer a -20 penalty. Doubles weapon draw time.,1kg,15,Misc,
+Rebreather,Scarce,,,,,,,,,,,,,,A mask with an external supply tank that stores and recycles breathable air. The wearer is immune to toxic atmospheres and can breathe underwater.,1kg,30,Misc,
+Respirator / Gas Mask,Scarce,,,,,,,,,,,,,,"A character wearing one gains a +30 bonus to any Toughness test made to resist the effects of gas, and may reroll the test if failed.",1kg,30,Misc,
+Wire Gun,Scarce,,,,,,,,,,,,,,"Can be fired with a Ballistic Skill test to attach to a surface within 30m. As a Half Action, an attached Wire Gun can be retracted, moving the user 15m.",3kg,30,Misc,
+Night Vision Goggles,Very Rare,,,,,,,,,,,,,,Wearing and activating NVGs in darkness means the wearer no longer suffers darkness-based vision penalties.,0.5kg,120,Misc,
+Brainchip Comms Jammer,Very Rare,,,,,,,,,,,,,,Jams outgoing brainchip communication data within a 150 meter radius of handheld device.,0.5kg,120,Misc,
+Silencer,Plentiful,,,,,,,,,,,,,,"Tests to hear the weapon are made at a -20, and are audible only at half the normal distance. Applicable to any Light or Basic solid projectile weapon.",0.5kg,28,Weapon Mod,
+Compact,Average,,,,,,,,,,,,,,"1/2 weight, mag size, and range. Dmg -1. Tests suffer a -20 to attempt to find the weapon. Applicable to any ranged laser, solid projectile, bolt, or plasma weapon of Basic class.",0kg,40,Weapon Mod,
+Telescopic sight,Average,,,,,,,,,,,,,,"Ignore penalties for Long and Extreme range after Full Action aim. Applicable to any ranged laser, solid projectile, bolt, or plasma weapon of Basic class.",1kg,40,Weapon Mod,
+Tripod/Bipod,Average,,,,,,,,,,,,,,"Can brace weapon on any reasonably flat surface. Bipod 90 deg. fire arc, tripod 180 deg. Applicable to any Basic or Heavy ranged weapon.",2kg,40,Weapon Mod,
+Expanded Mag,Average,,,,,,,,,,,,,,Increase mag size by half (rounded up). Applicable to any ranged weapon.,1kg,40,Weapon Mod,
+Backpack Ammo Supply,Scarce,,,,,,,,,,,,,,"Mag size x5, can't be reloaded in combat. Applicable to any bolt, flame, las, melta, plasma, and solid projectile weapon.",15kg,80,Weapon Mod,
+Bio-Lock,Scarce,,,,,,,,,,,,,,Only allows a verified user to fire the weapon. Applicable to any weapon.,0kg,80,Weapon Mod,
+Modified Stock,Scarce,,,,,,,,,,,,,,"Grants +2 bonus to half action aim, +4 bonus to full action aim. Applicable to any weapon.",0kg,80,Weapon Mod,
+Laser Sight,Scarce,,,,,,,,,,,,,,"Gain +10 to BS when firing single shot. Applicable to any ranged laser, solid projectile, bolt, or plasma weapon of the Basic class.",0.5kg,80,Weapon Mod,
+Org-Lock,Scarce,,,,,,,,,,,,,,Disallows firing on friendly targets as specified by the Org-Lock maintainer. Applicable to any ranged weapon.,0kg,80,Weapon Mod,
+Custom Grip,Rare,,,,,,,,,,,,,,"Grants +5 to BS or WS for owner, -5 to all others. Applicable to any weapon.",0kg,160,Weapon Mod,
+Fire Selector,Rare,,,,,,,,,,,,,,"Swap ammo type without reloading. Applicable to any bolt, launcher, and solid projectile weapon of Light or Basic class.",1kg,160,Weapon Mod,
+Burst Stock,Rare,,,,,,,,,,,,,,"When using semi-auto burst, counts as scoring one additional DoS. Applicable to any ranged weapon capable of semi-automatic fire.",0kg,160,Weapon Mod,
+Auxiliary Grenade Launcher,Rare,,,,,,,,,,,,,,"45m range w/ dmg and pen of the loaded grenade. Can't reload during combat. Applicable to any laser, solid projectile or Basic bolt weapon.",2.5kg,160,Weapon Mod,
+EMP Shielding,Rare,,,,,,,,,,,,,,Protects any elecronic components of the weapon from electromagnetic pulse (EMP) attacks. Applicable to any weapon.,0kg,160,Weapon Mod,
+Predictor Chip,Very Rare,,,,,,,,,,,,,,Grants +10 to BS to semi-auto burst or full auto. Applicable to any ranged weapon.,0kg,320,Weapon Mod,
+Thermal Sight,Very Rare,,,,,,,,,,,,,,"No penalties due to smoke/darkness, and +20 bonus to perception test in the dark. Applicable to any basic laser, solid projectile, bolt, or plasma weapon.",0.5kg,320,Weapon Mod,
+Omni-scope,Extremely Rare,,,,,,,,,,,,,,"Combines benefits of thermal sight, laser sight, and telescopic sight. Applicable to any ranged laser, solid projectile, bolt, or plasma of basic class.",2kg,640,Weapon Mod,
+High-Quality Rounds,Common,,,,,,,,,,,,,,Add 1 to weapon's damage and penetration. Kinetic weapons only.,,20,Special Ammo,
+Overcharge Pack,Scarce,,,,,,,,,,,,,,"Adds +1 damage, gains tearing and pen 4, loses reliable and -1 mag size. Laser weapons only (not Heavy Laser).",,30,Special Ammo,
+AP Rounds,Scarce,,,,,,,,,,,,,,Adds 3 to weapon pen. Kinetic weapons only.,,30,Special Ammo,
+Toxic Rounds,Scarce,,,,,,,,,,,,,,Adds Toxic(1) quality and -2 damage. Bolt and kinetic weapons.,,30,Special Ammo,
+Scrambler Rounds,Rare,,,,,,,,,,,,,,Adds the Hallucinogenic (2) and Recharge qualities. Bolt and kinetic weapons.,,60,Special Ammo,
+Hollow-point Rounds,Rare,,,,,,,,,,,,,,Damage from hollow-point rounds causes Blood Loss for 1d5 rounds or until treated. Kinetic weapons only.,,60,Special Ammo,
+Inferno Shells,Rare,,,,,,,,,,,,,,Gains the Flame quality. Shotgun and bolt weapons only.,,60,Special Ammo,
+Amputator Shells,Extremely Rare,,,,,,,,,,,,,,Adds +2 to weapon damage. Kinetic weapons only.,,120,Special Ammo,
+MTX (methotrexate),Scarce,,,,,,,,,,,,,,Your T bonus is doubled for the purpose of calculating your cybernetics threshold. Lasts 24 hours.,,50,Consumable,
+CYP (cyclophosphamide),Rare,,,,,,,,,,,,,,Your T bonus is tripled for the purpose of calculating your cybernetics threshold. Lasts 24 hours.,,100,Consumable,
+Frontier Scrap Engine,Common,,,,,,,,,,,,Engine,Body,Provides movement speed of 10m/20m/30m/60m.,,576,Mech Engine,
+CYD-Liber,Average,,,,,,,,,,,,Engine,Body,Provides movement speed of 15m/30m/45m/90m.,,720,Mech Engine,
+Auxiliary Engine,Average,,,,,,,,,,,,Engine,"Arms, Legs",Provides additional movement speed of 5m/10m/15m/30m. Stacks with other engines.,,720,Mech Engine,
+CYD-Burner,Scarce,,,,,,,,,,,,Engine,Body,Provides movement speed of 15m/30m/60m/120m.,,1440,Mech Engine,
+CYD-Reflex,Scarce,,,,,,,,,,,,Engine,Body,Provides movement speed of 15m/30m/45m/90m and a +10 to Dodge and Parry.,,1440,Mech Engine,
+Binary Star,Rare,,,,,,,,,,,,Engine,"Arms, Legs",Provides additional movement speed of 10m/20m/30m/60m. Stacks with other engines.,,2880,Mech Engine,
+CYD-Redline,Rare,,,,,,,,,,,,Engine,Body,Provides movement speed of 20m/40m/60m/120m.,,2880,Mech Engine,
+GUSF-Dando,Very Rare,,,,,,,,,,,,Engine,Body,Provides movement speed of 20m/40m/60m/120m and a +10 to Dodge and Parry.,,5760,Mech Engine,
+GUSF-Aurelia,Very Rare,,,,,,,,,,,,Engine,Body,Provides movement speed of 20m/40m/80m/160m.,,5760,Mech Engine,
+GUSF-Carina,Extremely Rare,,,,,,,,,,,,Engine,Body,Provides movement speed of 25m/50m/75m/150m.,,11520,Mech Engine,
+Cockpit,Abundant,,,,,,,,,,,,Utility,"Head, Body",Houses the pilot.,,432,Mech Utility,
+Cockpit w/ Ejection System,Average,,,,,,,,,,,,Utility,"Head, Body","Houses the pilot. May activate to eject as a Half Action. May make a +30 Agility test to eject as a Reaction if system is mounted in the Head, or a +0 Agility test to eject as a Reaction if the system is mounted in the Body.",,720,Mech Utility,
+Armor Plating,Average,,,,,,,,,,,,Utility,Any,Increases AP of the mounted Hit Location by 3.,,720,Mech Utility,
+Reactive Speed Booster,Average,,,,,,,,,,,,Utility,"Body, Legs",Gain a +20 when making Dodge tests against a Blast weapon.,,720,Mech Utility,
+Long Range Targeter,Average,,,,,,,,,,,,Utility,Any,Ignore penalties for Long and Extreme range after Full Action aim.,,720,Mech Utility,
+Drone Mounted Weapon,Scarce,,,,,,,,,,,,Utility,Any,The nearest Weapon Slot may ignore Location requirements for its weapon system.,,1440,Mech Utility,
+Thrust Activated Baffler,Scarce,,,,,,,,,,,,Utility,"Body, Legs","When performing a Charge or Run action, opponents suffer a -20 penalty to ranged attacks until the start of your next turn.",,1440,Mech Utility,
+Two-Seater Cockpit,Scarce,,,,,,,,,,,,Utility,"Head, Body","Houses two pilots. May activate to eject as a Half Action. May make a +30 Agility test to eject as a Reaction if system is mounted in the Head, or a +0 Agility test to eject as a Reaction if the system is mounted in the Body.",,1440,Mech Utility,
+Sensor Array,Scarce,,,,,,,,,,,,Utility,Any,You are aware of the Armor values and System Slots of any mech of rarity Rare or lower. May make a +20 Perception test to determine the Armor values of any opponent.,,1440,Mech Utility,
+Laser Targeter,Scarce,,,,,,,,,,,,Utility,Any,Gain +10 to BS when firing a ranged weapon single shot.,,1440,Mech Utility,
+Compound Target Acquisition Software,Scarce,,,,,,,,,,,,Utility,Any,"As a Half Action, attack with a Standard Attack, Semi-Auto Burst, or a Full Auto Burst with a number of weapons equal to your Ballistic Skill bonus.",,1440,Mech Utility,
+RCS Thrusters,Rare,,,,,,,,,,,,Utility,Any,May take a Half Move as a Free Action after a turn without any Movement actions.,,2880,Mech Utility,
+Solari Shielding,Near Unique,,,,,,,,,,,,Utility,Any,Psionic shield that completely absorbs ranged attacks originating from more than 1km away. ,,23040,Mech Utility,
+Reinforced Fist,Abundant,"Light, Melee",,,1d10+3 I,0,,,,,,,Weapon,Arms,,,180,Mech Melee Weapon,
+Bulwark Shield,Common,"Light, Melee",,,1d5 I,0,,,,,,,Weapon,Arms,"Defensive, Shield (2)",,576,Mech Melee Weapon,
+Heshi-kiri,Average,"Light, Melee",,,1d10+2 R,2,,,,,,,Weapon,Arms,"Balanced, Tearing",,720,Mech Melee Weapon,
+Chigiriki,Average,"Light, Melee",,,1d10+4 R,2,,,,,,,Weapon,Arms,Tearing,,720,Mech Melee Weapon,
+Dōjigiri Yasutsuna,Average,"Light, Melee",,,1d10+4 E,2,,,,,,,Weapon,Arms,Balanced,,720,Mech Melee Weapon,
+Overloader Maul,Scarce,"Light, Melee",,,1d10+3 E,0,,,,,,,Weapon,Arms,Overloading (1),,1440,Mech Melee Weapon,
+Kanabō,Scarce,"Heavy, Melee",,,2d10 R,0,,,,,,,Weapon,Arms,Unbalanced,,1440,Mech Melee Weapon,
+Overloader Whip,Rare,"Light, Melee",15m,,1d10+1 E,0,,,,,,,Weapon,Arms,Overloading (1),,2880,Mech Melee Weapon,
+Shichiseiken,Rare,"Light, Melee",,,1d10+5 E,5,,,,,,,Weapon,Arms,"Balanced, Power Field",,2880,Mech Melee Weapon,
+Shatteraxe,Rare,"Basic, Melee",,,1d10+7 E,7,,,,,,,Weapon,Arms,"Power Field, Unbalanced",,2880,Mech Melee Weapon,
+Molecular Blade,Very Rare,"Light, Melee",,,1d10 R,5,,,,,,,Weapon,Arms,"Corrosive, Razor Sharp, Tearing",,5760,Mech Melee Weapon,
+Shattermaul,Very Rare,"Light, Melee",,,1d10+5 E,4,,,,,,,Weapon,Arms,"Power Field, Overloading (2)",,5760,Mech Melee Weapon,
+Nanochain Blade,Very Rare,"Light, Melee",,,2d10 R,9,,,,,,,Weapon,Arms,"Razor Sharp, Tearing, Unwieldy",,5760,Mech Melee Weapon,
+Centurion Shield,Very Rare,"Light, Melee",,,1d10 E,1,,,,,,,Weapon,Arms,"Defensive, Power Field, Shield (4)",,5760,Mech Melee Weapon,
+Kusanagi no Tsurugi,Extremely Rare,"Light, Melee",,,2d10+6 R,9,,,,,,,Weapon,Arms,Power Field,,11520,Mech Melee Weapon,
+Reflector Shield,Extremely Rare,"Light, Melee",,,1d10 + 1E,1,,,,,,,Weapon,Arms,"Defensive, Power Field, Shield(6)",,11520,Mech Melee Weapon,
+M78b Pistol,Plentiful,"Light, Ranged",80m,S/-/6,1d10+3 I,0,12,Half,,,,,Weapon,Any,,,504,Mech Ranged Weapon,
+CYD-86 Harasser Shotgun,Common,"Basic, Ranged",80m,S/-/-,1d10+4 I,2,5,2 Full,,,,,Weapon,Arms,Scatter,,576,Mech Ranged Weapon,
+CYD-82 Rifle,Common,"Basic, Ranged",300m,S/3/6,1d10+3 I,2,30,Full,,,,,Weapon,Arms,,,576,Mech Ranged Weapon,
+Bodyguard PDS,Common,"Light, Ranged",80m,S/-/10,1d10+2 I,1,50,Full,,,,,Weapon,"Head, Body, Legs",Unreliable,,576,Mech Ranged Weapon,
+M81 Piao-Shi Pistol,Average,"Light, Ranged",100m,S/3/-,1d10+2 I,1,8,Half,,,,,Weapon,Any,,,720,Mech Ranged Weapon,
+Cyclops Marksman Rifle,Average,"Heavy, Ranged",500m,S/-/-,1d10+1 I,1,10,Full,,,,,Weapon,Arms,"Accurate, Felling(1)",,720,Mech Ranged Weapon,
+Deimos Anti-Armor Shotgun,Average,"Basic, Ranged",100m,S/2/-,1d10+3 I,2,8,Full,,,,,Weapon,Arms,"Scatter, Inaccurate",,720,Mech Ranged Weapon,
+Scorn PDS,Average,"Light, Ranged",80m,S/2/4,1d10+2 I,1,16,Half,,,,,Weapon,"Head, Body, Legs",,,720,Mech Ranged Weapon,
+Syrtis Special Magnum Pistol,Scarce,"Light, Ranged",120m,S/2/-,1d10+5 I,2,8,Full,,,,,Weapon,Any,"Unreliable, Tearing",,1440,Mech Ranged Weapon,
+Swiftstrike PDS,Scarce,"Light, Ranged",100m,-/-/6,1d10+2 I,2,30,Full,,,,,Weapon,"Head, Body, Legs",Storm,,1440,Mech Ranged Weapon,
+CYD-94 Companion Rifle,Scarce,"Basic, Ranged",300m,S/3/-,1d10+3 I,3,30,Full,,,,,Weapon,Arms,Proven (4),,1440,Mech Ranged Weapon,
+First Strike Missile System,Scarce,"Light, Ranged",200m,S/-/-,2d10 X,0,5,2 Full,,,,,Weapon,Any,Proven (3),,1440,Mech Ranged Weapon,
+Firestorm Missile Launcher,Scarce,"Heavy, Ranged",200m,S/-/-,2d10 X,0,1,Half,,,,,Weapon,Arms,Blast (30),,1440,Mech Ranged Weapon,
+Longshot Sniper Rifle,Scarce,"Heavy, Ranged",1600m,S/-/-,1d10+4 I,3,10,Full,,,,,Weapon,Arms,"Accurate, Felling (2)",,1440,Mech Ranged Weapon,
+Hi-fukidake Flamer System,Rare,"Light, Ranged",50m,S/-/-,1d10+4 E,2,2,2 Full,,,,,Weapon,Any,"Flame, Spray",,2880,Mech Ranged Weapon,
+CYD-87 Missile Launcher,Rare,"Heavy, Ranged",300m,S/-/-,3d10+3 X,3,10,3 Full,,,,,Weapon,Arms,Proven (2),,2880,Mech Ranged Weapon,
+Daikyu Rifle,Rare,"Basic, Ranged",500m,S/3/9,1d10+4 I,3,45,Full,,,,,Weapon,Arms,Reliable,,2880,Mech Ranged Weapon,
+Cleaver Variable Shotgun,Rare,"Basic, Ranged",120m,S/2/4,1d10+3 I,1,12,Full,,,,,Weapon,Arms,Scatter,,2880,Mech Ranged Weapon,
+Cyclone PDS,Rare,"Light, Ranged",120m,-/6/12,1d10+1 I,2,120,2 Full,,,,,Weapon,"Head, Body, Legs","Inaccurate, Razor Sharp, Storm",,2880,Mech Ranged Weapon,
+Pridwen Mk. 6 PDS,Rare,"Light, Ranged",140m,-/3/6,1d10+3 I,3,60,2 Full,,,,,Weapon,"Head, Body, Legs",,,2880,Mech Ranged Weapon,
+Argus Panoptes Precision Rifle,Rare,"Heavy, Ranged",1200m,S/2/5,1d10+3 I,3,20,Half,,,,,Weapon,Arms,"Accurate, Felling (4)",,2880,Mech Ranged Weapon,
+Tantō Pistol,Rare,"Light, Ranged",100m,S/2/-,1d10+4 E,7,40,2 Full,,,,,Weapon,Any,,,2880,Mech Ranged Weapon,
+Type-89 Armored Unit Rifle,Rare,"Basic, Ranged",300m,S/3/-,1d10+4 E,7,30,2 Full,,,,,Weapon,Arms,,,2880,Mech Ranged Weapon,
+Type-92 Limited Missile System,Very Rare,"Light, Ranged",200m,S/2/-,1d10+5 X,4,8,Full,,,,,Weapon,Any,Tearing,,5760,Mech Ranged Weapon,
+CYD-99 Fury Missile Launcher,Very Rare,"Basic, Ranged",500m,S/3/-,1d10+5 X,4,24,Full,,,,,Weapon,Arms,Tearing,,5760,Mech Ranged Weapon,
+Tembatsu Missile Launcher,Very Rare,"Heavy, Ranged",700m,-/-/6,1d10+8 X,4,60,Full,,,,,Weapon,Arms,Tearing,,5760,Mech Ranged Weapon,
+Type-95 Plasma Accelerator,Extremely Rare,"Light, Ranged",150m,S/2/-,1d10+6 E,6,10,3 Full,,,,,Weapon,Any,"Maximal, Overheats",,11520,Mech Ranged Weapon,
+Alnitak Plasma Accelerator,Extremely Rare,"Basic, Ranged",450m,S/2/-,1d10+7 E,6,40,5 Full,,,,,Weapon,Arms,"Maximal, Overheats",,11520,Mech Ranged Weapon,
+Extirpator Missile Launcher,Extremely Rare,"Heavy, Ranged",1250m,S/-/-,4d10 X,0,10,3 Full,,,,,Weapon,Arms,Blast (40),,11520,Mech Ranged Weapon,
+Tlaloc Missile System,Extremely Rare,"Basic, Ranged",450m,S/2/4,1d10+5 X,4,60,Full,,,,,Weapon,Arms,"Storm, Tearing",,11520,Mech Ranged Weapon,
+Dominion Sniper Weapon System,Extremely Rare,"Heavy, Ranged",1800m,S/-/-,2d10+2 I,5,8,2 Full,,,,,Weapon,Arms,"Accurate, Concussive (2), Razor Sharp",,11520,Mech Ranged Weapon,
+Memento Exotic Matter Pistol,Near Unique,"Light, Ranged",50m,S/-/-,2d10+10 E,18,3,Full,,,,,Weapon,Any,,,23040,Mech Ranged Weapon,
+Thanatos Exotic Matter Rifle,Near Unique,"Basic, Ranged",100m,S/-/-,2d10+10 E,18,5,Full,,,,,Weapon,Arms,,,23040,Mech Ranged Weapon,
+Cydonia Hussar,Abundant,,,,,,,,,,,,,,,,45000,Mech,https://cdn.discordapp.com/attachments/273288376969330688/1103779909270245586/CYD-Hussar.png
+Entreaty Partisan,Plentiful,,,,,,,,,,,,,,,,52500,Mech,https://cdn.discordapp.com/attachments/273288376969330688/1103779910847299614/ENT-Partisan.png
+Gates Hotspur,Common,,,,,,,,,,,,,,,,60000,Mech,https://cdn.discordapp.com/attachments/273288376969330688/1103779911606472774/GATES-Hotspur.png
+Cydonia Legionary,Average,,,,,,,,,,,,,,,,75000,Mech,https://cdn.discordapp.com/attachments/273288376969330688/1103779910058774539/CYD-Legionary.png
+Cydonia Lancer,Scarce,,,,,,,,,,,,,,,,150000,Mech,https://cdn.discordapp.com/attachments/273288376969330688/1103779909618368564/CYD-Lancer.png
+Cydonia Vinta,Scarce,,,,,,,,,,,,,,,,150000,Mech,https://cdn.discordapp.com/attachments/273288376969330688/1103779910461431849/CYD-Vinta.png
+Kusanagi Oni,Scarce,,,,,,,,,,,,,,,,150000,Mech,https://cdn.discordapp.com/attachments/273288376969330688/1103779908750151751/KUS-Oni.png
+Gates Valvatid,Scarce,,,,,,,,,,,,,,,,150000,Mech,https://cdn.discordapp.com/attachments/273288376969330688/1103779911933624360/GATES-Valvatid.png
+Kusanagi Scorpion,Rare,,,,,,,,,,,,,,,,300000,Mech,https://cdn.discordapp.com/attachments/273288376969330688/1103779918078292058/KUS-Scorpion.png
+Gates Comet,Rare,,,,,,,,,,,,,,,,300000,Mech,https://cdn.discordapp.com/attachments/273288376969330688/1103779911187046524/GATES-Comet.png
+GUSF Cataphract,Very Rare,,,,,,,,,,,,,,,,600000,Mech,https://cdn.discordapp.com/attachments/273288376969330688/1103779912344670269/GUSF-Cataphract.png

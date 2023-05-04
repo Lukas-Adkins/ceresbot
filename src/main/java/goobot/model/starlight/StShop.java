@@ -43,16 +43,15 @@ public abstract class StShop {
     }
     
     public ArrayList<StItem> getInventory(int numUbiquitous, int numAbundant, int numPlentiful, int numCommon, int numAverage,
-    int numUncommon, int numScarce, int numRare, int numVeryRare, int numExtremelyRare, int numNearUnique){
-        System.out.println(String.format("Shop Request Rarities:\n ub: %d\n ab: %s\n pl: %s\n co: %s\n av: %s\n un: %s\n sc: %s\n ra: %s\n vr: %s\n er: %s\n nu: %s\n",
-        numUbiquitous, numAbundant, numPlentiful, numCommon, numAverage, numUncommon, numScarce, numRare, numVeryRare, numExtremelyRare, numNearUnique));
+    int numScarce, int numRare, int numVeryRare, int numExtremelyRare, int numNearUnique){
+        System.out.println(String.format("Shop Request Rarities:\n ub: %d\n ab: %s\n pl: %s\n co: %s\n av: %s\n sc: %s\n ra: %s\n vr: %s\n er: %s\n nu: %s\n",
+        numUbiquitous, numAbundant, numPlentiful, numCommon, numAverage, numScarce, numRare, numVeryRare, numExtremelyRare, numNearUnique));
         Set<StItem> set = new HashSet<>();
         set = getInventoryOfRarity(StRarity.UBIQUITOUS, numUbiquitous, set);
         set = getInventoryOfRarity(StRarity.ABUNDANT, numAbundant, set);
         set = getInventoryOfRarity(StRarity.PLENTIFUL, numPlentiful, set);
         set = getInventoryOfRarity(StRarity.COMMON, numCommon, set);
         set = getInventoryOfRarity(StRarity.AVERAGE, numAverage, set);
-        set = getInventoryOfRarity(StRarity.UNCOMMON, numUncommon, set);
         set = getInventoryOfRarity(StRarity.SCARCE, numScarce, set);
         set = getInventoryOfRarity(StRarity.RARE, numRare, set);
         set = getInventoryOfRarity(StRarity.VERY_RARE, numVeryRare, set);

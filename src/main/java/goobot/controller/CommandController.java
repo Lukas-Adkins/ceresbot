@@ -19,6 +19,7 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import goobot.model.starlight.StMech;
 
 public class CommandController {
     public DndSpellController spellLibrary;
@@ -89,16 +90,17 @@ public class CommandController {
      * @param args Arguments, contains name of mech
      * @return mech image url
      */
-    public String MechInfo(String args){
+    public StMech MechInfo(String args){
+        StMech mech = null;
         try{
             String mechName = args.replace("-", " ").trim();
-            System.out.println(mechName);
+            mech = (StMech) stItemController.getItem(mechName);
         }
         catch(Exception e){
-            System.err.println("Error parsing mech: " + args);
+            System.err.println("Error finding mech: " + args);
             e.printStackTrace();
         }
-        return Constants.MECH_NOT_FOUND_MSG;
+        return mech;
     }
 
     /**
@@ -225,7 +227,6 @@ public class CommandController {
         plentiful = 0,
         common = 0,
         average = 0,
-        uncommon = 0,
         scarce = 0,
         rare = 0,
         veryRare = 0,
@@ -247,41 +248,41 @@ public class CommandController {
             else if(d100 < commerceSkill - 10)
                 scarce++;
             else if(d100 < commerceSkill)
-                uncommon++;
-            else if(d100 < commerceSkill + 10)
                 average++;
-            else if(d100 < commerceSkill + 20)
+            else if(d100 < commerceSkill + 10)
                 common++;
-            else
+            else if(d100 < commerceSkill + 20)
                 plentiful++;
+            else
+                abundant++;
         }
         System.out.println("Shop Request:\n " + numberOfItems + " total items.");
     
         String shopList = "Welcome to the CeresBot Starlight storefront generator!\nGenerated a store inventory based on a shopkeep with a Commerce skill of "
         + commerceSkill + ".\n\n";
         String meleeList = "", rangedList = "", armorList = "", explosiveList = "", cyberneticList = "", modList = "", ammoList = "", miscList = "",
-        mechEngineList = "", mechUtilityList = "", mechMeleeList = "", mechRangedList = "";
+        mechEngineList = "", mechUtilityList = "", mechMeleeList = "", mechRangedList = "", mechList = "";
 
         String shopType = arr[0].toLowerCase();
         ArrayList<StItem> itemList = null;
         switch (shopType){
             case "ranged":
-                itemList = stItemController.getRangedShop(ubiquitous, abundant, plentiful, common, average, uncommon, scarce, rare, veryRare, extremelyRare, nearUnique);
+                itemList = stItemController.getRangedShop(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
                 break;
             case "melee":
-                itemList = stItemController.getMeleeShop(ubiquitous, abundant, plentiful, common, average, uncommon, scarce, rare, veryRare, extremelyRare, nearUnique);
+                itemList = stItemController.getMeleeShop(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
                 break;
             case "armor":
-                itemList = stItemController.getArmorShop(ubiquitous, abundant, plentiful, common, average, uncommon, scarce, rare, veryRare, extremelyRare, nearUnique);
+                itemList = stItemController.getArmorShop(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
                 break;
             case "munitions":
-                itemList = stItemController.getMunitionsShop(ubiquitous, abundant, plentiful, common, average, uncommon, scarce, rare, veryRare, extremelyRare, nearUnique);
+                itemList = stItemController.getMunitionsShop(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
                 break;
             case "cybernetics":
-                itemList = stItemController.getCyberneticsShop(ubiquitous, abundant, plentiful, common, average, uncommon, scarce, rare, veryRare, extremelyRare, nearUnique);
+                itemList = stItemController.getCyberneticsShop(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
                 break;
             case "mech":
-                itemList = stItemController.getMechShop(ubiquitous, abundant, plentiful, common, average, uncommon, scarce, rare, veryRare, extremelyRare, nearUnique);
+                itemList = stItemController.getMechShop(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
                 break;
             default:
                 throw new Exception("Unable to parse shop type.");
@@ -327,6 +328,9 @@ public class CommandController {
                     break;
                 case MECH_RANGED_WEAPON:
                     mechRangedList = mechRangedList + " " + item.getShopString();
+                    break;
+                case MECH:
+                    mechList = mechList + " " + item.getShopString();
                     break;
             }
         }

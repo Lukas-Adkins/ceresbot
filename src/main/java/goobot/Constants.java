@@ -73,7 +73,8 @@ public class Constants {
         MECH_ENGINE,
         MECH_UTILITY,
         MECH_MELEE_WEAPON,
-        MECH_RANGED_WEAPON
+        MECH_RANGED_WEAPON,
+        MECH
     }
 
     public enum StShopType {
@@ -113,12 +114,6 @@ public class Constants {
             @Override
             public String toString(){
                 return "Average";
-            }
-        },
-        UNCOMMON {
-            @Override
-            public String toString(){
-                return "Uncommon";
             }
         },
         SCARCE {
@@ -167,8 +162,7 @@ public class Constants {
         StRarity.ABUNDANT, "\u001b[0;30m%s\u001b[0;0m", // Gray
         StRarity.PLENTIFUL, "\u001b[0;30m%s\u001b[0;0m", // Gray
         StRarity.COMMON, "\u001b[0;33m%s\u001b[0;0m", // Yellow
-        StRarity.AVERAGE, "\u001b[0;33m%s\u001b[0;0m", // Yellow
-        StRarity.UNCOMMON, "\u001b[0;32m%s\u001b[0;0m", // Green
+        StRarity.AVERAGE, "\u001b[0;32m%s\u001b[0;0m", // Green
         StRarity.SCARCE, "\u001b[0;34m%s\u001b[0;0m", // Blue
         StRarity.RARE, "\u001b[0;36m%s\u001b[0;0m", // Cyan
         StRarity.VERY_RARE, "\u001b[0;35m%s\u001b[0;0m", // Pink

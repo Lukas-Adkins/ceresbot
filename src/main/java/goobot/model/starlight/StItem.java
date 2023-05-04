@@ -177,8 +177,6 @@ public class StItem {
                 return String.format(Constants.RARITY_COLORS.get(StRarity.COMMON), rarity);
             case AVERAGE:
                 return String.format(Constants.RARITY_COLORS.get(StRarity.AVERAGE), rarity);
-            case UNCOMMON:
-                return String.format(Constants.RARITY_COLORS.get(StRarity.UNCOMMON), rarity);
             case SCARCE:
                 return String.format(Constants.RARITY_COLORS.get(StRarity.SCARCE), rarity);
             case RARE:
