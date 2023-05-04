@@ -112,11 +112,13 @@ public class DiscordController extends ListenerAdapter {
                     post(commandController.Roll(args), channel);
                     break;
                 case "item":
-                    post(commandController.dhItem(args), channel);
+                    post(commandController.StItem(args), channel);
                     break;
                 case "shop":
-                    post(commandController.dhShop(args), channel);
+                    post(commandController.StShop(args), channel);
                     break;
+                case "mech":
+                    post(commandController.MechInfo(args), channel);
                 case "character":
                     List<String> response = commandController.CharacterInfo(args);
                     // If the character has an image, post its link

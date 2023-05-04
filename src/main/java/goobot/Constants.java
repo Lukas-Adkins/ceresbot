@@ -7,6 +7,7 @@ package goobot;
 import java.util.Map;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map.Entry;
 
 public class Constants {
     public static final Integer 
@@ -23,6 +24,7 @@ public class Constants {
     SPELL_NOT_FOUND_MSG = "Spell not found. Keep in mind, only PHB, XGtE, and TCoE spells are supported currently.",
     ITEM_NOT_FOUND_MESSAGE = "Item not found.",
     CHARACTER_NOT_FOUND_MSG = "Character not found. Please make sure you have spelled the character's name correctly.",
+    MECH_NOT_FOUND_MSG = "Mech not found. Please make sure you have spelled the mech's name correctly.",
     PAT_MSG = "<:ceresblush:875653225385168898>",
     PONG_MSG = "Pong!",
     HELP_MSG= "**Command List:**\n" +
@@ -30,8 +32,9 @@ public class Constants {
         "`!spell <spell>` - Provides information on the given 5e D&D spell.\n" +
         "`!spellscroll <spell>` - Calculates the price of a spell scroll for the given 5e D&D spell, and what stats you need to use it.\n" +
         "`!character <character>` - Provides information on the given D&D character.\n" +
-        "`!item <item name>` - Provides information on the given Starlight item.\n" +
-        "`!shop <ranged,melee,armor,munitions,cybernetics,mech> <commerce skill>` - Generates a store inventory of Starlight items based on a shop type and commerce skill.\n",
+        "`!item <name>` - Provides information on the given Starlight item.\n" +
+        "`!shop <ranged,melee,armor,munitions,cybernetics,mech> <commerce skill>` - Generates a store inventory of Starlight items based on a shop type and commerce skill.\n" + 
+        "`!mech <name>` - Provides information on the given Starlight mech.",
     SPELLS_FILEPATH = "spells.json",
     SPELLS_TEST_FILEPATH = "spells_test.json",
     ST_ITEMS_FILEPATH = "starlight_items.csv",

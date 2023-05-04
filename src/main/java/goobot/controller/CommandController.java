@@ -85,6 +85,23 @@ public class CommandController {
     }
 
     /**
+     * Looks up mech info.
+     * @param args Arguments, contains name of mech
+     * @return mech image url
+     */
+    public String MechInfo(String args){
+        try{
+            String mechName = args.replace("-", " ").trim();
+            System.out.println(mechName);
+        }
+        catch(Exception e){
+            System.err.println("Error parsing mech: " + args);
+            e.printStackTrace();
+        }
+        return Constants.MECH_NOT_FOUND_MSG;
+    }
+
+    /**
      * Simulates a tabletop dice roll.
      * @param args Dice and number of dice in <dice>d<dice> format
      * @return Formatted string with roll total and individually rolled dice
@@ -176,11 +193,11 @@ public class CommandController {
     }
 
     /**
-     * Gets information about a particular dh2e item.
+     * Gets information about a particular Starlight item.
      * @param args Name of the item
      * @return String item information
      */
-    public String dhItem(String args){
+    public String StItem(String args){
         String itemName = args.replace("-", " ");
         StItem item = stItemController.getItem(itemName);
         if(item != null){
@@ -195,7 +212,7 @@ public class CommandController {
      * @param args Commerce skill of the shopkeeper
      * @return Store information formatted as a string
      */
-    public String dhShop(String args) throws Exception {
+    public String StShop(String args) throws Exception {
         String arr[] = args.split(" ", 2);        
 
         Integer commerceSkill = Integer.parseInt(arr[1]),
