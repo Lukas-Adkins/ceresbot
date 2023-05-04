@@ -1,6 +1,6 @@
 # Ceresbot
 
-A helpful Discord bot for looking up D&D-related data.
+A helpful Discord bot for for TTRPG tools.
 
 **Setup**
 
@@ -17,4 +17,6 @@ A helpful Discord bot for looking up D&D-related data.
 `!roll <number of dice>d<dice> <+/-> <modifier>` - Simulates a dice roll for the specified dice values.    
 `!spell <spell>` - Provides information on the given 5e D&D spell.  
 `!spellscroll <spell>` - Calculates the price of a spell scroll for the given 5e D&D spell.  
-`!character <character name>` - Displays information about a matching D&D character.
+`!character <character name>` - Displays information about a matching D&D character.  
+`!item <item name>` - Provides information on the given Starlight item.  
+`!shop <ranged,melee,armor,munitions,cybernetics,mech> <commerce skill>` - Generates a store inventory of Starlight items based on a shop type and commerce skill.
