@@ -4,6 +4,7 @@
 src/main/resources/spells.json
 src/main/resources/materia_characters.csv
 src/main/resources/inferno_characters.csv
+src/main/resources/hysteria_characters.csv
 
 # Ignore Gradle GUI config
 gradle-app.setting

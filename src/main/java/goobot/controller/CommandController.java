@@ -5,21 +5,17 @@
 
 package goobot.controller;
 
-import java.util.Random;
-
 import goobot.Constants;
 import goobot.model.dnd.DndSpell;
 import goobot.model.starlight.StItem;
+import goobot.model.starlight.StMech;
 
 import java.util.Arrays;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Collections;
-import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import goobot.model.starlight.StMech;
+import java.util.Random;
 
 public class CommandController {
     public DndSpellController spellLibrary;
@@ -249,12 +245,8 @@ public class CommandController {
                 scarce++;
             else if(d100 < commerceSkill)
                 average++;
-            else if(d100 < commerceSkill + 10)
-                common++;
-            else if(d100 < commerceSkill + 20)
-                plentiful++;
             else
-                abundant++;
+                common++;
         }
         System.out.println("Shop Request:\n " + numberOfItems + " total items.");
     

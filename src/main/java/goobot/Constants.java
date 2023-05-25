@@ -43,7 +43,7 @@ public class Constants {
     CHARACTER_CSV_NOT_FOUND_ERROR = "Could not find character CSV file.",
     BOT_START_ERROR = "Could not start Ceresbot.";
 
-    public static final List<String> CHARACTER_FILEPATHS = Arrays.asList("materia_characters.csv", "inferno_characters.csv");
+    public static final List<String> CHARACTER_FILEPATHS = Arrays.asList("materia_characters.csv", "inferno_characters.csv", "hysteria_characters.csv");
     public static final List<String> CHARACTER_TEST_FILEPATHS = Arrays.asList("characters_test.csv");
     
     // Price map for default PHB spell scroll prices, by level / gp cost.
@@ -75,10 +75,6 @@ public class Constants {
         MECH_MELEE_WEAPON,
         MECH_RANGED_WEAPON,
         MECH
-    }
-
-    public enum StShopType {
-        
     }
 
     public enum StRarity {

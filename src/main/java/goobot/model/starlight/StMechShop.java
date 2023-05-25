@@ -10,10 +10,10 @@ import java.util.HashSet;
 
 public class StMechShop extends StShop {
     private static final double 
-    ENGINE_WEIGHT = 0.2,
-    UTILITY_WEIGHT = 0.4,
-    MELEE_WEIGHT = 0.2,
-    RANGED_WEIGHT = 0.2;
+    ENGINE_WEIGHT = 0.15,
+    UTILITY_WEIGHT = 0.2,
+    MELEE_WEIGHT = 0.3,
+    RANGED_WEIGHT = 0.35;
     
     public StMechShop(HashMap<StItemType, ArrayList<StItem>> itemsByType){
         super(itemsByType);

@@ -37,6 +37,6 @@ public class StCybernetic extends StItem {
 
     @Override
     public String toString() {
-        return String.format("```ansi\n%s / %s / %s cyber-slots / %d credits\n - %s```", getName(), getFormattedRarity(), slots, getPrice(), getDescription());
+        return String.format("```ansi\n%s / %s / %s cyber-slots / %d credits\n%s```", getName(), getFormattedRarity(), slots, getPrice(), getDescription());
     }
 }

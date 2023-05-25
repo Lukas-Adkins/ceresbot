@@ -65,7 +65,6 @@ public abstract class StShop {
     private Set<StItem> getInventoryOfRarity(StRarity rarity, int size, Set<StItem> existingItems){
         System.out.println(String.format("Shop Request: Getting inventory of rarity: %s size: %d", rarity, size));
         if(size <= 0){
-            System.out.println("Shop Request: Inventory size of 0 requested. Returning.");
             return existingItems;
         }
        
@@ -85,7 +84,6 @@ public abstract class StShop {
                     break;
                 }
                 // Downgrade rarity of item if none found at initial rarity
-                System.out.println("Shop Request: No items of specified rarity and type found. Downgrading rarity.");
                 currentRarity = currentRarity.prev();
                 // Break if no more valid items
                 if(currentRarity == null){
@@ -122,7 +120,6 @@ public abstract class StShop {
                 return item;
             }
         }
-        System.out.println(itemsByType.get(type));
         return null;
     }
 }
