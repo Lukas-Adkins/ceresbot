@@ -6,10 +6,7 @@
 package goobot.model.starlight.table;
 
 import goobot.Constants.StItemType;
-import goobot.model.starlight.StItem;
 
-import java.util.HashMap;
-import java.util.ArrayList;
 import java.util.Set;
 
 public class StMechShop extends StItemTable {
@@ -19,8 +16,8 @@ public class StMechShop extends StItemTable {
     MELEE_WEIGHT = 0.3,
     RANGED_WEIGHT = 0.35;
     
-    public StMechShop(HashMap<StItemType, ArrayList<StItem>> itemsByType){
-        super(itemsByType, Set.<StItemType>of(
+    public StMechShop(){
+        super(Set.<StItemType>of(
             StItemType.MECH_ENGINE, StItemType.MECH_UTILITY, StItemType.MECH_MELEE_WEAPON, StItemType.MECH_RANGED_WEAPON));
         randomItemType.addEntry(StItemType.MECH_ENGINE, ENGINE_WEIGHT);
         randomItemType.addEntry(StItemType.MECH_UTILITY, UTILITY_WEIGHT);

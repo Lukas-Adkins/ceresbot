@@ -6,10 +6,7 @@
 package goobot.model.starlight.table;
 
 import goobot.Constants.StItemType;
-import goobot.model.starlight.StItem;
 
-import java.util.HashMap;
-import java.util.ArrayList;
 import java.util.Set;
 
 public class StArmorShop extends StItemTable {
@@ -19,8 +16,8 @@ public class StArmorShop extends StItemTable {
     MELEE_WEIGHT = 0.1,
     WEAPON_MOD_WEIGHT = 0.1;
     
-    public StArmorShop(HashMap<StItemType, ArrayList<StItem>> itemsByType){
-        super(itemsByType, Set.<StItemType>of(
+    public StArmorShop(){
+        super(Set.<StItemType>of(
             StItemType.ARMOR, StItemType.RANGED_WEAPON, StItemType.MELEE_WEAPON, StItemType.WEAPON_MOD));
         randomItemType.addEntry(StItemType.ARMOR, ARMOR_WEIGHT);
         randomItemType.addEntry(StItemType.RANGED_WEAPON, RANGED_WEIGHT);

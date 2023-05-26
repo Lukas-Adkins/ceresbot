@@ -1,7 +1,7 @@
 /*
- * Java source file for CeresBot.
- * @Author Lukas Adkins
- */
+* Java source file for CeresBot.
+* @Author Lukas Adkins
+*/
 
 package goobot.controller;
     
@@ -13,19 +13,18 @@ import net.dv8tion.jda.api.entities.channel.ChannelType;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 
-import goobot.model.starlight.StMech;
-
 import javax.annotation.Nonnull;
 import java.util.List;
 
 import goobot.Constants;
+import goobot.model.starlight.item.StMech;
 
 public class DiscordController extends ListenerAdapter {
     private final CommandController commandController;
     private static final Integer DISCORD_MSG_CAP = 2000;
     
     public DiscordController(String discordToken){
-        this.commandController = new CommandController(Constants.SPELLS_FILEPATH, Constants.CHARACTER_FILEPATHS);
+        this.commandController = new CommandController();
         initializeDiscordBot(discordToken);
     }
 

@@ -3,19 +3,17 @@
 * @Author Lukas Adkins
 */
 
-package goobot.model.starlight;
+package goobot.model.starlight.item;
 
 import goobot.Constants.StItemType;
 import goobot.Constants.StRarity;
 
-public class StMechMeleeWeapon extends StMeleeWeapon {
+public class StMechSystem extends StItem {
     private String mechSlot;
     private String mechLocation;
 
-    public StMechMeleeWeapon(
-        StItemType type, String name, StRarity rarity, String description, String weight, 
-        Integer price, String weaponTypes, String range, String dmg, String pen, String mechSlot, String mechLocation){
-        super(type, name, rarity, description, weight, price, weaponTypes, range, dmg, pen);
+    public StMechSystem(StItemType type, String name, StRarity rarity, String description, String weight, Integer price, String mechSlot, String mechLocation){
+        super(type, name, rarity, description, weight, price);
         this.mechSlot = mechSlot;
         this.mechLocation = mechLocation;
     }
@@ -38,7 +36,7 @@ public class StMechMeleeWeapon extends StMeleeWeapon {
 
     @Override
     public String toString() {
-        return String.format("```ansi\n%s / %s / %d credits\n%s / Locations: [%s]\nRange: %s / Damage: %s / Pen: %s \n%s```",
-        getName(), getFormattedRarity(), getPrice(), mechSlot, mechLocation, getRange() , getDmg(), getPen(), getDescription());
+        return String.format("```ansi\n%s / %s / %d credits\n%s / Locations: [%s]\n%s```",
+        getName(), getFormattedRarity(), getPrice(), mechSlot, mechLocation, getDescription());
     }
 }

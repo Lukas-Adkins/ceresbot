@@ -3,7 +3,7 @@
 * @Author Lukas Adkins
 */
 
-package goobot.model.starlight;
+package goobot.model.starlight.item;
 
 import goobot.Constants.StRarity;
 import goobot.Constants.StItemType;

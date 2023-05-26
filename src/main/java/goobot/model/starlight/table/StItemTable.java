@@ -8,35 +8,32 @@ package goobot.model.starlight.table;
 import goobot.Constants.StRarity;
 import goobot.Constants.StItemType;
 import goobot.model.WeightedRandomBag;
-import goobot.model.starlight.StItem;
+import goobot.model.starlight.item.StItem;
+import goobot.service.ItemService;
 
 import java.util.Set;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
 public abstract class StItemTable {
-    HashMap<StItemType, ArrayList<StItem>> itemsByType;
     WeightedRandomBag<StItemType> randomItemType;
     Set<StItemType> shopTypes;
 
-    public StItemTable(HashMap<StItemType, ArrayList<StItem>> itemsByType){
-        this.itemsByType = itemsByType;
+    public StItemTable(){
         this.randomItemType = new WeightedRandomBag<>();
         this.shopTypes = new HashSet<>();
     }
 
-    public StItemTable(HashMap<StItemType, ArrayList<StItem>> itemsByType, Set<StItemType> shopTypes){
-        this.itemsByType = itemsByType;
+    public StItemTable(Set<StItemType> shopTypes){
         this.randomItemType = new WeightedRandomBag<>();
         this.shopTypes = shopTypes;
     }
     
     public StItem getItem(StRarity rarity) {
         StItemType type = randomItemType.getRandom();
-        ArrayList<StItem> scambledList = itemsByType.get(type);
+        ArrayList<StItem> scambledList = ItemService.getItemByType(type);
         while(true){
             StItem item = getItemOfRarity(rarity, scambledList);
             if(item != null || rarity == null)
@@ -122,12 +119,12 @@ public abstract class StItemTable {
 
     private StItem inventoryFetcher(StItemType type, StRarity rarity, Set<StItem> existingItems){
         System.out.println("Shop Request: Fetching new item of rarity: " + rarity + " type: " + type);
-        for(StItem item : itemsByType.get(type)){
+        for(StItem item : ItemService.getItemByType(type)){
             if(item.getRarity() == rarity && !existingItems.contains(item)){
                 return item;
             }
         }
-        for(StItem item : itemsByType.get(type)){
+        for(StItem item : ItemService.getItemByType(type)){
             if(item.getRarity() == rarity && !existingItems.contains(item)){
                 return item;
             }
