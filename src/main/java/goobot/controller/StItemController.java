@@ -17,22 +17,22 @@ import java.util.ArrayList;
 import goobot.Constants;
 import goobot.Constants.StItemType;
 import goobot.model.starlight.StArmor;
-import goobot.model.starlight.StArmorShop;
 import goobot.model.starlight.StCybernetic;
-import goobot.model.starlight.StCyberneticsShop;
 import goobot.model.starlight.StExplosive;
 import goobot.model.starlight.StItem;
 import goobot.model.starlight.StMechMeleeWeapon;
 import goobot.model.starlight.StMechRangedWeapon;
-import goobot.model.starlight.StMechShop;
 import goobot.model.starlight.StMechSystem;
 import goobot.model.starlight.StMech;
-import goobot.model.starlight.StMeleeShop;
 import goobot.model.starlight.StMeleeWeapon;
-import goobot.model.starlight.StMunitionsShop;
 import goobot.model.starlight.StRangedWeapon;
-import goobot.model.starlight.StShop;
-import goobot.model.starlight.StRangedShop;
+import goobot.model.starlight.table.StArmorShop;
+import goobot.model.starlight.table.StCyberneticsShop;
+import goobot.model.starlight.table.StItemTable;
+import goobot.model.starlight.table.StMechShop;
+import goobot.model.starlight.table.StMeleeShop;
+import goobot.model.starlight.table.StMunitionsShop;
+import goobot.model.starlight.table.StRangedShop;
 import goobot.Constants.StRarity;
 
 import com.opencsv.CSVReader;
@@ -66,12 +66,12 @@ public class StItemController {
     private HashMap<StRarity, ArrayList<StItem>> itemsByRarity;
     private HashMap<StItemType, ArrayList<StItem>> itemsByType;
 
-    private StShop rangedShop;
-    private StShop meleeShop;
-    private StShop armorShop;
-    private StShop munitionsShop;
-    private StShop cyberneticsShop;
-    private StShop mechShop;
+    private StItemTable rangedItemGen;
+    private StItemTable meleeItemGen;
+    private StItemTable armorItemGen;
+    private StItemTable munitionsItemGen;
+    private StItemTable cyberneticsItemGen;
+    private StItemTable mechItemGen;
 
     public StItemController(){
         itemsByName = new HashMap<>();
@@ -79,12 +79,12 @@ public class StItemController {
         itemsByType = new HashMap<>();
         try{
             createItems(getSheetPath(Constants.ST_ITEMS_FILEPATH));
-            this.rangedShop = new StRangedShop(itemsByType);
-            this.meleeShop = new StMeleeShop(itemsByType);
-            this.armorShop = new StArmorShop(itemsByType);
-            this.munitionsShop = new StMunitionsShop(itemsByType);
-            this.cyberneticsShop = new StCyberneticsShop(itemsByType);
-            this.mechShop = new StMechShop(itemsByType);
+            this.rangedItemGen = new StRangedShop(itemsByType);
+            this.meleeItemGen = new StMeleeShop(itemsByType);
+            this.armorItemGen = new StArmorShop(itemsByType);
+            this.munitionsItemGen = new StMunitionsShop(itemsByType);
+            this.cyberneticsItemGen = new StCyberneticsShop(itemsByType);
+            this.mechItemGen = new StMechShop(itemsByType);
         }
         catch(Exception e){
             System.out.println(String.format("[ERROR] : Parsing items from %s", Constants.ST_ITEMS_FILEPATH));
@@ -225,39 +225,39 @@ public class StItemController {
         return itemsByType.get(type);
     }
 
-    public ArrayList<StItem> getRangedShop(int numUbiquitous, int numAbundant, int numPlentiful, int numCommon, int numAverage,
+    public ArrayList<StItem> getRangedItems(int numUbiquitous, int numAbundant, int numPlentiful, int numCommon, int numAverage,
     int numScarce, int numRare, int numVeryRare, int numExtremelyRare, int numNearUnique){
-        return rangedShop.getInventory(numUbiquitous, numAbundant, numPlentiful,
+        return rangedItemGen.getItems(numUbiquitous, numAbundant, numPlentiful,
         numCommon, numAverage, numScarce, numRare, numVeryRare, numExtremelyRare, numNearUnique);
     }
 
-    public ArrayList<StItem> getMeleeShop(int numUbiquitous, int numAbundant, int numPlentiful, int numCommon, int numAverage,
+    public ArrayList<StItem> getMeleeItems(int numUbiquitous, int numAbundant, int numPlentiful, int numCommon, int numAverage,
     int numScarce, int numRare, int numVeryRare, int numExtremelyRare, int numNearUnique){
-        return meleeShop.getInventory(numUbiquitous, numAbundant, numPlentiful,
+        return meleeItemGen.getItems(numUbiquitous, numAbundant, numPlentiful,
         numCommon, numAverage, numScarce, numRare, numVeryRare, numExtremelyRare, numNearUnique);
     }
 
-    public ArrayList<StItem> getArmorShop(int numUbiquitous, int numAbundant, int numPlentiful, int numCommon, int numAverage,
+    public ArrayList<StItem> getArmorItems(int numUbiquitous, int numAbundant, int numPlentiful, int numCommon, int numAverage,
     int numScarce, int numRare, int numVeryRare, int numExtremelyRare, int numNearUnique){
-        return armorShop.getInventory(numUbiquitous, numAbundant, numPlentiful,
+        return armorItemGen.getItems(numUbiquitous, numAbundant, numPlentiful,
         numCommon, numAverage, numScarce, numRare, numVeryRare, numExtremelyRare, numNearUnique);
     }
 
-    public ArrayList<StItem> getMunitionsShop(int numUbiquitous, int numAbundant, int numPlentiful, int numCommon, int numAverage,
+    public ArrayList<StItem> getMunitionsItems(int numUbiquitous, int numAbundant, int numPlentiful, int numCommon, int numAverage,
     int numScarce, int numRare, int numVeryRare, int numExtremelyRare, int numNearUnique){
-        return munitionsShop.getInventory(numUbiquitous, numAbundant, numPlentiful,
+        return munitionsItemGen.getItems(numUbiquitous, numAbundant, numPlentiful,
         numCommon, numAverage, numScarce, numRare, numVeryRare, numExtremelyRare, numNearUnique);
     }
 
-    public ArrayList<StItem> getCyberneticsShop(int numUbiquitous, int numAbundant, int numPlentiful, int numCommon, int numAverage,
+    public ArrayList<StItem> getCyberneticsItems(int numUbiquitous, int numAbundant, int numPlentiful, int numCommon, int numAverage,
     int numScarce, int numRare, int numVeryRare, int numExtremelyRare, int numNearUnique){
-        return cyberneticsShop.getInventory(numUbiquitous, numAbundant, numPlentiful,
+        return cyberneticsItemGen.getItems(numUbiquitous, numAbundant, numPlentiful,
         numCommon, numAverage, numScarce, numRare, numVeryRare, numExtremelyRare, numNearUnique);
     }
 
-    public ArrayList<StItem> getMechShop(int numUbiquitous, int numAbundant, int numPlentiful, int numCommon, int numAverage,
+    public ArrayList<StItem> getMechItems(int numUbiquitous, int numAbundant, int numPlentiful, int numCommon, int numAverage,
     int numScarce, int numRare, int numVeryRare, int numExtremelyRare, int numNearUnique){
-        return mechShop.getInventory(numUbiquitous, numAbundant, numPlentiful,
+        return mechItemGen.getItems(numUbiquitous, numAbundant, numPlentiful,
         numCommon, numAverage, numScarce, numRare, numVeryRare, numExtremelyRare, numNearUnique);
     }
 }

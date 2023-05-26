@@ -24,7 +24,6 @@ public class CommandController {
 
     public Random rng = new Random();
 
-
     /**
      * Initilizes controller
      * @param spellsFilename Filename of spells json
@@ -255,26 +254,26 @@ public class CommandController {
         String meleeList = "", rangedList = "", armorList = "", explosiveList = "", cyberneticList = "", modList = "", ammoList = "", miscList = "",
         mechEngineList = "", mechUtilityList = "", mechMeleeList = "", mechRangedList = "", mechList = "";
 
-        String shopType = arr[0].toLowerCase();
+        String itemType = arr[0].toLowerCase();
         ArrayList<StItem> itemList = null;
-        switch (shopType){
+        switch (itemType){
             case "ranged":
-                itemList = stItemController.getRangedShop(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
+                itemList = stItemController.getRangedItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
                 break;
             case "melee":
-                itemList = stItemController.getMeleeShop(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
+                itemList = stItemController.getMeleeItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
                 break;
             case "armor":
-                itemList = stItemController.getArmorShop(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
+                itemList = stItemController.getArmorItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
                 break;
             case "munitions":
-                itemList = stItemController.getMunitionsShop(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
+                itemList = stItemController.getMunitionsItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
                 break;
             case "cybernetics":
-                itemList = stItemController.getCyberneticsShop(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
+                itemList = stItemController.getCyberneticsItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
                 break;
             case "mech":
-                itemList = stItemController.getMechShop(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
+                itemList = stItemController.getMechItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
                 break;
             default:
                 throw new Exception("Unable to parse shop type.");
