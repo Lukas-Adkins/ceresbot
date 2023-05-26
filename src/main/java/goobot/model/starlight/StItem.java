@@ -1,13 +1,14 @@
 /*
- * Java source file for CeresBot.
- * @Author Lukas Adkins
- */
+* Java source file for CeresBot.
+* @Author Lukas Adkins
+*/
 
 package goobot.model.starlight;
 
 import goobot.Constants;
 import goobot.Constants.StItemType;
 import goobot.Constants.StRarity;
+
 import java.util.Objects;
 import java.util.Random;
 
@@ -89,41 +90,6 @@ public class StItem {
         this.rng = rng;
     }
 
-    public StItem type(StItemType type) {
-        setType(type);
-        return this;
-    }
-
-    public StItem name(String name) {
-        setName(name);
-        return this;
-    }
-
-    public StItem rarity(StRarity rarity) {
-        setRarity(rarity);
-        return this;
-    }
-
-    public StItem description(String description) {
-        setDescription(description);
-        return this;
-    }
-
-    public StItem weight(String weight) {
-        setWeight(weight);
-        return this;
-    }
-
-    public StItem price(Integer price) {
-        setPrice(price);
-        return this;
-    }
-
-    public StItem rng(Random rng) {
-        setRng(rng);
-        return this;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -133,11 +99,6 @@ public class StItem {
         }
         StItem dhItem = (StItem) o;
         return Objects.equals(type, dhItem.type) && Objects.equals(name, dhItem.name) && Objects.equals(rarity, dhItem.rarity) && Objects.equals(description, dhItem.description) && Objects.equals(weight, dhItem.weight) && Objects.equals(price, dhItem.price) && Objects.equals(rng, dhItem.rng);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(type, name, rarity, description, weight, price, rng);
     }
 
     @Override

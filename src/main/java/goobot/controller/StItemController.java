@@ -5,17 +5,14 @@
 
  package goobot.controller;
 
- import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import com.opencsv.CSVReader;
 import java.io.Reader;
-import java.nio.file.Path;
+import java.util.ArrayList;
 
 import goobot.Constants;
 import goobot.Constants.StItemType;
@@ -35,12 +32,10 @@ import goobot.model.starlight.StMeleeWeapon;
 import goobot.model.starlight.StMunitionsShop;
 import goobot.model.starlight.StRangedWeapon;
 import goobot.model.starlight.StShop;
-import goobot.Constants.StRarity;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.Random;
-import goobot.model.WeightedRandomBag;
 import goobot.model.starlight.StRangedShop;
+import goobot.Constants.StRarity;
+
+import com.opencsv.CSVReader;
 
 public class StItemController {
     public static final int 
@@ -266,5 +261,3 @@ public class StItemController {
         numCommon, numAverage, numScarce, numRare, numVeryRare, numExtremelyRare, numNearUnique);
     }
 }
-
-

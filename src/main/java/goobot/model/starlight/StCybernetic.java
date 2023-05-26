@@ -1,11 +1,10 @@
 /*
- * Java source file for CeresBot.
- * @Author Lukas Adkins
- */
-
+* Java source file for CeresBot.
+* @Author Lukas Adkins
+*/
 
 package goobot.model.starlight;
-import java.util.Objects;
+
 import goobot.Constants.StRarity;
 import goobot.Constants.StItemType;
 
@@ -23,16 +22,6 @@ public class StCybernetic extends StItem {
 
     public void setSlots(String slots) {
         this.slots = slots;
-    }
-
-    public StCybernetic slots(String slots) {
-        setSlots(slots);
-        return this;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(slots);
     }
 
     @Override

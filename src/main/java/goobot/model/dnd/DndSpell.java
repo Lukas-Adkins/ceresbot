@@ -1,7 +1,7 @@
 /*
- * Java source file for CeresBot.
- * @Author Lukas Adkins
- */
+* Java source file for CeresBot.
+* @Author Lukas Adkins
+*/
 
 package goobot.model.dnd;
 import java.util.ArrayList;
@@ -123,56 +123,6 @@ public class DndSpell {
         this.school = school;
     }
 
-    public DndSpell casting_time(String casting_time) {
-        setCasting_time(casting_time);
-        return this;
-    }
-
-    public DndSpell classes(String[] classes) {
-        setClasses(classes);
-        return this;
-    }
-
-    public DndSpell components(DndSpellComponent components) {
-        setComponents(components);
-        return this;
-    }
-
-    public DndSpell description(String description) {
-        setDescription(description);
-        return this;
-    }
-
-    public DndSpell duration(String duration) {
-        setDuration(duration);
-        return this;
-    }
-
-    public DndSpell level(String level) {
-        setLevel(level);
-        return this;
-    }
-
-    public DndSpell name(String name) {
-        setName(name);
-        return this;
-    }
-
-    public DndSpell range(String range) {
-        setRange(range);
-        return this;
-    }
-
-    public DndSpell ritual(Boolean ritual) {
-        setRitual(ritual);
-        return this;
-    }
-
-    public DndSpell school(String school) {
-        setSchool(school);
-        return this;
-    }
-
     public String getPrice(){
         if(Constants.CUSTOM_SCROLL_PRICES)
             return getPriceCustom();
@@ -273,11 +223,6 @@ public class DndSpell {
         }
         DndSpell spell = (DndSpell) o;
         return Objects.equals(casting_time, spell.casting_time) && Objects.equals(classes, spell.classes) && Objects.equals(components, spell.components) && Objects.equals(description, spell.description) && Objects.equals(duration, spell.duration) && Objects.equals(level, spell.level) && Objects.equals(name, spell.name) && Objects.equals(range, spell.range) && Objects.equals(ritual, spell.ritual) && Objects.equals(school, spell.school);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(casting_time, classes, components, description, duration, level, name, range, ritual, school);
     }
 
     @Override

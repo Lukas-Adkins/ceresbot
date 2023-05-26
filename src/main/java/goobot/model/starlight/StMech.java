@@ -1,3 +1,8 @@
+/*
+* Java source file for CeresBot.
+* @Author Lukas Adkins
+*/
+
 package goobot.model.starlight;
 
 import goobot.Constants.StRarity;

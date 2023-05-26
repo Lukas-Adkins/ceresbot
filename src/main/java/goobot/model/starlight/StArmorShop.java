@@ -1,11 +1,13 @@
+/*
+* Java source file for CeresBot.
+* @Author Lukas Adkins
+*/
+
 package goobot.model.starlight;
 
-import goobot.Constants.StRarity;
-import goobot.model.WeightedRandomBag;
 import goobot.Constants.StItemType;
+
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.ArrayList;
 
 public class StArmorShop extends StShop {

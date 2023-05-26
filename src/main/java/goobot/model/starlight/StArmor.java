@@ -5,8 +5,6 @@
 
 package goobot.model.starlight;
 
-import java.util.Objects;
-
 import goobot.Constants.StItemType;
 import goobot.Constants.StRarity;
 
@@ -49,21 +47,6 @@ public class StArmor extends StItem {
     public StArmor covers(String covers) {
         setCovers(covers);
         return this;
-    }
-
-    public StArmor AP(String AP) {
-        setAP(AP);
-        return this;
-    }
-
-    public StArmor maxAgility(String maxAgility) {
-        setMaxAgility(maxAgility);
-        return this;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(covers, AP, maxAgility);
     }
 
     @Override

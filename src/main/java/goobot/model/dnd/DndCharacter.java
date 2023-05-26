@@ -145,71 +145,6 @@ public class DndCharacter {
         this.image = image;
     }
 
-    public DndCharacter name(String name) {
-        setName(name);
-        return this;
-    }
-
-    public DndCharacter country(String country) {
-        setCountry(country);
-        return this;
-    }
-
-    public DndCharacter title(String title) {
-        setTitle(title);
-        return this;
-    }
-
-    public DndCharacter gender(String gender) {
-        setGender(gender);
-        return this;
-    }
-
-    public DndCharacter species(String species) {
-        setSpecies(species);
-        return this;
-    }
-
-    public DndCharacter age(String age) {
-        setAge(age);
-        return this;
-    }
-
-    public DndCharacter height(String height) {
-        setHeight(height);
-        return this;
-    }
-
-    public DndCharacter hairColor(String hairColor) {
-        setHairColor(hairColor);
-        return this;
-    }
-
-    public DndCharacter eyeColor(String eyeColor) {
-        setEyeColor(eyeColor);
-        return this;
-    }
-
-    public DndCharacter religion(String religion) {
-        setReligion(religion);
-        return this;
-    }
-
-    public DndCharacter status(String status) {
-        setStatus(status);
-        return this;
-    }
-
-    public DndCharacter description(String description) {
-        setDescription(description);
-        return this;
-    }
-
-    public DndCharacter image(String image) {
-        setImage(image);
-        return this;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -219,11 +154,6 @@ public class DndCharacter {
         }
         DndCharacter character = (DndCharacter) o;
         return Objects.equals(name, character.name) && Objects.equals(country, character.country) && Objects.equals(title, character.title) && Objects.equals(gender, character.gender) && Objects.equals(species, character.species) && Objects.equals(age, character.age) && Objects.equals(height, character.height) && Objects.equals(hairColor, character.hairColor) && Objects.equals(eyeColor, character.eyeColor) && Objects.equals(religion, character.religion) && Objects.equals(status, character.status) && Objects.equals(description, character.description) && Objects.equals(image, character.image);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, country, title, gender, species, age, height, hairColor, eyeColor, religion, status, description, image);
     }
 
     @Override

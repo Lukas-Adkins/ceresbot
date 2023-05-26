@@ -1,12 +1,10 @@
 /*
- * Java source file for CeresBot.
- * @Author Lukas Adkins
- */
+* Java source file for CeresBot.
+* @Author Lukas Adkins
+*/
 
 package goobot.model.starlight;
 
-import java.util.List;
-import java.util.Objects;
 import goobot.Constants.StRarity;
 import goobot.Constants.StItemType;
 
@@ -86,46 +84,6 @@ public class StRangedWeapon extends StItem {
 
     public void setReloadTime(String reloadTime) {
         this.reloadTime = reloadTime;
-    }
-
-    public StRangedWeapon weaponTypes(String weaponTypes) {
-        setWeaponTypes(weaponTypes);
-        return this;
-    }
-
-    public StRangedWeapon range(String range) {
-        setRange(range);
-        return this;
-    }
-
-    public StRangedWeapon RoF(String RoF) {
-        setRoF(RoF);
-        return this;
-    }
-
-    public StRangedWeapon dmg(String dmg) {
-        setDmg(dmg);
-        return this;
-    }
-
-    public StRangedWeapon pen(String pen) {
-        setPen(pen);
-        return this;
-    }
-
-    public StRangedWeapon mag(String mag) {
-        setMag(mag);
-        return this;
-    }
-
-    public StRangedWeapon reloadTime(String reloadTime) {
-        setReloadTime(reloadTime);
-        return this;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(weaponTypes, range, RoF, dmg, pen, mag, reloadTime);
     }
 
     @Override

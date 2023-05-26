@@ -12,7 +12,9 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.entities.channel.ChannelType; 
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
+
 import goobot.model.starlight.StMech;
+
 import javax.annotation.Nonnull;
 import java.util.List;
 

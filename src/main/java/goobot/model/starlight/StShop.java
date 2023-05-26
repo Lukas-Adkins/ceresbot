@@ -1,10 +1,15 @@
+/*
+* Java source file for CeresBot.
+* @Author Lukas Adkins
+*/
+
 package goobot.model.starlight;
 
 import goobot.Constants.StRarity;
-import java.util.Set;
-import goobot.model.WeightedRandomBag;
-import net.dv8tion.jda.api.requests.Request;
 import goobot.Constants.StItemType;
+import goobot.model.WeightedRandomBag;
+
+import java.util.Set;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.ArrayList;

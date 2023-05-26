@@ -1,7 +1,12 @@
+/*
+* Java source file for CeresBot.
+* @Author Lukas Adkins
+*/
+
 package goobot.model.starlight;
+
 import goobot.Constants.StItemType;
 import goobot.Constants.StRarity;
-import java.util.Objects;
 
 public class StMechMeleeWeapon extends StMeleeWeapon {
     private String mechSlot;
@@ -29,21 +34,6 @@ public class StMechMeleeWeapon extends StMeleeWeapon {
 
     public void setMechLocation(String mechLocation) {
         this.mechLocation = mechLocation;
-    }
-
-    public StMechMeleeWeapon mechSlot(String mechSlot) {
-        setMechSlot(mechSlot);
-        return this;
-    }
-
-    public StMechMeleeWeapon mechLocation(String mechLocation) {
-        setMechLocation(mechLocation);
-        return this;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(mechSlot, mechLocation);
     }
 
     @Override

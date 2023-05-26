@@ -8,10 +8,7 @@ package goobot.model.starlight;
 import goobot.Constants.StItemType;
 import goobot.Constants.StRarity;
 
-import java.util.Objects;
-
 public class StMeleeWeapon extends StItem {
-    
     private String weaponTypes;
     private String range;
     private String dmg;
@@ -55,31 +52,6 @@ public class StMeleeWeapon extends StItem {
 
     public void setPen(String pen) {
         this.pen = pen;
-    }
-
-    public StMeleeWeapon weaponTypes(String weaponTypes) {
-        setWeaponTypes(weaponTypes);
-        return this;
-    }
-
-    public StMeleeWeapon range(String range) {
-        setRange(range);
-        return this;
-    }
-
-    public StMeleeWeapon dmg(String dmg) {
-        setDmg(dmg);
-        return this;
-    }
-
-    public StMeleeWeapon pen(String pen) {
-        setPen(pen);
-        return this;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(weaponTypes, range, dmg, pen);
     }
 
     @Override
