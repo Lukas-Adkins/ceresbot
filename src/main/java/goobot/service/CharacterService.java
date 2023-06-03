@@ -16,10 +16,10 @@ import java.io.Reader;
 import com.opencsv.CSVReader;
 
 import goobot.Constants;
-import goobot.model.dnd.DndCharacter;
+import goobot.model.Character;
 
 public class CharacterService {
-    private HashMap<String, DndCharacter> charMap;
+    private HashMap<String, Character> characterMap;
     private HashMap<String, String> firstNameMap;
 
     private int HEADER_ROW_INDEX = 0;
@@ -39,7 +39,7 @@ public class CharacterService {
         IMAGE_INDEX = 15;
 
     public CharacterService(List<String> characterFilepaths){
-        this.charMap = new HashMap<>();
+        this.characterMap = new HashMap<>();
         this.firstNameMap = new HashMap<>();
         try{
             for(String fp : characterFilepaths){
@@ -66,7 +66,7 @@ public class CharacterService {
             csvList.remove(HEADER_ROW_INDEX);
             for(String[] strList : csvList){
                 // Convert CSV to DndCharacter object
-                DndCharacter character = new DndCharacter(
+                Character character = new Character(
                     strList[NAME_INDEX],
                     strList[COUNTRY_INDEX],
                     strList[TITLE_INDEX],
@@ -81,7 +81,7 @@ public class CharacterService {
                     strList[DESCRIPTION_INDEX],
                     strList[IMAGE_INDEX]
                 );
-                this.charMap.put(strList[0].trim().toLowerCase().replace('-', ' '), character);
+                this.characterMap.put(strList[0].trim().toLowerCase().replace('-', ' '), character);
                 String[] words = character.getName().split("\\s+");
                 String firstname = words[0].trim().toLowerCase().replace("-", " ");
                 if(firstNameMap.get(firstname) == null) // If character doesn't exist, add mapping to full name
@@ -134,7 +134,7 @@ public class CharacterService {
      */
     public List<String> getCharacter(String name){
         String[] words = name.split("\\s+");
-        DndCharacter character;
+        Character character;
         if(words.length == 1){ // First name search
             String potentialNames = this.firstNameMap.get(name);
             if(potentialNames == null)
@@ -146,7 +146,7 @@ public class CharacterService {
             name = potentialNames.trim().toLowerCase().replace('-', ' ');
         }
         // Full name search
-        character = this.charMap.get(name.trim().toLowerCase().replace('-', ' '));
+        character = this.characterMap.get(name.trim().toLowerCase().replace('-', ' '));
         if(character != null)
             return Arrays.asList(character.toString(), character.getImage()); // Return textbody - image tuple
         return Arrays.asList(Constants.CHARACTER_NOT_FOUND_MSG, "");

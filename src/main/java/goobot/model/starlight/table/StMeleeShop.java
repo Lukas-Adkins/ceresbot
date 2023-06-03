@@ -19,9 +19,9 @@ public class StMeleeShop extends StItemTable {
     public StMeleeShop(){
         super(Set.<StItemType>of(
             StItemType.MELEE_WEAPON, StItemType.EXPLOSIVE, StItemType.ARMOR, StItemType.WEAPON_MOD));
-        randomItemType.addEntry(StItemType.MELEE_WEAPON, MELEE_WEIGHT);
-        randomItemType.addEntry(StItemType.EXPLOSIVE, EXPLOSIVE_WEIGHT);
-        randomItemType.addEntry(StItemType.ARMOR, ARMOR_WEIGHT);
-        randomItemType.addEntry(StItemType.WEAPON_MOD, WEAPON_MOD_WEIGHT);
+        weightedItemTypes.addEntry(StItemType.MELEE_WEAPON, MELEE_WEIGHT);
+        weightedItemTypes.addEntry(StItemType.EXPLOSIVE, EXPLOSIVE_WEIGHT);
+        weightedItemTypes.addEntry(StItemType.ARMOR, ARMOR_WEIGHT);
+        weightedItemTypes.addEntry(StItemType.WEAPON_MOD, WEAPON_MOD_WEIGHT);
     }
 }

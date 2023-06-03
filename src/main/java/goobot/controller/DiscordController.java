@@ -21,7 +21,6 @@ import goobot.model.starlight.item.StMech;
 
 public class DiscordController extends ListenerAdapter {
     private final CommandController commandController;
-    private static final Integer DISCORD_MSG_CAP = 2000;
     
     public DiscordController(String discordToken){
         this.commandController = new CommandController();
@@ -155,8 +154,8 @@ public class DiscordController extends ListenerAdapter {
      */
     public void post(String message, MessageChannel channel){
         String functionName = "[post()] ";
-        if(message.length() > DISCORD_MSG_CAP) // Discord 2000 character msg limit
-            message = message.substring(0, DISCORD_MSG_CAP - 3) + "...";
+        if(message.length() > Constants.DISCORD_MSG_CAP) // Discord 2000 character msg limit
+            message = message.substring(0, Constants.DISCORD_MSG_CAP - 3) + "...";
         try{
             channel.sendMessage(message).queue();
         }

@@ -7,6 +7,7 @@ package goobot.model.starlight.table;
 
 import goobot.Constants.StItemType;
 
+import java.util.Arrays;
 import java.util.Set;
 
 public class StArmorShop extends StItemTable {
@@ -17,11 +18,10 @@ public class StArmorShop extends StItemTable {
     WEAPON_MOD_WEIGHT = 0.1;
     
     public StArmorShop(){
-        super(Set.<StItemType>of(
-            StItemType.ARMOR, StItemType.RANGED_WEAPON, StItemType.MELEE_WEAPON, StItemType.WEAPON_MOD));
-        randomItemType.addEntry(StItemType.ARMOR, ARMOR_WEIGHT);
-        randomItemType.addEntry(StItemType.RANGED_WEAPON, RANGED_WEIGHT);
-        randomItemType.addEntry(StItemType.MELEE_WEAPON, MELEE_WEIGHT);
-        randomItemType.addEntry(StItemType.WEAPON_MOD, WEAPON_MOD_WEIGHT);
+        super(Set.<StItemType>of(StItemType.ARMOR, StItemType.RANGED_WEAPON, StItemType.MELEE_WEAPON, StItemType.WEAPON_MOD));
+        weightedItemTypes.addEntries(
+            Arrays.asList(StItemType.ARMOR, StItemType.RANGED_WEAPON, StItemType.MELEE_WEAPON, StItemType.WEAPON_MOD),
+            Arrays.asList(ARMOR_WEIGHT, RANGED_WEIGHT, MELEE_WEIGHT, WEAPON_MOD_WEIGHT)
+        );
     }
 }

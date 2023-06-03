@@ -223,22 +223,22 @@ public class CommandService {
         ArrayList<StItem> itemList = null;
         switch (itemType){
             case "ranged":
-                itemList = itemService.getRangedItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
+                itemList = itemService.shopRangedItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
                 break;
             case "melee":
-                itemList = itemService.getMeleeItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
+                itemList = itemService.shopMeleeItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
                 break;
             case "armor":
-                itemList = itemService.getArmorItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
+                itemList = itemService.shopArmorItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
                 break;
             case "munitions":
-                itemList = itemService.getMunitionsItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
+                itemList = itemService.shopMunitionItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
                 break;
             case "cybernetics":
-                itemList = itemService.getCyberneticsItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
+                itemList = itemService.shopCyberneticItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
                 break;
             case "mech":
-                itemList = itemService.getMechItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
+                itemList = itemService.shopMechItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
                 break;
             default:
                 throw new Exception("Unable to parse shop type.");

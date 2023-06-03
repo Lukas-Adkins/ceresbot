@@ -106,6 +106,11 @@ public class StItem {
         return String.format("```ansi\n%s / %s / %s / %d credits\n%s```", name, getFormattedRarity(), weight, price, description);
     }
 
+    /**
+     * Returns string to display item in a shop with coloring if the item is on sale.
+     * e.g. "Rifle / Common / 120 credits"
+     * @return Shop string
+     */
     public String getShopString(){
         if(rng.nextInt(100) + 1 > 85){ // Small chance item is on sale or more expensive
             double percent = 1.00;
@@ -124,6 +129,7 @@ public class StItem {
         }
         return String.format("%s / %s / %d credits\n", name, getFormattedRarity(), price);
     }
+    
     /**
      * Gets properly formatted and colored ANSI string for rarity type.
      * @return Properly formatted and colored ANSI string

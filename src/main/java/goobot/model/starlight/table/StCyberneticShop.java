@@ -9,19 +9,19 @@ import goobot.Constants.StItemType;
 
 import java.util.Set;
 
-public class StCyberneticsShop extends StItemTable {
+public class StCyberneticShop extends StItemTable {
     private static final double 
     CYBERNETIC_WEIGHT = 0.75,
     WEAPON_MOD_WEIGHT = 0.1,
     MISC_WEIGHT = 0.1,
     CONSUMABLE_WEIGHT = 0.05;
     
-    public StCyberneticsShop(){
+    public StCyberneticShop(){
         super(Set.<StItemType>of(
             StItemType.CYBERNETIC, StItemType.WEAPON_MOD, StItemType.MISC, StItemType.CONSUMABLE));
-        randomItemType.addEntry(StItemType.CYBERNETIC, CYBERNETIC_WEIGHT);
-        randomItemType.addEntry(StItemType.WEAPON_MOD, WEAPON_MOD_WEIGHT);
-        randomItemType.addEntry(StItemType.MISC, MISC_WEIGHT);
-        randomItemType.addEntry(StItemType.CONSUMABLE, CONSUMABLE_WEIGHT);
+        weightedItemTypes.addEntry(StItemType.CYBERNETIC, CYBERNETIC_WEIGHT);
+        weightedItemTypes.addEntry(StItemType.WEAPON_MOD, WEAPON_MOD_WEIGHT);
+        weightedItemTypes.addEntry(StItemType.MISC, MISC_WEIGHT);
+        weightedItemTypes.addEntry(StItemType.CONSUMABLE, CONSUMABLE_WEIGHT);
     }
 }

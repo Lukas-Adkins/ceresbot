@@ -19,9 +19,9 @@ public class StRangedShop extends StItemTable {
     public StRangedShop(){
         super(Set.<StItemType>of(
             StItemType.RANGED_WEAPON, StItemType.EXPLOSIVE, StItemType.SPECIAL_AMMO, StItemType.WEAPON_MOD));
-        randomItemType.addEntry(StItemType.RANGED_WEAPON, RANGED_WEIGHT);
-        randomItemType.addEntry(StItemType.EXPLOSIVE, EXPLOSIVE_WEIGHT);
-        randomItemType.addEntry(StItemType.SPECIAL_AMMO, SPECIAL_AMMO_WEIGHT);
-        randomItemType.addEntry(StItemType.WEAPON_MOD, WEAPON_MOD_WEIGHT);
+        weightedItemTypes.addEntry(StItemType.RANGED_WEAPON, RANGED_WEIGHT);
+        weightedItemTypes.addEntry(StItemType.EXPLOSIVE, EXPLOSIVE_WEIGHT);
+        weightedItemTypes.addEntry(StItemType.SPECIAL_AMMO, SPECIAL_AMMO_WEIGHT);
+        weightedItemTypes.addEntry(StItemType.WEAPON_MOD, WEAPON_MOD_WEIGHT);
     }
 }

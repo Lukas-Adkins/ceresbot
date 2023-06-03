@@ -28,6 +28,18 @@ public class WeightedRandomBag<T extends Object> {
         entries.add(e);
     }
 
+    public void addEntries(List<T> objects, List<Double> weights){
+        if(objects.size() == weights.size()){
+            for(int i = 0; i < objects.size(); i++){
+                accumulatedWeight += weights.get(i);
+                Entry e = new Entry();
+                e.object = objects.get(i);
+                e.accumulatedWeight = accumulatedWeight;
+                entries.add(e);
+            }
+        }
+    }
+
     public T getRandom() {
         double r = rand.nextDouble() * accumulatedWeight;
 

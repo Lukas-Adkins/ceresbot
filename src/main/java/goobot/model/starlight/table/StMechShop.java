@@ -19,9 +19,9 @@ public class StMechShop extends StItemTable {
     public StMechShop(){
         super(Set.<StItemType>of(
             StItemType.MECH_ENGINE, StItemType.MECH_UTILITY, StItemType.MECH_MELEE_WEAPON, StItemType.MECH_RANGED_WEAPON));
-        randomItemType.addEntry(StItemType.MECH_ENGINE, ENGINE_WEIGHT);
-        randomItemType.addEntry(StItemType.MECH_UTILITY, UTILITY_WEIGHT);
-        randomItemType.addEntry(StItemType.MECH_MELEE_WEAPON, MELEE_WEIGHT);
-        randomItemType.addEntry(StItemType.MECH_RANGED_WEAPON, RANGED_WEIGHT);
+        weightedItemTypes.addEntry(StItemType.MECH_ENGINE, ENGINE_WEIGHT);
+        weightedItemTypes.addEntry(StItemType.MECH_UTILITY, UTILITY_WEIGHT);
+        weightedItemTypes.addEntry(StItemType.MECH_MELEE_WEAPON, MELEE_WEIGHT);
+        weightedItemTypes.addEntry(StItemType.MECH_RANGED_WEAPON, RANGED_WEIGHT);
     }
 }

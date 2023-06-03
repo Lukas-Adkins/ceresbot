@@ -16,23 +16,24 @@ import java.util.HashSet;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 public abstract class StItemTable {
-    WeightedRandomBag<StItemType> randomItemType;
-    Set<StItemType> shopTypes;
+    WeightedRandomBag<StItemType> weightedItemTypes;
+    Set<StItemType> itemTypes;
 
     public StItemTable(){
-        this.randomItemType = new WeightedRandomBag<>();
-        this.shopTypes = new HashSet<>();
+        this.weightedItemTypes = new WeightedRandomBag<>();
+        this.itemTypes = new HashSet<>();
     }
 
-    public StItemTable(Set<StItemType> shopTypes){
-        this.randomItemType = new WeightedRandomBag<>();
-        this.shopTypes = shopTypes;
+    public StItemTable(Set<StItemType> itemTypes){
+        this.weightedItemTypes = new WeightedRandomBag<>();
+        this.itemTypes = itemTypes;
     }
     
     public StItem getItem(StRarity rarity) {
-        StItemType type = randomItemType.getRandom();
+        StItemType type = weightedItemTypes.getRandom();
         ArrayList<StItem> scambledList = ItemService.getItemByType(type);
         while(true){
             StItem item = getItemOfRarity(rarity, scambledList);
@@ -85,7 +86,7 @@ public abstract class StItemTable {
         while(true){
             StItem item = null;
             StRarity currentRarity = rarity;
-            StItemType currentType = randomItemType.getRandom();
+            StItemType currentType = weightedItemTypes.getRandom();
             // Get item for shop inventory of correct rarity and type
             while(true){
                 item = inventoryFetcher(currentType, currentRarity, set);
@@ -109,7 +110,7 @@ public abstract class StItemTable {
                 System.out.println("Shop Request: Inventory reached target size of " + size + ".");
                 break;
             }
-            if(exhaustedTypes.equals(shopTypes)){
+            if(exhaustedTypes.equals(itemTypes)){
                 System.out.println("Shop Request: All shop types exhausted. Exiting with size " + set.size() + ".");
                 break;
             }

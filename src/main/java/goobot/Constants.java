@@ -7,11 +7,11 @@ package goobot;
 import java.util.Map;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map.Entry;
 
 public class Constants {
     public static final Integer 
-    FATAL_FAILURE = 1;
+    FATAL_FAILURE = 1,
+    DISCORD_MSG_CAP = 2000;
     
     public static final Boolean 
     LOG_MESSAGES = false,
@@ -75,6 +75,17 @@ public class Constants {
         MECH_MELEE_WEAPON,
         MECH_RANGED_WEAPON,
         MECH
+    }
+
+    public enum StTableType {
+        RANGED_SHOP {
+            
+        },
+        MELEE_SHOP,
+        ARMOR_SHOP,
+        CYBERNETIC_SHOP,
+        MECH_SHOP,
+        MUNITION_SHOP
     }
 
     public enum StRarity {

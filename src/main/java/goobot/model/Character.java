@@ -3,11 +3,11 @@
  * @Author Lukas Adkins
  */
 
-package goobot.model.dnd;
+package goobot.model;
 
 import java.util.Objects;
 
-public class DndCharacter {
+public class Character {
     private String name;
     private String country;
     private String title;
@@ -22,10 +22,9 @@ public class DndCharacter {
     private String description;
     private String image;
 
-    public DndCharacter() {
-    }
+    public Character() {}
 
-    public DndCharacter(String name, String country, String title, String gender, String species, String age, String height, String hairColor, String eyeColor, String religion, String status, String description, String image) {
+    public Character(String name, String country, String title, String gender, String species, String age, String height, String hairColor, String eyeColor, String religion, String status, String description, String image) {
         this.name = name;
         this.country = country;
         this.title = title;
@@ -149,10 +148,10 @@ public class DndCharacter {
     public boolean equals(Object o) {
         if (o == this)
             return true;
-        if (!(o instanceof DndCharacter)) {
+        if (!(o instanceof Character)) {
             return false;
         }
-        DndCharacter character = (DndCharacter) o;
+        Character character = (Character) o;
         return Objects.equals(name, character.name) && Objects.equals(country, character.country) && Objects.equals(title, character.title) && Objects.equals(gender, character.gender) && Objects.equals(species, character.species) && Objects.equals(age, character.age) && Objects.equals(height, character.height) && Objects.equals(hairColor, character.hairColor) && Objects.equals(eyeColor, character.eyeColor) && Objects.equals(religion, character.religion) && Objects.equals(status, character.status) && Objects.equals(description, character.description) && Objects.equals(image, character.image);
     }
 
