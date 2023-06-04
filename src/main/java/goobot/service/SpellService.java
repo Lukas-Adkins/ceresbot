@@ -1,9 +1,9 @@
 /*
- * Java source file for CeresBot.
- * @Author Lukas Adkins
- */
+* Java source file for CeresBot.
+* @Author Lukas Adkins
+*/
 
-package goobot.controller;
+package goobot.service;
 
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -18,10 +18,10 @@ import com.google.gson.Gson;
 import goobot.Constants;
 import goobot.model.dnd.DndSpell;
 
-public class DndSpellController {
+public class SpellService {
     private HashMap<String, DndSpell> spellMap;
 
-    public DndSpellController(String spellsFilepath){
+    public SpellService(String spellsFilepath){
         this.spellMap = new HashMap<>();
         String spells = readJsonFile(spellsFilepath);
         parseSpells(spells);
@@ -29,9 +29,9 @@ public class DndSpellController {
 
     /**
      * Reads JSON file and returns its contents as a String
-     * @param filename File path
-     * @return String containing JSON data
-     */
+    * @param filename File path
+    * @return String containing JSON data
+    */
     private String readJsonFile(String filename){
         String functionName = "[readJsonFile()] ";
         String jsonString = null;
@@ -61,8 +61,8 @@ public class DndSpellController {
 
     /**
      * Reads spells from spells.json file.
-     * @param jsonString String representation of spells JSON file
-     */
+    * @param jsonString String representation of spells JSON file
+    */
     private void parseSpells(String jsonString){
         Gson gson = new Gson();
         DndSpell[] spellArray = gson.fromJson(jsonString, DndSpell[].class);

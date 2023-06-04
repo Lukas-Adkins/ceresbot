@@ -5,13 +5,16 @@
 
 package goobot;
 import java.util.Map;
+
+import org.checkerframework.checker.units.qual.min;
+
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map.Entry;
 
 public class Constants {
     public static final Integer 
-    FATAL_FAILURE = 1;
+    FATAL_FAILURE = 1,
+    DISCORD_MSG_CAP = 2000;
     
     public static final Boolean 
     LOG_MESSAGES = false,
@@ -34,7 +37,8 @@ public class Constants {
         "`!character <character>` - Provides information on the given D&D character.\n" +
         "`!item <name>` - Provides information on the given Starlight item.\n" +
         "`!shop <ranged,melee,armor,munitions,cybernetics,mech> <commerce skill>` - Generates a store inventory of Starlight items based on a shop type and commerce skill.\n" + 
-        "`!mech <name>` - Provides information on the given Starlight mech.\n",
+        "`!mech <name>` - Provides information on the given Starlight mech.\n" + 
+        "`!loot <table>` - Rolls on a given loot table.\n",
     SPELLS_FILEPATH = "spells.json",
     SPELLS_TEST_FILEPATH = "spells_test.json",
     ST_ITEMS_FILEPATH = "starlight_items.csv",
@@ -43,7 +47,7 @@ public class Constants {
     CHARACTER_CSV_NOT_FOUND_ERROR = "Could not find character CSV file.",
     BOT_START_ERROR = "Could not start Ceresbot.";
 
-    public static final List<String> CHARACTER_FILEPATHS = Arrays.asList("materia_characters.csv", "inferno_characters.csv");
+    public static final List<String> CHARACTER_FILEPATHS = Arrays.asList("materia_characters.csv", "inferno_characters.csv", "hysteria_characters.csv");
     public static final List<String> CHARACTER_TEST_FILEPATHS = Arrays.asList("characters_test.csv");
     
     // Price map for default PHB spell scroll prices, by level / gp cost.
@@ -60,7 +64,7 @@ public class Constants {
     "9", 25000
     );
 
-    public enum StItemType {
+    public enum ItemType {
         RANGED_WEAPON,
         MELEE_WEAPON,
         EXPLOSIVE,
@@ -77,18 +81,86 @@ public class Constants {
         MECH
     }
 
-    public enum StShopType {
-        
+    public enum TableType {
+        RANGED_SHOP(
+            Arrays.asList(ItemType.RANGED_WEAPON, ItemType.EXPLOSIVE, ItemType.SPECIAL_AMMO, ItemType.WEAPON_MOD),
+            Arrays.asList(0.7, 0.1, 0.1, 0.1)
+        ),
+        MELEE_SHOP(
+            Arrays.asList(ItemType.MELEE_WEAPON, ItemType.EXPLOSIVE, ItemType.ARMOR, ItemType.WEAPON_MOD),
+            Arrays.asList(0.7, 0.1, 0.1, 0.1)
+        ),
+        ARMOR_SHOP(
+            Arrays.asList(ItemType.ARMOR, ItemType.RANGED_WEAPON, ItemType.MELEE_WEAPON, ItemType.WEAPON_MOD),
+            Arrays.asList(0.7, 0.1, 0.1, 0.1)
+        ),
+        CYBERNETIC_SHOP(
+            Arrays.asList(ItemType.CYBERNETIC, ItemType.WEAPON_MOD, ItemType.MISC, ItemType.CONSUMABLE),
+            Arrays.asList(0.75, 0.1, 0.1, 0.05)
+        ),
+        MECH_SHOP(
+            Arrays.asList(ItemType.MECH_ENGINE, ItemType.MECH_UTILITY, ItemType.MECH_MELEE_WEAPON, ItemType.MECH_RANGED_WEAPON),
+            Arrays.asList(0.15, 0.2, 0.3, 0.35)
+        ),
+        MUNITION_SHOP(
+            Arrays.asList(ItemType.EXPLOSIVE, ItemType.WEAPON_MOD, ItemType.SPECIAL_AMMO, ItemType.MISC),
+            Arrays.asList(0.5, 0.2, 0.2, 0.1)
+        ),
+        MECH_LOW_TABLE(
+            Arrays.asList(
+                ItemType.RANGED_WEAPON, ItemType.MELEE_WEAPON, ItemType.EXPLOSIVE, ItemType.ARMOR,
+                ItemType.CYBERNETIC, ItemType.MISC, ItemType.WEAPON_MOD, ItemType.SPECIAL_AMMO, ItemType.CONSUMABLE,
+                ItemType.MECH_ENGINE, ItemType.MECH_UTILITY, ItemType.MECH_MELEE_WEAPON, ItemType.MECH_RANGED_WEAPON
+                ),
+            Arrays.asList(0.02, 0.02, 0.01, 0.02, 0.02, 0.02, 0.01, 0.01, 0.02, 0.2, 0.2, 0.2, 0.2),
+            25, 1, 2
+        ),
+        MECH_MED_TABLE(
+            Arrays.asList(
+                ItemType.RANGED_WEAPON, ItemType.MELEE_WEAPON, ItemType.EXPLOSIVE, ItemType.ARMOR,
+                ItemType.CYBERNETIC, ItemType.MISC, ItemType.WEAPON_MOD, ItemType.SPECIAL_AMMO, ItemType.CONSUMABLE,
+                ItemType.MECH_ENGINE, ItemType.MECH_UTILITY, ItemType.MECH_MELEE_WEAPON, ItemType.MECH_RANGED_WEAPON
+                ),
+            Arrays.asList(0.02, 0.02, 0.01, 0.02, 0.02, 0.02, 0.01, 0.01, 0.02, 0.2, 0.2, 0.2, 0.2),
+            40, 1, 3
+        ),
+        MECH_HIGH_TABLE(
+            Arrays.asList(
+                ItemType.RANGED_WEAPON, ItemType.MELEE_WEAPON, ItemType.EXPLOSIVE, ItemType.ARMOR,
+                ItemType.CYBERNETIC, ItemType.MISC, ItemType.WEAPON_MOD, ItemType.SPECIAL_AMMO, ItemType.CONSUMABLE,
+                ItemType.MECH_ENGINE, ItemType.MECH_UTILITY, ItemType.MECH_MELEE_WEAPON, ItemType.MECH_RANGED_WEAPON
+                ),
+            Arrays.asList(0.02, 0.02, 0.01, 0.02, 0.02, 0.02, 0.01, 0.01, 0.02, 0.2, 0.2, 0.2, 0.2),
+            55, 1, 4
+        );
+
+
+        public final List<ItemType> itemTypes;
+        public final List<Double> itemWeights;
+        public Integer commerce, minItems, maxItems;
+
+        private TableType(List<ItemType> itemTypes, List<Double> itemWeights){
+            this.itemTypes = itemTypes;
+            this.itemWeights = itemWeights;
+        }
+
+        private TableType(List<ItemType> itemTypes, List<Double> itemWeights, Integer commerce, Integer minItems, Integer maxItems){
+            this.itemTypes = itemTypes;
+            this.itemWeights = itemWeights;
+            this.commerce = commerce;
+            this.minItems = minItems;
+            this.maxItems = maxItems;
+        }
     }
 
-    public enum StRarity {
+    public enum Rarity {
         UBIQUITOUS {
             @Override
             public String toString(){
                 return "Ubiquitous";
             }
             @Override
-            public StRarity prev(){
+            public Rarity prev(){
                 return null;
             }
         },
@@ -153,20 +225,20 @@ public class Constants {
             }
         };
 
-        public StRarity prev(){
+        public Rarity prev(){
             return values()[ordinal() - 1];
         }
     }
 
-    public static final Map<StRarity, String> RARITY_COLORS = Map.of(
-        StRarity.ABUNDANT, "\u001b[0;30m%s\u001b[0;0m", // Gray
-        StRarity.PLENTIFUL, "\u001b[0;30m%s\u001b[0;0m", // Gray
-        StRarity.COMMON, "\u001b[0;33m%s\u001b[0;0m", // Yellow
-        StRarity.AVERAGE, "\u001b[0;32m%s\u001b[0;0m", // Green
-        StRarity.SCARCE, "\u001b[0;34m%s\u001b[0;0m", // Blue
-        StRarity.RARE, "\u001b[0;36m%s\u001b[0;0m", // Cyan
-        StRarity.VERY_RARE, "\u001b[0;35m%s\u001b[0;0m", // Pink
-        StRarity.EXTREMELY_RARE, "\u001b[0;31m%s\u001b[0;0m", // Red
-        StRarity.NEAR_UNIQUE, "\u001b[0;37m%s\u001b[0;0m" // White
+    public static final Map<Rarity, String> RARITY_COLORS = Map.of(
+        Rarity.ABUNDANT, "\u001b[0;30m%s\u001b[0;0m", // Gray
+        Rarity.PLENTIFUL, "\u001b[0;30m%s\u001b[0;0m", // Gray
+        Rarity.COMMON, "\u001b[0;33m%s\u001b[0;0m", // Yellow
+        Rarity.AVERAGE, "\u001b[0;32m%s\u001b[0;0m", // Green
+        Rarity.SCARCE, "\u001b[0;34m%s\u001b[0;0m", // Blue
+        Rarity.RARE, "\u001b[0;36m%s\u001b[0;0m", // Cyan
+        Rarity.VERY_RARE, "\u001b[0;35m%s\u001b[0;0m", // Pink
+        Rarity.EXTREMELY_RARE, "\u001b[0;31m%s\u001b[0;0m", // Red
+        Rarity.NEAR_UNIQUE, "\u001b[0;37m%s\u001b[0;0m" // White
     );
 }

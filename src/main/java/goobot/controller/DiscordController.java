@@ -1,7 +1,7 @@
 /*
- * Java source file for CeresBot.
- * @Author Lukas Adkins
- */
+* Java source file for CeresBot.
+* @Author Lukas Adkins
+*/
 
 package goobot.controller;
     
@@ -12,18 +12,18 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.entities.channel.ChannelType; 
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
-import goobot.model.starlight.StMech;
+
 import javax.annotation.Nonnull;
 import java.util.List;
 
 import goobot.Constants;
+import goobot.model.starlight.item.Mech;
 
 public class DiscordController extends ListenerAdapter {
     private final CommandController commandController;
-    private static final Integer DISCORD_MSG_CAP = 2000;
     
     public DiscordController(String discordToken){
-        this.commandController = new CommandController(Constants.SPELLS_FILEPATH, Constants.CHARACTER_FILEPATHS);
+        this.commandController = new CommandController();
         initializeDiscordBot(discordToken);
     }
 
@@ -113,13 +113,16 @@ public class DiscordController extends ListenerAdapter {
                     post(commandController.Roll(args), channel);
                     break;
                 case "item":
-                    post(commandController.StItem(args), channel);
+                    post(commandController.Item(args), channel);
                     break;
                 case "shop":
-                    post(commandController.StShop(args), channel);
+                    post(commandController.Shop(args), channel);
+                    break;
+                case "loot":
+                    post(commandController.Loot(args), channel);
                     break;
                 case "mech":
-                    StMech mech = commandController.MechInfo(args);
+                    Mech mech = commandController.MechInfo(args);
                     if(mech == null){
                         post(Constants.MECH_NOT_FOUND_MSG, channel);
                     }
@@ -154,8 +157,8 @@ public class DiscordController extends ListenerAdapter {
      */
     public void post(String message, MessageChannel channel){
         String functionName = "[post()] ";
-        if(message.length() > DISCORD_MSG_CAP) // Discord 2000 character msg limit
-            message = message.substring(0, DISCORD_MSG_CAP - 3) + "...";
+        if(message.length() > Constants.DISCORD_MSG_CAP) // Discord 2000 character msg limit
+            message = message.substring(0, Constants.DISCORD_MSG_CAP - 3) + "...";
         try{
             channel.sendMessage(message).queue();
         }

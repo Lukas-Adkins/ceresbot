@@ -1,3 +1,8 @@
+/*
+* Java source file for CeresBot.
+* @Author Lukas Adkins
+*/
+
 package goobot.model;
 
 import java.util.ArrayList;
@@ -21,6 +26,18 @@ public class WeightedRandomBag<T extends Object> {
         e.object = object;
         e.accumulatedWeight = accumulatedWeight;
         entries.add(e);
+    }
+
+    public void addEntries(List<T> objects, List<Double> weights){
+        if(objects.size() == weights.size()){
+            for(int i = 0; i < objects.size(); i++){
+                accumulatedWeight += weights.get(i);
+                Entry e = new Entry();
+                e.object = objects.get(i);
+                e.accumulatedWeight = accumulatedWeight;
+                entries.add(e);
+            }
+        }
     }
 
     public T getRandom() {

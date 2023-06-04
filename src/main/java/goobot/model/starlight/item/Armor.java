@@ -3,19 +3,17 @@
  * @Author Lukas Adkins
  */
 
-package goobot.model.starlight;
+package goobot.model.starlight.item;
 
-import java.util.Objects;
+import goobot.Constants.ItemType;
+import goobot.Constants.Rarity;
 
-import goobot.Constants.StItemType;
-import goobot.Constants.StRarity;
-
-public class StArmor extends StItem {
+public class Armor extends Item {
     private String covers;
     private String AP;
     private String maxAgility;
 
-    public StArmor(StItemType type, String name, StRarity rarity, String description, String weight, Integer price, String covers, String AP, String maxAgility) {
+    public Armor(ItemType type, String name, Rarity rarity, String description, String weight, Integer price, String covers, String AP, String maxAgility) {
         super(type, name, rarity, description, weight, price);
         this.covers = covers;
         this.AP = AP;
@@ -44,26 +42,6 @@ public class StArmor extends StItem {
 
     public void setMaxAgility(String maxAgility) {
         this.maxAgility = maxAgility;
-    }
-
-    public StArmor covers(String covers) {
-        setCovers(covers);
-        return this;
-    }
-
-    public StArmor AP(String AP) {
-        setAP(AP);
-        return this;
-    }
-
-    public StArmor maxAgility(String maxAgility) {
-        setMaxAgility(maxAgility);
-        return this;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(covers, AP, maxAgility);
     }
 
     @Override

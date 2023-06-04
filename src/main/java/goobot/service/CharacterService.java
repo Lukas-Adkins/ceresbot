@@ -1,9 +1,9 @@
 /*
- * Java source file for CeresBot.
- * @Author Lukas Adkins
- */
+* Java source file for CeresBot.
+* @Author Lukas Adkins
+*/
 
-package goobot.controller;
+package goobot.service;
 
 import java.util.HashMap;
 import java.nio.file.Files;
@@ -11,15 +11,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
-import java.io.IOException;
 import java.io.Reader;
+
 import com.opencsv.CSVReader;
 
 import goobot.Constants;
-import goobot.model.dnd.DndCharacter;
+import goobot.model.Character;
 
-public class CharacterController {
-    private HashMap<String, DndCharacter> charMap;
+public class CharacterService {
+    private HashMap<String, Character> characterMap;
     private HashMap<String, String> firstNameMap;
 
     private int HEADER_ROW_INDEX = 0;
@@ -38,13 +38,13 @@ public class CharacterController {
         DESCRIPTION_INDEX = 14,
         IMAGE_INDEX = 15;
 
-    public CharacterController(List<String> characterFilepaths) throws IOException {
-        this.charMap = new HashMap<>();
+    public CharacterService(List<String> characterFilepaths){
+        this.characterMap = new HashMap<>();
         this.firstNameMap = new HashMap<>();
         try{
             for(String fp : characterFilepaths){
                 Path filepath = getSheetPath(fp);
-    
+
                 parseCharacters(filepath);
             }
         }
@@ -56,12 +56,17 @@ public class CharacterController {
         }
     }
 
-    public void parseCharacters(Path filepath) throws Exception {
+    /**
+     * Parses character CSV files
+     * @param filepath
+     * @throws Exception
+     */
+    private void parseCharacters(Path filepath) throws Exception {
             List<String[]> csvList = readAllLines(filepath);
             csvList.remove(HEADER_ROW_INDEX);
             for(String[] strList : csvList){
                 // Convert CSV to DndCharacter object
-                DndCharacter character = new DndCharacter(
+                Character character = new Character(
                     strList[NAME_INDEX],
                     strList[COUNTRY_INDEX],
                     strList[TITLE_INDEX],
@@ -76,7 +81,7 @@ public class CharacterController {
                     strList[DESCRIPTION_INDEX],
                     strList[IMAGE_INDEX]
                 );
-                this.charMap.put(strList[0].trim().toLowerCase().replace('-', ' '), character);
+                this.characterMap.put(strList[0].trim().toLowerCase().replace('-', ' '), character);
                 String[] words = character.getName().split("\\s+");
                 String firstname = words[0].trim().toLowerCase().replace("-", " ");
                 if(firstNameMap.get(firstname) == null) // If character doesn't exist, add mapping to full name
@@ -91,11 +96,11 @@ public class CharacterController {
 
     /**
      * Reads all lines from a CSV character file
-     * @param filePath CSV filepath
-     * @return String matrix of csv values
-     * @throws Exception
-     */
-    public List<String[]> readAllLines(Path filePath) throws Exception {
+    * @param filePath CSV filepath
+    * @return String matrix of csv values
+    * @throws Exception
+    */
+    private List<String[]> readAllLines(Path filePath) throws Exception {
         try (Reader reader = Files.newBufferedReader(filePath)) {
             try (CSVReader csvReader = new CSVReader(reader)) {
                 return csvReader.readAll();
@@ -105,9 +110,9 @@ public class CharacterController {
 
     /**
      * Gets the path of an character CSV file, if it exists
-     * @param filename Name of file without path
-     * @return String Filepath, if file exists
-     */
+    * @param filename Name of file without path
+    * @return String Filepath, if file exists
+    */
     private Path getSheetPath(String filename){
         String RES_PATH = "src/main/resources", CURRENT_DIR_PATH = "";
         List<String> filePaths = Arrays.asList(RES_PATH, CURRENT_DIR_PATH);
@@ -122,21 +127,26 @@ public class CharacterController {
         return null;
     }
 
-    public List<String> getCharacter(String dndChar){
-        String[] words = dndChar.split("\\s+");
-        DndCharacter character;
+    /**
+     * Searches for a character and returns their corresponding info. 
+     * @param Character name
+     * @return Textbody and image tuple
+     */
+    public List<String> getCharacter(String name){
+        String[] words = name.split("\\s+");
+        Character character;
         if(words.length == 1){ // First name search
-            String potentialNames = this.firstNameMap.get(dndChar);
+            String potentialNames = this.firstNameMap.get(name);
             if(potentialNames == null)
                 return Arrays.asList(Constants.CHARACTER_NOT_FOUND_MSG, "");
             if(potentialNames.contains(", ")){ // There are multiple possible firstnames
-                String msg = "Multiple characters have first name '" + dndChar +"'. Do you mean " + potentialNames + "?";
+                String msg = "Multiple characters have first name '" + name +"'. Do you mean " + potentialNames + "?";
                 return Arrays.asList(msg, "");
             }
-            dndChar = potentialNames.trim().toLowerCase().replace('-', ' ');
+            name = potentialNames.trim().toLowerCase().replace('-', ' ');
         }
         // Full name search
-        character = this.charMap.get(dndChar.trim().toLowerCase().replace('-', ' '));
+        character = this.characterMap.get(name.trim().toLowerCase().replace('-', ' '));
         if(character != null)
             return Arrays.asList(character.toString(), character.getImage()); // Return textbody - image tuple
         return Arrays.asList(Constants.CHARACTER_NOT_FOUND_MSG, "");

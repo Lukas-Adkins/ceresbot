@@ -1,13 +1,18 @@
-package goobot.model.starlight;
-import goobot.Constants.StItemType;
-import goobot.Constants.StRarity;
-import java.util.Objects;
+/*
+* Java source file for CeresBot.
+* @Author Lukas Adkins
+*/
 
-public class StMechSystem extends StItem {
+package goobot.model.starlight.item;
+
+import goobot.Constants.ItemType;
+import goobot.Constants.Rarity;
+
+public class MechSystem extends Item {
     private String mechSlot;
     private String mechLocation;
 
-    public StMechSystem(StItemType type, String name, StRarity rarity, String description, String weight, Integer price, String mechSlot, String mechLocation){
+    public MechSystem(ItemType type, String name, Rarity rarity, String description, String weight, Integer price, String mechSlot, String mechLocation){
         super(type, name, rarity, description, weight, price);
         this.mechSlot = mechSlot;
         this.mechLocation = mechLocation;
@@ -27,21 +32,6 @@ public class StMechSystem extends StItem {
 
     public void setMechLocation(String mechLocation) {
         this.mechLocation = mechLocation;
-    }
-
-    public StMechSystem mechSlot(String mechSlot) {
-        setMechSlot(mechSlot);
-        return this;
-    }
-
-    public StMechSystem mechLocation(String mechLocation) {
-        setMechLocation(mechLocation);
-        return this;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(mechSlot, mechLocation);
     }
 
     @Override

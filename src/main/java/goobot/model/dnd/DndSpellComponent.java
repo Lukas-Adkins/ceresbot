@@ -1,9 +1,10 @@
 /*
- * Java source file for CeresBot.
- * @Author Lukas Adkins
- */
+* Java source file for CeresBot.
+* @Author Lukas Adkins
+*/
 
 package goobot.model.dnd;
+
 import java.util.Objects;
 
 public class DndSpellComponent {
@@ -65,26 +66,6 @@ public class DndSpellComponent {
         this.verbal = verbal;
     }
 
-    public DndSpellComponent material(Boolean material) {
-        setMaterial(material);
-        return this;
-    }
-
-    public DndSpellComponent raw(String raw) {
-        setRaw(raw);
-        return this;
-    }
-
-    public DndSpellComponent somatic(Boolean somatic) {
-        setSomatic(somatic);
-        return this;
-    }
-
-    public DndSpellComponent verbal(Boolean verbal) {
-        setVerbal(verbal);
-        return this;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -94,11 +75,6 @@ public class DndSpellComponent {
         }
         DndSpellComponent spellComponent = (DndSpellComponent) o;
         return Objects.equals(material, spellComponent.material) && Objects.equals(raw, spellComponent.raw) && Objects.equals(somatic, spellComponent.somatic) && Objects.equals(verbal, spellComponent.verbal);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(material, raw, somatic, verbal);
     }
 
     @Override

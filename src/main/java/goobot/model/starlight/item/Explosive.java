@@ -1,11 +1,16 @@
-package goobot.model.starlight;
+/*
+* Java source file for CeresBot.
+* @Author Lukas Adkins
+*/
 
-import goobot.Constants.StRarity;
-import goobot.Constants.StItemType;
+package goobot.model.starlight.item;
 
-public class StExplosive extends StRangedWeapon {
+import goobot.Constants.Rarity;
+import goobot.Constants.ItemType;
 
-   public StExplosive(StItemType type, String name, StRarity rarity, String description, String weight, Integer price, String weaponTypes, 
+public class Explosive extends RangedWeapon {
+
+   public Explosive(ItemType type, String name, Rarity rarity, String description, String weight, Integer price, String weaponTypes, 
    String range, String RoF, String dmg, String pen, String mag, String reloadTime){
     super(type, name, rarity, description, weight, price, weaponTypes, range, RoF, dmg, pen, mag, reloadTime);
    }
