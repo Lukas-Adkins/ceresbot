@@ -3,12 +3,13 @@
 * @Author Lukas Adkins
 */
 
-package goobot.model.starlight.table;
+package goobot.model.starlight;
 
-import goobot.Constants.StRarity;
-import goobot.Constants.StItemType;
+import goobot.Constants.Rarity;
+import goobot.Constants.TableType;
+import goobot.Constants.ItemType;
 import goobot.model.WeightedRandomBag;
-import goobot.model.starlight.item.StItem;
+import goobot.model.starlight.item.Item;
 import goobot.service.ItemService;
 
 import java.util.Set;
@@ -18,75 +19,70 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public abstract class StItemTable {
-    WeightedRandomBag<StItemType> weightedItemTypes;
-    Set<StItemType> itemTypes;
+public class ItemTable {
+    private WeightedRandomBag<ItemType> weightedItemTypes;
+    private List<ItemType> itemTypes;
 
-    public StItemTable(){
+    public ItemTable(TableType table){
+        this.itemTypes = table.itemTypes;
         this.weightedItemTypes = new WeightedRandomBag<>();
-        this.itemTypes = new HashSet<>();
-    }
-
-    public StItemTable(Set<StItemType> itemTypes){
-        this.weightedItemTypes = new WeightedRandomBag<>();
-        this.itemTypes = itemTypes;
+        this.weightedItemTypes.addEntries(itemTypes, table.itemWeights);
     }
     
-    public StItem getItem(StRarity rarity) {
-        StItemType type = weightedItemTypes.getRandom();
-        ArrayList<StItem> scambledList = ItemService.getItemByType(type);
+    public Item getItem(Rarity rarity) {
+        ItemType type = weightedItemTypes.getRandom();
+        ArrayList<Item> scambledList = ItemService.getItemByType(type);
         while(true){
-            StItem item = getItemOfRarity(rarity, scambledList);
+            Item item = getItemOfRarity(rarity, scambledList);
             if(item != null || rarity == null)
                 return item;
             rarity = rarity.prev();
         }
     }
 
-    private StItem getItemOfRarity(StRarity rarity, ArrayList<StItem> scambledList){
+    private Item getItemOfRarity(Rarity rarity, ArrayList<Item> scambledList){
         Collections.shuffle(scambledList);
-        for(StItem item : scambledList){
+        for(Item item : scambledList){
             if(item.getRarity() == rarity)
                 return item;
         }
         return null;
     }
     
-    public ArrayList<StItem> getItems(int numUbiquitous, int numAbundant, int numPlentiful, int numCommon, int numAverage,
+    public ArrayList<Item> getItems(int numUbiquitous, int numAbundant, int numPlentiful, int numCommon, int numAverage,
     int numScarce, int numRare, int numVeryRare, int numExtremelyRare, int numNearUnique){
         System.out.println(String.format("Shop Request Rarities:\n ub: %d\n ab: %s\n pl: %s\n co: %s\n av: %s\n sc: %s\n ra: %s\n vr: %s\n er: %s\n nu: %s\n",
         numUbiquitous, numAbundant, numPlentiful, numCommon, numAverage, numScarce, numRare, numVeryRare, numExtremelyRare, numNearUnique));
-        Set<StItem> set = new HashSet<>();
-        set = getItemsOfRarity(StRarity.UBIQUITOUS, numUbiquitous, set);
-        set = getItemsOfRarity(StRarity.ABUNDANT, numAbundant, set);
-        set = getItemsOfRarity(StRarity.PLENTIFUL, numPlentiful, set);
-        set = getItemsOfRarity(StRarity.COMMON, numCommon, set);
-        set = getItemsOfRarity(StRarity.AVERAGE, numAverage, set);
-        set = getItemsOfRarity(StRarity.SCARCE, numScarce, set);
-        set = getItemsOfRarity(StRarity.RARE, numRare, set);
-        set = getItemsOfRarity(StRarity.VERY_RARE, numVeryRare, set);
-        set = getItemsOfRarity(StRarity.EXTREMELY_RARE, numExtremelyRare, set);
-        set = getItemsOfRarity(StRarity.NEAR_UNIQUE, numNearUnique, set);
-        ArrayList<StItem> list = new ArrayList<>(set);
-        list.sort(Comparator.comparing(StItem::getRarity));
+        Set<Item> set = new HashSet<>();
+        set = getItemsOfRarity(Rarity.UBIQUITOUS, numUbiquitous, set);
+        set = getItemsOfRarity(Rarity.ABUNDANT, numAbundant, set);
+        set = getItemsOfRarity(Rarity.PLENTIFUL, numPlentiful, set);
+        set = getItemsOfRarity(Rarity.COMMON, numCommon, set);
+        set = getItemsOfRarity(Rarity.AVERAGE, numAverage, set);
+        set = getItemsOfRarity(Rarity.SCARCE, numScarce, set);
+        set = getItemsOfRarity(Rarity.RARE, numRare, set);
+        set = getItemsOfRarity(Rarity.VERY_RARE, numVeryRare, set);
+        set = getItemsOfRarity(Rarity.EXTREMELY_RARE, numExtremelyRare, set);
+        set = getItemsOfRarity(Rarity.NEAR_UNIQUE, numNearUnique, set);
+        ArrayList<Item> list = new ArrayList<>(set);
+        list.sort(Comparator.comparing(Item::getRarity));
         return list;
     }
 
-    private Set<StItem> getItemsOfRarity(StRarity rarity, int size, Set<StItem> existingItems){
+    private Set<Item> getItemsOfRarity(Rarity rarity, int size, Set<Item> existingItems){
         System.out.println(String.format("Shop Request: Getting inventory of rarity: %s size: %d", rarity, size));
         if(size <= 0){
             return existingItems;
         }
        
         Integer existingSetSize = existingItems.size();
-        Set<StItem> set = existingItems;
-
-        Set<StItemType> exhaustedTypes = new HashSet<>();
+        Set<Item> set = existingItems;
+        List<ItemType> exhaustedTypes = new ArrayList<>();
         
         while(true){
-            StItem item = null;
-            StRarity currentRarity = rarity;
-            StItemType currentType = weightedItemTypes.getRandom();
+            Item item = null;
+            Rarity currentRarity = rarity;
+            ItemType currentType = weightedItemTypes.getRandom();
             // Get item for shop inventory of correct rarity and type
             while(true){
                 item = inventoryFetcher(currentType, currentRarity, set);
@@ -118,14 +114,14 @@ public abstract class StItemTable {
         return set;
     }
 
-    private StItem inventoryFetcher(StItemType type, StRarity rarity, Set<StItem> existingItems){
+    private Item inventoryFetcher(ItemType type, Rarity rarity, Set<Item> existingItems){
         System.out.println("Shop Request: Fetching new item of rarity: " + rarity + " type: " + type);
-        for(StItem item : ItemService.getItemByType(type)){
+        for(Item item : ItemService.getItemByType(type)){
             if(item.getRarity() == rarity && !existingItems.contains(item)){
                 return item;
             }
         }
-        for(StItem item : ItemService.getItemByType(type)){
+        for(Item item : ItemService.getItemByType(type)){
             if(item.getRarity() == rarity && !existingItems.contains(item)){
                 return item;
             }

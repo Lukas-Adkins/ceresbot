@@ -5,13 +5,13 @@
 
 package goobot.model.starlight.item;
 
-import goobot.Constants.StRarity;
-import goobot.Constants.StItemType;
+import goobot.Constants.Rarity;
+import goobot.Constants.ItemType;
 
-public class StCybernetic extends StItem {
+public class Cybernetic extends Item {
     private String slots;
 
-    public StCybernetic(StItemType type, String name, StRarity rarity, String description, String weight, Integer price, String slots) {
+    public Cybernetic(ItemType type, String name, Rarity rarity, String description, String weight, Integer price, String slots) {
         super(type, name, rarity, description, weight, price);
         this.slots = slots;
     }

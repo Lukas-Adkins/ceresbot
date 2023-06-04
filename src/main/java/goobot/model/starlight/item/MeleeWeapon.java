@@ -5,16 +5,16 @@
 
 package goobot.model.starlight.item;
 
-import goobot.Constants.StItemType;
-import goobot.Constants.StRarity;
+import goobot.Constants.ItemType;
+import goobot.Constants.Rarity;
 
-public class StMeleeWeapon extends StItem {
+public class MeleeWeapon extends Item {
     private String weaponTypes;
     private String range;
     private String dmg;
     private String pen;
 
-    public StMeleeWeapon(StItemType type, String name, StRarity rarity, String description, String weight, Integer price, String weaponTypes, String range, String dmg, String pen) {
+    public MeleeWeapon(ItemType type, String name, Rarity rarity, String description, String weight, Integer price, String weaponTypes, String range, String dmg, String pen) {
         super(type, name, rarity, description, weight, price);
         this.weaponTypes = weaponTypes;
         this.range = range;

@@ -6,9 +6,10 @@
 package goobot.service;
 
 import goobot.Constants;
+import goobot.Constants.TableType;
 import goobot.model.dnd.DndSpell;
-import goobot.model.starlight.item.StItem;
-import goobot.model.starlight.item.StMech;
+import goobot.model.starlight.item.Item;
+import goobot.model.starlight.item.Mech;
 import goobot.service.CommandService;
 
 import java.util.Arrays;
@@ -50,11 +51,11 @@ public class CommandService {
      * @param args Arguments, contains name of mech
      * @return mech image url
      */
-    public StMech MechInfo(String args){
-        StMech mech = null;
+    public Mech MechInfo(String args){
+        Mech mech = null;
         try{
             String mechName = args.replace("-", " ").trim();
-            mech = (StMech) itemService.getItem(mechName);
+            mech = (Mech) itemService.getItem(mechName);
         }
         catch(Exception e){
             System.err.println("Error finding mech: " + args);
@@ -161,7 +162,7 @@ public class CommandService {
      */
     public String StItem(String args){
         String itemName = args.replace("-", " ");
-        StItem item = itemService.getItem(itemName);
+        Item item = itemService.getItem(itemName);
         if(item != null){
             return item.toString();
         }
@@ -176,7 +177,6 @@ public class CommandService {
      */
     public String StShop(String args) throws Exception {
         String arr[] = args.split(" ", 2);        
-
         Integer commerceSkill = Integer.parseInt(arr[1]),
         commerceSkillMod = Math.round(commerceSkill/10),
         maxItems = 3 * commerceSkillMod, 
@@ -192,6 +192,12 @@ public class CommandService {
         veryRare = 0,
         extremelyRare = 0,
         nearUnique = 0;
+        String shopList = "Welcome to the CeresBot Starlight storefront generator!\nGenerated a store inventory based on a shopkeep with a Commerce skill of "
+        + commerceSkill + ".\n\n";
+        String meleeList = "", rangedList = "", armorList = "", explosiveList = "", cyberneticList = "", modList = "", ammoList = "", miscList = "",
+        mechEngineList = "", mechUtilityList = "", mechMeleeList = "", mechRangedList = "", mechList = "";
+        TableType tableType = null;
+        ArrayList<Item> itemList = null;
 
         if(numberOfItems > 15)
             numberOfItems = 15;
@@ -214,37 +220,15 @@ public class CommandService {
         }
         System.out.println("Shop Request:\n " + numberOfItems + " total items.");
     
-        String shopList = "Welcome to the CeresBot Starlight storefront generator!\nGenerated a store inventory based on a shopkeep with a Commerce skill of "
-        + commerceSkill + ".\n\n";
-        String meleeList = "", rangedList = "", armorList = "", explosiveList = "", cyberneticList = "", modList = "", ammoList = "", miscList = "",
-        mechEngineList = "", mechUtilityList = "", mechMeleeList = "", mechRangedList = "", mechList = "";
-
-        String itemType = arr[0].toLowerCase();
-        ArrayList<StItem> itemList = null;
-        switch (itemType){
-            case "ranged":
-                itemList = itemService.shopRangedItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
-                break;
-            case "melee":
-                itemList = itemService.shopMeleeItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
-                break;
-            case "armor":
-                itemList = itemService.shopArmorItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
-                break;
-            case "munitions":
-                itemList = itemService.shopMunitionItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
-                break;
-            case "cybernetics":
-                itemList = itemService.shopCyberneticItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
-                break;
-            case "mech":
-                itemList = itemService.shopMechItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
-                break;
-            default:
-                throw new Exception("Unable to parse shop type.");
+        try{
+            tableType = TableType.valueOf(arr[0].toUpperCase() + "_SHOP");
         }
+        catch(Exception e){
+            return "Could not parse shop type.";
+        }
+        itemList = itemService.getItemsByTable(tableType, ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
 
-        for (StItem item : itemList){
+        for (Item item : itemList){
             switch (item.getType()){
                 case MELEE_WEAPON:
                     meleeList = meleeList + " " + item.getShopString();

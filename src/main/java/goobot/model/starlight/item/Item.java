@@ -6,16 +6,16 @@
 package goobot.model.starlight.item;
 
 import goobot.Constants;
-import goobot.Constants.StItemType;
-import goobot.Constants.StRarity;
+import goobot.Constants.ItemType;
+import goobot.Constants.Rarity;
 
 import java.util.Objects;
 import java.util.Random;
 
-public class StItem {
-    private StItemType type;
+public class Item {
+    private ItemType type;
     private String name;
-    private StRarity rarity;
+    private Rarity rarity;
     private String description;
     private String weight;
     private Integer price;
@@ -24,7 +24,7 @@ public class StItem {
     private static final String SALE_COLOR = "\u001b[0;32m%s\u001b[0;0m"; // Green
     private static final String MARKUP_COLOR = "\u001b[0;31m%s\u001b[0;0m"; // Red
 
-    public StItem(StItemType type, String name, StRarity rarity, String description, String weight, Integer price) {
+    public Item(ItemType type, String name, Rarity rarity, String description, String weight, Integer price) {
         this.type = type;
         this.name = name;
         this.rarity = rarity;
@@ -34,11 +34,11 @@ public class StItem {
         this.rng = new Random();
     }
 
-    public StItemType getType() {
+    public ItemType getType() {
         return this.type;
     }
 
-    public void setType(StItemType type) {
+    public void setType(ItemType type) {
         this.type = type;
     }
 
@@ -50,11 +50,11 @@ public class StItem {
         this.name = name;
     }
 
-    public StRarity getRarity() {
+    public Rarity getRarity() {
         return this.rarity;
     }
 
-    public void setRarity(StRarity rarity) {
+    public void setRarity(Rarity rarity) {
         this.rarity = rarity;
     }
 
@@ -94,10 +94,10 @@ public class StItem {
     public boolean equals(Object o) {
         if (o == this)
             return true;
-        if (!(o instanceof StItem)) {
+        if (!(o instanceof Item)) {
             return false;
         }
-        StItem dhItem = (StItem) o;
+        Item dhItem = (Item) o;
         return Objects.equals(type, dhItem.type) && Objects.equals(name, dhItem.name) && Objects.equals(rarity, dhItem.rarity) && Objects.equals(description, dhItem.description) && Objects.equals(weight, dhItem.weight) && Objects.equals(price, dhItem.price) && Objects.equals(rng, dhItem.rng);
     }
 
@@ -137,23 +137,23 @@ public class StItem {
     public String getFormattedRarity(){
         switch (rarity) {
             case ABUNDANT:
-                return String.format(Constants.RARITY_COLORS.get(StRarity.ABUNDANT), rarity);
+                return String.format(Constants.RARITY_COLORS.get(Rarity.ABUNDANT), rarity);
             case PLENTIFUL:
-                return String.format(Constants.RARITY_COLORS.get(StRarity.PLENTIFUL), rarity);
+                return String.format(Constants.RARITY_COLORS.get(Rarity.PLENTIFUL), rarity);
             case COMMON:
-                return String.format(Constants.RARITY_COLORS.get(StRarity.COMMON), rarity);
+                return String.format(Constants.RARITY_COLORS.get(Rarity.COMMON), rarity);
             case AVERAGE:
-                return String.format(Constants.RARITY_COLORS.get(StRarity.AVERAGE), rarity);
+                return String.format(Constants.RARITY_COLORS.get(Rarity.AVERAGE), rarity);
             case SCARCE:
-                return String.format(Constants.RARITY_COLORS.get(StRarity.SCARCE), rarity);
+                return String.format(Constants.RARITY_COLORS.get(Rarity.SCARCE), rarity);
             case RARE:
-                return String.format(Constants.RARITY_COLORS.get(StRarity.RARE), rarity);
+                return String.format(Constants.RARITY_COLORS.get(Rarity.RARE), rarity);
             case VERY_RARE:
-                return String.format(Constants.RARITY_COLORS.get(StRarity.VERY_RARE), rarity);
+                return String.format(Constants.RARITY_COLORS.get(Rarity.VERY_RARE), rarity);
             case EXTREMELY_RARE:
-                return String.format(Constants.RARITY_COLORS.get(StRarity.EXTREMELY_RARE), rarity);
+                return String.format(Constants.RARITY_COLORS.get(Rarity.EXTREMELY_RARE), rarity);
             case NEAR_UNIQUE:
-                return String.format(Constants.RARITY_COLORS.get(StRarity.NEAR_UNIQUE), rarity);
+                return String.format(Constants.RARITY_COLORS.get(Rarity.NEAR_UNIQUE), rarity);
             default:
                 return rarity.toString();
         }

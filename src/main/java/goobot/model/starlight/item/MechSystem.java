@@ -5,14 +5,14 @@
 
 package goobot.model.starlight.item;
 
-import goobot.Constants.StItemType;
-import goobot.Constants.StRarity;
+import goobot.Constants.ItemType;
+import goobot.Constants.Rarity;
 
-public class StMechSystem extends StItem {
+public class MechSystem extends Item {
     private String mechSlot;
     private String mechLocation;
 
-    public StMechSystem(StItemType type, String name, StRarity rarity, String description, String weight, Integer price, String mechSlot, String mechLocation){
+    public MechSystem(ItemType type, String name, Rarity rarity, String description, String weight, Integer price, String mechSlot, String mechLocation){
         super(type, name, rarity, description, weight, price);
         this.mechSlot = mechSlot;
         this.mechLocation = mechLocation;

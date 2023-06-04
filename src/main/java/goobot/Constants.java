@@ -60,7 +60,7 @@ public class Constants {
     "9", 25000
     );
 
-    public enum StItemType {
+    public enum ItemType {
         RANGED_WEAPON,
         MELEE_WEAPON,
         EXPLOSIVE,
@@ -77,25 +77,49 @@ public class Constants {
         MECH
     }
 
-    public enum StTableType {
-        RANGED_SHOP {
-            
-        },
-        MELEE_SHOP,
-        ARMOR_SHOP,
-        CYBERNETIC_SHOP,
-        MECH_SHOP,
-        MUNITION_SHOP
+    public enum TableType {
+        RANGED_SHOP(
+            Arrays.asList(ItemType.RANGED_WEAPON, ItemType.EXPLOSIVE, ItemType.SPECIAL_AMMO, ItemType.WEAPON_MOD),
+            Arrays.asList(0.7, 0.1, 0.1, 0.1)
+        ),
+        MELEE_SHOP(
+            Arrays.asList(ItemType.MELEE_WEAPON, ItemType.EXPLOSIVE, ItemType.ARMOR, ItemType.WEAPON_MOD),
+            Arrays.asList(0.7, 0.1, 0.1, 0.1)
+        ),
+        ARMOR_SHOP(
+            Arrays.asList(ItemType.ARMOR, ItemType.RANGED_WEAPON, ItemType.MELEE_WEAPON, ItemType.WEAPON_MOD),
+            Arrays.asList(0.7, 0.1, 0.1, 0.1)
+        ),
+        CYBERNETIC_SHOP(
+            Arrays.asList(ItemType.CYBERNETIC, ItemType.WEAPON_MOD, ItemType.MISC, ItemType.CONSUMABLE),
+            Arrays.asList(0.75, 0.1, 0.1, 0.05)
+        ),
+        MECH_SHOP(
+            Arrays.asList(ItemType.MECH_ENGINE, ItemType.MECH_UTILITY, ItemType.MECH_MELEE_WEAPON, ItemType.MECH_RANGED_WEAPON),
+            Arrays.asList(0.15, 0.2, 0.3, 0.35)
+        ),
+        MUNITION_SHOP(
+            Arrays.asList(ItemType.EXPLOSIVE, ItemType.WEAPON_MOD, ItemType.SPECIAL_AMMO, ItemType.MISC),
+            Arrays.asList(0.5, 0.2, 0.2, 0.1)
+        );
+
+        public final List<ItemType> itemTypes;
+        public final List<Double> itemWeights;
+
+        private TableType(List<ItemType> itemTypes, List<Double> itemWeights){
+            this.itemTypes = itemTypes;
+            this.itemWeights = itemWeights;
+        }
     }
 
-    public enum StRarity {
+    public enum Rarity {
         UBIQUITOUS {
             @Override
             public String toString(){
                 return "Ubiquitous";
             }
             @Override
-            public StRarity prev(){
+            public Rarity prev(){
                 return null;
             }
         },
@@ -160,20 +184,20 @@ public class Constants {
             }
         };
 
-        public StRarity prev(){
+        public Rarity prev(){
             return values()[ordinal() - 1];
         }
     }
 
-    public static final Map<StRarity, String> RARITY_COLORS = Map.of(
-        StRarity.ABUNDANT, "\u001b[0;30m%s\u001b[0;0m", // Gray
-        StRarity.PLENTIFUL, "\u001b[0;30m%s\u001b[0;0m", // Gray
-        StRarity.COMMON, "\u001b[0;33m%s\u001b[0;0m", // Yellow
-        StRarity.AVERAGE, "\u001b[0;32m%s\u001b[0;0m", // Green
-        StRarity.SCARCE, "\u001b[0;34m%s\u001b[0;0m", // Blue
-        StRarity.RARE, "\u001b[0;36m%s\u001b[0;0m", // Cyan
-        StRarity.VERY_RARE, "\u001b[0;35m%s\u001b[0;0m", // Pink
-        StRarity.EXTREMELY_RARE, "\u001b[0;31m%s\u001b[0;0m", // Red
-        StRarity.NEAR_UNIQUE, "\u001b[0;37m%s\u001b[0;0m" // White
+    public static final Map<Rarity, String> RARITY_COLORS = Map.of(
+        Rarity.ABUNDANT, "\u001b[0;30m%s\u001b[0;0m", // Gray
+        Rarity.PLENTIFUL, "\u001b[0;30m%s\u001b[0;0m", // Gray
+        Rarity.COMMON, "\u001b[0;33m%s\u001b[0;0m", // Yellow
+        Rarity.AVERAGE, "\u001b[0;32m%s\u001b[0;0m", // Green
+        Rarity.SCARCE, "\u001b[0;34m%s\u001b[0;0m", // Blue
+        Rarity.RARE, "\u001b[0;36m%s\u001b[0;0m", // Cyan
+        Rarity.VERY_RARE, "\u001b[0;35m%s\u001b[0;0m", // Pink
+        Rarity.EXTREMELY_RARE, "\u001b[0;31m%s\u001b[0;0m", // Red
+        Rarity.NEAR_UNIQUE, "\u001b[0;37m%s\u001b[0;0m" // White
     );
 }

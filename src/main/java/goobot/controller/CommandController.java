@@ -7,7 +7,7 @@ package goobot.controller;
 
 import goobot.Constants;
 import goobot.model.CommandInterface;
-import goobot.model.starlight.item.StMech;
+import goobot.model.starlight.item.Mech;
 import goobot.service.CommandService;
 
 import java.util.List;
@@ -62,7 +62,7 @@ public class CommandController implements CommandInterface {
     }
 
     @Override
-    public StMech MechInfo(String args) throws Exception {
+    public Mech MechInfo(String args) throws Exception {
         return commandService.MechInfo(args);
     }
 

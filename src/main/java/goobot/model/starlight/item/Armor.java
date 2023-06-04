@@ -5,15 +5,15 @@
 
 package goobot.model.starlight.item;
 
-import goobot.Constants.StItemType;
-import goobot.Constants.StRarity;
+import goobot.Constants.ItemType;
+import goobot.Constants.Rarity;
 
-public class StArmor extends StItem {
+public class Armor extends Item {
     private String covers;
     private String AP;
     private String maxAgility;
 
-    public StArmor(StItemType type, String name, StRarity rarity, String description, String weight, Integer price, String covers, String AP, String maxAgility) {
+    public Armor(ItemType type, String name, Rarity rarity, String description, String weight, Integer price, String covers, String AP, String maxAgility) {
         super(type, name, rarity, description, weight, price);
         this.covers = covers;
         this.AP = AP;
@@ -44,7 +44,7 @@ public class StArmor extends StItem {
         this.maxAgility = maxAgility;
     }
 
-    public StArmor covers(String covers) {
+    public Armor covers(String covers) {
         setCovers(covers);
         return this;
     }

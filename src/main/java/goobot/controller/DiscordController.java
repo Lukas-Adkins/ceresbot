@@ -17,7 +17,7 @@ import javax.annotation.Nonnull;
 import java.util.List;
 
 import goobot.Constants;
-import goobot.model.starlight.item.StMech;
+import goobot.model.starlight.item.Mech;
 
 public class DiscordController extends ListenerAdapter {
     private final CommandController commandController;
@@ -119,7 +119,7 @@ public class DiscordController extends ListenerAdapter {
                     post(commandController.StShop(args), channel);
                     break;
                 case "mech":
-                    StMech mech = commandController.MechInfo(args);
+                    Mech mech = commandController.MechInfo(args);
                     if(mech == null){
                         post(Constants.MECH_NOT_FOUND_MSG, channel);
                     }
