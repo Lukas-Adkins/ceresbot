@@ -111,7 +111,7 @@ public class Item {
      * e.g. "Rifle / Common / 120 credits"
      * @return Shop string
      */
-    public String getShopString(){
+    public String displayShop(){
         if(rng.nextInt(100) + 1 > 85){ // Small chance item is on sale or more expensive
             double percent = 1.00;
             while(percent < 1.07 && percent > 0.95) // Generate percent sale / markup with greater than 7% swing
@@ -128,6 +128,10 @@ public class Item {
 
         }
         return String.format("%s / %s / %d credits\n", name, getFormattedRarity(), price);
+    }
+
+    public String displayLoot(){
+        return String.format("%s / %s\n", name, getFormattedRarity());
     }
     
     /**

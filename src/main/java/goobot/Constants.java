@@ -5,6 +5,9 @@
 
 package goobot;
 import java.util.Map;
+
+import org.checkerframework.checker.units.qual.min;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,7 +37,8 @@ public class Constants {
         "`!character <character>` - Provides information on the given D&D character.\n" +
         "`!item <name>` - Provides information on the given Starlight item.\n" +
         "`!shop <ranged,melee,armor,munitions,cybernetics,mech> <commerce skill>` - Generates a store inventory of Starlight items based on a shop type and commerce skill.\n" + 
-        "`!mech <name>` - Provides information on the given Starlight mech.\n",
+        "`!mech <name>` - Provides information on the given Starlight mech.\n" + 
+        "`!loot <table>` - Rolls on a given loot table.\n",
     SPELLS_FILEPATH = "spells.json",
     SPELLS_TEST_FILEPATH = "spells_test.json",
     ST_ITEMS_FILEPATH = "starlight_items.csv",
@@ -101,14 +105,51 @@ public class Constants {
         MUNITION_SHOP(
             Arrays.asList(ItemType.EXPLOSIVE, ItemType.WEAPON_MOD, ItemType.SPECIAL_AMMO, ItemType.MISC),
             Arrays.asList(0.5, 0.2, 0.2, 0.1)
+        ),
+        MECH_LOW_TABLE(
+            Arrays.asList(
+                ItemType.RANGED_WEAPON, ItemType.MELEE_WEAPON, ItemType.EXPLOSIVE, ItemType.ARMOR,
+                ItemType.CYBERNETIC, ItemType.MISC, ItemType.WEAPON_MOD, ItemType.SPECIAL_AMMO, ItemType.CONSUMABLE,
+                ItemType.MECH_ENGINE, ItemType.MECH_UTILITY, ItemType.MECH_MELEE_WEAPON, ItemType.MECH_RANGED_WEAPON
+                ),
+            Arrays.asList(0.02, 0.02, 0.01, 0.02, 0.02, 0.02, 0.01, 0.01, 0.02, 0.2, 0.2, 0.2, 0.2),
+            25, 1, 2
+        ),
+        MECH_MED_TABLE(
+            Arrays.asList(
+                ItemType.RANGED_WEAPON, ItemType.MELEE_WEAPON, ItemType.EXPLOSIVE, ItemType.ARMOR,
+                ItemType.CYBERNETIC, ItemType.MISC, ItemType.WEAPON_MOD, ItemType.SPECIAL_AMMO, ItemType.CONSUMABLE,
+                ItemType.MECH_ENGINE, ItemType.MECH_UTILITY, ItemType.MECH_MELEE_WEAPON, ItemType.MECH_RANGED_WEAPON
+                ),
+            Arrays.asList(0.02, 0.02, 0.01, 0.02, 0.02, 0.02, 0.01, 0.01, 0.02, 0.2, 0.2, 0.2, 0.2),
+            40, 1, 3
+        ),
+        MECH_HIGH_TABLE(
+            Arrays.asList(
+                ItemType.RANGED_WEAPON, ItemType.MELEE_WEAPON, ItemType.EXPLOSIVE, ItemType.ARMOR,
+                ItemType.CYBERNETIC, ItemType.MISC, ItemType.WEAPON_MOD, ItemType.SPECIAL_AMMO, ItemType.CONSUMABLE,
+                ItemType.MECH_ENGINE, ItemType.MECH_UTILITY, ItemType.MECH_MELEE_WEAPON, ItemType.MECH_RANGED_WEAPON
+                ),
+            Arrays.asList(0.02, 0.02, 0.01, 0.02, 0.02, 0.02, 0.01, 0.01, 0.02, 0.2, 0.2, 0.2, 0.2),
+            55, 1, 4
         );
+
 
         public final List<ItemType> itemTypes;
         public final List<Double> itemWeights;
+        public Integer commerce, minItems, maxItems;
 
         private TableType(List<ItemType> itemTypes, List<Double> itemWeights){
             this.itemTypes = itemTypes;
             this.itemWeights = itemWeights;
+        }
+
+        private TableType(List<ItemType> itemTypes, List<Double> itemWeights, Integer commerce, Integer minItems, Integer maxItems){
+            this.itemTypes = itemTypes;
+            this.itemWeights = itemWeights;
+            this.commerce = commerce;
+            this.minItems = minItems;
+            this.maxItems = maxItems;
         }
     }
 

@@ -82,12 +82,17 @@ public class CommandController implements CommandInterface {
     }
 
     @Override
-    public String StItem(String args) throws Exception {
-        return commandService.StItem(args);
+    public String Item(String args) throws Exception {
+        return commandService.Item(args);
     }
 
     @Override
-    public String StShop(String args) throws Exception {
-        return commandService.StShop(args);
+    public String Shop(String args) throws Exception {
+        return commandService.Shop(args);
+    }
+
+    @Override
+    public String Loot(String args) throws Exception {
+        return commandService.Loot(args);
     }
 }

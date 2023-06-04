@@ -18,6 +18,7 @@ public interface CommandInterface {
     public String Roll(String args) throws Exception;
     public String Spell(String args) throws Exception;
     public String SpellScroll(String args) throws Exception;
-    public String StItem(String args) throws Exception;
-    public String StShop(String args) throws Exception;
+    public String Item(String args) throws Exception;
+    public String Shop(String args) throws Exception;
+    public String Loot(String args) throws Exception;
 }

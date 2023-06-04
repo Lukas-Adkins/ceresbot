@@ -44,11 +44,6 @@ public class Armor extends Item {
         this.maxAgility = maxAgility;
     }
 
-    public Armor covers(String covers) {
-        setCovers(covers);
-        return this;
-    }
-
     @Override
     public String toString(){
         return String.format("```ansi\n%s / %s / %d credits\nCovers: %s / AP: %s / Max Agility: %s\n%s```", getName(), getFormattedRarity(), getPrice(), covers , AP, maxAgility, getDescription());

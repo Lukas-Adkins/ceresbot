@@ -19,4 +19,6 @@ A helpful Discord bot for for TTRPG tools.
 `!spellscroll <spell>` - Calculates the price of a spell scroll for the given 5e D&D spell.  
 `!character <character name>` - Displays information about a matching D&D character.  
 `!item <item name>` - Provides information on the given Starlight item.  
-`!shop <ranged,melee,armor,munitions,cybernetics,mech> <commerce skill>` - Generates a store inventory of Starlight items based on a shop type and commerce skill.
+`!shop <ranged,melee,armor,munitions,cybernetics,mech> <commerce skill>` - Generates a store inventory of Starlight items based on a shop type and commerce skill.  
+`!mech <name>` - Provides information on the given Starlight mech.
+`!loot <table>` - Rolls on the given loot table.

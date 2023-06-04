@@ -27,6 +27,7 @@ import goobot.model.starlight.item.MechRangedWeapon;
 import goobot.model.starlight.item.MechSystem;
 import goobot.model.starlight.item.MeleeWeapon;
 import goobot.model.starlight.item.RangedWeapon;
+import goobot.model.starlight.TableRequest;
 import goobot.Constants.Rarity;
 import goobot.Constants.TableType;
 
@@ -68,6 +69,10 @@ public class ItemService {
     private ItemTable cyberneticShop;
     private ItemTable mechShop;
 
+    private ItemTable mechLow;
+    private ItemTable mechMed;
+    private ItemTable mechHigh;
+
     public ItemService(){
         itemsByName = new HashMap<>();
         itemsByRarity = new HashMap<>();
@@ -80,6 +85,9 @@ public class ItemService {
             this.munitionShop = new ItemTable(TableType.MUNITION_SHOP);
             this.cyberneticShop = new ItemTable(TableType.CYBERNETIC_SHOP);
             this.mechShop = new ItemTable(TableType.MECH_SHOP);
+            this.mechLow = new ItemTable(TableType.MECH_LOW_TABLE);
+            this.mechMed = new ItemTable(TableType.MECH_MED_TABLE);
+            this.mechHigh = new ItemTable(TableType.MECH_HIGH_TABLE);
         }
         catch(Exception e){
             System.out.println(String.format("[ERROR] : Parsing items from %s", Constants.ST_ITEMS_FILEPATH));
@@ -264,23 +272,29 @@ public class ItemService {
      * @param nearUnique
      * @return
      */
-    public ArrayList<Item> getItemsByTable(
-        TableType table, int ubiquitous, int abundant, int plentiful, int common,
-        int average, int scarce, int rare, int veryRare, int extremelyRare, int nearUnique
-        ){
+    public ArrayList<Item> getItemsByTable(TableType table, TableRequest request){
         switch(table){
             case ARMOR_SHOP:
-                return armorShop.getItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
+                return armorShop.getItems(request);
             case CYBERNETIC_SHOP:
-                return cyberneticShop.getItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
+                return cyberneticShop.getItems(request);
             case MECH_SHOP:
-                return mechShop.getItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
+                return mechShop.getItems(request);
             case MELEE_SHOP:
-                return meleeShop.getItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
+                return meleeShop.getItems(request);
             case MUNITION_SHOP:
-                return munitionShop.getItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
+                return munitionShop.getItems(request);
             case RANGED_SHOP:
-                return rangedShop.getItems(ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
+                return rangedShop.getItems(request);
+            case MECH_LOW_TABLE:
+                return mechLow.getItems(request);
+            case MECH_MED_TABLE:
+                return mechMed.getItems(request);
+            case MECH_HIGH_TABLE:
+                return mechHigh.getItems(request);
+            default:
+                System.err.println("Table type not implemented: " + table.toString());
+                break;
         }
         return null;
     }

@@ -10,6 +10,7 @@ import goobot.Constants.TableType;
 import goobot.model.dnd.DndSpell;
 import goobot.model.starlight.item.Item;
 import goobot.model.starlight.item.Mech;
+import goobot.model.starlight.TableRequest;
 import goobot.service.CommandService;
 
 import java.util.Arrays;
@@ -160,7 +161,7 @@ public class CommandService {
      * @param args Name of the item
      * @return String item information
      */
-    public String StItem(String args){
+    public String Item(String args){
         String itemName = args.replace("-", " ");
         Item item = itemService.getItem(itemName);
         if(item != null){
@@ -175,102 +176,66 @@ public class CommandService {
      * @param args Commerce skill of the shopkeeper
      * @return Store information formatted as a string
      */
-    public String StShop(String args) throws Exception {
+    public String Shop(String args) throws Exception {
         String arr[] = args.split(" ", 2);        
-        Integer commerceSkill = Integer.parseInt(arr[1]),
-        commerceSkillMod = Math.round(commerceSkill/10),
-        maxItems = 3 * commerceSkillMod, 
-        minItems = 2 * commerceSkillMod, 
-        numberOfItems = rng.nextInt(maxItems - minItems + 1) + minItems,
-        ubiquitous = 0,
-        abundant = 0,
-        plentiful = 0,
-        common = 0,
-        average = 0,
-        scarce = 0,
-        rare = 0,
-        veryRare = 0,
-        extremelyRare = 0,
-        nearUnique = 0;
+        Integer commerce = Integer.parseInt(arr[1]),
+        commerceMod = Math.round(commerce/10),
+        maxItems = 3 * commerceMod, 
+        minItems = 2 * commerceMod, 
+        items = rng.nextInt(maxItems - minItems + 1) + minItems;
         String shopList = "Welcome to the CeresBot Starlight storefront generator!\nGenerated a store inventory based on a shopkeep with a Commerce skill of "
-        + commerceSkill + ".\n\n";
+        + commerce + ".\n\n";
         String meleeList = "", rangedList = "", armorList = "", explosiveList = "", cyberneticList = "", modList = "", ammoList = "", miscList = "",
         mechEngineList = "", mechUtilityList = "", mechMeleeList = "", mechRangedList = "", mechList = "";
-        TableType tableType = null;
-        ArrayList<Item> itemList = null;
-
-        if(numberOfItems > 15)
-            numberOfItems = 15;
-        for(int i = 0; i < numberOfItems; i++){
-            Integer d100 = rng.nextInt(100) + 1;
-            if(d100 < commerceSkill - 50)
-                nearUnique++;
-            else if(d100 < commerceSkill - 40)
-                extremelyRare++; 
-            else if(d100 < commerceSkill - 30)
-                veryRare++;
-            else if(d100 < commerceSkill - 20)
-                rare++;
-            else if(d100 < commerceSkill - 10)
-                scarce++;
-            else if(d100 < commerceSkill)
-                average++;
-            else
-                common++;
-        }
-        System.out.println("Shop Request:\n " + numberOfItems + " total items.");
-    
-        try{
-            tableType = TableType.valueOf(arr[0].toUpperCase() + "_SHOP");
-        }
-        catch(Exception e){
-            return "Could not parse shop type.";
-        }
-        itemList = itemService.getItemsByTable(tableType, ubiquitous, abundant, plentiful, common, average, scarce, rare, veryRare, extremelyRare, nearUnique);
-
+        if(items > 15)
+            items = 15;
+        System.out.println("Shop Request:\n " + items + " total items.");
+        
+        TableType tableType = TableType.valueOf(arr[0].toUpperCase() + "_SHOP");
+        ArrayList<Item> itemList = itemService.getItemsByTable(tableType, TableRequest.requisition(commerce, items));
         for (Item item : itemList){
             switch (item.getType()){
                 case MELEE_WEAPON:
-                    meleeList = meleeList + " " + item.getShopString();
+                    meleeList = meleeList + " " + item.displayShop();
                     break;
                 case RANGED_WEAPON:
-                    rangedList = rangedList + " " + item.getShopString();
+                    rangedList = rangedList + " " + item.displayShop();
                     break; 
                 case ARMOR:
-                    armorList = armorList + " " + item.getShopString();
+                    armorList = armorList + " " + item.displayShop();
                     break; 
                 case EXPLOSIVE:
-                    explosiveList = explosiveList + " " + item.getShopString();
+                    explosiveList = explosiveList + " " + item.displayShop();
                     break;  
                 case CYBERNETIC:
-                    cyberneticList = cyberneticList + " " + item.getShopString();
+                    cyberneticList = cyberneticList + " " + item.displayShop();
                     break;
                 case WEAPON_MOD:
-                    modList = modList + " " + item.getShopString();
+                    modList = modList + " " + item.displayShop();
                     break;
                 case SPECIAL_AMMO:
-                    ammoList = ammoList + " " + item.getShopString();
+                    ammoList = ammoList + " " + item.displayShop();
                     break;
                 case CONSUMABLE:
-                    miscList = miscList + " " + item.getShopString();
+                    miscList = miscList + " " + item.displayShop();
                     break;
                 case MISC:
-                    miscList = miscList + " " + item.getShopString();
+                    miscList = miscList + " " + item.displayShop();
                     break; 
                 case MECH_ENGINE:
-                    mechEngineList = mechEngineList + " " + item.getShopString();
+                    mechEngineList = mechEngineList + " " + item.displayShop();
                     break;
                 case MECH_UTILITY:
-                    mechUtilityList = mechUtilityList + " " + item.getShopString();
+                    mechUtilityList = mechUtilityList + " " + item.displayShop();
                     break;
                 case MECH_MELEE_WEAPON:
-                    mechMeleeList = mechMeleeList + " " + item.getShopString();
+                    mechMeleeList = mechMeleeList + " " + item.displayShop();
                     break;
                 case MECH_RANGED_WEAPON:
-                    mechRangedList = mechRangedList + " " + item.getShopString();
+                    mechRangedList = mechRangedList + " " + item.displayShop();
                     break;
                 case MECH:
-                    mechList = mechList + " " + item.getShopString();
+                    mechList = mechList + " " + item.displayShop();
                     break;
             }
         }
@@ -311,5 +276,21 @@ public class CommandService {
             shopList = shopList + "Mech Engine System\n" + mechEngineList + "\n";
         }
         return String.format("```ansi\n%s```", shopList);
+    }
+
+    public String Loot(String args){
+        TableType tableType = TableType.valueOf(args.toUpperCase() + "_TABLE");
+        ArrayList<Item> items = itemService.getItemsByTable(
+            tableType, TableRequest.requisition(tableType.commerce, rng.nextInt(tableType.maxItems - tableType.minItems + 1) + tableType.minItems)
+        );
+        return String.format("```ansi\n%s```", formatLoot(items));
+    }
+
+    private String formatLoot(ArrayList<Item> items){
+        StringBuilder sb = new StringBuilder();
+        for(Item item : items){
+            sb.append(item.displayLoot());
+        }
+        return sb.toString();
     }
 }

@@ -49,21 +49,18 @@ public class ItemTable {
         return null;
     }
     
-    public ArrayList<Item> getItems(int numUbiquitous, int numAbundant, int numPlentiful, int numCommon, int numAverage,
-    int numScarce, int numRare, int numVeryRare, int numExtremelyRare, int numNearUnique){
-        System.out.println(String.format("Shop Request Rarities:\n ub: %d\n ab: %s\n pl: %s\n co: %s\n av: %s\n sc: %s\n ra: %s\n vr: %s\n er: %s\n nu: %s\n",
-        numUbiquitous, numAbundant, numPlentiful, numCommon, numAverage, numScarce, numRare, numVeryRare, numExtremelyRare, numNearUnique));
+    public ArrayList<Item> getItems(TableRequest request){
         Set<Item> set = new HashSet<>();
-        set = getItemsOfRarity(Rarity.UBIQUITOUS, numUbiquitous, set);
-        set = getItemsOfRarity(Rarity.ABUNDANT, numAbundant, set);
-        set = getItemsOfRarity(Rarity.PLENTIFUL, numPlentiful, set);
-        set = getItemsOfRarity(Rarity.COMMON, numCommon, set);
-        set = getItemsOfRarity(Rarity.AVERAGE, numAverage, set);
-        set = getItemsOfRarity(Rarity.SCARCE, numScarce, set);
-        set = getItemsOfRarity(Rarity.RARE, numRare, set);
-        set = getItemsOfRarity(Rarity.VERY_RARE, numVeryRare, set);
-        set = getItemsOfRarity(Rarity.EXTREMELY_RARE, numExtremelyRare, set);
-        set = getItemsOfRarity(Rarity.NEAR_UNIQUE, numNearUnique, set);
+        set = getItemsOfRarity(Rarity.UBIQUITOUS, request.ubiquitous, set);
+        set = getItemsOfRarity(Rarity.ABUNDANT, request.abundant, set);
+        set = getItemsOfRarity(Rarity.PLENTIFUL, request.plentiful, set);
+        set = getItemsOfRarity(Rarity.COMMON, request.common, set);
+        set = getItemsOfRarity(Rarity.AVERAGE, request.average, set);
+        set = getItemsOfRarity(Rarity.SCARCE, request.scarce, set);
+        set = getItemsOfRarity(Rarity.RARE, request.rare, set);
+        set = getItemsOfRarity(Rarity.VERY_RARE, request.veryRare, set);
+        set = getItemsOfRarity(Rarity.EXTREMELY_RARE, request.extremelyRare, set);
+        set = getItemsOfRarity(Rarity.NEAR_UNIQUE, request.nearUnique, set);
         ArrayList<Item> list = new ArrayList<>(set);
         list.sort(Comparator.comparing(Item::getRarity));
         return list;
