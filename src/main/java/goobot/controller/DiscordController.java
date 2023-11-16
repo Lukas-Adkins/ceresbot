@@ -66,13 +66,13 @@ public class DiscordController extends ListenerAdapter {
                             event.getMessage().getContentDisplay());
             }
         }
-        if(event.getAuthor().isBot()) return;         // Don't respond to other bot accounts, including ourself
+        // Don't respond to other bot accounts, including ourself
+        if(event.getAuthor().isBot()) return;
         Message message = event.getMessage();
         String content = message.getContentRaw();
         // Sees if message contains the command prefix
         if(content.length() > 0 && content.substring(0, 1).equalsIgnoreCase(Constants.BOT_PREFIX))
             parseCommand(content.substring(1), event); // Strips message of command prefix and sends to parse
-    
     }
 
     /**
@@ -147,7 +147,6 @@ public class DiscordController extends ListenerAdapter {
             System.err.println("Error in parsing command: " + command + " " + args);
             e.printStackTrace();
         }
-        
     }
 
     /**

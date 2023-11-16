@@ -5,6 +5,8 @@
 
 package goobot;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.checkerframework.checker.units.qual.min;
 
@@ -38,7 +40,7 @@ public class Constants {
         "`!item <name>` - Provides information on the given Starlight item.\n" +
         "`!shop <ranged,melee,armor,munitions,cybernetics,mech> <commerce skill>` - Generates a store inventory of Starlight items based on a shop type and commerce skill.\n" + 
         "`!mech <name>` - Provides information on the given Starlight mech.\n" + 
-        "`!loot <table>` - Rolls on a given loot table.\n",
+        "`!loot <mech_low, mech_med, mech_high>` - Rolls on a given loot table.\n",
     SPELLS_FILEPATH = "spells.json",
     SPELLS_TEST_FILEPATH = "spells_test.json",
     ST_ITEMS_FILEPATH = "starlight_items.csv",
@@ -51,18 +53,18 @@ public class Constants {
     public static final List<String> CHARACTER_TEST_FILEPATHS = Arrays.asList("characters_test.csv");
     
     // Price map for default PHB spell scroll prices, by level / gp cost.
-    public static final Map<String, Integer> SPELL_SCROLL_STATIC_PRICES = Map.of(
-    "cantrip", 13,
-    "1", 25,
-    "2", 50,
-    "3", 125,
-    "4", 250,
-    "5", 1250,
-    "6", 2500,
-    "7", 5000,
-    "8", 12500,
-    "9", 25000
-    );
+    public static Map<String, Integer> SPELL_SCROLL_STATIC_PRICES = Stream.of(new Object[][] { 
+        { "cantrip", 13 }, 
+        { "1", 25 }, 
+        { "2", 50 }, 
+        { "3", 125 }, 
+        { "4", 250 }, 
+        { "5", 1250 }, 
+        { "6", 2500 }, 
+        { "7", 5000 }, 
+        { "8", 12500 }, 
+        { "9", 25000 }, 
+    }).collect(Collectors.toMap(data -> (String) data[0], data -> (Integer) data[1]));
 
     public enum ItemType {
         RANGED_WEAPON,

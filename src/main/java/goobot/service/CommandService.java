@@ -183,13 +183,10 @@ public class CommandService {
         maxItems = 3 * commerceMod, 
         minItems = 2 * commerceMod, 
         items = rng.nextInt(maxItems - minItems + 1) + minItems;
-        String shopList = "Welcome to the CeresBot Starlight storefront generator!\nGenerated a store inventory based on a shopkeep with a Commerce skill of "
-        + commerce + ".\n\n";
-        String meleeList = "", rangedList = "", armorList = "", explosiveList = "", cyberneticList = "", modList = "", ammoList = "", miscList = "",
+        String shopList = "", meleeList = "", rangedList = "", armorList = "", explosiveList = "", cyberneticList = "", modList = "", ammoList = "", miscList = "",
         mechEngineList = "", mechUtilityList = "", mechMeleeList = "", mechRangedList = "", mechList = "";
         if(items > 15)
             items = 15;
-        System.out.println("Shop Request:\n " + items + " total items.");
         
         TableType tableType = TableType.valueOf(arr[0].toUpperCase() + "_SHOP");
         ArrayList<Item> itemList = itemService.getItemsByTable(tableType, TableRequest.requisition(commerce, items));
