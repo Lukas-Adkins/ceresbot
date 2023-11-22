@@ -20,5 +20,4 @@ A helpful Discord bot for for TTRPG tools.
 `!character <character name>` - Displays information about a matching character.  
 `!item <item name>` - Provides information on the given Starlight item.  
 `!shop <ranged,melee,armor,munitions,cybernetics,mech> <commerce skill>` - Generates a store inventory of Starlight items based on a shop type and commerce skill.  
-`!mech <name>` - Provides information on the given Starlight mech.
-`!loot <mech_low, mech_med, mech_high>` - Rolls on the given loot table.
+`!loot <indv/grp>_<person/mech>_<low,med,high>` - Rolls a Starlight loot table.

@@ -48,24 +48,6 @@ public class CommandService {
     }
 
     /**
-     * Looks up mech info.
-     * @param args Arguments, contains name of mech
-     * @return mech image url
-     */
-    public Mech MechInfo(String args){
-        Mech mech = null;
-        try{
-            String mechName = args.replace("-", " ").trim();
-            mech = (Mech) itemService.getItem(mechName);
-        }
-        catch(Exception e){
-            System.err.println("Error finding mech: " + args);
-            e.printStackTrace();
-        }
-        return mech;
-    }
-
-    /**
      * Simulates a tabletop dice roll.
      * @param args Dice and number of dice in <dice>d<dice> format
      * @return Formatted string with roll total and individually rolled dice
@@ -161,14 +143,18 @@ public class CommandService {
      * @param args Name of the item
      * @return String item information
      */
-    public String Item(String args){
+    public List<String> Item(String args){
         String itemName = args.replace("-", " ");
         Item item = itemService.getItem(itemName);
         if(item != null){
-            return item.toString();
+            if(item instanceof Mech){
+                Mech mech = (Mech) item;
+                return Arrays.asList(mech.toString(), mech.getUrl());
+            }
+            return Arrays.asList(item.toString(), "");
         }
         else
-            return Constants.ITEM_NOT_FOUND_MESSAGE;
+            return Arrays.asList(Constants.ITEM_NOT_FOUND_MSG, "");
     }
 
     /**

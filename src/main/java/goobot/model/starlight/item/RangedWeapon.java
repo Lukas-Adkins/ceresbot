@@ -88,6 +88,6 @@ public class RangedWeapon extends Item {
 
     @Override
     public String toString() {
-        return String.format("```ansi\n%s / %s / %s / %d credits\n%s / Range: %s / RoF: %s / Damage: %s / Pen: %s / Mag: %s / Rld: %s\n%s```", getName(), getFormattedRarity(), getWeight(), getPrice(), weaponTypes, range , RoF, dmg, pen, mag, reloadTime, getDescription());
+        return String.format("```ansi\n%s / %s / %s / %d CYD\n%s / Range: %s / RoF: %s / Damage: %s / Pen: %s / Mag: %s / Rld: %s\n%s```", getName(), getFormattedRarity(), getWeight(), getPrice(), weaponTypes, range , RoF, dmg, pen, mag, reloadTime, getDescription());
     }
 }

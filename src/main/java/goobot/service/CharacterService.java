@@ -50,15 +50,15 @@ public class CharacterService {
         }
         catch(Exception e){
             System.err.println(e);
-            System.err.println(Constants.CHARACTER_CSV_NOT_FOUND_ERROR);
+            System.err.println(Constants.CHARACTER_FILE_NOT_FOUND_ERROR);
             System.err.println(characterFilepaths.toString());
             System.exit(Constants.FATAL_FAILURE);
         }
     }
 
     /**
-     * Parses character CSV files
-     * @param filepath
+     * Parses character CSV files.
+     * @param filepath Path to CSV file.
      * @throws Exception
      */
     private void parseCharacters(Path filepath) throws Exception {
@@ -95,9 +95,9 @@ public class CharacterService {
     }
 
     /**
-     * Reads all lines from a CSV character file
-    * @param filePath CSV filepath
-    * @return String matrix of csv values
+     * Reads all lines from a CSV character file.
+    * @param filePath CSV filepath.
+    * @return String matrix of csv values.
     * @throws Exception
     */
     private List<String[]> readAllLines(Path filePath) throws Exception {
@@ -109,9 +109,9 @@ public class CharacterService {
     }
 
     /**
-     * Gets the path of an character CSV file, if it exists
-    * @param filename Name of file without path
-    * @return String Filepath, if file exists
+     * Gets the path of an character CSV file, if it exists.
+    * @param filename String name of file without path.
+    * @return String Filepath, if file exists.
     */
     private Path getSheetPath(String filename){
         String RES_PATH = "src/main/resources", CURRENT_DIR_PATH = "";
@@ -129,8 +129,8 @@ public class CharacterService {
 
     /**
      * Searches for a character and returns their corresponding info. 
-     * @param Character name
-     * @return Textbody and image tuple
+     * @param name String name of the character.
+     * @return Textbody and image tuple.
      */
     public List<String> getCharacter(String name){
         String[] words = name.split("\\s+");

@@ -22,6 +22,6 @@ public class Mech extends Item {
 
     @Override
     public String toString(){
-        return String.format("```ansi\n%s / %s / %d credits```", getName(), getFormattedRarity(), getPrice());
+        return String.format("```ansi\n%s / %s / %d CYD```", getName(), getFormattedRarity(), getPrice());
     }
 }

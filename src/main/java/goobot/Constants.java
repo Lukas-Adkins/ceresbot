@@ -14,20 +14,37 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Constants {
+    
+    // Discord Bot Settings
     public static final Integer 
     FATAL_FAILURE = 1,
     DISCORD_MSG_CAP = 2000;
+
+    public static final String 
+    BOT_PREFIX = "!",
+    DISCORD_TOKEN_STRING = "DISCORD_API_KEY";
     
+    // Feature Flags
     public static final Boolean 
     LOG_MESSAGES = false,
     CUSTOM_SCROLL_PRICES = true,
     CUSTOM_SCROLL_CASTING = true;
 
+    // Filepaths
+    public static final String
+    SPELLS_FILEPATH = "spells.json",
+    SPELLS_TEST_FILEPATH = "spells_test.json",
+    ST_ITEMS_FILEPATH = "starlight_items.csv";
+
+    public static final List<String> 
+    CHARACTER_FILEPATHS = Arrays.asList("materia_characters.csv", "inferno_characters.csv", "hysteria_characters.csv"),
+    CHARACTER_TEST_FILEPATHS = Arrays.asList("characters_test.csv");
+
+    // Messages
     public static final String 
-    BOT_PREFIX = "!",
     DICE_NOT_PARSED_MSG = "Could not parse provided dice. Please try in format:\n`!roll <number of dice>d<dice> <+/-> <modifier>`",
     SPELL_NOT_FOUND_MSG = "Spell not found. Keep in mind, only PHB, XGtE, and TCoE spells are supported currently.",
-    ITEM_NOT_FOUND_MESSAGE = "Item not found.",
+    ITEM_NOT_FOUND_MSG = "Item not found.",
     CHARACTER_NOT_FOUND_MSG = "Character not found. Please make sure you have spelled the character's name correctly.",
     MECH_NOT_FOUND_MSG = "Mech not found. Please make sure you have spelled the mech's name correctly.",
     PAT_MSG = "<:ceresblush:875653225385168898>",
@@ -39,20 +56,15 @@ public class Constants {
         "`!character <character>` - Provides information on the given D&D character.\n" +
         "`!item <name>` - Provides information on the given Starlight item.\n" +
         "`!shop <ranged,melee,armor,munitions,cybernetics,mech> <commerce skill>` - Generates a store inventory of Starlight items based on a shop type and commerce skill.\n" + 
-        "`!mech <name>` - Provides information on the given Starlight mech.\n" + 
-        "`!loot <mech_low, mech_med, mech_high>` - Rolls on a given loot table.\n",
-    SPELLS_FILEPATH = "spells.json",
-    SPELLS_TEST_FILEPATH = "spells_test.json",
-    ST_ITEMS_FILEPATH = "starlight_items.csv",
-    DISCORD_TOKEN_STRING = "DISCORD_API_KEY",
-    DISCORD_TOKEN_NOT_FOUND_ERROR = "Could not find .env file with DISCORD_API_KEY value set.",
-    CHARACTER_CSV_NOT_FOUND_ERROR = "Could not find character CSV file.",
-    BOT_START_ERROR = "Could not start Ceresbot.";
+        "`!loot <indv/grp>_<person/mech>_<low,med,high>` - Rolls a Starlight loot table.\n";
 
-    public static final List<String> CHARACTER_FILEPATHS = Arrays.asList("materia_characters.csv", "inferno_characters.csv", "hysteria_characters.csv");
-    public static final List<String> CHARACTER_TEST_FILEPATHS = Arrays.asList("characters_test.csv");
+    // Error Messages
+    public static final String
+    DISCORD_TOKEN_NOT_FOUND_ERROR = "Could not find .env file with DISCORD_API_KEY value set.",
+    CHARACTER_FILE_NOT_FOUND_ERROR = "Could not find character CSV file.",
+    BOT_START_ERROR = "Could not start Ceresbot.";
     
-    // Price map for default PHB spell scroll prices, by level / gp cost.
+    // Price map for D&D spell spell scroll prices, by level and gp cost.
     public static Map<String, Integer> SPELL_SCROLL_STATIC_PRICES = Stream.of(new Object[][] { 
         { "cantrip", 13 }, 
         { "1", 25 }, 
@@ -83,6 +95,7 @@ public class Constants {
         MECH
     }
 
+    // Shop and Loot Tables
     public enum TableType {
         RANGED_SHOP(
             Arrays.asList(ItemType.RANGED_WEAPON, ItemType.EXPLOSIVE, ItemType.SPECIAL_AMMO, ItemType.WEAPON_MOD),
@@ -108,34 +121,102 @@ public class Constants {
             Arrays.asList(ItemType.EXPLOSIVE, ItemType.WEAPON_MOD, ItemType.SPECIAL_AMMO, ItemType.MISC),
             Arrays.asList(0.5, 0.2, 0.2, 0.1)
         ),
-        MECH_LOW_TABLE(
+        INDV_MECH_LOW_TABLE(
             Arrays.asList(
-                ItemType.RANGED_WEAPON, ItemType.MELEE_WEAPON, ItemType.EXPLOSIVE, ItemType.ARMOR,
-                ItemType.CYBERNETIC, ItemType.MISC, ItemType.WEAPON_MOD, ItemType.SPECIAL_AMMO, ItemType.CONSUMABLE,
-                ItemType.MECH_ENGINE, ItemType.MECH_UTILITY, ItemType.MECH_MELEE_WEAPON, ItemType.MECH_RANGED_WEAPON
+                ItemType.EXPLOSIVE, ItemType.ARMOR, ItemType.CYBERNETIC, ItemType.MECH_ENGINE, ItemType.MECH_UTILITY,
+                ItemType.MECH_MELEE_WEAPON, ItemType.MECH_RANGED_WEAPON, ItemType.MECH
                 ),
-            Arrays.asList(0.02, 0.02, 0.01, 0.02, 0.02, 0.02, 0.01, 0.01, 0.02, 0.2, 0.2, 0.2, 0.2),
-            25, 1, 2
+            Arrays.asList(0.01, 0.01, 0.01, 0.2, 0.25, 0.2, 0.2, 0.02),
+            25, 1, 3
         ),
-        MECH_MED_TABLE(
+        INDV_MECH_MED_TABLE(
             Arrays.asList(
-                ItemType.RANGED_WEAPON, ItemType.MELEE_WEAPON, ItemType.EXPLOSIVE, ItemType.ARMOR,
-                ItemType.CYBERNETIC, ItemType.MISC, ItemType.WEAPON_MOD, ItemType.SPECIAL_AMMO, ItemType.CONSUMABLE,
-                ItemType.MECH_ENGINE, ItemType.MECH_UTILITY, ItemType.MECH_MELEE_WEAPON, ItemType.MECH_RANGED_WEAPON
+                ItemType.EXPLOSIVE, ItemType.ARMOR, ItemType.CYBERNETIC, ItemType.MECH_ENGINE, ItemType.MECH_UTILITY,
+                ItemType.MECH_MELEE_WEAPON, ItemType.MECH_RANGED_WEAPON, ItemType.MECH
                 ),
-            Arrays.asList(0.02, 0.02, 0.01, 0.02, 0.02, 0.02, 0.01, 0.01, 0.02, 0.2, 0.2, 0.2, 0.2),
+            Arrays.asList(0.01, 0.01, 0.01, 0.2, 0.25, 0.2, 0.2, 0.02),
             40, 1, 3
         ),
-        MECH_HIGH_TABLE(
+        INDV_MECH_HIGH_TABLE(
+            Arrays.asList(
+                ItemType.EXPLOSIVE, ItemType.ARMOR, ItemType.CYBERNETIC, ItemType.MECH_ENGINE, ItemType.MECH_UTILITY,
+                ItemType.MECH_MELEE_WEAPON, ItemType.MECH_RANGED_WEAPON, ItemType.MECH
+                ),
+            Arrays.asList(0.01, 0.01, 0.01, 0.2, 0.25, 0.2, 0.2, 0.02),
+            60, 1, 3
+        ),
+        GRP_MECH_LOW_TABLE(
+            Arrays.asList(
+                ItemType.MECH_ENGINE, ItemType.MECH_UTILITY, ItemType.MECH_MELEE_WEAPON, ItemType.MECH_RANGED_WEAPON,
+                ItemType.MECH
+                ),
+            Arrays.asList(0.2, 0.25, 0.2, 0.2, 0.05),
+            25, 3, 6
+        ),
+        GRP_MECH_MED_TABLE(
+            Arrays.asList(
+                ItemType.MECH_ENGINE, ItemType.MECH_UTILITY, ItemType.MECH_MELEE_WEAPON, ItemType.MECH_RANGED_WEAPON,
+                ItemType.MECH
+                ),
+            Arrays.asList(0.2, 0.25, 0.2, 0.2, 0.05),
+            40, 3, 6
+        ),
+        GRP_MECH_HIGH_TABLE(
+            Arrays.asList(
+                ItemType.MECH_ENGINE, ItemType.MECH_UTILITY, ItemType.MECH_MELEE_WEAPON, ItemType.MECH_RANGED_WEAPON,
+                ItemType.MECH
+                ),
+            Arrays.asList(0.2, 0.25, 0.2, 0.2, 0.05),
+            60, 3, 6
+        ),
+        INDV_PERSON_LOW_TABLE(
             Arrays.asList(
                 ItemType.RANGED_WEAPON, ItemType.MELEE_WEAPON, ItemType.EXPLOSIVE, ItemType.ARMOR,
-                ItemType.CYBERNETIC, ItemType.MISC, ItemType.WEAPON_MOD, ItemType.SPECIAL_AMMO, ItemType.CONSUMABLE,
-                ItemType.MECH_ENGINE, ItemType.MECH_UTILITY, ItemType.MECH_MELEE_WEAPON, ItemType.MECH_RANGED_WEAPON
+                ItemType.CYBERNETIC, ItemType.MISC, ItemType.WEAPON_MOD, ItemType.SPECIAL_AMMO, ItemType.CONSUMABLE
                 ),
-            Arrays.asList(0.02, 0.02, 0.01, 0.02, 0.02, 0.02, 0.01, 0.01, 0.02, 0.2, 0.2, 0.2, 0.2),
-            55, 1, 4
+            Arrays.asList(0.25, 0.25, 0.05, 0.2, 0.15, 0.05, 0.03, 0.01, 0.01),
+            25, 1, 2
+        ),
+        INDV_PERSON_MED_TABLE(
+            Arrays.asList(
+                ItemType.RANGED_WEAPON, ItemType.MELEE_WEAPON, ItemType.EXPLOSIVE, ItemType.ARMOR,
+                ItemType.CYBERNETIC, ItemType.MISC, ItemType.WEAPON_MOD, ItemType.SPECIAL_AMMO, ItemType.CONSUMABLE
+                ),
+            Arrays.asList(0.25, 0.25, 0.05, 0.2, 0.15, 0.05, 0.03, 0.01, 0.01),
+            40, 1, 3
+        ),
+        INDV_PERSON_HIGH_TABLE(
+            Arrays.asList(
+                ItemType.RANGED_WEAPON, ItemType.MELEE_WEAPON, ItemType.EXPLOSIVE, ItemType.ARMOR,
+                ItemType.CYBERNETIC, ItemType.MISC, ItemType.WEAPON_MOD, ItemType.SPECIAL_AMMO, ItemType.CONSUMABLE
+                ),
+            Arrays.asList(0.25, 0.25, 0.05, 0.2, 0.15, 0.05, 0.03, 0.01, 0.01),
+            60, 1, 4
+        ),
+        GRP_PERSON_LOW_TABLE(
+            Arrays.asList(
+                ItemType.RANGED_WEAPON, ItemType.MELEE_WEAPON, ItemType.EXPLOSIVE, ItemType.ARMOR,
+                ItemType.CYBERNETIC, ItemType.MISC, ItemType.WEAPON_MOD, ItemType.SPECIAL_AMMO, ItemType.CONSUMABLE
+                ),
+            Arrays.asList(0.25, 0.25, 0.05, 0.2, 0.15, 0.05, 0.03, 0.01, 0.01),
+            25, 3, 6
+        ),
+        GRP_PERSON_MED_TABLE(
+            Arrays.asList(
+                ItemType.RANGED_WEAPON, ItemType.MELEE_WEAPON, ItemType.EXPLOSIVE, ItemType.ARMOR,
+                ItemType.CYBERNETIC, ItemType.MISC, ItemType.WEAPON_MOD, ItemType.SPECIAL_AMMO, ItemType.CONSUMABLE
+                ),
+            Arrays.asList(0.25, 0.25, 0.05, 0.2, 0.15, 0.05, 0.03, 0.01, 0.01),
+            40, 3, 6
+        ),
+        GRP_PERSON_HIGH_TABLE(
+            Arrays.asList(
+                ItemType.RANGED_WEAPON, ItemType.MELEE_WEAPON, ItemType.EXPLOSIVE, ItemType.ARMOR,
+                ItemType.CYBERNETIC, ItemType.MISC, ItemType.WEAPON_MOD, ItemType.SPECIAL_AMMO, ItemType.CONSUMABLE
+                ),
+            Arrays.asList(0.25, 0.25, 0.05, 0.2, 0.15, 0.05, 0.03, 0.01, 0.01),
+            60, 3, 6
         );
-
 
         public final List<ItemType> itemTypes;
         public final List<Double> itemWeights;

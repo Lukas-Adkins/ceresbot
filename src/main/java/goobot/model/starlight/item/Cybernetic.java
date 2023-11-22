@@ -26,6 +26,6 @@ public class Cybernetic extends Item {
 
     @Override
     public String toString() {
-        return String.format("```ansi\n%s / %s / %s cyber-slots / %d credits\n%s```", getName(), getFormattedRarity(), slots, getPrice(), getDescription());
+        return String.format("```ansi\n%s / %s / %s cyber-slots / %d CYD\n%s```", getName(), getFormattedRarity(), slots, getPrice(), getDescription());
     }
 }

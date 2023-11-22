@@ -36,7 +36,7 @@ public class MechSystem extends Item {
 
     @Override
     public String toString() {
-        return String.format("```ansi\n%s / %s / %d credits\n%s / Locations: [%s]\n%s```",
+        return String.format("```ansi\n%s / %s / %d CYD\n%s / Locations: [%s]\n%s```",
         getName(), getFormattedRarity(), getPrice(), mechSlot, mechLocation, getDescription());
     }
 }

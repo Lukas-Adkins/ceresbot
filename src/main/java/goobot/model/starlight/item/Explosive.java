@@ -17,7 +17,7 @@ public class Explosive extends RangedWeapon {
 
    @Override
     public String toString() {
-        return String.format("```ansi\n%s / %s / %s / %d credits\n%s / Range: %s / Damage: %s / Pen: %s \n%s```", 
+        return String.format("```ansi\n%s / %s / %s / %d CYD\n%s / Range: %s / Damage: %s / Pen: %s \n%s```", 
         getName(),getFormattedRarity(), getWeight(), getPrice(), getWeaponTypes(), getRange(), getDmg(), getPen(), getDescription());
     }
 }

@@ -56,6 +56,6 @@ public class MeleeWeapon extends Item {
 
     @Override
     public String toString() {
-        return String.format("```ansi\n%s / %s / %d credits\nRange: %s / Damage: %s / Pen: %s \n%s```", getName(), getFormattedRarity(), getPrice(), range , dmg, pen, getDescription());
+        return String.format("```ansi\n%s / %s / %d CYD\nRange: %s / Damage: %s / Pen: %s \n%s```", getName(), getFormattedRarity(), getPrice(), range , dmg, pen, getDescription());
     }
 }

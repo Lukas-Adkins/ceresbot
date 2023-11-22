@@ -62,11 +62,6 @@ public class CommandController implements CommandInterface {
     }
 
     @Override
-    public Mech MechInfo(String args) throws Exception {
-        return commandService.MechInfo(args);
-    }
-
-    @Override
     public String Roll(String args) throws Exception {
         return commandService.Roll(args);
     }
@@ -82,7 +77,7 @@ public class CommandController implements CommandInterface {
     }
 
     @Override
-    public String Item(String args) throws Exception {
+    public List<String> Item(String args) throws Exception {
         return commandService.Item(args);
     }
 

@@ -69,9 +69,19 @@ public class ItemService {
     private ItemTable cyberneticShop;
     private ItemTable mechShop;
 
-    private ItemTable mechLow;
-    private ItemTable mechMed;
-    private ItemTable mechHigh;
+    private ItemTable indvMechLow;
+    private ItemTable indvMechMed;
+    private ItemTable indvMechHigh;
+    private ItemTable grpMechLow;
+    private ItemTable grpMechMed;
+    private ItemTable grpMechHigh;
+
+    private ItemTable indvPersonLow;
+    private ItemTable indvPersonMed;
+    private ItemTable indvPersonHigh;
+    private ItemTable grpPersonLow;
+    private ItemTable grpPersonMed;
+    private ItemTable grpPersonHigh;
 
     public ItemService(){
         itemsByName = new HashMap<>();
@@ -85,9 +95,20 @@ public class ItemService {
             this.munitionShop = new ItemTable(TableType.MUNITION_SHOP);
             this.cyberneticShop = new ItemTable(TableType.CYBERNETIC_SHOP);
             this.mechShop = new ItemTable(TableType.MECH_SHOP);
-            this.mechLow = new ItemTable(TableType.MECH_LOW_TABLE);
-            this.mechMed = new ItemTable(TableType.MECH_MED_TABLE);
-            this.mechHigh = new ItemTable(TableType.MECH_HIGH_TABLE);
+
+            this.indvMechLow = new ItemTable(TableType.INDV_MECH_LOW_TABLE);
+            this.indvMechMed = new ItemTable(TableType.INDV_MECH_MED_TABLE);
+            this.indvMechHigh = new ItemTable(TableType.INDV_MECH_HIGH_TABLE);
+            this.grpMechLow = new ItemTable(TableType.GRP_MECH_LOW_TABLE);
+            this.grpMechMed = new ItemTable(TableType.GRP_MECH_MED_TABLE);
+            this.grpMechHigh = new ItemTable(TableType.GRP_MECH_HIGH_TABLE);
+
+            this.indvPersonLow = new ItemTable(TableType.INDV_PERSON_LOW_TABLE);
+            this.indvPersonMed = new ItemTable(TableType.INDV_PERSON_MED_TABLE);
+            this.indvPersonHigh = new ItemTable(TableType.INDV_PERSON_HIGH_TABLE);
+            this.grpPersonLow = new ItemTable(TableType.GRP_PERSON_LOW_TABLE);
+            this.grpPersonMed = new ItemTable(TableType.GRP_PERSON_MED_TABLE);
+            this.grpPersonHigh = new ItemTable(TableType.GRP_PERSON_HIGH_TABLE);
         }
         catch(Exception e){
             System.out.println(String.format("[ERROR] : Parsing items from %s", Constants.ST_ITEMS_FILEPATH));
@@ -259,17 +280,8 @@ public class ItemService {
 
     /**
      * Returns a specified number of items from a specific loot table.
-     * @param table StItemTable to roll upon.
-     * @param ubiquitous
-     * @param abundant
-     * @param plentiful
-     * @param common
-     * @param average
-     * @param scarce
-     * @param rare
-     * @param veryRare
-     * @param extremelyRare
-     * @param nearUnique
+     * @param table TableType to roll upon.
+     * @param request TableRequest indicating number of items of different rarities.
      * @return
      */
     public ArrayList<Item> getItemsByTable(TableType table, TableRequest request){
@@ -286,12 +298,30 @@ public class ItemService {
                 return munitionShop.getItems(request);
             case RANGED_SHOP:
                 return rangedShop.getItems(request);
-            case MECH_LOW_TABLE:
-                return mechLow.getItems(request);
-            case MECH_MED_TABLE:
-                return mechMed.getItems(request);
-            case MECH_HIGH_TABLE:
-                return mechHigh.getItems(request);
+            case INDV_MECH_LOW_TABLE:
+                return indvMechLow.getItems(request);
+            case INDV_MECH_MED_TABLE:
+                return indvMechMed.getItems(request);
+            case INDV_MECH_HIGH_TABLE:
+                return indvMechHigh.getItems(request);
+            case INDV_PERSON_LOW_TABLE:
+                return indvPersonLow.getItems(request);
+            case INDV_PERSON_MED_TABLE:
+                return indvPersonMed.getItems(request);
+            case INDV_PERSON_HIGH_TABLE:
+                return indvPersonHigh.getItems(request);
+            case GRP_MECH_LOW_TABLE:
+                return grpMechLow.getItems(request);
+            case GRP_MECH_MED_TABLE:
+                return grpMechMed.getItems(request);
+            case GRP_MECH_HIGH_TABLE:
+                return grpMechHigh.getItems(request);
+            case GRP_PERSON_LOW_TABLE:
+                return grpPersonLow.getItems(request);
+            case GRP_PERSON_MED_TABLE:
+                return grpPersonMed.getItems(request);
+            case GRP_PERSON_HIGH_TABLE:
+                return grpPersonHigh.getItems(request);
             default:
                 System.err.println("Table type not implemented: " + table.toString());
                 break;

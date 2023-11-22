@@ -71,8 +71,10 @@ public class DiscordController extends ListenerAdapter {
         Message message = event.getMessage();
         String content = message.getContentRaw();
         // Sees if message contains the command prefix
-        if(content.length() > 0 && content.substring(0, 1).equalsIgnoreCase(Constants.BOT_PREFIX))
+        if(content.length() > 0 && content.substring(0, 1).equalsIgnoreCase(Constants.BOT_PREFIX)){
             parseCommand(content.substring(1), event); // Strips message of command prefix and sends to parse
+            event.getMessage().delete().queue(); // Delete command message sent by user
+        }
     }
 
     /**
@@ -113,23 +115,15 @@ public class DiscordController extends ListenerAdapter {
                     post(commandController.Roll(args), channel);
                     break;
                 case "item":
-                    post(commandController.Item(args), channel);
+                    post(commandController.Item(args).get(0), channel);
+                    if(!commandController.Item(args).get(1).isEmpty())
+                        post(commandController.Item(args).get(1), channel);
                     break;
                 case "shop":
                     post(commandController.Shop(args), channel);
                     break;
                 case "loot":
                     post(commandController.Loot(args), channel);
-                    break;
-                case "mech":
-                    Mech mech = commandController.MechInfo(args);
-                    if(mech == null){
-                        post(Constants.MECH_NOT_FOUND_MSG, channel);
-                    }
-                    else{
-                        post(mech.toString(), channel);
-                        post(mech.getUrl(), channel);
-                    }
                     break;
                 case "character":
                     List<String> response = commandController.CharacterInfo(args);
@@ -156,7 +150,8 @@ public class DiscordController extends ListenerAdapter {
      */
     public void post(String message, MessageChannel channel){
         String functionName = "[post()] ";
-        if(message.length() > Constants.DISCORD_MSG_CAP) // Discord 2000 character msg limit
+        // Respect Discord 2000 character msg limit
+        if(message.length() > Constants.DISCORD_MSG_CAP)
             message = message.substring(0, Constants.DISCORD_MSG_CAP - 3) + "...";
         try{
             channel.sendMessage(message).queue();

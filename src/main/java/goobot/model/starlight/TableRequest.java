@@ -32,6 +32,12 @@ public class TableRequest {
         this.nearUnique = nearUnique;
     }
 
+    /**
+     * Returns a TableRequest based on Starlight game system requisition rules.
+     * @param commerce Integer (0-100) skill of Requisition test.
+     * @param items Integer (0-15) number of items to requisition.
+     * @return TableRequest containing the rarities of requisitioned items.
+     */
     public static TableRequest requisition(Integer commerce, Integer items){
         Integer ubiquitous = 0, abundant = 0, plentiful = 0, common = 0,
         average = 0, scarce = 0, rare = 0, veryRare = 0, extremelyRare = 0, nearUnique = 0;

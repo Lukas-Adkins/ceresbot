@@ -31,7 +31,7 @@ public class CeresBot {
     }
 
     /**
-     * Loads environment variables.
+     * Loads Discord token environment variable.
      * @return Discord API token to be used for this bot.
      */
     private static String getDiscordToken(){

@@ -103,12 +103,12 @@ public class Item {
 
     @Override
     public String toString() {
-        return String.format("```ansi\n%s / %s / %s / %d credits\n%s```", name, getFormattedRarity(), weight, price, description);
+        return String.format("```ansi\n%s / %s / %s / %d CYD\n%s```", name, getFormattedRarity(), weight, price, description);
     }
 
     /**
      * Returns string to display item in a shop with coloring if the item is on sale.
-     * e.g. "Rifle / Common / 120 credits"
+     * e.g. "Rifle / Common / 120 CYD"
      * @return Shop string
      */
     public String displayShop(){
@@ -120,18 +120,18 @@ public class Item {
             int percentOff = (int) (Math.abs(1.00 - percent) * 100); // Percent added/substracted from original price
 
             if(newPrice > price){
-                String formatMarkupPrice = String.format("%d credits (+%d%%)", newPrice, percentOff) ;
+                String formatMarkupPrice = String.format("%d CYD (+%d%%)", newPrice, percentOff) ;
                 return String.format("%s / %s / %s\n", name, getFormattedRarity(), String.format(MARKUP_COLOR, formatMarkupPrice));
             }
-            String formatDiscountPrice = String.format("%d credits (-%d%%)", newPrice, percentOff) ;
+            String formatDiscountPrice = String.format("%d CYD (-%d%%)", newPrice, percentOff) ;
             return String.format("%s / %s / %s\n", name, getFormattedRarity(), String.format(SALE_COLOR, formatDiscountPrice));
 
         }
-        return String.format("%s / %s / %d credits\n", name, getFormattedRarity(), price);
+        return String.format("%s / %s / %d CYD\n", name, getFormattedRarity(), price);
     }
 
     public String displayLoot(){
-        return String.format("%s / %s\n", name, getFormattedRarity());
+        return String.format("%s / %s / %s CYD\n", name, getFormattedRarity(), getPrice());
     }
     
     /**
