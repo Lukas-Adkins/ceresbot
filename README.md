@@ -1,6 +1,6 @@
 # Ceresbot
 
-A helpful Discord bot for for TTRPG tools.
+A helpful Discord bot for playing tabletop roleplaying games.
 
 **Setup**
 
