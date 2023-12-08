@@ -23,34 +23,79 @@ public class ItemTable {
     private WeightedRandomBag<ItemType> weightedItemTypes;
     private List<ItemType> itemTypes;
 
-    public ItemTable(TableType table){
+    /**
+     * Constructs an ItemTable based on a specified TableType.
+     *
+     * @param table The TableType defining the item types and their associated weights.
+     */
+    public ItemTable(TableType table) {
         this.itemTypes = table.itemTypes;
         this.weightedItemTypes = new WeightedRandomBag<>();
         this.weightedItemTypes.addEntries(itemTypes, table.itemWeights);
     }
     
+    /**
+     * Retrieves a random item of a specified rarity from a weighted type.
+     * The method iterates through rarity levels until an item is found or rarity becomes null.
+     *
+     * @param rarity The rarity of the item to be retrieved.
+     * @return A randomly selected item with the specified rarity, or null if not found.
+     */
     public Item getItem(Rarity rarity) {
         ItemType type = weightedItemTypes.getRandom();
-        ArrayList<Item> scambledList = ItemService.getItemByType(type);
-        while(true){
-            Item item = getItemOfRarity(rarity, scambledList);
-            if(item != null || rarity == null)
+        ArrayList<Item> itemList = ItemService.getItemByType(type);
+
+        while (rarity != null) {
+            Item item = getItemOfRarity(rarity, itemList);
+
+            if (item != null) {
                 return item;
+            }
+
             rarity = rarity.prev();
         }
-    }
 
-    private Item getItemOfRarity(Rarity rarity, ArrayList<Item> scambledList){
-        Collections.shuffle(scambledList);
-        for(Item item : scambledList){
-            if(item.getRarity() == rarity)
-                return item;
-        }
         return null;
     }
-    
-    public ArrayList<Item> getItems(TableRequest request){
+
+    /**
+     * Retrieves a random item of a specified rarity from a shuffled list.
+     *
+     * This method shuffles the provided list of items and searches for an item with the specified rarity.
+     * The list is shuffled to introduce randomness, and the first item found with the desired rarity is returned.
+     * If no item with the specified rarity is found, null is returned.
+     *
+     * @param rarity     The rarity of the item to be retrieved.
+     * @param itemList   The list of items from which to retrieve an item of the specified rarity.
+     * @return           A randomly selected item with the specified rarity, or null if not found.
+     */
+    private Item getItemOfRarity(Rarity rarity, ArrayList<Item> itemList) {
+        Collections.shuffle(itemList);
+
+        for (Item item : itemList) {
+            if (item.getRarity() == rarity) {
+                return item;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Retrieves a sorted list of unique items based on the specified rarity counts in the given TableRequest.
+     *
+     * This method generates a list of items by requesting items of various rarities according to the counts
+     * specified in the TableRequest. The resulting list is sorted by rarity in ascending order, and duplicate items
+     * are eliminated to ensure uniqueness.
+     *
+     * @param request The TableRequest specifying the counts of items for each rarity.
+     * @return A sorted list of unique items based on the specified rarity counts.
+     */
+    public ArrayList<Item> getItems(TableRequest request) {
+        // Use a set to ensure uniqueness of items
         Set<Item> set = new HashSet<>();
+
+        // Request items of each rarity and add them to the set
         set = getItemsOfRarity(Rarity.UBIQUITOUS, request.ubiquitous, set);
         set = getItemsOfRarity(Rarity.ABUNDANT, request.abundant, set);
         set = getItemsOfRarity(Rarity.PLENTIFUL, request.plentiful, set);
@@ -61,68 +106,88 @@ public class ItemTable {
         set = getItemsOfRarity(Rarity.VERY_RARE, request.veryRare, set);
         set = getItemsOfRarity(Rarity.EXTREMELY_RARE, request.extremelyRare, set);
         set = getItemsOfRarity(Rarity.NEAR_UNIQUE, request.nearUnique, set);
+
+        // Convert the set to an ArrayList and sort it by rarity
         ArrayList<Item> list = new ArrayList<>(set);
         list.sort(Comparator.comparing(Item::getRarity));
         return list;
     }
 
-    private Set<Item> getItemsOfRarity(Rarity rarity, int size, Set<Item> existingItems){
-        System.out.println(String.format("Shop Request: Getting inventory of rarity: %s size: %d", rarity, size));
-        if(size <= 0){
+    /**
+     * Retrieves a set of items with a specified rarity and target size for the inventory.
+     *
+     * This method populates the given set of existing items with new items of the specified rarity until
+     * the target size is reached. It utilizes the inventoryFetcher method to obtain items of the correct
+     * rarity and type. The process continues until the target size is achieved, or all available types
+     * are exhausted.
+     *
+     * @param rarity         The Rarity of the items to be fetched.
+     * @param size           The target size of the inventory.
+     * @param existingItems  The current set of existing items in the inventory.
+     * @return               The set of items with the specified rarity and target size.
+     */
+    private Set<Item> getItemsOfRarity(Rarity rarity, int size, Set<Item> existingItems) {
+        if (size <= 0) {
             return existingItems;
         }
-       
-        Integer existingSetSize = existingItems.size();
-        Set<Item> set = existingItems;
+
         List<ItemType> exhaustedTypes = new ArrayList<>();
-        
-        while(true){
+
+        while (existingItems.size() < size) {
             Item item = null;
             Rarity currentRarity = rarity;
             ItemType currentType = weightedItemTypes.getRandom();
-            // Get item for shop inventory of correct rarity and type
-            while(true){
-                item = inventoryFetcher(currentType, currentRarity, set);
-                if(item != null){
-                    break;
-                }
-                // Downgrade rarity of item if none found at initial rarity
-                currentRarity = currentRarity.prev();
-                // Break if no more valid items
-                if(currentRarity == null){
-                    System.out.println("Shop Request: Encountered bottom of rarity list for type:" + currentType);
-                    exhaustedTypes.add(currentType);
-                    break;
+
+            while (item == null) {
+                item = inventoryFetcher(currentType, currentRarity, existingItems);
+                if (item != null) {
+                    existingItems.add(item);
+                } else {
+                    // Downgrade rarity of item if none found at initial rarity
+                    currentRarity = currentRarity.prev();
+
+                    // Break if no more valid items
+                    if (currentRarity == null) {
+                        exhaustedTypes.add(currentType);
+                        break;
+                    }
                 }
             }
-            if(item != null){
-                System.out.println(String.format("Shop Request: Item found: %s %s", item.getName(), item.getRarity()));
-                set.add(item);
-            }
-            if(set.size() == size + existingSetSize){
-                System.out.println("Shop Request: Inventory reached target size of " + size + ".");
+
+            if (existingItems.size() == size) {
                 break;
             }
-            if(exhaustedTypes.equals(itemTypes)){
-                System.out.println("Shop Request: All shop types exhausted. Exiting with size " + set.size() + ".");
+
+            if (exhaustedTypes.containsAll(itemTypes)) {
                 break;
             }
         }
-        return set;
+
+        return existingItems;
     }
 
-    private Item inventoryFetcher(ItemType type, Rarity rarity, Set<Item> existingItems){
+    /**
+     * Retrieves a new item of a specified type and rarity for the inventory.
+     *
+     * This method searches for an item of the specified type and rarity from the available items
+     * provided by the ItemService. It ensures that the item is not already present in the existingItems set
+     * to avoid duplicates in the inventory.
+     *
+     * @param type           The ItemType of the item to be fetched.
+     * @param rarity         The Rarity of the item to be fetched.
+     * @param existingItems  A Set of existing items in the inventory.
+     * @return               The fetched item, or null if no suitable item is found.
+     */
+    private Item inventoryFetcher(ItemType type, Rarity rarity, Set<Item> existingItems) {
         System.out.println("Shop Request: Fetching new item of rarity: " + rarity + " type: " + type);
-        for(Item item : ItemService.getItemByType(type)){
-            if(item.getRarity() == rarity && !existingItems.contains(item)){
+
+        for (Item item : ItemService.getItemByType(type)) {
+            if (item.getRarity() == rarity && !existingItems.contains(item)) {
                 return item;
             }
         }
-        for(Item item : ItemService.getItemByType(type)){
-            if(item.getRarity() == rarity && !existingItems.contains(item)){
-                return item;
-            }
-        }
+
         return null;
     }
+
 }
