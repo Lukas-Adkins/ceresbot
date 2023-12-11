@@ -8,6 +8,9 @@ package goobot.model.starlight.item;
 import goobot.Constants.Rarity;
 import goobot.Constants.ItemType;
 
+/**
+ * Represents a ranged weapon.
+ */
 public class RangedWeapon extends Item {
     private static final String ANSI_FORMAT = "```ansi\n%s / %s / %s / %d CYD\n%s / Range: %s / RoF: %s / Damage: %s / Pen: %s / Mag: %s / Rld: %s\n%s```";
 

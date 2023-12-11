@@ -8,6 +8,9 @@ package goobot.model.starlight.item;
 import goobot.Constants.ItemType;
 import goobot.Constants.Rarity;
 
+/**
+ * Represents a mech melee weapon item.
+ */
 public class MechMeleeWeapon extends MeleeWeapon {
     private String mechSlot;
     private String mechLocation;

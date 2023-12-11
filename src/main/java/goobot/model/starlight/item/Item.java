@@ -49,6 +49,78 @@ public class Item {
     }
 
     /**
+     * Returns a string representation of the item, including its name, formatted rarity, weight, price, and description (if available).
+     *
+     * @return A string representation of the item.
+     */
+    @Override
+    public String toString() {
+        return String.format(ANSI_FORMAT, name, getFormattedRarity(), weight, price, getDescription() != null ? getDescription() : "");
+    }
+
+    /**
+     * Generates a formatted display string representing an item in a shop, including its name, rarity,
+     * and either the original price or a modified price with a potential discount or markup.
+     *
+     * If the random number generated is above a predefined sale threshold (85%), the function
+     * calculates a random percentage change within the range of a discount (5%) or markup (7%).
+     * It then adjusts the item's price accordingly and formats the display string with the calculated values.
+     * The display string includes the item's name, rarity, and the formatted price with the percentage change
+     * and appropriate color code based on whether it's a discount or markup.
+     *
+     * If the random number is below the sale threshold, the function returns a string containing
+     * the item's name, rarity, and the original price without any modification.
+     *
+     * @return A formatted display string representing the item in the shop.
+     */
+    public String displayInShop() {
+        final int SALE_THRESHOLD = 85;
+        final double MIN_PERCENT = 0.95;
+        final double MAX_PERCENT = 1.07;
+    
+        if (rng.nextInt(100) + 1 > SALE_THRESHOLD) {
+            double percent = rng.nextDouble() * (MAX_PERCENT - MIN_PERCENT) + MIN_PERCENT;
+            int newPrice = (int) (price * percent);
+            int percentChange = (int) Math.abs((1.00 - percent) * 100);
+    
+            String priceFormat = (newPrice > price) ? "%d CYD (+%d%%)" : "%d CYD (-%d%%)";
+            String priceColorFormat = (newPrice > price) ? MARKUP_COLOR : SALE_COLOR;
+    
+            String formattedPrice = String.format(priceFormat, newPrice, percentChange);
+            return String.format("%s / %s / %s\n", name, getFormattedRarity(), String.format(priceColorFormat, formattedPrice));
+        }
+    
+        return String.format("%s / %s / %d CYD\n", name, getFormattedRarity(), price);
+    }
+
+    /**
+     * Generates a formatted display string representing an item obtained as loot, including its name,
+     * rarity, and price in Currency (CYD).
+     *
+     * @return A formatted display string representing the loot item.
+     */
+    public String displayInLootTable() {
+        return String.format("%s / %s / %s CYD\n", name, getFormattedRarity(), getPrice());
+    }
+
+    /**
+     * Returns a formatted string representation of the rarity, using color codes
+     * defined in the Constants class.
+     *
+     * @return A formatted string representing the rarity with color codes,
+     *         or the string representation of the rarity if no formatting is available.
+     */
+    public String getFormattedRarity() {
+        String rarityColor = Constants.RARITY_COLORS.get(rarity);
+        
+        if (rarityColor != null) {
+            return String.format(rarityColor, rarity);
+        } else {
+            return rarity.toString();
+        }
+    }
+
+    /**
      * Retrieves the type of the item.
      *
      * @return The type of the item.
@@ -197,77 +269,5 @@ public class Item {
             Objects.equals(weight, otherItem.weight) &&
             Objects.equals(price, otherItem.price) &&
             Objects.equals(rng, otherItem.rng);
-    }
-
-    /**
-     * Returns a string representation of the item, including its name, formatted rarity, weight, price, and description (if available).
-     *
-     * @return A string representation of the item.
-     */
-    @Override
-    public String toString() {
-        return String.format(ANSI_FORMAT, name, getFormattedRarity(), weight, price, getDescription() != null ? getDescription() : "");
-    }
-
-    /**
-     * Generates a formatted display string representing an item in a shop, including its name, rarity,
-     * and either the original price or a modified price with a potential discount or markup.
-     *
-     * If the random number generated is above a predefined sale threshold (85%), the function
-     * calculates a random percentage change within the range of a discount (5%) or markup (7%).
-     * It then adjusts the item's price accordingly and formats the display string with the calculated values.
-     * The display string includes the item's name, rarity, and the formatted price with the percentage change
-     * and appropriate color code based on whether it's a discount or markup.
-     *
-     * If the random number is below the sale threshold, the function returns a string containing
-     * the item's name, rarity, and the original price without any modification.
-     *
-     * @return A formatted display string representing the item in the shop.
-     */
-    public String displayInShop() {
-        final int SALE_THRESHOLD = 85;
-        final double MIN_PERCENT = 0.95;
-        final double MAX_PERCENT = 1.07;
-    
-        if (rng.nextInt(100) + 1 > SALE_THRESHOLD) {
-            double percent = rng.nextDouble() * (MAX_PERCENT - MIN_PERCENT) + MIN_PERCENT;
-            int newPrice = (int) (price * percent);
-            int percentChange = (int) Math.abs((1.00 - percent) * 100);
-    
-            String priceFormat = (newPrice > price) ? "%d CYD (+%d%%)" : "%d CYD (-%d%%)";
-            String priceColorFormat = (newPrice > price) ? MARKUP_COLOR : SALE_COLOR;
-    
-            String formattedPrice = String.format(priceFormat, newPrice, percentChange);
-            return String.format("%s / %s / %s\n", name, getFormattedRarity(), String.format(priceColorFormat, formattedPrice));
-        }
-    
-        return String.format("%s / %s / %d CYD\n", name, getFormattedRarity(), price);
-    }
-
-    /**
-     * Generates a formatted display string representing an item obtained as loot, including its name,
-     * rarity, and price in Currency (CYD).
-     *
-     * @return A formatted display string representing the loot item.
-     */
-    public String displayInLootTable() {
-        return String.format("%s / %s / %s CYD\n", name, getFormattedRarity(), getPrice());
-    }
-
-    /**
-     * Returns a formatted string representation of the rarity, using color codes
-     * defined in the Constants class.
-     *
-     * @return A formatted string representing the rarity with color codes,
-     *         or the string representation of the rarity if no formatting is available.
-     */
-    public String getFormattedRarity() {
-        String rarityColor = Constants.RARITY_COLORS.get(rarity);
-        
-        if (rarityColor != null) {
-            return String.format(rarityColor, rarity);
-        } else {
-            return rarity.toString();
-        }
     }
 }
